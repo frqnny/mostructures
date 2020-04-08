@@ -1,33 +1,31 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
-  "version": "${version}",
+  "id": "mostructures",
+  "version": "0.1.0",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Mo' Structures",
+  "description": "Adds structures with loot and spawners to Minecraft to increase the RPG aspect of the game.",
   "authors": [
-    "Me!"
+    "ffrann"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/franiscoder/mostructures",
+    "sources": "https://github.com/franiscoder/mostructures"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "license": "LGPL-3.0",
+  "icon": "assets/mostructures/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "io.github.franiscoder.mostructures.MoStructures"
     ]
   },
-  "mixins": [
-    "modid.mixins.json"
-  ],
+  
 
   "depends": {
-    "fabricloader": ">=0.7.4",
+    "fabricloader": ">=0.8.2",
     "fabric": "*",
     "minecraft": "1.15.x"
   },
