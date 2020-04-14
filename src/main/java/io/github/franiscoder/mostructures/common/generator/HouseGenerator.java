@@ -2,7 +2,6 @@ package io.github.franiscoder.mostructures.common.generator;
 
 import io.github.franiscoder.mostructures.MoStructures;
 import io.github.franiscoder.mostructures.common.init.ModStructures;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ChestBlockEntity;
@@ -30,6 +29,7 @@ public class HouseGenerator {
 
     public static void addPieces(StructureManager manager, BlockPos pos, BlockRotation rotation, List<StructurePiece> pieces, Random random, DefaultFeatureConfig defaultConfig) {
         pieces.add(new HouseGenerator.Piece(manager, ROUND_HOUSE, pos, rotation));
+        System.out.println("added!");
     }
 
     public static class Piece extends SimpleStructurePiece {
@@ -49,6 +49,7 @@ public class HouseGenerator {
             this.template = new Identifier(tag.getString("Template"));
             this.rotation = BlockRotation.valueOf(tag.getString("Rot"));
             this.initializeStructureData(manager);
+            System.out.println("new structure!");
 
         }
 
@@ -64,6 +65,7 @@ public class HouseGenerator {
             Structure structure = manager.getStructureOrBlank(this.template);
             StructurePlacementData structurePlacementData = (new StructurePlacementData()).setRotation(this.rotation).setMirror(BlockMirror.NONE).setPosition(this.pos).addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS);
             this.setStructureData(structure, this.pos, structurePlacementData);
+            System.out.println("initialized structure data");
         }
 
         protected void handleMetadata(String metadata, BlockPos pos, IWorld world, Random random, BlockBox boundingBox) {
@@ -78,8 +80,9 @@ public class HouseGenerator {
         }
 
         public boolean generate(IWorld world, StructureAccessor structureAccessor, ChunkGenerator<?> chunkGenerator, Random random, BlockBox blockBox, ChunkPos chunkPos, BlockPos blockPos) {
+            System.out.println("beginning generate method");
             int fixedPosY = world.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos.getX(), pos.getZ());
-            BlockPos fixedPos = new BlockPos(pos.getX(), fixedPosY, pos.getZ());
+            BlockPos fixedPos = new BlockPos(pos.getX(), fixedPosY - 1, pos.getZ());
             placementData.setPosition(fixedPos);
 
             this.pos.add(Structure.transform(this.placementData, fixedPos));

@@ -23,7 +23,9 @@ public class ModStructures {
     public static final Feature<DefaultFeatureConfig> FALLEN_TREE = Registry.register(Registry.FEATURE, MoStructures.id("fallen_tree"), new FallenTreeFeature(DefaultFeatureConfig::deserialize));
     public static final Feature<DefaultFeatureConfig> SMALL_DESERT_FEATURES = Registry.register(Registry.FEATURE, MoStructures.id("dead_tree"), new SmallDryFeature(DefaultFeatureConfig::deserialize));
 
-    public static StructureFeature<DefaultFeatureConfig> HOUSE = Registry.register(Registry.STRUCTURE_FEATURE, MoStructures.id("house"), new HouseStructureFeature(DefaultFeatureConfig::deserialize));
+
+    public static StructureFeature<DefaultFeatureConfig> HOUSE = Registry.register(Registry.FEATURE, MoStructures.id("house"), new HouseStructureFeature(DefaultFeatureConfig::deserialize));
+    public static final StructureFeature<?> myStructure = Registry.register(Registry.STRUCTURE_FEATURE, "house", HOUSE);
 
     public static StructurePieceType HOUSE_STRUCTURES = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("house_structures"), HouseGenerator.Piece::new);
 
@@ -51,5 +53,7 @@ public class ModStructures {
 
             biome.addStructureFeature(HOUSE.configure(FeatureConfig.DEFAULT));
         });
+
+        Feature.STRUCTURES.put("housestructure", HOUSE);
     }
 }

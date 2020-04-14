@@ -31,5 +31,8 @@
   },
   "suggests": {
     "flamingo": "*"
-  }
+  },
+  "mixins": [
+    "mostructures.mixins.json"
+  ]
 }

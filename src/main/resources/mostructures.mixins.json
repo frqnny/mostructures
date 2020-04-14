@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "io.github.franiscoder.mostructures.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "LocateCommandMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
