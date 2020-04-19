@@ -60,8 +60,8 @@ public class BarnHouseGenerator {
                         FEATURES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID+":barn_house/feature_cart"),1),
-                                new Pair<>(new LegacySinglePoolElement( "pillager_outpost/feature_logs"),1),
+                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":barn_house/feature_cart"), 1),
+                                new Pair<>(new LegacySinglePoolElement("pillager_outpost/feature_logs"), 1),
                                 new Pair<>(EmptyPoolElement.INSTANCE, 6)
                         ),
                         StructurePool.Projection.RIGID

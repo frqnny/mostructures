@@ -41,9 +41,14 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
         }
     }
 
+    public static boolean canPlaceWood(BlockState block) {
+        return block == Blocks.AIR.getDefaultState() || block == Blocks.GRASS.getDefaultState() || block == Blocks.WATER.getDefaultState();
+    }
+
     @Override
     public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-        if (world.getDimension().getType() != DimensionType.OVERWORLD || world.getBiome(pos).getCategory() == Biome.Category.OCEAN) return false;
+        if (world.getDimension().getType() != DimensionType.OVERWORLD || world.getBiome(pos).getCategory() == Biome.Category.OCEAN)
+            return false;
 
         BlockPos newPos = world.getTopPosition(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos);
 
@@ -68,8 +73,5 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
             }
         }
         return true;
-    }
-    public static boolean canPlaceWood(BlockState block) {
-        return block == Blocks.AIR.getDefaultState() || block == Blocks.GRASS.getDefaultState() || block == Blocks.WATER.getDefaultState();
     }
 }
