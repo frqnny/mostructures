@@ -27,6 +27,7 @@ public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
     public static final Identifier DEAD_TREE = MoStructures.id("deadtree");
     public static final Identifier DESERT_GRAVE = MoStructures.id("desert_grave");
     public static final Identifier[] IDENTIFIERS = {DEAD_TREE, DESERT_GRAVE};
+
     public SmallDryFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> c) {
         super(c);
     }

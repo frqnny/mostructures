@@ -36,14 +36,14 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
             return Blocks.SPRUCE_WOOD.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
         } else if (biome.getCategory() == Biome.Category.DESERT) {
             return Blocks.ACACIA_WOOD.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
-        }else {
+        } else {
             return Blocks.STRUCTURE_VOID.getDefaultState();
         }
     }
 
     @Override
     public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-        if(world.getDimension().getType() != DimensionType.OVERWORLD) return false;
+        if (world.getDimension().getType() != DimensionType.OVERWORLD) return false;
 
         BlockPos newPos = world.getTopPosition(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos);
 
@@ -60,7 +60,7 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
         }
 
         for (int i = 6; i > 0; i--) {
-            if (world.getBlockState(newPos) == Blocks.AIR.getDefaultState()) {
+            if (canPlaceWood(world.getBlockState(newPos))) {
                 world.setBlockState(newPos, blockToPlace, 3);
                 newPos = newPos.east();
             } else {
@@ -68,5 +68,8 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
             }
         }
         return true;
+    }
+    public static boolean canPlaceWood(BlockState block) {
+        return block == Blocks.AIR.getDefaultState() || block == Blocks.GRASS.getDefaultState() || block == Blocks.WATER.getDefaultState();
     }
 }

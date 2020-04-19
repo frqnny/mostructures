@@ -3,7 +3,9 @@
   "package": "io.github.franiscoder.mostructures.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "LocateCommandMixin"
+    "LocateCommandMixin",
+    "StructureLandMixin",
+    "LakeFeatureMixin"
   ],
   "client": [
   ],

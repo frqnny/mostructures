@@ -1,8 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "mostructures",
-  "version": "0.1.0",
-
+  "version": "0.0.1",
   "name": "Mo' Structures",
   "description": "Adds structures with loot and spawners to Minecraft to increase the RPG aspect of the game.",
   "authors": [
@@ -12,18 +11,14 @@
     "homepage": "https://github.com/franiscoder/mostructures",
     "sources": "https://github.com/franiscoder/mostructures"
   },
-
   "license": "LGPL-3.0",
   "icon": "assets/mostructures/icon.png",
-
   "environment": "*",
   "entrypoints": {
     "main": [
       "io.github.franiscoder.mostructures.MoStructures"
     ]
   },
-  
-
   "depends": {
     "fabricloader": ">=0.8.2",
     "fabric": "*",

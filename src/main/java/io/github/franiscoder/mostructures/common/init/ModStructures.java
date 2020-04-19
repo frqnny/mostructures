@@ -1,14 +1,15 @@
 package io.github.franiscoder.mostructures.common.init;
 
 import io.github.franiscoder.mostructures.MoStructures;
+import io.github.franiscoder.mostructures.common.feature.BarnHouseFeature;
 import io.github.franiscoder.mostructures.common.feature.FallenTreeFeature;
-import io.github.franiscoder.mostructures.common.feature.HouseStructureFeature;
 import io.github.franiscoder.mostructures.common.feature.SmallAirFeature;
 import io.github.franiscoder.mostructures.common.feature.SmallDryFeature;
-import io.github.franiscoder.mostructures.common.generator.HouseGenerator;
+import io.github.franiscoder.mostructures.common.generator.BarnHouseGenerator;
 import net.minecraft.structure.StructurePieceType;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.decorator.ChanceDecoratorConfig;
 import net.minecraft.world.gen.decorator.Decorator;
@@ -23,13 +24,13 @@ public class ModStructures {
     public static final Feature<DefaultFeatureConfig> FALLEN_TREE = Registry.register(Registry.FEATURE, MoStructures.id("fallen_tree"), new FallenTreeFeature(DefaultFeatureConfig::deserialize));
     public static final Feature<DefaultFeatureConfig> SMALL_DESERT_FEATURES = Registry.register(Registry.FEATURE, MoStructures.id("dead_tree"), new SmallDryFeature(DefaultFeatureConfig::deserialize));
 
-
-    public static StructureFeature<DefaultFeatureConfig> HOUSE = Registry.register(Registry.FEATURE, MoStructures.id("house"), new HouseStructureFeature(DefaultFeatureConfig::deserialize));
-    public static final StructureFeature<?> myStructure = Registry.register(Registry.STRUCTURE_FEATURE, "house", HOUSE);
-
-    public static StructurePieceType HOUSE_STRUCTURES = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("house_structures"), HouseGenerator.Piece::new);
+    public static final StructureFeature<DefaultFeatureConfig> BARN_HOUSE = Registry.register(Registry.FEATURE, MoStructures.id("barn_house_feature"), new BarnHouseFeature());
+    public static final StructurePieceType BARN_HOUSE_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("barn_house_piece"), BarnHouseGenerator.Piece::new);
 
     public static void init() {
+        Registry.register(Registry.STRUCTURE_FEATURE, MoStructures.id("barn_house_structure"), BARN_HOUSE);
+
+
         Registry.BIOME.forEach((Biome biome) -> {
             biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, AIR_BALLOON
                     .configure(FeatureConfig.DEFAULT)
@@ -43,17 +44,17 @@ public class ModStructures {
                     .configure(FeatureConfig.DEFAULT)
                     .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(500 / SmallDryFeature.IDENTIFIERS.length)))
             );
+            if (biome.getCategory() == Biome.Category.PLAINS || biome == Biomes.SAVANNA) {
+                biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, BARN_HOUSE
+                        .configure(FeatureConfig.DEFAULT)
+                        .createDecoratedFeature(Decorator.NOPE.configure(new NopeDecoratorConfig()))
+                );
+                biome.addStructureFeature(BARN_HOUSE.configure(FeatureConfig.DEFAULT));
+            }
 
-
-            biome.addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, HOUSE
-                    .configure(FeatureConfig.DEFAULT)
-                    .createDecoratedFeature(Decorator.NOPE.configure(NopeDecoratorConfig.DEFAULT))
-            );
-
-
-            biome.addStructureFeature(HOUSE.configure(FeatureConfig.DEFAULT));
         });
 
-        Feature.STRUCTURES.put("housestructure", HOUSE);
+        Feature.STRUCTURES.put(MoStructures.MODID + ":barn_house", BARN_HOUSE);
+
     }
 }
