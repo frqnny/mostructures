@@ -18,7 +18,7 @@ import net.minecraft.world.gen.feature.StructureFeature;
 import java.util.List;
 
 public class BarnHouseFeature extends AbstractTempleFeature<DefaultFeatureConfig> {
-    private static final List<Biome.SpawnEntry> MONSTER_SPAWNS = Lists.newArrayList(new Biome.SpawnEntry(EntityType.COW, 1, 1, 1));
+    private static final List<Biome.SpawnEntry> MONSTER_SPAWNS = Lists.newArrayList(new Biome.SpawnEntry(EntityType.CREEPER, 1, 1, 1));
 
     public BarnHouseFeature() {
         super(DefaultFeatureConfig::deserialize);

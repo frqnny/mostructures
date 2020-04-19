@@ -30,7 +30,7 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
 
         if (biome == Biomes.BIRCH_FOREST || biome == Biomes.BIRCH_FOREST_HILLS || biome == Biomes.TALL_BIRCH_FOREST) {
             return Blocks.BIRCH_WOOD.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
-        } else if (biome.getCategory() == Biome.Category.FOREST || biome == Biomes.PLAINS) {
+        } else if (biome.getCategory() == Biome.Category.FOREST || biome == Biomes.PLAINS || biome.getCategory() == Biome.Category.RIVER) {
             return Blocks.OAK_WOOD.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
         } else if (biome.getCategory() == Biome.Category.TAIGA) {
             return Blocks.SPRUCE_WOOD.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
@@ -43,7 +43,7 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
 
     @Override
     public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-        if (world.getDimension().getType() != DimensionType.OVERWORLD) return false;
+        if (world.getDimension().getType() != DimensionType.OVERWORLD || world.getBiome(pos).getCategory() == Biome.Category.OCEAN) return false;
 
         BlockPos newPos = world.getTopPosition(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos);
 
