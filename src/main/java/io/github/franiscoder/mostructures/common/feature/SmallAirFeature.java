@@ -1,6 +1,5 @@
 package io.github.franiscoder.mostructures.common.feature;
 
-import com.mojang.datafixers.Dynamic;
 import io.github.franiscoder.mostructures.MoStructures;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.Structure;
@@ -19,7 +18,6 @@ import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
-import java.util.function.Function;
 
 public class SmallAirFeature extends Feature<DefaultFeatureConfig> {
     private static final Identifier AIR_BALLOON_1 = MoStructures.id("airballoon1");
@@ -28,8 +26,8 @@ public class SmallAirFeature extends Feature<DefaultFeatureConfig> {
     private static final Identifier[] AIR_FEATURES = new Identifier[]{AIR_BALLOON_1, AIR_BALLOON_2, AIR_BALLOON_3};
 
 
-    public SmallAirFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> c) {
-        super(c);
+    public SmallAirFeature() {
+        super(DefaultFeatureConfig::deserialize);
     }
 
     @Override

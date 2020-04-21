@@ -1,6 +1,5 @@
 package io.github.franiscoder.mostructures.common.feature;
 
-import com.mojang.datafixers.Dynamic;
 import io.github.franiscoder.mostructures.MoStructures;
 import net.minecraft.block.Blocks;
 import net.minecraft.server.world.ServerWorld;
@@ -21,23 +20,22 @@ import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
-import java.util.function.Function;
 
 public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
     public static final Identifier DEAD_TREE = MoStructures.id("deadtree");
-    public static final Identifier DESERT_GRAVE = MoStructures.id("desert_grave");
-    public static final Identifier[] IDENTIFIERS = {DEAD_TREE, DESERT_GRAVE};
+    //public static final Identifier DESERT_GRAVE = MoStructures.id("desert_grave");
+    public static final Identifier[] IDENTIFIERS = {DEAD_TREE};
 
-    public SmallDryFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> c) {
-        super(c);
+    public SmallDryFeature() {
+        super(DefaultFeatureConfig::deserialize);
     }
 
     @Override
     public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         if (canGenerate(world, pos) && world.getBlockState(pos.down()) == Blocks.SAND.getDefaultState()) {
             int randomStructureToPlace = world.getRandom().nextInt(IDENTIFIERS.length);
-            Identifier structureId = IDENTIFIERS[randomStructureToPlace];
-            if (structureId == DESERT_GRAVE) pos = pos.down();
+            //to come back soon
+            Identifier structureId = DEAD_TREE;
             Structure structure = ((ServerWorld) world.getWorld()).getSaveHandler().getStructureManager().getStructure(structureId);
 
             BlockPos newPos = world.getTopPosition(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos);

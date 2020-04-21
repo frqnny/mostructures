@@ -1,6 +1,5 @@
 package io.github.franiscoder.mostructures.common.feature;
 
-import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PillarBlock;
@@ -18,11 +17,10 @@ import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
-import java.util.function.Function;
 
 public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
-    public FallenTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> c) {
-        super(c);
+    public FallenTreeFeature() {
+        super(DefaultFeatureConfig::deserialize);
     }
 
     public static BlockState getWoodToPlace(Biome biome) {
@@ -37,7 +35,7 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
         } else if (biome.getCategory() == Biome.Category.DESERT) {
             return Blocks.ACACIA_WOOD.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
         } else {
-            return Blocks.STRUCTURE_VOID.getDefaultState();
+            return Blocks.AIR.getDefaultState();
         }
     }
 
