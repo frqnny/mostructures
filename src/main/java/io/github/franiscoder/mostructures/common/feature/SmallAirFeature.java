@@ -34,7 +34,7 @@ public class SmallAirFeature extends Feature<DefaultFeatureConfig> {
     public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         Random random2 = world.getRandom();
         int i = random2.nextInt(AIR_FEATURES.length);
-        StructureManager manager = ((ServerWorld) world.getWorld()).getSaveHandler().getStructureManager();
+        StructureManager manager = ((ServerWorld) world.getWorld()).getStructureManager();
         Structure structure = manager.getStructure(AIR_FEATURES[i]);
 
 

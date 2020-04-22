@@ -36,7 +36,7 @@ public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
             int randomStructureToPlace = world.getRandom().nextInt(IDENTIFIERS.length);
             //to come back soon
             Identifier structureId = DEAD_TREE;
-            Structure structure = ((ServerWorld) world.getWorld()).getSaveHandler().getStructureManager().getStructure(structureId);
+            Structure structure = ((ServerWorld) world.getWorld()).getStructureManager().getStructure(structureId);
 
             BlockPos newPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, pos);
             BlockRotation blockRotation = BlockRotation.random(random);
