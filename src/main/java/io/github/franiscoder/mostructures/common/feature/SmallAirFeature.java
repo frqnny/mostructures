@@ -39,7 +39,7 @@ public class SmallAirFeature extends Feature<DefaultFeatureConfig> {
 
 
         int yToAdd = Math.max(random2.nextInt(100), 40);
-        int newHeight = world.getTopY(Heightmap.Type.WORLD_SURFACE, pos.getX(), pos.getZ()) + yToAdd;
+        int newHeight = world.getTopY(Heightmap.Type.WORLD_SURFACE_WG, pos.getX(), pos.getZ()) + yToAdd;
         BlockPos newPos = new BlockPos(pos.getX(), newHeight, pos.getZ());
         BlockRotation blockRotation = BlockRotation.random(random);
 

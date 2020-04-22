@@ -38,7 +38,7 @@ public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
             Identifier structureId = DEAD_TREE;
             Structure structure = ((ServerWorld) world.getWorld()).getSaveHandler().getStructureManager().getStructure(structureId);
 
-            BlockPos newPos = world.getTopPosition(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos);
+            BlockPos newPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, pos);
             BlockRotation blockRotation = BlockRotation.random(random);
             StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
 

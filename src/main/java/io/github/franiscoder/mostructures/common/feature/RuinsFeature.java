@@ -143,5 +143,4 @@ public class RuinsFeature extends Feature<DefaultFeatureConfig> {
         int y = getBaseHeight(world, pos.getX(), pos.getZ());
         return new BlockPos(pos.getX(), y, pos.getZ());
     }
-
 }
