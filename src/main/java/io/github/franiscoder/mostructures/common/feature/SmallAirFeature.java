@@ -35,7 +35,7 @@ public class SmallAirFeature extends Feature<DefaultFeatureConfig> {
         Random random2 = world.getRandom();
         int i = random2.nextInt(AIR_FEATURES.length);
         StructureManager manager = ((ServerWorld) world.getWorld()).getStructureManager();
-        Structure structure = manager.getStructure(AIR_FEATURES[i]);
+        Structure structure = manager.getStructureOrBlank(AIR_FEATURES[i]);
 
 
         int yToAdd = Math.max(random2.nextInt(100), 40);

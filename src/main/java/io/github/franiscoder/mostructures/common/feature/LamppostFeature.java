@@ -64,23 +64,19 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
             assert structure != null;
             structure.place(world, newPos, structurePlacementData);
             return true;
-
         }
         if (world.getBiome(pos).getCategory() == Biome.Category.NETHER) {
             BlockRotation blockRotation = BlockRotation.random(random);
             StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
             StructureManager manager = ((ServerWorld) world.getWorld()).getStructureManager();
-            Structure structure = manager.getStructure(lamppost);
+            Structure structure = manager.getStructureOrBlank(lamppost);
 
             BlockPos correctPos = getCorrectNetherHeight(pos, world);
             if (correctPos == null) return false;
 
-            assert structure != null;
             structure.place(world, correctPos, structurePlacementData);
             return true;
         }
-
-
         return false;
     }
 

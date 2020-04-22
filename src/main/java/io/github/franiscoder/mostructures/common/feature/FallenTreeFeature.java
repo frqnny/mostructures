@@ -24,8 +24,6 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
     }
 
     public static BlockState getWoodToPlace(Biome biome) {
-
-
         if (biome == Biomes.BIRCH_FOREST || biome == Biomes.BIRCH_FOREST_HILLS || biome == Biomes.TALL_BIRCH_FOREST) {
             return Blocks.BIRCH_WOOD.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
         } else if (biome.getCategory() == Biome.Category.FOREST || biome == Biomes.PLAINS || biome.getCategory() == Biome.Category.RIVER) {

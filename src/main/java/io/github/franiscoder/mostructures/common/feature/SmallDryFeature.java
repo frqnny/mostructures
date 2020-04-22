@@ -23,8 +23,8 @@ import java.util.Random;
 
 public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
     public static final Identifier DEAD_TREE = MoStructures.id("deadtree");
-    //public static final Identifier DESERT_GRAVE = MoStructures.id("desert_grave");
-    public static final Identifier[] IDENTIFIERS = {DEAD_TREE};
+    public static final Identifier DESERT_ATRIUM = MoStructures.id("desert_atrium");
+    public static final Identifier[] IDENTIFIERS = {DEAD_TREE, DESERT_ATRIUM};
 
     public SmallDryFeature() {
         super(DefaultFeatureConfig::deserialize);
@@ -35,8 +35,8 @@ public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
         if (canGenerate(world, pos) && world.getBlockState(pos.down()) == Blocks.SAND.getDefaultState()) {
             int randomStructureToPlace = world.getRandom().nextInt(IDENTIFIERS.length);
             //to come back soon
-            Identifier structureId = DEAD_TREE;
-            Structure structure = ((ServerWorld) world.getWorld()).getStructureManager().getStructure(structureId);
+            Identifier structureId = IDENTIFIERS[randomStructureToPlace];
+            Structure structure = ((ServerWorld) world.getWorld()).getStructureManager().getStructureOrBlank(structureId);
 
             BlockPos newPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, pos);
             BlockRotation blockRotation = BlockRotation.random(random);
@@ -54,6 +54,4 @@ public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
 
         return biome.getCategory() == Biome.Category.DESERT && world.getDimension().getType() == DimensionType.OVERWORLD;
     }
-
-
 }

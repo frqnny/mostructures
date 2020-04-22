@@ -42,7 +42,7 @@ public class ModStructures {
             );
             biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, SMALL_DESERT_FEATURES
                     .configure(FeatureConfig.DEFAULT)
-                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(500)))
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(500 / SmallDryFeature.IDENTIFIERS.length)))
             );
             biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, RUINS
                     .configure(FeatureConfig.DEFAULT)
