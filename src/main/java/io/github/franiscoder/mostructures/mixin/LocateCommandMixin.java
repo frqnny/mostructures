@@ -28,6 +28,10 @@ public abstract class LocateCommandMixin {
     @Inject(method = "register", at = @At(value = "RETURN"))
     private static void onRegister(CommandDispatcher<ServerCommandSource> dispatcher, CallbackInfo info) {
         dispatcher.register(literal("locate").requires(source -> source.hasPermissionLevel(2))
-                .then(literal(MoStructures.MODID + ":Barn_House").executes(ctx -> execute(ctx.getSource(), MoStructures.MODID + ":barn_house"))));
+                .then(literal(MoStructures.MODID + ":Barn_House").executes(ctx -> execute(ctx.getSource(), MoStructures.MODID + ":barn_house")))
+        );
+        dispatcher.register(literal("locate").requires(source -> source.hasPermissionLevel(2))
+                .then(literal(MoStructures.MODID + ":Piglin_Outpost").executes(ctx -> execute(ctx.getSource(), MoStructures.MODID + ":piglin_outpost")))
+        );
     }
 }
