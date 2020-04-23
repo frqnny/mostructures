@@ -23,7 +23,8 @@ public class SmallAirFeature extends Feature<DefaultFeatureConfig> {
     private static final Identifier AIR_BALLOON_1 = MoStructures.id("airballoon1");
     private static final Identifier AIR_BALLOON_2 = MoStructures.id("airballoon2");
     private static final Identifier AIR_BALLOON_3 = MoStructures.id("airballoon3");
-    private static final Identifier[] AIR_FEATURES = new Identifier[]{AIR_BALLOON_1, AIR_BALLOON_2, AIR_BALLOON_3};
+    private static final Identifier AIRPLANE = MoStructures.id("airplane");
+    public static final Identifier[] AIR_FEATURES = new Identifier[]{AIR_BALLOON_1, AIR_BALLOON_2, AIR_BALLOON_3, AIRPLANE};
 
 
     public SmallAirFeature() {
