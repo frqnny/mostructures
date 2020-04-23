@@ -38,7 +38,7 @@ public class RuinsFeature extends Feature<DefaultFeatureConfig> {
 
     @Override
     public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-        if (world.getBiome(pos).getCategory() == Biome.Category.EXTREME_HILLS || world.getBiome(pos).getCategory() == Biome.Category.OCEAN || world.getBiome(pos).getCategory() == Biome.Category.FOREST || world.getBlockState(pos.down()).getBlock() == Blocks.WATER)
+        if (world.getBiome(pos).getCategory() == Biome.Category.EXTREME_HILLS || world.getBiome(pos).getCategory() == Biome.Category.OCEAN || world.getBiome(pos).getCategory() == Biome.Category.FOREST || world.getBiome(pos).getCategory() == Biome.Category.THEEND || world.getBlockState(pos.down()).getBlock() == Blocks.WATER)
             return false;
 
         this.placeBase(random, world, pos);
