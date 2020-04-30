@@ -1,6 +1,6 @@
 package io.github.franiscoder.mostructures.mixin;
 
-import io.github.franiscoder.mostructures.common.init.ModStructures;
+import io.github.franiscoder.mostructures.init.ModStructures;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.StructureFeature;
 import org.spongepowered.asm.mixin.Final;
@@ -29,6 +29,8 @@ public abstract class StructureLandMixin {
         List<StructureFeature<?>> structureList = new ArrayList<>(Feature.JIGSAW_STRUCTURES);
         structureList.add(ModStructures.BARN_HOUSE);
         structureList.add(ModStructures.PIGLIN_OUTPOST);
+        structureList.add(ModStructures.PYRAMID);
+
         JIGSAW_STRUCTURES = Collections.unmodifiableList(structureList);
 
     }

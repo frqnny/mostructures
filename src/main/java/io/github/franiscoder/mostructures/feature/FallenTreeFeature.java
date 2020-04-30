@@ -1,4 +1,4 @@
-package io.github.franiscoder.mostructures.common.feature;
+package io.github.franiscoder.mostructures.feature;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
