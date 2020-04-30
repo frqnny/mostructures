@@ -30,7 +30,7 @@ public class BarnHouseGenerator {
                         BASE_PLATES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":barn_house/base_plate"), 1)
+                                new Pair<>(new SinglePoolElement(MoStructures.MODID + ":barn_house/base_plate"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -40,7 +40,7 @@ public class BarnHouseGenerator {
                         BARNHOUSE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":barn_house/barnhouse"), 1)
+                                new Pair<>(new SinglePoolElement(MoStructures.MODID + ":barn_house/barnhouse"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -50,7 +50,7 @@ public class BarnHouseGenerator {
                         FEATURE_PLATES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":barn_house/feature_plate"), 1)
+                                new Pair<>(new SinglePoolElement(MoStructures.MODID + ":barn_house/feature_plate"), 1)
                         ),
                         StructurePool.Projection.TERRAIN_MATCHING
                 )
@@ -60,8 +60,8 @@ public class BarnHouseGenerator {
                         FEATURES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":barn_house/feature_cart"), 1),
-                                new Pair<>(new LegacySinglePoolElement("pillager_outpost/feature_logs"), 1),
+                                new Pair<>(new SinglePoolElement(MoStructures.MODID + ":barn_house/feature_cart"), 1),
+                                new Pair<>(new SinglePoolElement("pillager_outpost/feature_logs"), 1),
                                 new Pair<>(EmptyPoolElement.INSTANCE, 6)
                         ),
                         StructurePool.Projection.RIGID
@@ -71,7 +71,7 @@ public class BarnHouseGenerator {
 
 
     public static void addPieces(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {
-        StructurePoolBasedGenerator.addPieces(BASE_PLATES, 7, BarnHouseGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random, true, true);
+        StructurePoolBasedGenerator.addPieces(BASE_PLATES, 7, BarnHouseGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random);
     }
 
     public static class Piece extends PoolStructurePiece {

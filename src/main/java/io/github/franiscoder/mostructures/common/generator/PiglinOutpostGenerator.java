@@ -8,7 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructurePiece;
-import net.minecraft.structure.pool.LegacySinglePoolElement;
+import net.minecraft.structure.pool.SinglePoolElement;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.structure.pool.StructurePoolElement;
@@ -32,7 +32,7 @@ public class PiglinOutpostGenerator {
                         BASE_PLATES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":piglin_outpost/base_plate"), 1)
+                                new Pair<>(new SinglePoolElement(MoStructures.MODID + ":piglin_outpost/base_plate"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -42,7 +42,7 @@ public class PiglinOutpostGenerator {
                         TOWERS,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":piglin_outpost/tower_normal"), 1)
+                                new Pair<>(new SinglePoolElement(MoStructures.MODID + ":piglin_outpost/tower_normal"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -50,7 +50,7 @@ public class PiglinOutpostGenerator {
     }
 
     public static void addPieces(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {
-        StructurePoolBasedGenerator.addPieces(BASE_PLATES, 7, BarnHouseGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random, true, true);
+        StructurePoolBasedGenerator.addPieces(BASE_PLATES, 7, BarnHouseGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random);
     }
 
     public static class Piece extends PoolStructurePiece {
