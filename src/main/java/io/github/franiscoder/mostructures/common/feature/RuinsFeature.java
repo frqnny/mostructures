@@ -6,7 +6,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -37,7 +36,7 @@ public class RuinsFeature extends Feature<DefaultFeatureConfig> {
     }
 
     @Override
-    public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(IWorld world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         if (world.getBiome(pos).getCategory() == Biome.Category.EXTREME_HILLS || world.getBiome(pos).getCategory() == Biome.Category.OCEAN || world.getBiome(pos).getCategory() == Biome.Category.FOREST || world.getBiome(pos).getCategory() == Biome.Category.THEEND || world.getBlockState(pos.down()).getBlock() == Blocks.WATER)
             return false;
 
@@ -101,7 +100,7 @@ public class RuinsFeature extends Feature<DefaultFeatureConfig> {
         int k = fs.length;
         int l = 16;
         int m = random.nextInt(Math.max(1, 8 - l / 2));
-        BlockPos.Mutable mutable = BlockPos.ORIGIN.mutableCopy();
+        BlockPos.Mutable mutable = BlockPos.PooledMutable.get();
 
         for (int o = i - k; o <= i + k; ++o) {
             for (int p = j - k; p <= j + k; ++p) {
