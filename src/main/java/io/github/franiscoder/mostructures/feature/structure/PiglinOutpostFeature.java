@@ -1,9 +1,7 @@
-package io.github.franiscoder.mostructures.common.feature;
+package io.github.franiscoder.mostructures.feature.structure;
 
-import com.google.common.collect.Lists;
 import io.github.franiscoder.mostructures.MoStructures;
-import io.github.franiscoder.mostructures.common.generator.BarnHouseGenerator;
-import net.minecraft.entity.EntityType;
+import io.github.franiscoder.mostructures.generator.PiglinOutpostGenerator;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructureStart;
 import net.minecraft.util.math.BlockBox;
@@ -14,33 +12,24 @@ import net.minecraft.world.gen.feature.AbstractTempleFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 
-import java.util.List;
-
-public class BarnHouseFeature extends AbstractTempleFeature<DefaultFeatureConfig> {
-    private static final List<Biome.SpawnEntry> MONSTER_SPAWNS = Lists.newArrayList(new Biome.SpawnEntry(EntityType.CREEPER, 1, 1, 1));
-
-    public BarnHouseFeature() {
+public class PiglinOutpostFeature extends AbstractTempleFeature<DefaultFeatureConfig> {
+    public PiglinOutpostFeature() {
         super(DefaultFeatureConfig::deserialize);
     }
 
     @Override
     protected int getSeedModifier() {
-        return 165755306;
-    }
-
-    @Override
-    public List<Biome.SpawnEntry> getMonsterSpawns() {
-        return MONSTER_SPAWNS;
+        return 111143034;
     }
 
     @Override
     public StructureStartFactory getStructureStartFactory() {
-        return BarnHouseFeature.Start::new;
+        return PiglinOutpostFeature.Start::new;
     }
 
     @Override
     public String getName() {
-        return MoStructures.MODID + ":Barn_House";
+        return MoStructures.MODID + ":Piglin_Outpost";
     }
 
     @Override
@@ -56,7 +45,7 @@ public class BarnHouseFeature extends AbstractTempleFeature<DefaultFeatureConfig
 
         @Override
         public void initialize(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, int x, int z, Biome biome) {
-            BarnHouseGenerator.addPieces(chunkGenerator, structureManager, new BlockPos(x * 16, 0, z * 16), children, random);
+            PiglinOutpostGenerator.addPieces(chunkGenerator, structureManager, new BlockPos(x * 16, 0, z * 16), children, random);
             this.setBoundingBoxFromChildren();
         }
     }
