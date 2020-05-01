@@ -8,7 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructurePiece;
-import net.minecraft.structure.pool.LegacySinglePoolElement;
+import net.minecraft.structure.pool.SinglePoolElement;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.structure.pool.StructurePoolElement;
@@ -30,10 +30,10 @@ public class BigPyramidGenerator {
                         PYRAMID_PIECES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":pyramid/sw"), 1),
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":pyramid/se"), 1),
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":pyramid/nw"), 1),
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":pyramid/ne"), 1)
+                                new Pair<>(new SinglePoolElement(MoStructures.MODID + ":pyramid/sw"), 1),
+                                new Pair<>(new SinglePoolElement(MoStructures.MODID + ":pyramid/se"), 1),
+                                new Pair<>(new SinglePoolElement(MoStructures.MODID + ":pyramid/nw"), 1),
+                                new Pair<>(new SinglePoolElement(MoStructures.MODID + ":pyramid/ne"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -42,7 +42,7 @@ public class BigPyramidGenerator {
 
 
     public static void addPieces(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {
-        StructurePoolBasedGenerator.addPieces(PYRAMID_PIECES, 7, BigPyramidGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random, true, true);
+        StructurePoolBasedGenerator.addPieces(PYRAMID_PIECES, 7, BigPyramidGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random);
     }
 
     public static class Piece extends PoolStructurePiece {
