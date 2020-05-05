@@ -2,12 +2,12 @@ package io.github.franiscoder.mostructures.init;
 
 import io.github.franiscoder.mostructures.MoStructures;
 import io.github.franiscoder.mostructures.feature.*;
-import io.github.franiscoder.mostructures.feature.structure.BarnHouseFeature;
-import io.github.franiscoder.mostructures.feature.structure.BigPyramidFeature;
-import io.github.franiscoder.mostructures.feature.structure.PiglinOutpostFeature;
 import io.github.franiscoder.mostructures.generator.BarnHouseGenerator;
 import io.github.franiscoder.mostructures.generator.BigPyramidGenerator;
 import io.github.franiscoder.mostructures.generator.PiglinOutpostGenerator;
+import io.github.franiscoder.mostructures.structure.BarnHouseFeature;
+import io.github.franiscoder.mostructures.structure.BigPyramidFeature;
+import io.github.franiscoder.mostructures.structure.PiglinOutpostFeature;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.minecraft.structure.StructurePieceType;
 import net.minecraft.util.registry.Registry;
