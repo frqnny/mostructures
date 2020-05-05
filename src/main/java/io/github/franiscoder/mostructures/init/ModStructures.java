@@ -8,6 +8,7 @@ import io.github.franiscoder.mostructures.feature.structure.PiglinOutpostFeature
 import io.github.franiscoder.mostructures.generator.BarnHouseGenerator;
 import io.github.franiscoder.mostructures.generator.BigPyramidGenerator;
 import io.github.franiscoder.mostructures.generator.PiglinOutpostGenerator;
+import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.minecraft.structure.StructurePieceType;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
@@ -35,72 +36,75 @@ public class ModStructures {
     public static final StructureFeature<DefaultFeatureConfig> PYRAMID = Registry.register(Registry.FEATURE, MoStructures.id("big_pyramid_feature"), new BigPyramidFeature());
     public static final StructurePieceType PYRAMID_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("big_pyramid_piece"), BigPyramidGenerator.Piece::new);
 
-    public static void init() {
+    public void init() {
         Registry.register(Registry.STRUCTURE_FEATURE, MoStructures.id("barn_house_structure"), BARN_HOUSE);
         Registry.register(Registry.STRUCTURE_FEATURE, MoStructures.id("piglin_outpost_structure"), PIGLIN_OUTPOST);
         Registry.register(Registry.STRUCTURE_FEATURE, MoStructures.id("big_pyramid_structure"), PYRAMID);
 
-        Registry.BIOME.forEach((Biome biome) -> {
+        Registry.BIOME.forEach(this::handleBiome);
+        RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> handleBiome(biome));
+    }
 
-            //Features
-            if (MoStructures.getConfig().generateAirFeatures) {
-                biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, AIR_FEATURES
-                        .configure(FeatureConfig.DEFAULT)
-                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(7500 / SmallAirFeature.AIR_FEATURES.length)))
-                );
-            }
-            if (MoStructures.getConfig().generateLandFeatures) {
-                biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, SMALL_DESERT_FEATURES
-                        .configure(FeatureConfig.DEFAULT)
-                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(500 / SmallDryFeature.IDENTIFIERS.length)))
-                );
-                biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, FALLEN_TREE
-                        .configure(FeatureConfig.DEFAULT)
-                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(11)))
-                );
-            }
+    public void handleBiome(Biome biome) {
+        if (MoStructures.getConfig().generateAirFeatures) {
+            biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, AIR_FEATURES
+                    .configure(FeatureConfig.DEFAULT)
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(7500 / SmallAirFeature.AIR_FEATURES.length)))
+            );
+        }
+        if (MoStructures.getConfig().generateLandFeatures) {
+            biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, SMALL_DESERT_FEATURES
+                    .configure(FeatureConfig.DEFAULT)
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(500 / SmallDryFeature.IDENTIFIERS.length)))
+            );
+            biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, FALLEN_TREE
+                    .configure(FeatureConfig.DEFAULT)
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(11)))
+            );
+        }
 
-            if (MoStructures.getConfig().generateMiscellaneousStructures) {
-                biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, LAMPPOST
-                        .configure(FeatureConfig.DEFAULT)
-                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(100)))
-                );
-            }
+        if (MoStructures.getConfig().generateMiscellaneousStructures) {
+            biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, LAMPPOST
+                    .configure(FeatureConfig.DEFAULT)
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(100)))
+            );
+        }
 
-            if (MoStructures.getConfig().generateOverworldStructures) {
-                biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, RUINS
-                        .configure(FeatureConfig.DEFAULT)
-                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(1000)))
-                );
-                biome.addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, BARN_HOUSE
-                        .configure(FeatureConfig.DEFAULT)
-                        .createDecoratedFeature(Decorator.NOPE.configure(new NopeDecoratorConfig()))
-                );
-                biome.addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, PYRAMID
-                        .configure(FeatureConfig.DEFAULT)
-                        .createDecoratedFeature(Decorator.NOPE.configure(new NopeDecoratorConfig()))
-                );
-                if (biome.getCategory() == Biome.Category.PLAINS || biome == Biomes.SAVANNA) {
-                    biome.addStructureFeature(BARN_HOUSE.configure(FeatureConfig.DEFAULT));
-                }
-                if (biome.getCategory() == Biome.Category.DESERT) {
-                    biome.addStructureFeature(PYRAMID.configure(FeatureConfig.DEFAULT));
-                }
-                Feature.STRUCTURES.put(MoStructures.MODID + ":barn_house", BARN_HOUSE);
-                Feature.STRUCTURES.put(MoStructures.MODID + ":big_pyramid", PYRAMID);
-            }
-            if (MoStructures.getConfig().generateNetherStructures) {
-                biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, PIGLIN_OUTPOST
-                        .configure(FeatureConfig.DEFAULT)
-                        .createDecoratedFeature(Decorator.NOPE.configure(new NopeDecoratorConfig()))
-                );
-                //Register structures so it only spawns in said biomes.
+        if (MoStructures.getConfig().generateOverworldStructures) {
+            biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, RUINS
+                    .configure(FeatureConfig.DEFAULT)
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(1000)))
+            );
+            biome.addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, BARN_HOUSE
+                    .configure(FeatureConfig.DEFAULT)
+                    .createDecoratedFeature(Decorator.NOPE.configure(new NopeDecoratorConfig()))
+            );
+            biome.addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, PYRAMID
+                    .configure(FeatureConfig.DEFAULT)
+                    .createDecoratedFeature(Decorator.NOPE.configure(new NopeDecoratorConfig()))
+            );
 
-                if (biome.getCategory() == Biome.Category.NETHER) {
-                    biome.addStructureFeature(PIGLIN_OUTPOST.configure(FeatureConfig.DEFAULT));
-                }
-                Feature.STRUCTURES.put(MoStructures.MODID + ":piglin_outpost", PIGLIN_OUTPOST);
+            Biome.Category category = biome.getCategory();
+            if (category == Biome.Category.PLAINS || biome == Biomes.SAVANNA) {
+                biome.addStructureFeature(BARN_HOUSE.configure(FeatureConfig.DEFAULT));
             }
-        });
+            if (category == Biome.Category.DESERT) {
+                biome.addStructureFeature(PYRAMID.configure(FeatureConfig.DEFAULT));
+            }
+            Feature.STRUCTURES.put(MoStructures.MODID + ":barn_house", BARN_HOUSE);
+            Feature.STRUCTURES.put(MoStructures.MODID + ":big_pyramid", PYRAMID);
+        }
+        if (MoStructures.getConfig().generateNetherStructures) {
+            biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, PIGLIN_OUTPOST
+                    .configure(FeatureConfig.DEFAULT)
+                    .createDecoratedFeature(Decorator.NOPE.configure(new NopeDecoratorConfig()))
+            );
+            //Register structures so it only spawns in said biomes.
+
+            if (biome.getCategory() == Biome.Category.NETHER) {
+                biome.addStructureFeature(PIGLIN_OUTPOST.configure(FeatureConfig.DEFAULT));
+            }
+            Feature.STRUCTURES.put(MoStructures.MODID + ":piglin_outpost", PIGLIN_OUTPOST);
+        }
     }
 }

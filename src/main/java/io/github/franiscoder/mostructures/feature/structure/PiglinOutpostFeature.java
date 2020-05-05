@@ -39,7 +39,6 @@ public class PiglinOutpostFeature extends AbstractTempleFeature<DefaultFeatureCo
     }
 
     public static class Start extends StructureStart {
-
         public Start(StructureFeature<?> feature, int chunkX, int chunkZ, BlockBox box, int references, long seed) {
             super(feature, chunkX, chunkZ, box, references, seed);
         }

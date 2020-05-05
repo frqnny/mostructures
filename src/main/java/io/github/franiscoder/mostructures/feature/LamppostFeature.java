@@ -54,18 +54,18 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
         if (world.getBlockState(newPos.down()) == Blocks.WATER.getDefaultState()) {
             inWater = true;
         }
-        if (world.getBiome(pos).getCategory() == Biome.Category.FOREST && !inWater && random.nextBoolean()) {
+        Biome.Category category = world.getBiome(pos).getCategory();
+        if (category == Biome.Category.FOREST && !inWater && random.nextBoolean()) {
 
             BlockRotation blockRotation = BlockRotation.random(random);
             StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
             StructureManager manager = ((ServerWorld) world.getWorld()).getStructureManager();
-            Structure structure = manager.getStructure(lamppost);
+            Structure structure = manager.getStructureOrBlank(lamppost);
 
-            assert structure != null;
             structure.place(world, newPos, structurePlacementData);
             return true;
         }
-        if (world.getBiome(pos).getCategory() == Biome.Category.NETHER) {
+        if (category == Biome.Category.NETHER) {
             BlockRotation blockRotation = BlockRotation.random(random);
             StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
             StructureManager manager = ((ServerWorld) world.getWorld()).getStructureManager();

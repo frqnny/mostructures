@@ -43,10 +43,13 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
 
     @Override
     public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-        if (world.getDimension().getType() != DimensionType.OVERWORLD || world.getBiome(pos).getCategory() == Biome.Category.OCEAN
-                || world.getBiome(pos).getCategory() == Biome.Category.RIVER
-                || world.getBiome(pos).getCategory() == Biome.Category.BEACH)
+        Biome.Category category = world.getBiome(pos).getCategory();
+        if (world.getDimension().getType() != DimensionType.OVERWORLD || category == Biome.Category.OCEAN
+                || category == Biome.Category.RIVER
+                || category == Biome.Category.BEACH) {
             return false;
+        }
+
 
         BlockPos newPos = world.getTopPosition(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos);
 

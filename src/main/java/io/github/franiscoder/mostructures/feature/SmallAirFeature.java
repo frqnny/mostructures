@@ -9,7 +9,6 @@ import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Heightmap;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
@@ -40,13 +39,13 @@ public class SmallAirFeature extends Feature<DefaultFeatureConfig> {
 
 
         int yToAdd = Math.max(random2.nextInt(100), 40);
-        int newHeight = world.getTopY(Heightmap.Type.WORLD_SURFACE_WG, pos.getX(), pos.getZ()) + yToAdd;
-        BlockPos newPos = new BlockPos(pos.getX(), newHeight, pos.getZ());
+        pos.add(0, yToAdd, 0);
+
         BlockRotation blockRotation = BlockRotation.random(random);
 
         StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
 
-        structure.place(world, newPos, structurePlacementData);
+        structure.place(world, pos, structurePlacementData);
 
         return true;
     }
