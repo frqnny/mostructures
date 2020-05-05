@@ -39,7 +39,7 @@ public class SmallAirFeature extends Feature<DefaultFeatureConfig> {
 
 
         int yToAdd = Math.max(random2.nextInt(100), 40);
-        pos.add(0, yToAdd, 0);
+        pos = pos.add(0, yToAdd, 0);
 
         BlockRotation blockRotation = BlockRotation.random(random);
 
