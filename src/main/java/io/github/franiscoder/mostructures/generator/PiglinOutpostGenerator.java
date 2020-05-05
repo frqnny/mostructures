@@ -50,7 +50,7 @@ public class PiglinOutpostGenerator {
     }
 
     public static void addPieces(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {
-        StructurePoolBasedGenerator.addPieces(BASE_PLATES, 7, BarnHouseGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random, true, true);
+        StructurePoolBasedGenerator.addPieces(BASE_PLATES, 7, PiglinOutpostGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random, true, true);
     }
 
     public static class Piece extends PoolStructurePiece {

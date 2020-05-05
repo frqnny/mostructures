@@ -46,12 +46,14 @@ public class ModStructures {
     }
 
     public void handleBiome(Biome biome) {
+
         if (MoStructures.getConfig().generateAirFeatures) {
             biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, AIR_FEATURES
                     .configure(FeatureConfig.DEFAULT)
                     .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(7500 / SmallAirFeature.AIR_FEATURES.length)))
             );
         }
+
         if (MoStructures.getConfig().generateLandFeatures) {
             biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, SMALL_DESERT_FEATURES
                     .configure(FeatureConfig.DEFAULT)
@@ -61,15 +63,11 @@ public class ModStructures {
                     .configure(FeatureConfig.DEFAULT)
                     .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(11)))
             );
-        }
-
-        if (MoStructures.getConfig().generateMiscellaneousStructures) {
             biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, LAMPPOST
                     .configure(FeatureConfig.DEFAULT)
                     .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(100)))
             );
         }
-
         if (MoStructures.getConfig().generateOverworldStructures) {
             biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, RUINS
                     .configure(FeatureConfig.DEFAULT)
