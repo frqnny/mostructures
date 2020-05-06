@@ -4,9 +4,11 @@ import io.github.franiscoder.mostructures.MoStructures;
 import io.github.franiscoder.mostructures.feature.*;
 import io.github.franiscoder.mostructures.generator.BarnHouseGenerator;
 import io.github.franiscoder.mostructures.generator.BigPyramidGenerator;
+import io.github.franiscoder.mostructures.generator.JunglePyramidGenerator;
 import io.github.franiscoder.mostructures.generator.PiglinOutpostGenerator;
 import io.github.franiscoder.mostructures.structure.BarnHouseFeature;
 import io.github.franiscoder.mostructures.structure.BigPyramidFeature;
+import io.github.franiscoder.mostructures.structure.JunglePyramidFeature;
 import io.github.franiscoder.mostructures.structure.PiglinOutpostFeature;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.minecraft.structure.StructurePieceType;
@@ -35,18 +37,20 @@ public class ModStructures {
     public static final StructurePieceType PIGLIN_OUTPOST_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("piglin_outpost_piece"), PiglinOutpostGenerator.Piece::new);
     public static final StructureFeature<DefaultFeatureConfig> PYRAMID = Registry.register(Registry.FEATURE, MoStructures.id("big_pyramid_feature"), new BigPyramidFeature());
     public static final StructurePieceType PYRAMID_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("big_pyramid_piece"), BigPyramidGenerator.Piece::new);
+    public static final StructureFeature<DefaultFeatureConfig> JUNGLE_PYRAMID = Registry.register(Registry.FEATURE, MoStructures.id("jungle_pyramid_feature"), new JunglePyramidFeature());
+    public static final StructurePieceType JUNGLE_PYRAMID_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("jungle_pyramid_feature"), JunglePyramidGenerator.Piece::new);
 
     public void init() {
         Registry.register(Registry.STRUCTURE_FEATURE, MoStructures.id("barn_house_structure"), BARN_HOUSE);
         Registry.register(Registry.STRUCTURE_FEATURE, MoStructures.id("piglin_outpost_structure"), PIGLIN_OUTPOST);
         Registry.register(Registry.STRUCTURE_FEATURE, MoStructures.id("big_pyramid_structure"), PYRAMID);
+        Registry.register(Registry.STRUCTURE_FEATURE, MoStructures.id("jungle_pyramid_structure"), JUNGLE_PYRAMID);
 
         Registry.BIOME.forEach(this::handleBiome);
         RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> handleBiome(biome));
     }
 
     public void handleBiome(Biome biome) {
-
         if (MoStructures.getConfig().generateAirFeatures) {
             biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, AIR_FEATURES
                     .configure(FeatureConfig.DEFAULT)
@@ -81,16 +85,22 @@ public class ModStructures {
                     .configure(FeatureConfig.DEFAULT)
                     .createDecoratedFeature(Decorator.NOPE.configure(new NopeDecoratorConfig()))
             );
+            biome.addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, JUNGLE_PYRAMID
+                    .configure(FeatureConfig.DEFAULT)
+                    .createDecoratedFeature(Decorator.NOPE.configure(new NopeDecoratorConfig()))
+            );
 
             Biome.Category category = biome.getCategory();
             if (category == Biome.Category.PLAINS || biome == Biomes.SAVANNA) {
                 biome.addStructureFeature(BARN_HOUSE.configure(FeatureConfig.DEFAULT));
-            }
-            if (category == Biome.Category.DESERT) {
+            } else if (category == Biome.Category.DESERT) {
                 biome.addStructureFeature(PYRAMID.configure(FeatureConfig.DEFAULT));
+            } else if (category == Biome.Category.JUNGLE) {
+                biome.addStructureFeature(JUNGLE_PYRAMID.configure(FeatureConfig.DEFAULT));
             }
             Feature.STRUCTURES.put(MoStructures.MODID + ":barn_house", BARN_HOUSE);
             Feature.STRUCTURES.put(MoStructures.MODID + ":big_pyramid", PYRAMID);
+            Feature.STRUCTURES.put(MoStructures.MODID + ":jungle_pyramid", JUNGLE_PYRAMID);
         }
         if (MoStructures.getConfig().generateNetherStructures) {
             biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, PIGLIN_OUTPOST
