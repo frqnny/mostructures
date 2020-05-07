@@ -37,8 +37,7 @@ public class LakeFeatureMixin {
             if (!chunk.getStructureReferences(MoStructures.MODID + ":Barn_House").isEmpty()) {
                 info.setReturnValue(false);
                 break;
-            }
-            if (!chunk.getStructureReferences(MoStructures.MODID + ":Jungle_Pyramid").isEmpty()) {
+            } else if (!chunk.getStructureReferences(MoStructures.MODID + ":Jungle_Pyramid").isEmpty()) {
                 info.setReturnValue(false);
                 break;
             }

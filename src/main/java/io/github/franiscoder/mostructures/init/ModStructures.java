@@ -30,6 +30,7 @@ public class ModStructures {
     public static final Feature<DefaultFeatureConfig> SMALL_DESERT_FEATURES = Registry.register(Registry.FEATURE, MoStructures.id("dead_tree"), new SmallDryFeature());
     public static final Feature<DefaultFeatureConfig> RUINS = Registry.register(Registry.FEATURE, MoStructures.id("ruins"), new RuinsFeature());
     public static final Feature<DefaultFeatureConfig> LAMPPOST = Registry.register(Registry.FEATURE, MoStructures.id("lamppost"), new LamppostFeature());
+    public static final Feature<DefaultFeatureConfig> BOULDER = Registry.register(Registry.FEATURE, MoStructures.id("boulder"), new BoulderFeature());
 
     public static final StructureFeature<DefaultFeatureConfig> BARN_HOUSE = Registry.register(Registry.FEATURE, MoStructures.id("barn_house_feature"), new BarnHouseFeature());
     public static final StructurePieceType BARN_HOUSE_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("barn_house_piece"), BarnHouseGenerator.Piece::new);
@@ -51,10 +52,15 @@ public class ModStructures {
     }
 
     public void handleBiome(Biome biome) {
+        Biome.Category category = biome.getCategory();
+        if (category == Biome.Category.THEEND) {
+            return;
+        }
+
         if (MoStructures.getConfig().generateAirFeatures) {
             biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, AIR_FEATURES
                     .configure(FeatureConfig.DEFAULT)
-                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(7500 / SmallAirFeature.AIR_FEATURES.length)))
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(5500 / SmallAirFeature.AIR_FEATURES.length)))
             );
         }
 
@@ -70,6 +76,10 @@ public class ModStructures {
             biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, LAMPPOST
                     .configure(FeatureConfig.DEFAULT)
                     .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(100)))
+            );
+            biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, BOULDER
+                    .configure(FeatureConfig.DEFAULT)
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(500)))
             );
         }
         if (MoStructures.getConfig().generateOverworldStructures) {
@@ -90,7 +100,7 @@ public class ModStructures {
                     .createDecoratedFeature(Decorator.NOPE.configure(new NopeDecoratorConfig()))
             );
 
-            Biome.Category category = biome.getCategory();
+
             if (category == Biome.Category.PLAINS || biome == Biomes.SAVANNA) {
                 biome.addStructureFeature(BARN_HOUSE.configure(FeatureConfig.DEFAULT));
             } else if (category == Biome.Category.DESERT) {
