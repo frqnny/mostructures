@@ -22,8 +22,8 @@ import net.minecraft.world.gen.feature.Feature;
 import java.util.Random;
 
 public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
-    public static final Identifier DEAD_TREE = MoStructures.id("deadtree");
-    public static final Identifier DESERT_ATRIUM = MoStructures.id("desert_atrium");
+    public static final Identifier DEAD_TREE = MoStructures.id("desert/deadtree");
+    public static final Identifier DESERT_ATRIUM = MoStructures.id("desert/desert_atrium");
     public static final Identifier[] IDENTIFIERS = {DEAD_TREE, DESERT_ATRIUM};
 
     public SmallDryFeature() {

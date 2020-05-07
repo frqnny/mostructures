@@ -24,8 +24,8 @@ import java.util.Random;
 
 
 public class LamppostFeature extends Feature<DefaultFeatureConfig> {
-    public static final Identifier LAMPPOST = MoStructures.id("lamppost");
-    public static final Identifier NETHER_LAMPPOST = MoStructures.id("netherlamppost");
+    public static final Identifier LAMPPOST = MoStructures.id("miscellaneous/lamppost");
+    public static final Identifier NETHER_LAMPPOST = MoStructures.id("miscellaneous/netherlamppost");
 
     public LamppostFeature() {
         super(DefaultFeatureConfig::deserialize);
