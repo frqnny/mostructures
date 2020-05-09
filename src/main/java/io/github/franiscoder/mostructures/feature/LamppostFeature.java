@@ -64,8 +64,7 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
 
             structure.place(world, newPos, structurePlacementData);
             return true;
-        }
-        if (category == Biome.Category.NETHER) {
+        } else if (category == Biome.Category.NETHER) {
             BlockRotation blockRotation = BlockRotation.random(random);
             StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
             StructureManager manager = ((ServerWorld) world.getWorld()).getStructureManager();
