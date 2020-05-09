@@ -20,7 +20,7 @@ import java.util.Random;
 
 public class SmallBeachFeatures extends Feature<DefaultFeatureConfig> {
     public static final Identifier VILLAGER_MOAI = MoStructures.id("beach/villager_moai");
-    public static final Identifier[] BEACHFEATURES = {VILLAGER_MOAI};
+    //public static final Identifier[] BEACHFEATURES = {VILLAGER_MOAI};
 
     public SmallBeachFeatures() {
         super(DefaultFeatureConfig::deserialize);

@@ -2,14 +2,8 @@ package io.github.franiscoder.mostructures.init;
 
 import io.github.franiscoder.mostructures.MoStructures;
 import io.github.franiscoder.mostructures.feature.*;
-import io.github.franiscoder.mostructures.generator.BarnHouseGenerator;
-import io.github.franiscoder.mostructures.generator.BigPyramidGenerator;
-import io.github.franiscoder.mostructures.generator.JunglePyramidGenerator;
-import io.github.franiscoder.mostructures.generator.PiglinOutpostGenerator;
-import io.github.franiscoder.mostructures.structure.BarnHouseFeature;
-import io.github.franiscoder.mostructures.structure.BigPyramidFeature;
-import io.github.franiscoder.mostructures.structure.JunglePyramidFeature;
-import io.github.franiscoder.mostructures.structure.PiglinOutpostFeature;
+import io.github.franiscoder.mostructures.generator.*;
+import io.github.franiscoder.mostructures.structure.*;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.minecraft.structure.StructurePieceType;
 import net.minecraft.util.registry.Registry;
@@ -43,12 +37,15 @@ public class ModStructures {
     public static final StructurePieceType PYRAMID_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("big_pyramid_piece"), BigPyramidGenerator.Piece::new);
     public static final StructureFeature<DefaultFeatureConfig> JUNGLE_PYRAMID = Registry.register(Registry.FEATURE, MoStructures.id("jungle_pyramid_feature"), new JunglePyramidFeature());
     public static final StructurePieceType JUNGLE_PYRAMID_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("jungle_pyramid_feature"), JunglePyramidGenerator.Piece::new);
+    public static final StructureFeature<DefaultFeatureConfig> THE_CASTLE_IN_THE_SKY = Registry.register(Registry.FEATURE, MoStructures.id("the_castle_in_the_sky"), new TheCastleInTheSkyFeature());
+    public static final StructurePieceType THE_CASTLE_IN_THE_SKY_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("the_castle_in_the_sky_piece"), TheCastleInTheSkyGenerator.Piece::new);
 
     public void init() {
         Registry.register(Registry.STRUCTURE_FEATURE, MoStructures.id("barn_house_structure"), BARN_HOUSE);
         Registry.register(Registry.STRUCTURE_FEATURE, MoStructures.id("piglin_outpost_structure"), PIGLIN_OUTPOST);
         Registry.register(Registry.STRUCTURE_FEATURE, MoStructures.id("big_pyramid_structure"), PYRAMID);
         Registry.register(Registry.STRUCTURE_FEATURE, MoStructures.id("jungle_pyramid_structure"), JUNGLE_PYRAMID);
+        Registry.register(Registry.STRUCTURE_FEATURE, MoStructures.id("the_castle_in_the_sky"), THE_CASTLE_IN_THE_SKY);
 
         Registry.BIOME.forEach(this::handleBiome);
         RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> handleBiome(biome));
@@ -63,7 +60,7 @@ public class ModStructures {
         if (MoStructures.getConfig().generateAirFeatures) {
             biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, AIR_FEATURES
                     .configure(FeatureConfig.DEFAULT)
-                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(5500 / SmallAirFeature.AIR_FEATURES.length)))
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(6500 / SmallAirFeature.AIR_FEATURES.length)))
             );
         }
 
@@ -119,6 +116,10 @@ public class ModStructures {
                     .configure(FeatureConfig.DEFAULT)
                     .createDecoratedFeature(Decorator.NOPE.configure(new NopeDecoratorConfig()))
             );
+            biome.addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, THE_CASTLE_IN_THE_SKY
+                    .configure(FeatureConfig.DEFAULT)
+                    .createDecoratedFeature(Decorator.NOPE.configure(new NopeDecoratorConfig()))
+            );
 
 
             if (category == Biome.Category.PLAINS || biome == Biomes.SAVANNA) {
@@ -127,10 +128,13 @@ public class ModStructures {
                 biome.addStructureFeature(PYRAMID.configure(FeatureConfig.DEFAULT));
             } else if (category == Biome.Category.JUNGLE) {
                 biome.addStructureFeature(JUNGLE_PYRAMID.configure(FeatureConfig.DEFAULT));
+            } else if (category == Biome.Category.BEACH) {
+                biome.addStructureFeature(THE_CASTLE_IN_THE_SKY.configure(FeatureConfig.DEFAULT));
             }
             Feature.STRUCTURES.put(MoStructures.MODID + ":barn_house", BARN_HOUSE);
             Feature.STRUCTURES.put(MoStructures.MODID + ":big_pyramid", PYRAMID);
             Feature.STRUCTURES.put(MoStructures.MODID + ":jungle_pyramid", JUNGLE_PYRAMID);
+            Feature.STRUCTURES.put(MoStructures.MODID + ":the_castle_in_the_sky", THE_CASTLE_IN_THE_SKY);
         }
         if (MoStructures.getConfig().generateNetherStructures) {
             biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, PIGLIN_OUTPOST
