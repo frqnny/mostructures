@@ -2,8 +2,7 @@
 
 ![GitHub issues](https://img.shields.io/github/issues/franiscoder/mostructures.svg)
 ![GitHub license](https://img.shields.io/github/license/franiscoder/mostructures.svg)
-[![](https://cf.way2muchnoise.eu/378266.svg)](https://www.curseforge.com/minecraft/mc-mods/mo-structures)
-[![](https://cf.way2muchnoise.eu/378266.svg)](https://www.curseforge.com/minecraft/mc-mods/mo-structures)
+[![](http://cf.way2muchnoise.eu/378266.svg)](https://www.curseforge.com/minecraft/mc-mods/mo-structures) [![](http://cf.way2muchnoise.eu/versions/378266.svg)]
 
 Adding structures with interesting loot to Minecraft!
 
