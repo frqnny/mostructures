@@ -30,6 +30,7 @@ public abstract class StructureLandMixin {
         structureList.add(ModStructures.BARN_HOUSE);
         structureList.add(ModStructures.PIGLIN_OUTPOST);
         structureList.add(ModStructures.PYRAMID);
+        structureList.add(ModStructures.JUNGLE_PYRAMID);
 
         JIGSAW_STRUCTURES = Collections.unmodifiableList(structureList);
 

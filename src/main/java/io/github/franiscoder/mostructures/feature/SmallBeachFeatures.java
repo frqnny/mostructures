@@ -18,29 +18,32 @@ import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
 
-public class SmallAirFeature extends Feature<DefaultFeatureConfig> {
-    private static final Identifier AIR_BALLOON_1 = MoStructures.id("air/airballoon1");
-    private static final Identifier AIR_BALLOON_2 = MoStructures.id("air/airballoon2");
-    private static final Identifier AIR_BALLOON_3 = MoStructures.id("air/airballoon3");
-    private static final Identifier AIRPLANE = MoStructures.id("air/airplane");
-    public static final Identifier[] AIR_FEATURES = new Identifier[]{AIR_BALLOON_1, AIR_BALLOON_2, AIR_BALLOON_3, AIRPLANE};
+public class SmallBeachFeatures extends Feature<DefaultFeatureConfig> {
+    public static final Identifier VILLAGER_MOAI = MoStructures.id("beach/villager_moai");
+    //public static final Identifier[] BEACHFEATURES = {VILLAGER_MOAI};
 
-
-    public SmallAirFeature() {
+    public SmallBeachFeatures() {
         super(DefaultFeatureConfig::deserialize);
     }
 
     @Override
     public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-        Random random2 = world.getRandom();
-        int i = random2.nextInt(AIR_FEATURES.length);
+        //Random random2 = world.getRandom();
+        //int i = random2.nextInt(BEACHFEATURES.length);
+
+        BlockPos[] posToCheck = {pos.down().east(), pos.down().west(), pos.down().north(), pos.down().south(), pos};
+
+        for (BlockPos waterPos : posToCheck) {
+            if (!world.getBlockState(waterPos).getFluidState().isEmpty()) {
+                return false;
+            }
+        }
+
         StructureManager manager = ((ServerWorld) world.getWorld()).getStructureManager();
-        Structure structure = manager.getStructureOrBlank(AIR_FEATURES[i]);
-        int yToAdd = Math.max(random2.nextInt(100), 40);
-        pos = pos.add(0, yToAdd, 0);
+        Structure structure = manager.getStructureOrBlank(VILLAGER_MOAI);
         BlockRotation blockRotation = BlockRotation.random(random);
         StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
-        structure.place(world, pos, structurePlacementData);
+        structure.place(world, pos.add(0, -3, 0), structurePlacementData);
         return true;
     }
 }

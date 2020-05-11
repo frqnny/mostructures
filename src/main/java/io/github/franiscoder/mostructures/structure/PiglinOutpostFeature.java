@@ -1,7 +1,7 @@
-package io.github.franiscoder.mostructures.feature.structure;
+package io.github.franiscoder.mostructures.structure;
 
 import io.github.franiscoder.mostructures.MoStructures;
-import io.github.franiscoder.mostructures.generator.BarnHouseGenerator;
+import io.github.franiscoder.mostructures.generator.PiglinOutpostGenerator;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructureStart;
 import net.minecraft.util.math.BlockBox;
@@ -12,24 +12,24 @@ import net.minecraft.world.gen.feature.AbstractTempleFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 
-public class BarnHouseFeature extends AbstractTempleFeature<DefaultFeatureConfig> {
-    public BarnHouseFeature() {
+public class PiglinOutpostFeature extends AbstractTempleFeature<DefaultFeatureConfig> {
+    public PiglinOutpostFeature() {
         super(DefaultFeatureConfig::deserialize);
     }
 
     @Override
     protected int getSeedModifier() {
-        return 165755306;
+        return 111143034;
     }
 
     @Override
     public StructureStartFactory getStructureStartFactory() {
-        return BarnHouseFeature.Start::new;
+        return PiglinOutpostFeature.Start::new;
     }
 
     @Override
     public String getName() {
-        return MoStructures.MODID + ":Barn_House";
+        return MoStructures.MODID + ":Piglin_Outpost";
     }
 
     @Override
@@ -44,7 +44,7 @@ public class BarnHouseFeature extends AbstractTempleFeature<DefaultFeatureConfig
 
         @Override
         public void initialize(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, int x, int z, Biome biome) {
-            BarnHouseGenerator.addPieces(chunkGenerator, structureManager, new BlockPos(x * 16, 0, z * 16), children, random);
+            PiglinOutpostGenerator.addPieces(chunkGenerator, structureManager, new BlockPos(x * 16, 0, z * 16), children, random);
             this.setBoundingBoxFromChildren();
         }
     }

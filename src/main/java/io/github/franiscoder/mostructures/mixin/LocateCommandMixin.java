@@ -34,7 +34,13 @@ public abstract class LocateCommandMixin {
                 .then(literal(MoStructures.MODID + ":Piglin_Outpost").executes(ctx -> execute(ctx.getSource(), MoStructures.MODID + ":piglin_outpost")))
         );
         dispatcher.register(literal("locate").requires(source -> source.hasPermissionLevel(2))
-                .then(literal(MoStructures.MODID + "Big_Pyramid").executes(ctx -> execute(ctx.getSource(), MoStructures.MODID + ":big_pyramid")))
+                .then(literal(MoStructures.MODID + ":Big_Pyramid").executes(ctx -> execute(ctx.getSource(), MoStructures.MODID + ":big_pyramid")))
+        );
+        dispatcher.register(literal("locate").requires(source -> source.hasPermissionLevel(2))
+                .then(literal(MoStructures.MODID + ":Jungle_Pyramid").executes(ctx -> execute(ctx.getSource(), MoStructures.MODID + ":jungle_pyramid")))
+        );
+        dispatcher.register(literal("locate").requires(source -> source.hasPermissionLevel(2))
+                .then(literal(MoStructures.MODID + ":The_Castle_In_The_Sky").executes(ctx -> execute(ctx.getSource(), MoStructures.MODID + ":the_castle_in_the_sky")))
         );
     }
 }

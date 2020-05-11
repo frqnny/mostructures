@@ -31,9 +31,11 @@ public class LakeFeatureMixin {
         chunksToScan.add(world.getChunk(blockPos.add(0, 0, -16)));
         chunksToScan.add(world.getChunk(blockPos.add(16, 0, -16)));
         chunksToScan.add(world.getChunk(blockPos.add(-16, 0, 16)));
-
         for (Chunk chunk : chunksToScan) {
             if (!chunk.getStructureReferences(MoStructures.MODID + ":Barn_House").isEmpty()) {
+                info.setReturnValue(false);
+                break;
+            } else if (!chunk.getStructureReferences(MoStructures.MODID + ":Jungle_Pyramid").isEmpty()) {
                 info.setReturnValue(false);
                 break;
             }

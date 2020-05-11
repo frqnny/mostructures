@@ -21,10 +21,10 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 
 import java.util.List;
 
-public class BigPyramidGenerator {
-    public static final Identifier SW_STARTING_PIECE = MoStructures.id("pyramid/sw_piece");
-    public static final Identifier PYRAMID_PIECES = MoStructures.id("pyramid/pieces");
-    public static final Identifier NE_FINAL_PIECE = MoStructures.id("pyramid/ne_piece");
+public class JunglePyramidGenerator {
+    public static final Identifier SW_STARTING_PIECE = MoStructures.id("jungle_pyramid/sw_piece");
+    public static final Identifier MIDDLE_PIECES = MoStructures.id("jungle_pyramid/middle_pieces");
+    public static final Identifier NE_FINAL_PIECE = MoStructures.id("jungle_pyramid/ne_piece");
 
     static {
         StructurePoolBasedGenerator.REGISTRY.add(
@@ -32,18 +32,18 @@ public class BigPyramidGenerator {
                         SW_STARTING_PIECE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":pyramid/sw"), 1)
+                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/sw"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
         );
         StructurePoolBasedGenerator.REGISTRY.add(
                 new StructurePool(
-                        PYRAMID_PIECES,
+                        MIDDLE_PIECES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":pyramid/se"), 1),
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":pyramid/nw"), 1)
+                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/se"), 1),
+                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/nw"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -53,26 +53,24 @@ public class BigPyramidGenerator {
                         NE_FINAL_PIECE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":pyramid/ne"), 1)
+                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/ne"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
         );
     }
 
-
     public static void addPieces(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {
-        StructurePoolBasedGenerator.addPieces(SW_STARTING_PIECE, 7, BigPyramidGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random, true, true);
+        StructurePoolBasedGenerator.addPieces(SW_STARTING_PIECE, 7, JunglePyramidGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random, true, true);
     }
 
     public static class Piece extends PoolStructurePiece {
         public Piece(StructureManager manager, CompoundTag tag) {
-            super(manager, tag, ModStructures.PYRAMID_PIECE);
+            super(manager, tag, ModStructures.JUNGLE_PYRAMID_PIECE);
         }
 
         public Piece(StructureManager structureManager, StructurePoolElement structurePoolElement, BlockPos blockPos, int i, BlockRotation blockRotation, BlockBox blockBox) {
-            super(ModStructures.PYRAMID_PIECE, structureManager, structurePoolElement, blockPos, i, blockRotation, blockBox);
+            super(ModStructures.JUNGLE_PYRAMID_PIECE, structureManager, structurePoolElement, blockPos, i, blockRotation, blockBox);
         }
     }
 }
-

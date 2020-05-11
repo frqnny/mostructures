@@ -21,10 +21,10 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 
 import java.util.List;
 
-public class BigPyramidGenerator {
-    public static final Identifier SW_STARTING_PIECE = MoStructures.id("pyramid/sw_piece");
-    public static final Identifier PYRAMID_PIECES = MoStructures.id("pyramid/pieces");
-    public static final Identifier NE_FINAL_PIECE = MoStructures.id("pyramid/ne_piece");
+public class TheCastleInTheSkyGenerator {
+    public static final Identifier SW_STARTING_PIECE = MoStructures.id("castle/sw_piece");
+    public static final Identifier MIDDLE_PIECES = MoStructures.id("castle/middle_pieces");
+    public static final Identifier NE_FINAL_PIECE = MoStructures.id("castle/ne_piece");
 
     static {
         StructurePoolBasedGenerator.REGISTRY.add(
@@ -32,18 +32,18 @@ public class BigPyramidGenerator {
                         SW_STARTING_PIECE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":pyramid/sw"), 1)
+                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":castle/sw"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
         );
         StructurePoolBasedGenerator.REGISTRY.add(
                 new StructurePool(
-                        PYRAMID_PIECES,
+                        MIDDLE_PIECES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":pyramid/se"), 1),
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":pyramid/nw"), 1)
+                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":castle/nw"), 1),
+                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":castle/se"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -53,26 +53,24 @@ public class BigPyramidGenerator {
                         NE_FINAL_PIECE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":pyramid/ne"), 1)
+                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":castle/ne"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
         );
     }
 
-
     public static void addPieces(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {
-        StructurePoolBasedGenerator.addPieces(SW_STARTING_PIECE, 7, BigPyramidGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random, true, true);
+        StructurePoolBasedGenerator.addPieces(SW_STARTING_PIECE, 7, TheCastleInTheSkyGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random, true, true);
     }
 
     public static class Piece extends PoolStructurePiece {
         public Piece(StructureManager manager, CompoundTag tag) {
-            super(manager, tag, ModStructures.PYRAMID_PIECE);
+            super(manager, tag, ModStructures.THE_CASTLE_IN_THE_SKY_PIECE);
         }
 
         public Piece(StructureManager structureManager, StructurePoolElement structurePoolElement, BlockPos blockPos, int i, BlockRotation blockRotation, BlockBox blockBox) {
-            super(ModStructures.PYRAMID_PIECE, structureManager, structurePoolElement, blockPos, i, blockRotation, blockBox);
+            super(ModStructures.THE_CASTLE_IN_THE_SKY_PIECE, structureManager, structurePoolElement, blockPos, i, blockRotation, blockBox);
         }
     }
 }
-

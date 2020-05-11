@@ -21,8 +21,8 @@ import net.minecraft.world.gen.feature.Feature;
 import java.util.Random;
 
 public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
-    public static final Identifier DEAD_TREE = MoStructures.id("deadtree");
-    public static final Identifier DESERT_ATRIUM = MoStructures.id("desert_atrium");
+    public static final Identifier DEAD_TREE = MoStructures.id("desert/deadtree");
+    public static final Identifier DESERT_ATRIUM = MoStructures.id("desert/desert_atrium");
     public static final Identifier[] IDENTIFIERS = {DEAD_TREE, DESERT_ATRIUM};
 
     public SmallDryFeature() {
@@ -37,7 +37,7 @@ public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
             Identifier structureId = IDENTIFIERS[randomStructureToPlace];
             Structure structure = ((ServerWorld) world.getWorld()).getStructureManager().getStructureOrBlank(structureId);
 
-            BlockPos newPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, pos);
+            BlockPos newPos = world.getTopPosition(Heightmap.Type.OCEAN_FLOOR_WG, pos);
             BlockRotation blockRotation = BlockRotation.random(random);
             StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirrored(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
 

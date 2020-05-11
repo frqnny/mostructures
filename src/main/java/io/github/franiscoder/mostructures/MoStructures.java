@@ -24,7 +24,7 @@ public class MoStructures implements ModInitializer {
     public void onInitialize() {
         AutoConfig.register(MoStructuresConfig.class, JanksonConfigSerializer::new);
         config = AutoConfig.getConfigHolder(MoStructuresConfig.class).getConfig();
-        ModStructures.init();
-
+        ModStructures structures = new ModStructures();
+        structures.init();
     }
 }
