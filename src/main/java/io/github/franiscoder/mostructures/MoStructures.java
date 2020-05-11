@@ -1,7 +1,7 @@
 package io.github.franiscoder.mostructures;
 
-import io.github.franiscoder.mostructures.common.init.ModStructures;
 import io.github.franiscoder.mostructures.config.MoStructuresConfig;
+import io.github.franiscoder.mostructures.init.ModStructures;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;

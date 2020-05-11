@@ -5,9 +5,9 @@ import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
 
 @Config(name = "mostructures")
 public class MoStructuresConfig implements ConfigData {
-    public boolean generateAirFeatures = true;
-    public boolean generateOverworldStructures = true;
-    public boolean generateLandFeatures = true;
-    public boolean generateMiscellaneousStructures = true;
-    public boolean generateNetherStructures = true;
+    public final boolean generateAirFeatures = true;
+    public final boolean generateOverworldStructures = true;
+    public final boolean generateLandFeatures = true;
+    public final boolean generateMiscellaneousStructures = true;
+    public final boolean generateNetherStructures = true;
 }

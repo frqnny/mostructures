@@ -1,9 +1,9 @@
-package io.github.franiscoder.mostructures.common.generator;
+package io.github.franiscoder.mostructures.generator;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import io.github.franiscoder.mostructures.MoStructures;
-import io.github.franiscoder.mostructures.common.init.ModStructures;
+import io.github.franiscoder.mostructures.init.ModStructures;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;

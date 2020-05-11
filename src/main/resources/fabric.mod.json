@@ -1,33 +1,34 @@
 {
-  "schemaVersion": 1,
-  "id": "mostructures",
-  "version": "${version}",
-  "name": "Mo' Structures",
-  "description": "Adds structures with loot and spawners to Minecraft to increase the RPG aspect of the game.",
-  "authors": [
-    "ffrann"
-  ],
-  "contact": {
-    "homepage": "https://github.com/franiscoder/mostructures",
-    "sources": "https://github.com/franiscoder/mostructures"
-  },
-  "license": "LGPL-3.0",
-  "icon": "assets/mostructures/icon.png",
-  "environment": "*",
-  "entrypoints": {
-    "main": [
-      "io.github.franiscoder.mostructures.MoStructures"
-    ]
-  },
-  "depends": {
-    "fabricloader": ">=0.8.2",
-    "fabric": "*",
-    "minecraft": "1.15.x"
-  },
-  "suggests": {
-    "flamingo": "*"
-  },
-  "mixins": [
-    "mostructures.mixins.json"
-  ]
+	"schemaVersion": 1,
+	"id": "mostructures",
+	"version": "${version}",
+	"name": "Mo' Structures",
+	"description": "Adds structures with loot and spawners to Minecraft to increase the RPG aspect of the game.",
+	"authors": [
+		"ffrann",
+		"halotroop2288"
+	],
+	"contact": {
+		"homepage": "https://www.curseforge.com/minecraft/mc-mods/mo-structures",
+		"sources": "https://github.com/franiscoder/mostructures/tree/1.15.x"
+	},
+	"license": "LGPL-3.0",
+	"icon": "assets/mostructures/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"io.github.franiscoder.mostructures.MoStructures"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.8.2",
+		"fabric": "*",
+		"minecraft": "1.15.x"
+	},
+	"suggests": {
+		"flamingo": "*"
+	},
+	"mixins": [
+		"mostructures.mixins.json"
+	]
 }

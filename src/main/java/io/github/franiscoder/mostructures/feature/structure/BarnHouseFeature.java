@@ -1,9 +1,7 @@
-package io.github.franiscoder.mostructures.common.feature;
+package io.github.franiscoder.mostructures.feature.structure;
 
-import com.google.common.collect.Lists;
 import io.github.franiscoder.mostructures.MoStructures;
-import io.github.franiscoder.mostructures.common.generator.BarnHouseGenerator;
-import net.minecraft.entity.EntityType;
+import io.github.franiscoder.mostructures.generator.BarnHouseGenerator;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructureStart;
 import net.minecraft.util.math.BlockBox;
@@ -14,11 +12,7 @@ import net.minecraft.world.gen.feature.AbstractTempleFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 
-import java.util.List;
-
 public class BarnHouseFeature extends AbstractTempleFeature<DefaultFeatureConfig> {
-    private static final List<Biome.SpawnEntry> MONSTER_SPAWNS = Lists.newArrayList(new Biome.SpawnEntry(EntityType.CREEPER, 1, 1, 1));
-
     public BarnHouseFeature() {
         super(DefaultFeatureConfig::deserialize);
     }
@@ -26,11 +20,6 @@ public class BarnHouseFeature extends AbstractTempleFeature<DefaultFeatureConfig
     @Override
     protected int getSeedModifier() {
         return 165755306;
-    }
-
-    @Override
-    public List<Biome.SpawnEntry> getMonsterSpawns() {
-        return MONSTER_SPAWNS;
     }
 
     @Override
@@ -49,7 +38,6 @@ public class BarnHouseFeature extends AbstractTempleFeature<DefaultFeatureConfig
     }
 
     public static class Start extends StructureStart {
-
         public Start(StructureFeature<?> feature, int chunkX, int chunkZ, BlockBox box, int references, long seed) {
             super(feature, chunkX, chunkZ, box, references, seed);
         }
