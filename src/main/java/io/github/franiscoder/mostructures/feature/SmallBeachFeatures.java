@@ -10,7 +10,6 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -26,10 +25,9 @@ public class SmallBeachFeatures extends Feature<DefaultFeatureConfig> {
         super(DefaultFeatureConfig::deserialize);
     }
 
+
     @Override
-    public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-        //Random random2 = world.getRandom();
-        //int i = random2.nextInt(BEACHFEATURES.length);
+    public boolean generate(IWorld world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
 
         BlockPos[] posToCheck = {pos.down().east(), pos.down().west(), pos.down().north(), pos.down().south(), pos};
 
@@ -42,7 +40,7 @@ public class SmallBeachFeatures extends Feature<DefaultFeatureConfig> {
         StructureManager manager = ((ServerWorld) world.getWorld()).getStructureManager();
         Structure structure = manager.getStructureOrBlank(VILLAGER_MOAI);
         BlockRotation blockRotation = BlockRotation.random(random);
-        StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
+        StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirrored(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
         structure.place(world, pos.add(0, -3, 0), structurePlacementData);
         return true;
     }

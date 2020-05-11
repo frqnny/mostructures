@@ -2,8 +2,14 @@ package io.github.franiscoder.mostructures.init;
 
 import io.github.franiscoder.mostructures.MoStructures;
 import io.github.franiscoder.mostructures.feature.*;
-import io.github.franiscoder.mostructures.generator.*;
-import io.github.franiscoder.mostructures.structure.*;
+import io.github.franiscoder.mostructures.generator.BarnHouseGenerator;
+import io.github.franiscoder.mostructures.generator.BigPyramidGenerator;
+import io.github.franiscoder.mostructures.generator.JunglePyramidGenerator;
+import io.github.franiscoder.mostructures.generator.TheCastleInTheSkyGenerator;
+import io.github.franiscoder.mostructures.structure.BarnHouseFeature;
+import io.github.franiscoder.mostructures.structure.BigPyramidFeature;
+import io.github.franiscoder.mostructures.structure.JunglePyramidFeature;
+import io.github.franiscoder.mostructures.structure.TheCastleInTheSkyFeature;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.minecraft.structure.StructurePieceType;
 import net.minecraft.util.registry.Registry;
@@ -31,8 +37,6 @@ public class ModStructures {
 
     public static final StructureFeature<DefaultFeatureConfig> BARN_HOUSE = Registry.register(Registry.FEATURE, MoStructures.id("barn_house_feature"), new BarnHouseFeature());
     public static final StructurePieceType BARN_HOUSE_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("barn_house_piece"), BarnHouseGenerator.Piece::new);
-    public static final StructureFeature<DefaultFeatureConfig> PIGLIN_OUTPOST = Registry.register(Registry.FEATURE, MoStructures.id("piglin_outpost_feature"), new PiglinOutpostFeature());
-    public static final StructurePieceType PIGLIN_OUTPOST_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("piglin_outpost_piece"), PiglinOutpostGenerator.Piece::new);
     public static final StructureFeature<DefaultFeatureConfig> PYRAMID = Registry.register(Registry.FEATURE, MoStructures.id("big_pyramid_feature"), new BigPyramidFeature());
     public static final StructurePieceType PYRAMID_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("big_pyramid_piece"), BigPyramidGenerator.Piece::new);
     public static final StructureFeature<DefaultFeatureConfig> JUNGLE_PYRAMID = Registry.register(Registry.FEATURE, MoStructures.id("jungle_pyramid_feature"), new JunglePyramidFeature());
@@ -42,7 +46,6 @@ public class ModStructures {
 
     public void init() {
         Registry.register(Registry.STRUCTURE_FEATURE, MoStructures.id("barn_house_structure"), BARN_HOUSE);
-        Registry.register(Registry.STRUCTURE_FEATURE, MoStructures.id("piglin_outpost_structure"), PIGLIN_OUTPOST);
         Registry.register(Registry.STRUCTURE_FEATURE, MoStructures.id("big_pyramid_structure"), PYRAMID);
         Registry.register(Registry.STRUCTURE_FEATURE, MoStructures.id("jungle_pyramid_structure"), JUNGLE_PYRAMID);
         Registry.register(Registry.STRUCTURE_FEATURE, MoStructures.id("the_castle_in_the_sky"), THE_CASTLE_IN_THE_SKY);
@@ -135,18 +138,6 @@ public class ModStructures {
             Feature.STRUCTURES.put(MoStructures.MODID + ":big_pyramid", PYRAMID);
             Feature.STRUCTURES.put(MoStructures.MODID + ":jungle_pyramid", JUNGLE_PYRAMID);
             Feature.STRUCTURES.put(MoStructures.MODID + ":the_castle_in_the_sky", THE_CASTLE_IN_THE_SKY);
-        }
-        if (MoStructures.getConfig().generateNetherStructures) {
-            biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, PIGLIN_OUTPOST
-                    .configure(FeatureConfig.DEFAULT)
-                    .createDecoratedFeature(Decorator.NOPE.configure(new NopeDecoratorConfig()))
-            );
-            //Register structures so it only spawns in said biomes.
-
-            if (biome.getCategory() == Biome.Category.NETHER) {
-                biome.addStructureFeature(PIGLIN_OUTPOST.configure(FeatureConfig.DEFAULT));
-            }
-            Feature.STRUCTURES.put(MoStructures.MODID + ":piglin_outpost", PIGLIN_OUTPOST);
         }
     }
 }

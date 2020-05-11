@@ -8,7 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructurePiece;
-import net.minecraft.structure.pool.LegacySinglePoolElement;
+import net.minecraft.structure.pool.SinglePoolElement;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.structure.pool.StructurePoolElement;
@@ -32,7 +32,7 @@ public class JunglePyramidGenerator {
                         SW_STARTING_PIECE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/sw"), 1)
+                                new Pair<>(new SinglePoolElement(MoStructures.MODID + ":jungle_pyramid/sw"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -42,8 +42,8 @@ public class JunglePyramidGenerator {
                         MIDDLE_PIECES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/se"), 1),
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/nw"), 1)
+                                new Pair<>(new SinglePoolElement(MoStructures.MODID + ":jungle_pyramid/se"), 1),
+                                new Pair<>(new SinglePoolElement(MoStructures.MODID + ":jungle_pyramid/nw"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -53,7 +53,7 @@ public class JunglePyramidGenerator {
                         NE_FINAL_PIECE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/ne"), 1)
+                                new Pair<>(new SinglePoolElement(MoStructures.MODID + ":jungle_pyramid/ne"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -61,7 +61,7 @@ public class JunglePyramidGenerator {
     }
 
     public static void addPieces(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {
-        StructurePoolBasedGenerator.addPieces(SW_STARTING_PIECE, 7, JunglePyramidGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random, true, true);
+        StructurePoolBasedGenerator.addPieces(SW_STARTING_PIECE, 7, JunglePyramidGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random);
     }
 
     public static class Piece extends PoolStructurePiece {

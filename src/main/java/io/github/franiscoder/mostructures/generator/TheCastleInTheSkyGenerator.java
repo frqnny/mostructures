@@ -8,7 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructurePiece;
-import net.minecraft.structure.pool.LegacySinglePoolElement;
+import net.minecraft.structure.pool.SinglePoolElement;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.structure.pool.StructurePoolElement;
@@ -32,7 +32,7 @@ public class TheCastleInTheSkyGenerator {
                         SW_STARTING_PIECE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":castle/sw"), 1)
+                                new Pair<>(new SinglePoolElement(MoStructures.MODID + ":castle/sw"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -42,8 +42,8 @@ public class TheCastleInTheSkyGenerator {
                         MIDDLE_PIECES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":castle/nw"), 1),
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":castle/se"), 1)
+                                new Pair<>(new SinglePoolElement(MoStructures.MODID + ":castle/nw"), 1),
+                                new Pair<>(new SinglePoolElement(MoStructures.MODID + ":castle/se"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -53,7 +53,7 @@ public class TheCastleInTheSkyGenerator {
                         NE_FINAL_PIECE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":castle/ne"), 1)
+                                new Pair<>(new SinglePoolElement(MoStructures.MODID + ":castle/ne"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -61,7 +61,7 @@ public class TheCastleInTheSkyGenerator {
     }
 
     public static void addPieces(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {
-        StructurePoolBasedGenerator.addPieces(SW_STARTING_PIECE, 7, TheCastleInTheSkyGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random, true, true);
+        StructurePoolBasedGenerator.addPieces(SW_STARTING_PIECE, 7, TheCastleInTheSkyGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random);
     }
 
     public static class Piece extends PoolStructurePiece {

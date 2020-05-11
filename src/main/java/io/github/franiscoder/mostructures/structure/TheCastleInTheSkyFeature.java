@@ -8,7 +8,6 @@ import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.AbstractTempleFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
@@ -19,7 +18,7 @@ public class TheCastleInTheSkyFeature extends AbstractTempleFeature<DefaultFeatu
     }
 
     @Override
-    protected int getSeedModifier(ChunkGeneratorConfig chunkGeneratorConfig) {
+    protected int getSeedModifier() {
         return 123474938;
     }
 
@@ -45,7 +44,7 @@ public class TheCastleInTheSkyFeature extends AbstractTempleFeature<DefaultFeatu
         }
 
         @Override
-        public void init(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, int x, int z, Biome biome) {
+        public void initialize(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, int x, int z, Biome biome) {
             TheCastleInTheSkyGenerator.addPieces(chunkGenerator, structureManager, new BlockPos(x * 16, 60, z * 16), children, random);
             this.setBoundingBoxFromChildren();
         }

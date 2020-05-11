@@ -28,7 +28,6 @@ public abstract class StructureLandMixin {
     private static void addToStructureTerrainList(CallbackInfo info) {
         List<StructureFeature<?>> structureList = new ArrayList<>(Feature.JIGSAW_STRUCTURES);
         structureList.add(ModStructures.BARN_HOUSE);
-        structureList.add(ModStructures.PIGLIN_OUTPOST);
         structureList.add(ModStructures.PYRAMID);
         structureList.add(ModStructures.JUNGLE_PYRAMID);
 
