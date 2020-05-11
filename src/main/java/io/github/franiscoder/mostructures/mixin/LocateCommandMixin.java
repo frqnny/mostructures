@@ -30,9 +30,7 @@ public abstract class LocateCommandMixin {
         dispatcher.register(literal("locate").requires(source -> source.hasPermissionLevel(2))
                 .then(literal(MoStructures.MODID + ":Barn_House").executes(ctx -> execute(ctx.getSource(), MoStructures.MODID + ":barn_house")))
         );
-        dispatcher.register(literal("locate").requires(source -> source.hasPermissionLevel(2))
-                .then(literal(MoStructures.MODID + ":Piglin_Outpost").executes(ctx -> execute(ctx.getSource(), MoStructures.MODID + ":piglin_outpost")))
-        );
+        /*
         dispatcher.register(literal("locate").requires(source -> source.hasPermissionLevel(2))
                 .then(literal(MoStructures.MODID + ":Big_Pyramid").executes(ctx -> execute(ctx.getSource(), MoStructures.MODID + ":big_pyramid")))
         );
@@ -42,5 +40,6 @@ public abstract class LocateCommandMixin {
         dispatcher.register(literal("locate").requires(source -> source.hasPermissionLevel(2))
                 .then(literal(MoStructures.MODID + ":The_Castle_In_The_Sky").executes(ctx -> execute(ctx.getSource(), MoStructures.MODID + ":the_castle_in_the_sky")))
         );
+        */
     }
 }

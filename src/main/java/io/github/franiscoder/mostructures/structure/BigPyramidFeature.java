@@ -34,7 +34,7 @@ public class BigPyramidFeature extends AbstractTempleFeature<DefaultFeatureConfi
 
     @Override
     public int getRadius() {
-        return 8;
+        return 3;
     }
 
     public static class Start extends StructureStart {
