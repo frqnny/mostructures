@@ -24,13 +24,16 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
     }
 
     public static BlockState getWoodToPlace(Biome biome) {
+        Biome.Category category = biome.getCategory();
         if (biome == Biomes.BIRCH_FOREST || biome == Biomes.BIRCH_FOREST_HILLS || biome == Biomes.TALL_BIRCH_FOREST) {
             return Blocks.BIRCH_WOOD.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
-        } else if (biome.getCategory() == Biome.Category.FOREST || biome == Biomes.PLAINS || biome.getCategory() == Biome.Category.RIVER) {
+        } else if (category == Biome.Category.FOREST || biome == Biomes.PLAINS || category == Biome.Category.RIVER || category == Biome.Category.SWAMP) {
             return Blocks.OAK_WOOD.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
-        } else if (biome.getCategory() == Biome.Category.TAIGA) {
+        } else if (category == Biome.Category.SAVANNA) {
+            return Blocks.ACACIA_WOOD.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
+        } else if (category == Biome.Category.TAIGA || category == Biome.Category.ICY) {
             return Blocks.SPRUCE_WOOD.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
-        } else if (biome.getCategory() == Biome.Category.DESERT) {
+        } else if (category == Biome.Category.DESERT) {
             return Blocks.ACACIA_WOOD.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
         } else {
             return Blocks.AIR.getDefaultState();
