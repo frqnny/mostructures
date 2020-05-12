@@ -95,7 +95,7 @@ public class ModStructures {
         if (category == Biome.Category.BEACH && MoStructures.getConfig().generateBeachFeatures) {
             biome.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, SMALL_BEACH_FEATURES
                     .configure(FeatureConfig.DEFAULT)
-                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(250)))
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(20)))
             );
         }
         if (MoStructures.getConfig().generateOverworldStructures) {
