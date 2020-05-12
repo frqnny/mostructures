@@ -102,7 +102,7 @@ public class ModStructures {
         if (MoStructures.getConfig().generateOverworldStructures) {
             biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, RUINS
                     .configure(FeatureConfig.DEFAULT)
-                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(1000)))
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(2500)))
             );
             biome.addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, BARN_HOUSE
                     .configure(FeatureConfig.DEFAULT)
