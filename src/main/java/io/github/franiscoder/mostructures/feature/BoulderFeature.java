@@ -28,28 +28,29 @@ public class BoulderFeature extends Feature<DefaultFeatureConfig> {
 
         pos = world.getTopPosition(Heightmap.Type.OCEAN_FLOOR_WG, pos);
 
-        generateSphere(world, pos, 4 + random.nextInt(4));
+        generateSphere(world, pos, 4 + random.nextInt(5));
         if (new Random().nextBoolean()) {
-            generateSphere(world, pos.south().down(), 4 + random.nextInt(4));
+            generateSphere(world, pos.south().down(), 4 + random.nextInt(5));
         } else {
-            generateSphere(world, pos.north().up(), 4 + random.nextInt(4));
+            generateSphere(world, pos.north().up(), 4 + random.nextInt(5));
         }
         if (new Random().nextBoolean()) {
-            generateSphere(world, pos.east().up(), 4 + random.nextInt(4));
+            generateSphere(world, pos.east().up(), 4 + random.nextInt(5));
         } else {
-            generateSphere(world, pos.west().down(), 4 + random.nextInt(4));
+            generateSphere(world, pos.west().down(), 4 + random.nextInt(5));
         }
         return true;
     }
 
     public void generateSphere(IWorld world, BlockPos pos, int range) {
+        BlockPos.Mutable pos1 = new BlockPos.Mutable().set(pos);
         int radius = range / 2;
 
         for (int x = -range; x <= range; x++) {
             for (int z = -range; z <= range; z++) {
                 for (int y = -range; y <= range; y++) {
                     if (MathHelper.square(z) + MathHelper.square(x) + MathHelper.square(y) <= MathHelper.square(radius)) {
-                        world.setBlockState(pos.add(x, y, z), getRandomBlock(), 2);
+                        world.setBlockState(pos1.add(x, y, z), getRandomBlock(), 3);
                     }
                 }
             }
