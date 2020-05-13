@@ -45,7 +45,7 @@ public class TheCastleInTheSkyFeature extends AbstractTempleFeature<DefaultFeatu
         }
 
         @Override
-        public void init(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, int x, int z, Biome biome) {
+        public void init(ChunkGenerator chunkGenerator, StructureManager structureManager, int x, int z, Biome biome) {
             TheCastleInTheSkyGenerator.addPieces(chunkGenerator, structureManager, new BlockPos(x * 16, 60, z * 16), children, random);
             this.setBoundingBoxFromChildren();
         }

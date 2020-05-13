@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.4.3'
+	id 'fabric-loom' version '0.4.8'
 	id 'maven-publish'
 }
 
@@ -12,7 +12,10 @@ group = project.maven_group
 
 minecraft {
 }
-
+repositories {
+	mavenLocal()
+	maven { url = "https://jitpack.io" }
+}
 dependencies {
 	//to change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -24,6 +27,10 @@ dependencies {
 
 	modCompile "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
 	include  "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
+
+	//modRuntime ("com.github.mrmangohands:sodium-fabric:97650e1acce5a34460b8d6946430171cff6e3d8a")
+	//modRuntime ("com.github.SuperCoder7979:phosphor-fabric:11d964bf07d44bdf6cbdbb7cce25ed9da81d9f78")
+	//modRuntime ("com.github.jellysquid3:lithium-fabric:21769c40c59330ea9eacbd8139a2057a86f0d028")
 
 	compileOnly ("com.google.code.findbugs:jsr305:3.0.2") { transitive = false }
 }

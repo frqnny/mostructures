@@ -61,7 +61,7 @@ public class BigPyramidGenerator {
     }
 
 
-    public static void addPieces(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {
+    public static void addPieces(ChunkGenerator chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {
         StructurePoolBasedGenerator.addPieces(SW_STARTING_PIECE, 7, BigPyramidGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random, true, true);
     }
 

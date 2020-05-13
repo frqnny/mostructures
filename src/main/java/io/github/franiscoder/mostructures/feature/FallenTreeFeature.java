@@ -3,16 +3,15 @@ package io.github.franiscoder.mostructures.feature;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PillarBlock;
+import net.minecraft.class_5281;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.Heightmap;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
@@ -41,11 +40,11 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
     }
 
     public static boolean canPlaceWood(BlockState block) {
-        return block == Blocks.AIR.getDefaultState() || block == Blocks.GRASS.getDefaultState() || block == Blocks.WATER.getDefaultState();
+        return block == Blocks.AIR.getDefaultState() || block == Blocks.GRASS.getDefaultState() || block == Blocks.WATER.getDefaultState() || block == Blocks.VINE.getDefaultState();
     }
 
     @Override
-    public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(class_5281 world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         Biome.Category category = world.getBiome(pos).getCategory();
         if (world.getDimension().getType() != DimensionType.OVERWORLD || category == Biome.Category.OCEAN
                 || category == Biome.Category.RIVER
@@ -62,7 +61,7 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
         BlockState blockToPlace = getWoodToPlace(world.getBiome(newPos));
 
         //Makes Desert Fallen Trees rarer, as in Forest that is taken care whether it is to generate in an open space or not
-        if (world.getBiome(newPos).getCategory() == Biome.Category.DESERT || world.getBiome(newPos).getCategory() == Biome.Category.PLAINS) {
+        if (category == Biome.Category.DESERT || category == Biome.Category.PLAINS || category == Biome.Category.SWAMP) {
             if (random.nextInt(10) != 1) {
                 return false;
             }

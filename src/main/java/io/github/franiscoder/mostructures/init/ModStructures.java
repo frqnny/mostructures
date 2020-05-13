@@ -75,17 +75,17 @@ public class ModStructures {
             );
             biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, LAMPPOST
                     .configure(FeatureConfig.DEFAULT)
-                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(100)))
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(85)))
             );
             biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, BOULDER
                     .configure(FeatureConfig.DEFAULT)
-                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(500)))
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(400)))
             );
         }
         if (category == Biome.Category.OCEAN && MoStructures.getConfig().generateOceanFeatures) {
             biome.addFeature(GenerationStep.Feature.RAW_GENERATION, VOLCANIC_VENT
                     .configure(FeatureConfig.DEFAULT)
-                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(200)))
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(90)))
             );
             biome.addFeature(GenerationStep.Feature.RAW_GENERATION, BOAT
                     .configure(FeatureConfig.DEFAULT)

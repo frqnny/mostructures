@@ -49,7 +49,7 @@ public class PiglinOutpostGenerator {
         );
     }
 
-    public static void addPieces(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {
+    public static void addPieces(ChunkGenerator chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {
         StructurePoolBasedGenerator.addPieces(BASE_PLATES, 7, PiglinOutpostGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random, true, true);
     }
 

@@ -44,7 +44,7 @@ public class BarnHouseFeature extends AbstractTempleFeature<DefaultFeatureConfig
         }
 
         @Override
-        public void init(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, int x, int z, Biome biome) {
+        public void init(ChunkGenerator chunkGenerator, StructureManager structureManager, int x, int z, Biome biome) {
             BarnHouseGenerator.addPieces(chunkGenerator, structureManager, new BlockPos(x * 16, 0, z * 16), children, random);
             this.setBoundingBoxFromChildren();
         }

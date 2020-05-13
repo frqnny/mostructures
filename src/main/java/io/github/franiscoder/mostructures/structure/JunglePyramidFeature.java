@@ -43,7 +43,7 @@ public class JunglePyramidFeature extends AbstractTempleFeature<DefaultFeatureCo
         }
 
         @Override
-        public void init(ChunkGenerator<?> chunkGenerator, StructureManager structureManager, int x, int z, Biome biome) {
+        public void init(ChunkGenerator chunkGenerator, StructureManager structureManager, int x, int z, Biome biome) {
             io.github.franiscoder.mostructures.generator.JunglePyramidGenerator.addPieces(chunkGenerator, structureManager, new BlockPos(x * 16, 0, z * 16), children, random);
             this.setBoundingBoxFromChildren();
         }

@@ -2,6 +2,7 @@ package io.github.franiscoder.mostructures.feature;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.class_5281;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Heightmap;
@@ -9,7 +10,6 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
@@ -21,23 +21,23 @@ public class BoulderFeature extends Feature<DefaultFeatureConfig> {
     }
 
     @Override
-    public boolean generate(IWorld world, StructureAccessor accessor, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(class_5281 world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         if (world.getDimension().getType() != DimensionType.OVERWORLD) {
             return false;
         }
-
+        Random randomFixed = world.getRandom();
         pos = world.getTopPosition(Heightmap.Type.OCEAN_FLOOR_WG, pos);
 
-        generateSphere(world, pos, 4 + random.nextInt(5));
+        generateSphere(world, pos, 4 + randomFixed.nextInt(5));
         if (new Random().nextBoolean()) {
-            generateSphere(world, pos.south().down(), 4 + random.nextInt(5));
+            generateSphere(world, pos.south().down(), 4 + randomFixed.nextInt(5));
         } else {
-            generateSphere(world, pos.north().up(), 4 + random.nextInt(5));
+            generateSphere(world, pos.north().up(), 4 + randomFixed.nextInt(5));
         }
         if (new Random().nextBoolean()) {
-            generateSphere(world, pos.east().up(), 4 + random.nextInt(5));
+            generateSphere(world, pos.east().up(), 4 + randomFixed.nextInt(5));
         } else {
-            generateSphere(world, pos.west().down(), 4 + random.nextInt(5));
+            generateSphere(world, pos.west().down(), 4 + randomFixed.nextInt(5));
         }
         return true;
     }
@@ -72,4 +72,6 @@ public class BoulderFeature extends Feature<DefaultFeatureConfig> {
                 return Blocks.COARSE_DIRT.getDefaultState();
         }
     }
+
+
 }
