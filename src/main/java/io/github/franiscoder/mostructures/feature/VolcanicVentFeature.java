@@ -2,10 +2,9 @@ package io.github.franiscoder.mostructures.feature;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.class_5281;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -18,12 +17,12 @@ public class VolcanicVentFeature extends Feature<DefaultFeatureConfig> {
         super(DefaultFeatureConfig::deserialize);
     }
 
-    private static int getBaseHeight(IWorld world, int x, int y) {
+    private static int getBaseHeight(ServerWorldAccess world, int x, int y) {
         return world.getTopY(Heightmap.Type.OCEAN_FLOOR_WG, x, y) - 1;
     }
 
     @Override
-    public boolean generate(class_5281 world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         BlockPos actualPos = new BlockPos(pos.getX(), getBaseHeight(world, pos.getX(), pos.getZ()), pos.getZ());
 
         int i = pos.getX();
@@ -59,7 +58,7 @@ public class VolcanicVentFeature extends Feature<DefaultFeatureConfig> {
         return true;
     }
 
-    private void placeBottom(IWorld world, BlockPos pos, float percentage) {
+    private void placeBottom(ServerWorldAccess world, BlockPos pos, float percentage) {
         int max = ((int) (10 * percentage)) + new Random().nextInt(3);
         for (int i = 0; i < max; i++) {
             world.setBlockState(pos.add(0, i, 0), getRandomBlock(), 3);

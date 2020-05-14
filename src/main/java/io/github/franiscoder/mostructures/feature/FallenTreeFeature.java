@@ -3,10 +3,10 @@ package io.github.franiscoder.mostructures.feature;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PillarBlock;
-import net.minecraft.class_5281;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.Heightmap;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.dimension.DimensionType;
@@ -44,7 +44,7 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
     }
 
     @Override
-    public boolean generate(class_5281 world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         Biome.Category category = world.getBiome(pos).getCategory();
         if (world.getDimension().getType() != DimensionType.OVERWORLD || category == Biome.Category.OCEAN
                 || category == Biome.Category.RIVER

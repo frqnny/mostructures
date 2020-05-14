@@ -2,7 +2,6 @@ package io.github.franiscoder.mostructures.feature;
 
 import io.github.franiscoder.mostructures.MoStructures;
 import net.minecraft.block.Blocks;
-import net.minecraft.class_5281;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructurePlacementData;
@@ -11,7 +10,7 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.StructureAccessor;
@@ -31,7 +30,7 @@ public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
     }
 
     @Override
-    public boolean generate(class_5281 world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         if (canGenerate(world, pos) && world.getBlockState(pos.down()) == Blocks.SAND.getDefaultState()) {
             int randomStructureToPlace = world.getRandom().nextInt(IDENTIFIERS.length);
             //to come back soon
@@ -49,7 +48,7 @@ public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
         }
     }
 
-    private boolean canGenerate(IWorld world, BlockPos pos) {
+    private boolean canGenerate(ServerWorldAccess world, BlockPos pos) {
         Biome biome = world.getBiome(pos);
 
         return biome.getCategory() == Biome.Category.DESERT && world.getDimension().getType() == DimensionType.OVERWORLD;

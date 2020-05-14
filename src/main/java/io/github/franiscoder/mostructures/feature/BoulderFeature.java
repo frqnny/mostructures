@@ -2,11 +2,10 @@ package io.github.franiscoder.mostructures.feature;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.class_5281;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Heightmap;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
@@ -21,7 +20,7 @@ public class BoulderFeature extends Feature<DefaultFeatureConfig> {
     }
 
     @Override
-    public boolean generate(class_5281 world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         if (world.getDimension().getType() != DimensionType.OVERWORLD) {
             return false;
         }
@@ -42,7 +41,7 @@ public class BoulderFeature extends Feature<DefaultFeatureConfig> {
         return true;
     }
 
-    public void generateSphere(IWorld world, BlockPos pos, int range) {
+    public void generateSphere(ServerWorldAccess world, BlockPos pos, int range) {
         BlockPos.Mutable pos1 = new BlockPos.Mutable().set(pos);
         int radius = range / 2;
 

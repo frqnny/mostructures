@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.4.8'
+	id 'fabric-loom' version '0.4-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -12,10 +12,7 @@ group = project.maven_group
 
 minecraft {
 }
-repositories {
-	mavenLocal()
-	maven { url = "https://jitpack.io" }
-}
+
 dependencies {
 	//to change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"

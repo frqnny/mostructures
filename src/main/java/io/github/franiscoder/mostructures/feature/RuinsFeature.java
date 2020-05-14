@@ -2,10 +2,9 @@ package io.github.franiscoder.mostructures.feature;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.class_5281;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
@@ -32,12 +31,12 @@ public class RuinsFeature extends Feature<DefaultFeatureConfig> {
         }
     }
 
-    private static int getBaseHeight(IWorld world, int x, int y) {
+    private static int getBaseHeight(ServerWorldAccess world, int x, int y) {
         return world.getTopY(Heightmap.Type.WORLD_SURFACE_WG, x, y) - 1;
     }
 
     @Override
-    public boolean generate(class_5281 world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         if (world.getBiome(pos).getCategory() == Biome.Category.EXTREME_HILLS || world.getBiome(pos).getCategory() == Biome.Category.OCEAN || world.getBiome(pos).getCategory() == Biome.Category.FOREST || world.getBiome(pos).getCategory() == Biome.Category.THEEND || world.getBlockState(pos.down()).getBlock() == Blocks.WATER)
             return false;
 
@@ -94,7 +93,7 @@ public class RuinsFeature extends Feature<DefaultFeatureConfig> {
         return true;
     }
 
-    private void placeBase(Random random, IWorld world, BlockPos pos) {
+    private void placeBase(Random random, ServerWorldAccess world, BlockPos pos) {
         int i = pos.getX();
         int j = pos.getZ();
         float[] fs = new float[]{1.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F, 0.9F, 0.9F, 0.8F, 0.7F, 0.6F, 0.4F, 0.2F};
@@ -120,12 +119,12 @@ public class RuinsFeature extends Feature<DefaultFeatureConfig> {
 
     }
 
-    private void placeBottom(IWorld world, BlockPos pos) {
+    private void placeBottom(ServerWorldAccess world, BlockPos pos) {
         world.setBlockState(pos, getRandomBlock(), 3);
 
     }
 
-    private void placeSingleWall(IWorld world, BlockPos pos, boolean isOutsideWall) {
+    private void placeSingleWall(ServerWorldAccess world, BlockPos pos, boolean isOutsideWall) {
         int height = 3;
         if (isOutsideWall) {
             Random random = new Random();
@@ -139,7 +138,7 @@ public class RuinsFeature extends Feature<DefaultFeatureConfig> {
         }
     }
 
-    private BlockPos fixYForWall(IWorld world, BlockPos pos) {
+    private BlockPos fixYForWall(ServerWorldAccess world, BlockPos pos) {
         int y = getBaseHeight(world, pos.getX(), pos.getZ());
         return new BlockPos(pos.getX(), y, pos.getZ());
     }

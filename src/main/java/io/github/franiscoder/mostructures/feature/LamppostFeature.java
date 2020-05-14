@@ -3,7 +3,6 @@ package io.github.franiscoder.mostructures.feature;
 import io.github.franiscoder.mostructures.MoStructures;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.class_5281;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructureManager;
@@ -13,7 +12,7 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.StructureAccessor;
@@ -32,7 +31,7 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
         super(DefaultFeatureConfig::deserialize);
     }
 
-    public static BlockPos getCorrectNetherHeight(BlockPos pos, IWorld world) {
+    public static BlockPos getCorrectNetherHeight(BlockPos pos, ServerWorldAccess world) {
 
         //It'll check for lava at lava ocean level (32) now
         BlockPos posToWorkOn = new BlockPos(pos.getX(), 30, pos.getZ());
@@ -48,7 +47,7 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
     }
 
     @Override
-    public boolean generate(class_5281 world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         Identifier lamppost = world.getDimension().getType() == DimensionType.OVERWORLD ? LAMPPOST : NETHER_LAMPPOST;
         boolean inWater = false;
         BlockPos newPos = world.getTopPosition(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos);
