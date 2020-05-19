@@ -51,7 +51,7 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
         if (world.getDimension().getType() != DimensionType.OVERWORLD || category == Biome.Category.OCEAN
                 || category == Biome.Category.RIVER
                 || category == Biome.Category.BEACH
-                || Objects.requireNonNull(Registry.BIOME.getId(world.getBiome(pos))).getNamespace().equals("minecraft")) {
+                || !Objects.requireNonNull(Registry.BIOME.getId(world.getBiome(pos))).getNamespace().equals("minecraft")) {
             return false;
         }
 
