@@ -5,6 +5,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.PillarBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
@@ -43,9 +44,12 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
     @Override
     public boolean generate(IWorld world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         Biome.Category category = world.getBiome(pos).getCategory();
-        if (world.getDimension().getType() != DimensionType.OVERWORLD || category == Biome.Category.OCEAN
+        if (world.getDimension().getType() != DimensionType.OVERWORLD
+                || category == Biome.Category.OCEAN
                 || category == Biome.Category.RIVER
-                || category == Biome.Category.BEACH) {
+                || category == Biome.Category.BEACH
+                || Registry.BIOME.getId(world.getBiome(pos)).getNamespace().equals("minecraft")
+        ) {
             return false;
         }
 

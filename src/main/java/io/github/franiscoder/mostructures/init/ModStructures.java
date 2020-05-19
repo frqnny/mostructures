@@ -78,34 +78,34 @@ public class ModStructures {
             );
             biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, LAMPPOST
                     .configure(FeatureConfig.DEFAULT)
-                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(100)))
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(85)))
             );
             biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, BOULDER
                     .configure(FeatureConfig.DEFAULT)
-                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(500)))
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(400)))
             );
         }
         //ocean config
         if (category == Biome.Category.OCEAN && MoStructures.getConfig().generateOceanFeatures) {
             biome.addFeature(GenerationStep.Feature.RAW_GENERATION, VOLCANIC_VENT
                     .configure(FeatureConfig.DEFAULT)
-                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(500)))
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(90)))
             );
             biome.addFeature(GenerationStep.Feature.RAW_GENERATION, BOAT
                     .configure(FeatureConfig.DEFAULT)
-                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(500)))
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(1000)))
             );
         }
         if (category == Biome.Category.BEACH && MoStructures.getConfig().generateBeachFeatures) {
             biome.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, SMALL_BEACH_FEATURES
                     .configure(FeatureConfig.DEFAULT)
-                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(250)))
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(20)))
             );
         }
         if (MoStructures.getConfig().generateOverworldStructures) {
             biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, RUINS
                     .configure(FeatureConfig.DEFAULT)
-                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(1000)))
+                    .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(2500)))
             );
             biome.addFeature(GenerationStep.Feature.SURFACE_STRUCTURES, BARN_HOUSE
                     .configure(FeatureConfig.DEFAULT)
