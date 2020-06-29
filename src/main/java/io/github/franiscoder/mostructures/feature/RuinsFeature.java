@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class RuinsFeature extends Feature<DefaultFeatureConfig> {
     public RuinsFeature() {
-        super(DefaultFeatureConfig::deserialize);
+        super(DefaultFeatureConfig.CODEC);
     }
 
     public static BlockState getRandomBlock() {
@@ -33,6 +33,30 @@ public class RuinsFeature extends Feature<DefaultFeatureConfig> {
 
     private static int getBaseHeight(ServerWorldAccess world, int x, int y) {
         return world.getTopY(Heightmap.Type.WORLD_SURFACE_WG, x, y) - 1;
+    }
+
+    private static void placeBottom(ServerWorldAccess world, BlockPos pos) {
+        world.setBlockState(pos, getRandomBlock(), 3);
+
+    }
+
+    private static void placeSingleWall(ServerWorldAccess world, BlockPos pos, boolean isOutsideWall) {
+        int height = 3;
+        if (isOutsideWall) {
+            Random random = new Random();
+            int heightToAdd = random.nextInt(6);
+            height += heightToAdd;
+        } else {
+            height = 2;
+        }
+        for (int i = 0; i < height; i++) {
+            world.setBlockState(pos.up(i + 1), Blocks.STONE_BRICKS.getDefaultState(), 3);
+        }
+    }
+
+    private static BlockPos fixYForWall(ServerWorldAccess world, BlockPos pos) {
+        int y = getBaseHeight(world, pos.getX(), pos.getZ());
+        return new BlockPos(pos.getX(), y, pos.getZ());
     }
 
     @Override
@@ -111,35 +135,11 @@ public class RuinsFeature extends Feature<DefaultFeatureConfig> {
                     if (random.nextDouble() < (double) f) {
                         int t = getBaseHeight(world, o, p);
                         mutable.set(o, t, p);
-                        this.placeBottom(world, mutable);
+                        RuinsFeature.placeBottom(world, mutable);
                     }
                 }
             }
         }
 
-    }
-
-    private void placeBottom(ServerWorldAccess world, BlockPos pos) {
-        world.setBlockState(pos, getRandomBlock(), 3);
-
-    }
-
-    private void placeSingleWall(ServerWorldAccess world, BlockPos pos, boolean isOutsideWall) {
-        int height = 3;
-        if (isOutsideWall) {
-            Random random = new Random();
-            int heightToAdd = random.nextInt(6);
-            height += heightToAdd;
-        } else {
-            height = 2;
-        }
-        for (int i = 0; i < height; i++) {
-            world.setBlockState(pos.up(i + 1), Blocks.STONE_BRICKS.getDefaultState(), 3);
-        }
-    }
-
-    private BlockPos fixYForWall(ServerWorldAccess world, BlockPos pos) {
-        int y = getBaseHeight(world, pos.getX(), pos.getZ());
-        return new BlockPos(pos.getX(), y, pos.getZ());
     }
 }

@@ -14,11 +14,29 @@ import java.util.Random;
 
 public class VolcanicVentFeature extends Feature<DefaultFeatureConfig> {
     public VolcanicVentFeature() {
-        super(DefaultFeatureConfig::deserialize);
+        super(DefaultFeatureConfig.CODEC);
     }
 
     private static int getBaseHeight(ServerWorldAccess world, int x, int y) {
         return world.getTopY(Heightmap.Type.OCEAN_FLOOR_WG, x, y) - 1;
+    }
+
+    public static BlockState getRandomBlock() {
+        Random random = new Random();
+        switch (random.nextInt(5)) {
+            case 0:
+                return Blocks.STONE.getDefaultState();
+            case 1:
+                return Blocks.MOSSY_COBBLESTONE.getDefaultState();
+            case 2:
+                return Blocks.COBBLESTONE.getDefaultState();
+            case 3:
+                return Blocks.GRAVEL.getDefaultState();
+            case 4:
+                return Blocks.ANDESITE.getDefaultState();
+            default:
+                return Blocks.COARSE_DIRT.getDefaultState();
+        }
     }
 
     @Override
@@ -64,23 +82,5 @@ public class VolcanicVentFeature extends Feature<DefaultFeatureConfig> {
             world.setBlockState(pos.add(0, i, 0), getRandomBlock(), 3);
         }
 
-    }
-
-    public BlockState getRandomBlock() {
-        Random random = new Random();
-        switch (random.nextInt(5)) {
-            case 0:
-                return Blocks.STONE.getDefaultState();
-            case 1:
-                return Blocks.MOSSY_COBBLESTONE.getDefaultState();
-            case 2:
-                return Blocks.COBBLESTONE.getDefaultState();
-            case 3:
-                return Blocks.GRAVEL.getDefaultState();
-            case 4:
-                return Blocks.ANDESITE.getDefaultState();
-            default:
-                return Blocks.COARSE_DIRT.getDefaultState();
-        }
     }
 }

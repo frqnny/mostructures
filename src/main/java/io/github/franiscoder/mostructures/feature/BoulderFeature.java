@@ -6,7 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -16,12 +16,43 @@ import java.util.Random;
 
 public class BoulderFeature extends Feature<DefaultFeatureConfig> {
     public BoulderFeature() {
-        super(DefaultFeatureConfig::deserialize);
+        super(DefaultFeatureConfig.CODEC);
+    }
+
+    public static void generateSphere(ServerWorldAccess world, BlockPos pos, int range) {
+        BlockPos.Mutable pos1 = new BlockPos.Mutable().set(pos);
+        int radius = range / 2;
+
+        for (int x = -range; x <= range; x++) {
+            for (int z = -range; z <= range; z++) {
+                for (int y = -range; y <= range; y++) {
+                    if (MathHelper.square(z) + MathHelper.square(x) + MathHelper.square(y) <= MathHelper.square(radius)) {
+                        world.setBlockState(pos1.add(x, y, z), getRandomBlock(), 3);
+                    }
+                }
+            }
+        }
+    }
+
+    public static BlockState getRandomBlock() {
+        Random random = new Random();
+        switch (random.nextInt(4)) {
+            case 0:
+                return Blocks.STONE.getDefaultState();
+            case 1:
+                return Blocks.MOSSY_COBBLESTONE.getDefaultState();
+            case 2:
+                return Blocks.COBBLESTONE.getDefaultState();
+            case 3:
+                return Blocks.GRAVEL.getDefaultState();
+            default:
+                return Blocks.COARSE_DIRT.getDefaultState();
+        }
     }
 
     @Override
     public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-        if (world.getDimension().getType() != DimensionType.OVERWORLD) {
+        if (world.getBiome(pos).getCategory() == Biome.Category.NETHER && world.getBiome(pos).getCategory() == Biome.Category.THEEND) {
             return false;
         }
         Random randomFixed = world.getRandom();
@@ -39,37 +70,6 @@ public class BoulderFeature extends Feature<DefaultFeatureConfig> {
             generateSphere(world, pos.west().down(), 4 + randomFixed.nextInt(5));
         }
         return true;
-    }
-
-    public void generateSphere(ServerWorldAccess world, BlockPos pos, int range) {
-        BlockPos.Mutable pos1 = new BlockPos.Mutable().set(pos);
-        int radius = range / 2;
-
-        for (int x = -range; x <= range; x++) {
-            for (int z = -range; z <= range; z++) {
-                for (int y = -range; y <= range; y++) {
-                    if (MathHelper.square(z) + MathHelper.square(x) + MathHelper.square(y) <= MathHelper.square(radius)) {
-                        world.setBlockState(pos1.add(x, y, z), getRandomBlock(), 3);
-                    }
-                }
-            }
-        }
-    }
-
-    public BlockState getRandomBlock() {
-        Random random = new Random();
-        switch (random.nextInt(4)) {
-            case 0:
-                return Blocks.STONE.getDefaultState();
-            case 1:
-                return Blocks.MOSSY_COBBLESTONE.getDefaultState();
-            case 2:
-                return Blocks.COBBLESTONE.getDefaultState();
-            case 3:
-                return Blocks.GRAVEL.getDefaultState();
-            default:
-                return Blocks.COARSE_DIRT.getDefaultState();
-        }
     }
 
 

@@ -3,7 +3,7 @@ package io.github.franiscoder.mostructures.generator;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import io.github.franiscoder.mostructures.MoStructures;
-import io.github.franiscoder.mostructures.init.ModStructures;
+import io.github.franiscoder.mostructures.init.StructureInit;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;
@@ -67,11 +67,11 @@ public class BigPyramidGenerator {
 
     public static class Piece extends PoolStructurePiece {
         public Piece(StructureManager manager, CompoundTag tag) {
-            super(manager, tag, ModStructures.PYRAMID_PIECE);
+            super(manager, tag, StructureInit.PYRAMID_PIECE);
         }
 
         public Piece(StructureManager structureManager, StructurePoolElement structurePoolElement, BlockPos blockPos, int i, BlockRotation blockRotation, BlockBox blockBox) {
-            super(ModStructures.PYRAMID_PIECE, structureManager, structurePoolElement, blockPos, i, blockRotation, blockBox);
+            super(StructureInit.PYRAMID_PIECE, structureManager, structurePoolElement, blockPos, i, blockRotation, blockBox);
         }
     }
 }

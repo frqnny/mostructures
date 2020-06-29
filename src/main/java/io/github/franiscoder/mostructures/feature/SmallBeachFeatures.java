@@ -22,7 +22,7 @@ public class SmallBeachFeatures extends Feature<DefaultFeatureConfig> {
     //public static final Identifier[] BEACHFEATURES = {VILLAGER_MOAI};
 
     public SmallBeachFeatures() {
-        super(DefaultFeatureConfig::deserialize);
+        super(DefaultFeatureConfig.CODEC);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class SmallBeachFeatures extends Feature<DefaultFeatureConfig> {
         Structure structure = manager.getStructureOrBlank(VILLAGER_MOAI);
         BlockRotation blockRotation = BlockRotation.random(random);
         StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
-        structure.place(world, pos.add(0, -3, 0), structurePlacementData);
+        structure.place(world, pos.add(0, -3, 0), structurePlacementData, random);
         return true;
     }
 }

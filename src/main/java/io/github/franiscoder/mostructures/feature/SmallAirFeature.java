@@ -26,7 +26,7 @@ public class SmallAirFeature extends Feature<DefaultFeatureConfig> {
 
 
     public SmallAirFeature() {
-        super(DefaultFeatureConfig::deserialize);
+        super(DefaultFeatureConfig.CODEC);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class SmallAirFeature extends Feature<DefaultFeatureConfig> {
         pos = pos.add(0, yToAdd, 0);
         BlockRotation blockRotation = BlockRotation.random(random);
         StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
-        structure.place(world, pos, structurePlacementData);
+        structure.place(world, pos, structurePlacementData, random);
         return true;
     }
 }

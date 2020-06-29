@@ -3,7 +3,7 @@ package io.github.franiscoder.mostructures.generator;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import io.github.franiscoder.mostructures.MoStructures;
-import io.github.franiscoder.mostructures.init.ModStructures;
+import io.github.franiscoder.mostructures.init.StructureInit;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;
@@ -66,11 +66,11 @@ public class TheCastleInTheSkyGenerator {
 
     public static class Piece extends PoolStructurePiece {
         public Piece(StructureManager manager, CompoundTag tag) {
-            super(manager, tag, ModStructures.THE_CASTLE_IN_THE_SKY_PIECE);
+            super(manager, tag, StructureInit.THE_CASTLE_IN_THE_SKY_PIECE);
         }
 
         public Piece(StructureManager structureManager, StructurePoolElement structurePoolElement, BlockPos blockPos, int i, BlockRotation blockRotation, BlockBox blockBox) {
-            super(ModStructures.THE_CASTLE_IN_THE_SKY_PIECE, structureManager, structurePoolElement, blockPos, i, blockRotation, blockBox);
+            super(StructureInit.THE_CASTLE_IN_THE_SKY_PIECE, structureManager, structurePoolElement, blockPos, i, blockRotation, blockBox);
         }
     }
 }

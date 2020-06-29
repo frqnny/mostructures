@@ -1,6 +1,6 @@
 package io.github.franiscoder.mostructures.mixin;
 
-import io.github.franiscoder.mostructures.MoStructures;
+import io.github.franiscoder.mostructures.init.StructureInit;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.chunk.Chunk;
@@ -21,8 +21,8 @@ import java.util.Random;
 @Mixin(LakeFeature.class)
 public class LakeFeatureMixin {
     @Inject(at = @At("HEAD"), method = "generate", cancellable = true)
-    public void fixBarnHouse(ServerWorldAccess world, StructureAccessor structureAccessor, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, SingleStateFeatureConfig singleStateFeatureConfig, CallbackInfoReturnable<Boolean> info) {
-        List<Chunk> chunksToScan = new ArrayList<>();
+    public void fixStructures(ServerWorldAccess world, StructureAccessor structureAccessor, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, SingleStateFeatureConfig singleStateFeatureConfig, CallbackInfoReturnable<Boolean> info) {
+        List<Chunk> chunksToScan = new ArrayList<>(9);
         chunksToScan.add(world.getChunk(blockPos));
         chunksToScan.add(world.getChunk(blockPos.add(16, 0, 16)));
         chunksToScan.add(world.getChunk(blockPos.add(-16, 0, -16)));
@@ -33,10 +33,10 @@ public class LakeFeatureMixin {
         chunksToScan.add(world.getChunk(blockPos.add(16, 0, -16)));
         chunksToScan.add(world.getChunk(blockPos.add(-16, 0, 16)));
         for (Chunk chunk : chunksToScan) {
-            if (!chunk.getStructureReferences(MoStructures.MODID + ":Barn_House").isEmpty()) {
+            if (!chunk.getStructureReferences(StructureInit.BARN_HOUSE.field_24835).isEmpty()) {
                 info.setReturnValue(false);
                 break;
-            } else if (!chunk.getStructureReferences(MoStructures.MODID + ":Jungle_Pyramid").isEmpty()) {
+            } else if (!chunk.getStructureReferences(StructureInit.JUNGLE_PYRAMID.field_24835).isEmpty()) {
                 info.setReturnValue(false);
                 break;
             }

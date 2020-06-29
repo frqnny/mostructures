@@ -1,7 +1,7 @@
 package io.github.franiscoder.mostructures;
 
 import io.github.franiscoder.mostructures.config.MoStructuresConfig;
-import io.github.franiscoder.mostructures.init.ModStructures;
+import io.github.franiscoder.mostructures.init.StructureInit;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
@@ -24,7 +24,6 @@ public class MoStructures implements ModInitializer {
     public void onInitialize() {
         AutoConfig.register(MoStructuresConfig.class, JanksonConfigSerializer::new);
         config = AutoConfig.getConfigHolder(MoStructuresConfig.class).getConfig();
-        ModStructures structures = new ModStructures();
-        structures.init();
+        StructureInit.init();
     }
 }

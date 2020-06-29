@@ -14,7 +14,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -28,7 +27,7 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
     public static final Identifier NETHER_LAMPPOST = MoStructures.id("miscellaneous/netherlamppost");
 
     public LamppostFeature() {
-        super(DefaultFeatureConfig::deserialize);
+        super(DefaultFeatureConfig.CODEC);
     }
 
     public static BlockPos getCorrectNetherHeight(BlockPos pos, ServerWorldAccess world) {
@@ -36,7 +35,8 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
         //It'll check for lava at lava ocean level (32) now
         BlockPos posToWorkOn = new BlockPos(pos.getX(), 30, pos.getZ());
         BlockState block = world.getBlockState(posToWorkOn);
-        while (block != Blocks.AIR.getDefaultState()) {
+        BlockState state = Blocks.AIR.getDefaultState();
+        while (block != state) {
             posToWorkOn = posToWorkOn.up();
             block = world.getBlockState(posToWorkOn);
 
@@ -48,7 +48,7 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
 
     @Override
     public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-        Identifier lamppost = world.getDimension().getType() == DimensionType.OVERWORLD ? LAMPPOST : NETHER_LAMPPOST;
+        Identifier lamppost = world.getBiome(pos).getCategory() == Biome.Category.NETHER ? NETHER_LAMPPOST : LAMPPOST;
         boolean inWater = false;
         BlockPos newPos = world.getTopPosition(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos);
         if (world.getBlockState(newPos.down()) == Blocks.WATER.getDefaultState()) {
@@ -62,7 +62,7 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
             StructureManager manager = ((ServerWorld) world.getWorld()).getStructureManager();
             Structure structure = manager.getStructureOrBlank(lamppost);
 
-            structure.place(world, newPos, structurePlacementData);
+            structure.place(world, newPos, structurePlacementData, random);
             return true;
         } else if (category == Biome.Category.NETHER) {
             BlockRotation blockRotation = BlockRotation.random(random);
@@ -73,7 +73,7 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
             BlockPos correctPos = getCorrectNetherHeight(pos, world);
             if (correctPos == null) return false;
 
-            structure.place(world, correctPos, structurePlacementData);
+            structure.place(world, correctPos, structurePlacementData, random);
             return true;
         }
         return false;

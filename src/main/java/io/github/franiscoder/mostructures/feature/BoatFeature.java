@@ -21,7 +21,7 @@ public class BoatFeature extends Feature<DefaultFeatureConfig> {
     public static final Identifier BOAT1 = MoStructures.id("boat/boat1");
 
     public BoatFeature() {
-        super(DefaultFeatureConfig::deserialize);
+        super(DefaultFeatureConfig.CODEC);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class BoatFeature extends Feature<DefaultFeatureConfig> {
         Structure structure = manager.getStructureOrBlank(BOAT1);
         BlockRotation blockRotation = BlockRotation.random(random);
         StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
-        structure.place(world, pos.add(0, -3, 0), structurePlacementData);
+        structure.place(world, pos.add(0, -3, 0), structurePlacementData, random);
         return true;
     }
 }

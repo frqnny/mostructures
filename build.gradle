@@ -1,6 +1,5 @@
 plugins {
 	id 'fabric-loom' version '0.4-SNAPSHOT'
-	id 'maven-publish'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -10,9 +9,6 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
-minecraft {
-}
-
 dependencies {
 	//to change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -20,10 +16,14 @@ dependencies {
 	modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
-	modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modCompile "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
+	//Dependencies
+	modImplementation "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
 	include  "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
+
+	modImplementation 'net.earthcomputer:libstructure:1.3' // Or the latest version
+	include 'net.earthcomputer:libstructure:1.3'
 
 	//modRuntime ("com.github.mrmangohands:sodium-fabric:97650e1acce5a34460b8d6946430171cff6e3d8a")
 	//modRuntime ("com.github.SuperCoder7979:phosphor-fabric:11d964bf07d44bdf6cbdbb7cce25ed9da81d9f78")
@@ -63,27 +63,9 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 jar {
 	from "LICENSE"
 }
-
-// configure the maven publication
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			// add all the jars that should be included when publishing to maven
-			artifact(remapJar) {
-				builtBy remapJar
-			}
-			artifact(sourcesJar) {
-				builtBy remapSourcesJar
-			}
-		}
+repositories {
+	maven {
+		name = 'Earthcomputer Mods'
+		url = 'https://dl.bintray.com/earthcomputer/mods'
 	}
-
-	// select the repositories you want to publish to
-	repositories {
-		// uncomment to publish to the local maven
-		// mavenLocal()
-	}
-}
-runClient {
-	jvmArgs "-Xmx7G"
 }

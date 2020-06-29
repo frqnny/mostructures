@@ -12,7 +12,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -26,7 +25,13 @@ public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
     public static final Identifier[] IDENTIFIERS = {DEAD_TREE, DESERT_ATRIUM};
 
     public SmallDryFeature() {
-        super(DefaultFeatureConfig::deserialize);
+        super(DefaultFeatureConfig.CODEC);
+    }
+
+    private static boolean canGenerate(ServerWorldAccess world, BlockPos pos) {
+        Biome biome = world.getBiome(pos);
+
+        return biome.getCategory() == Biome.Category.DESERT;
     }
 
     @Override
@@ -41,16 +46,10 @@ public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
             BlockRotation blockRotation = BlockRotation.random(random);
             StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
 
-            structure.place(world, newPos, structurePlacementData);
+            structure.place(world, newPos, structurePlacementData, random);
             return true;
         } else {
             return false;
         }
-    }
-
-    private boolean canGenerate(ServerWorldAccess world, BlockPos pos) {
-        Biome biome = world.getBiome(pos);
-
-        return biome.getCategory() == Biome.Category.DESERT && world.getDimension().getType() == DimensionType.OVERWORLD;
     }
 }

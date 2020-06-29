@@ -10,7 +10,6 @@ import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -21,7 +20,7 @@ import java.util.Random;
 
 public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
     public FallenTreeFeature() {
-        super(DefaultFeatureConfig::deserialize);
+        super(DefaultFeatureConfig.CODEC);
     }
 
     public static BlockState getWoodToPlace(Biome biome) {
@@ -48,9 +47,11 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
     @Override
     public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         Biome.Category category = world.getBiome(pos).getCategory();
-        if (world.getDimension().getType() != DimensionType.OVERWORLD || category == Biome.Category.OCEAN
+        if (category == Biome.Category.OCEAN
                 || category == Biome.Category.RIVER
                 || category == Biome.Category.BEACH
+                || category == Biome.Category.THEEND
+                || category == Biome.Category.NETHER
                 || !Objects.requireNonNull(Registry.BIOME.getId(world.getBiome(pos))).getNamespace().equals("minecraft")) {
             return false;
         }
