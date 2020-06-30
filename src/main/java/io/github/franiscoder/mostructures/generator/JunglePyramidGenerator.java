@@ -8,10 +8,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructurePiece;
-import net.minecraft.structure.pool.LegacySinglePoolElement;
-import net.minecraft.structure.pool.StructurePool;
-import net.minecraft.structure.pool.StructurePoolBasedGenerator;
-import net.minecraft.structure.pool.StructurePoolElement;
+import net.minecraft.structure.pool.*;
+import net.minecraft.structure.processor.BlockRotStructureProcessor;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockBox;
@@ -32,7 +30,11 @@ public class JunglePyramidGenerator {
                         SW_STARTING_PIECE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/sw"), 1)
+                                new Pair<>(new ListPoolElement(ImmutableList.of(
+                                        new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/sw"),
+                                        new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/sw_overgrown",
+                                                ImmutableList.of(new BlockRotStructureProcessor(0.15F))))),
+                                        1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -42,8 +44,16 @@ public class JunglePyramidGenerator {
                         MIDDLE_PIECES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/se"), 1),
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/nw"), 1)
+                                new Pair<>(new ListPoolElement(ImmutableList.of(
+                                        new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/se"),
+                                        new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/se_overgrown",
+                                                ImmutableList.of(new BlockRotStructureProcessor(0.15F))))),
+                                        1),
+                                new Pair<>(new ListPoolElement(ImmutableList.of(
+                                        new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/nw"),
+                                        new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/nw_overgrown",
+                                                ImmutableList.of(new BlockRotStructureProcessor(0.15F))))),
+                                        1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -53,7 +63,11 @@ public class JunglePyramidGenerator {
                         NE_FINAL_PIECE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/ne"), 1)
+                                new Pair<>(new ListPoolElement(ImmutableList.of(
+                                        new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/ne"),
+                                        new LegacySinglePoolElement(MoStructures.MODID + ":jungle_pyramid/ne_overgrown",
+                                                ImmutableList.of(new BlockRotStructureProcessor(0.15F))))),
+                                        1)
                         ),
                         StructurePool.Projection.RIGID
                 )

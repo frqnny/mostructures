@@ -39,6 +39,14 @@ public class VolcanicVentFeature extends Feature<DefaultFeatureConfig> {
         }
     }
 
+    private static void placeBottom(ServerWorldAccess world, BlockPos pos, float percentage) {
+        int max = ((int) (10 * percentage)) + new Random().nextInt(3);
+        for (int i = 0; i < max; i++) {
+            world.setBlockState(pos.add(0, i, 0), getRandomBlock(), 3);
+        }
+
+    }
+
     @Override
     public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         BlockPos actualPos = new BlockPos(pos.getX(), getBaseHeight(world, pos.getX(), pos.getZ()), pos.getZ());
@@ -60,7 +68,7 @@ public class VolcanicVentFeature extends Feature<DefaultFeatureConfig> {
                     if (random.nextDouble() < (double) f) {
                         int t = getBaseHeight(world, o, p);
                         mutable.set(o, t, p);
-                        this.placeBottom(world, mutable, f);
+                        VolcanicVentFeature.placeBottom(world, mutable, f);
                     }
                 }
             }
@@ -74,13 +82,5 @@ public class VolcanicVentFeature extends Feature<DefaultFeatureConfig> {
         }
 
         return true;
-    }
-
-    private void placeBottom(ServerWorldAccess world, BlockPos pos, float percentage) {
-        int max = ((int) (10 * percentage)) + new Random().nextInt(3);
-        for (int i = 0; i < max; i++) {
-            world.setBlockState(pos.add(0, i, 0), getRandomBlock(), 3);
-        }
-
     }
 }

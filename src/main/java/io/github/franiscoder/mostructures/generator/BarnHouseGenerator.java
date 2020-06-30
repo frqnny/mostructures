@@ -9,6 +9,7 @@ import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.pool.*;
+import net.minecraft.structure.processor.BlockRotStructureProcessor;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockBox;
@@ -40,11 +41,16 @@ public class BarnHouseGenerator {
                         BARNHOUSE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":barn_house/barnhouse"), 1)
+                                new Pair<>(new ListPoolElement(ImmutableList.of(
+                                        new LegacySinglePoolElement(MoStructures.MODID + ":barn_house/barnhouse"),
+                                        new LegacySinglePoolElement(MoStructures.MODID + ":barn_house/barnhouse_overgrown",
+                                                ImmutableList.of(new BlockRotStructureProcessor(0.15F))))),
+                                        1)
                         ),
                         StructurePool.Projection.RIGID
                 )
         );
+
         StructurePoolBasedGenerator.REGISTRY.add(
                 new StructurePool(
                         FEATURE_PLATES,

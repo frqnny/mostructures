@@ -59,12 +59,38 @@ public class RuinsFeature extends Feature<DefaultFeatureConfig> {
         return new BlockPos(pos.getX(), y, pos.getZ());
     }
 
+    private static void placeBase(Random random, ServerWorldAccess world, BlockPos pos) {
+        int i = pos.getX();
+        int j = pos.getZ();
+        float[] fs = new float[]{1.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F, 0.9F, 0.9F, 0.8F, 0.7F, 0.6F, 0.4F, 0.2F};
+        int k = fs.length;
+        int l = 16;
+        int m = random.nextInt(Math.max(1, 8 - l / 2));
+        BlockPos.Mutable mutable = BlockPos.ORIGIN.mutableCopy();
+
+        for (int o = i - k; o <= i + k; ++o) {
+            for (int p = j - k; p <= j + k; ++p) {
+                int q = Math.abs(o - i) + Math.abs(p - j);
+                int r = Math.max(0, q + m);
+                if (r < k) {
+                    float f = fs[r];
+                    if (random.nextDouble() < (double) f) {
+                        int t = getBaseHeight(world, o, p);
+                        mutable.set(o, t, p);
+                        RuinsFeature.placeBottom(world, mutable);
+                    }
+                }
+            }
+        }
+
+    }
+
     @Override
     public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         if (world.getBiome(pos).getCategory() == Biome.Category.EXTREME_HILLS || world.getBiome(pos).getCategory() == Biome.Category.OCEAN || world.getBiome(pos).getCategory() == Biome.Category.FOREST || world.getBiome(pos).getCategory() == Biome.Category.THEEND || world.getBlockState(pos.down()).getBlock() == Blocks.WATER)
             return false;
 
-        this.placeBase(random, world, pos);
+        RuinsFeature.placeBase(random, world, pos);
         //Generates
         BlockPos originalPos = pos;
 
@@ -115,31 +141,5 @@ public class RuinsFeature extends Feature<DefaultFeatureConfig> {
         world.setBlockState(originalPos, Blocks.CHISELED_STONE_BRICKS.getDefaultState(), 3);
 
         return true;
-    }
-
-    private void placeBase(Random random, ServerWorldAccess world, BlockPos pos) {
-        int i = pos.getX();
-        int j = pos.getZ();
-        float[] fs = new float[]{1.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F, 0.9F, 0.9F, 0.8F, 0.7F, 0.6F, 0.4F, 0.2F};
-        int k = fs.length;
-        int l = 16;
-        int m = random.nextInt(Math.max(1, 8 - l / 2));
-        BlockPos.Mutable mutable = BlockPos.ORIGIN.mutableCopy();
-
-        for (int o = i - k; o <= i + k; ++o) {
-            for (int p = j - k; p <= j + k; ++p) {
-                int q = Math.abs(o - i) + Math.abs(p - j);
-                int r = Math.max(0, q + m);
-                if (r < k) {
-                    float f = fs[r];
-                    if (random.nextDouble() < (double) f) {
-                        int t = getBaseHeight(world, o, p);
-                        mutable.set(o, t, p);
-                        RuinsFeature.placeBottom(world, mutable);
-                    }
-                }
-            }
-        }
-
     }
 }
