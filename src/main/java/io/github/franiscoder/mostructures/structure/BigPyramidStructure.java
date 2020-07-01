@@ -1,6 +1,6 @@
 package io.github.franiscoder.mostructures.structure;
 
-import io.github.franiscoder.mostructures.generator.BarnHouseGenerator;
+import io.github.franiscoder.mostructures.generator.BigPyramidGenerator;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.VillageStructureStart;
 import net.minecraft.util.math.BlockBox;
@@ -10,14 +10,14 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 
-public class BarnHouseFeature extends StructureFeature<DefaultFeatureConfig> {
-    public BarnHouseFeature() {
+public class BigPyramidStructure extends StructureFeature<DefaultFeatureConfig> {
+    public BigPyramidStructure() {
         super(DefaultFeatureConfig.CODEC);
     }
 
     @Override
     public StructureStartFactory<DefaultFeatureConfig> getStructureStartFactory() {
-        return BarnHouseFeature.Start::new;
+        return BigPyramidStructure.Start::new;
     }
 
     public static class Start extends VillageStructureStart<DefaultFeatureConfig> {
@@ -25,10 +25,9 @@ public class BarnHouseFeature extends StructureFeature<DefaultFeatureConfig> {
             super(feature, chunkX, chunkZ, box, references, seed);
         }
 
-
         @Override
         public void init(ChunkGenerator chunkGenerator, StructureManager structureManager, int x, int z, Biome biome, DefaultFeatureConfig featureConfig) {
-            BarnHouseGenerator.addPieces(chunkGenerator, structureManager, new BlockPos(x << 4, 0, z << 4), children, random);
+            BigPyramidGenerator.addPieces(chunkGenerator, structureManager, new BlockPos(x << 4, 0, z << 4), children, random);
             this.setBoundingBoxFromChildren();
         }
     }

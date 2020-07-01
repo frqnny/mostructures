@@ -10,14 +10,14 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 
-public class TheCastleInTheSkyFeature extends StructureFeature<DefaultFeatureConfig> {
-    public TheCastleInTheSkyFeature() {
+public class TheCastleInTheSkyStructure extends StructureFeature<DefaultFeatureConfig> {
+    public TheCastleInTheSkyStructure() {
         super(DefaultFeatureConfig.CODEC);
     }
 
     @Override
     public StructureStartFactory<DefaultFeatureConfig> getStructureStartFactory() {
-        return TheCastleInTheSkyFeature.Start::new;
+        return TheCastleInTheSkyStructure.Start::new;
     }
 
     public static class Start extends VillageStructureStart<DefaultFeatureConfig> {

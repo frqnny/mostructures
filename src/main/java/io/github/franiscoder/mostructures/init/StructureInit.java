@@ -7,10 +7,10 @@ import io.github.franiscoder.mostructures.generator.BarnHouseGenerator;
 import io.github.franiscoder.mostructures.generator.BigPyramidGenerator;
 import io.github.franiscoder.mostructures.generator.JunglePyramidGenerator;
 import io.github.franiscoder.mostructures.generator.TheCastleInTheSkyGenerator;
-import io.github.franiscoder.mostructures.structure.BarnHouseFeature;
-import io.github.franiscoder.mostructures.structure.BigPyramidFeature;
-import io.github.franiscoder.mostructures.structure.JunglePyramidFeature;
-import io.github.franiscoder.mostructures.structure.TheCastleInTheSkyFeature;
+import io.github.franiscoder.mostructures.structure.BarnHouseStructure;
+import io.github.franiscoder.mostructures.structure.BigPyramidStructure;
+import io.github.franiscoder.mostructures.structure.JunglePyramidStructure;
+import io.github.franiscoder.mostructures.structure.TheCastleInTheSkyStructure;
 import net.earthcomputer.libstructure.LibStructure;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.minecraft.structure.StructurePieceType;
@@ -35,13 +35,13 @@ public class StructureInit {
     public static final Feature<DefaultFeatureConfig> BOAT = Registry.register(Registry.FEATURE, MoStructures.id("boat"), new BoatFeature());
 
 
-    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> BARN_HOUSE = register("barn_house_feature", new BarnHouseFeature(), 165755306, true);
+    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> BARN_HOUSE = register("barn_house_feature", new BarnHouseStructure(), 165755306, true);
     public static final StructurePieceType BARN_HOUSE_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("barn_house_piece"), BarnHouseGenerator.Piece::new);
-    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> PYRAMID = register("big_pyramid_feature", new BigPyramidFeature(), 130284294, true);
+    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> PYRAMID = register("big_pyramid_feature", new BigPyramidStructure(), 130284294, true);
     public static final StructurePieceType PYRAMID_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("big_pyramid_piece"), BigPyramidGenerator.Piece::new);
-    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> JUNGLE_PYRAMID = register("jungle_pyramid_feature", new JunglePyramidFeature(), 112178942, true);
+    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> JUNGLE_PYRAMID = register("jungle_pyramid_feature", new JunglePyramidStructure(), 112178942, true);
     public static final StructurePieceType JUNGLE_PYRAMID_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("jungle_pyramid_feature"), JunglePyramidGenerator.Piece::new);
-    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> THE_CASTLE_IN_THE_SKY = register("the_castle_in_the_sky", new TheCastleInTheSkyFeature(), 123474938, false);
+    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> THE_CASTLE_IN_THE_SKY = register("the_castle_in_the_sky", new TheCastleInTheSkyStructure(), 123474938, false);
     public static final StructurePieceType THE_CASTLE_IN_THE_SKY_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("the_castle_in_the_sky_piece"), TheCastleInTheSkyGenerator.Piece::new);
     public static MoStructuresConfig config;
 
