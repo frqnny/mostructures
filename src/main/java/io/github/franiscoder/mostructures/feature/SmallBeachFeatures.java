@@ -9,12 +9,14 @@ import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class SmallBeachFeatures extends Feature<DefaultFeatureConfig> {
@@ -29,6 +31,9 @@ public class SmallBeachFeatures extends Feature<DefaultFeatureConfig> {
     public boolean generate(ServerWorldAccess world, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         //Random random2 = world.getRandom();
         //int i = random2.nextInt(BEACHFEATURES.length);
+        if (!Objects.requireNonNull(Registry.BIOME.getId(world.getBiome(pos))).getNamespace().equals("minecraft")) {
+            return false;
+        }
 
         BlockPos[] posToCheck = {pos.down().east(), pos.down().west(), pos.down().north(), pos.down().south(), pos};
 

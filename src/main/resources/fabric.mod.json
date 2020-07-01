@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "mostructures",
-  "version": "1.0.0-pre1+mc.1.16",
+  "version": "1.0.0-pre2+mc.1.16",
   "name": "Mo' Structures",
   "description": "Adds structures with loot and spawners to Minecraft to increase the RPG aspect of the game.",
   "authors": [
