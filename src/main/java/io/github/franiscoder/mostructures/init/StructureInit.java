@@ -3,14 +3,8 @@ package io.github.franiscoder.mostructures.init;
 import io.github.franiscoder.mostructures.MoStructures;
 import io.github.franiscoder.mostructures.config.MoStructuresConfig;
 import io.github.franiscoder.mostructures.feature.*;
-import io.github.franiscoder.mostructures.generator.BarnHouseGenerator;
-import io.github.franiscoder.mostructures.generator.BigPyramidGenerator;
-import io.github.franiscoder.mostructures.generator.JunglePyramidGenerator;
-import io.github.franiscoder.mostructures.generator.TheCastleInTheSkyGenerator;
-import io.github.franiscoder.mostructures.structure.BarnHouseStructure;
-import io.github.franiscoder.mostructures.structure.BigPyramidStructure;
-import io.github.franiscoder.mostructures.structure.JunglePyramidStructure;
-import io.github.franiscoder.mostructures.structure.TheCastleInTheSkyStructure;
+import io.github.franiscoder.mostructures.generator.*;
+import io.github.franiscoder.mostructures.structure.*;
 import net.earthcomputer.libstructure.LibStructure;
 import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.minecraft.structure.StructurePieceType;
@@ -43,6 +37,9 @@ public class StructureInit {
     public static final StructurePieceType JUNGLE_PYRAMID_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("jungle_pyramid_feature"), JunglePyramidGenerator.Piece::new);
     public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> THE_CASTLE_IN_THE_SKY = register("the_castle_in_the_sky", new TheCastleInTheSkyStructure(), 123474938, false);
     public static final StructurePieceType THE_CASTLE_IN_THE_SKY_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("the_castle_in_the_sky_piece"), TheCastleInTheSkyGenerator.Piece::new);
+    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> VILLAGER_TOWER = register("villager_tower", new VillagerTowerStructure(), 150288492, true);
+    public static final StructurePieceType VILLAGER_TOWER_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("villager_tower_piece"), VillagerTowerGenerator.Piece::new);
+
     public static MoStructuresConfig config;
 
     private static ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> register(String name, StructureFeature<DefaultFeatureConfig> structure, int salt, boolean surfaceAdjusting) {
@@ -126,6 +123,9 @@ public class StructureInit {
             }
             if (config.the_castle_in_the_sky && category == Biome.Category.BEACH) {
                 biome.addStructureFeature(THE_CASTLE_IN_THE_SKY);
+            }
+            if (config.villager_tower && (category == Biome.Category.PLAINS || category == Biome.Category.SAVANNA || category == Biome.Category.FOREST)) {
+                biome.addStructureFeature(VILLAGER_TOWER);
             }
         }
         //Lamppost & other non-end features

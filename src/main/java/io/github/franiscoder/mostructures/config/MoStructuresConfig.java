@@ -33,4 +33,6 @@ public class MoStructuresConfig implements ConfigData {
     public boolean big_pyramid = true;
     @Comment("The Castle In The Sky")
     public boolean the_castle_in_the_sky = true;
+    @Comment("Villager Tower")
+    public boolean villager_tower = true;
 }

@@ -19,11 +19,11 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 
 import java.util.List;
 
-public class BarnHouseGenerator {
-    private static final Identifier BASE_PLATES = MoStructures.id("barn_house/base_plates");
-    private static final Identifier BARNHOUSE = MoStructures.id("barn_house/barnhouses");
-    private static final Identifier FEATURE_PLATES = MoStructures.id("barn_house/feature_plates");
-    private static final Identifier FEATURES = MoStructures.id("barn_house/features");
+public class VillagerTowerGenerator {
+    private static final Identifier BASE_PLATES = MoStructures.id("villager/tower_plates");
+    private static final Identifier TOWERS = MoStructures.id("villager/towers");
+    private static final Identifier FEATURE_PLATES = MoStructures.id("villager/feature_plates");
+    private static final Identifier FEATURES = MoStructures.id("villager/features");
 
     static {
         StructurePoolBasedGenerator.REGISTRY.add(
@@ -31,19 +31,19 @@ public class BarnHouseGenerator {
                         BASE_PLATES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":barn_house/base_plate"), 1)
+                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":villager/tower_plate"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
         );
         StructurePoolBasedGenerator.REGISTRY.add(
                 new StructurePool(
-                        BARNHOUSE,
+                        TOWERS,
                         new Identifier("empty"),
                         ImmutableList.of(
                                 new Pair<>(new ListPoolElement(ImmutableList.of(
-                                        new LegacySinglePoolElement(MoStructures.MODID + ":barn_house/barnhouse"),
-                                        new LegacySinglePoolElement(MoStructures.MODID + ":barn_house/barnhouse_overgrown",
+                                        new LegacySinglePoolElement(MoStructures.MODID + ":villager/tower"),
+                                        new LegacySinglePoolElement(MoStructures.MODID + ":villager/tower_overgrown",
                                                 ImmutableList.of(new BlockRotStructureProcessor(0.15F))))),
                                         1)
                         ),
@@ -56,7 +56,7 @@ public class BarnHouseGenerator {
                         FEATURE_PLATES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":barn_house/feature_plate"), 1)
+                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":villager/feature_plate"), 1)
                         ),
                         StructurePool.Projection.TERRAIN_MATCHING
                 )
@@ -66,9 +66,9 @@ public class BarnHouseGenerator {
                         FEATURES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":barn_house/feature_cart"), 1),
-                                new Pair<>(new LegacySinglePoolElement("pillager_outpost/feature_logs"), 1),
-                                new Pair<>(EmptyPoolElement.INSTANCE, 6)
+                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + ":villager/iron_golem"), 1),
+                                new Pair<>(new LegacySinglePoolElement(MoStructures.MODID + "villager/villager"), 3),
+                                new Pair<>(EmptyPoolElement.INSTANCE, 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -77,16 +77,16 @@ public class BarnHouseGenerator {
 
 
     public static void addPieces(ChunkGenerator chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {
-        StructurePoolBasedGenerator.addPieces(BASE_PLATES, 7, BarnHouseGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random, true, true);
+        StructurePoolBasedGenerator.addPieces(BASE_PLATES, 7, VillagerTowerGenerator.Piece::new, chunkGenerator, structureManager, pos, pieces, random, true, true);
     }
 
     public static class Piece extends PoolStructurePiece {
         public Piece(StructureManager manager, CompoundTag tag) {
-            super(manager, tag, StructureInit.BARN_HOUSE_PIECE);
+            super(manager, tag, StructureInit.VILLAGER_TOWER_PIECE);
         }
 
         public Piece(StructureManager structureManager, StructurePoolElement structurePoolElement, BlockPos blockPos, int i, BlockRotation blockRotation, BlockBox blockBox) {
-            super(StructureInit.BARN_HOUSE_PIECE, structureManager, structurePoolElement, blockPos, i, blockRotation, blockBox);
+            super(StructureInit.VILLAGER_TOWER_PIECE, structureManager, structurePoolElement, blockPos, i, blockRotation, blockBox);
         }
 
     }
