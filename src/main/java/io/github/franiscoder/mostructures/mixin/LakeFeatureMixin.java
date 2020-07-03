@@ -4,7 +4,6 @@ import io.github.franiscoder.mostructures.init.StructureInit;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.LakeFeature;
 import net.minecraft.world.gen.feature.SingleStateFeatureConfig;
@@ -21,7 +20,7 @@ import java.util.Random;
 @Mixin(LakeFeature.class)
 public class LakeFeatureMixin {
     @Inject(at = @At("HEAD"), method = "generate", cancellable = true)
-    public void fixStructures(ServerWorldAccess world, StructureAccessor structureAccessor, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, SingleStateFeatureConfig singleStateFeatureConfig, CallbackInfoReturnable<Boolean> info) {
+    public void fixStructures(ServerWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, SingleStateFeatureConfig singleStateFeatureConfig, CallbackInfoReturnable<Boolean> info) {
         List<Chunk> chunksToScan = new ArrayList<>(9);
         chunksToScan.add(world.getChunk(blockPos));
         chunksToScan.add(world.getChunk(blockPos.add(16, 0, 16)));

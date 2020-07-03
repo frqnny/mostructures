@@ -103,7 +103,7 @@ public class StructureInit {
             if (config.beach_features && category == Biome.Category.BEACH) {
                 biome.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, SMALL_BEACH_FEATURES
                         .configure(FeatureConfig.DEFAULT)
-                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(20)))
+                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(50)))
                 );
             }
             if (config.boats && category == Biome.Category.OCEAN) {
