@@ -1,6 +1,7 @@
 package io.github.franiscoder.mostructures.feature;
 
 import io.github.franiscoder.mostructures.MoStructures;
+import io.github.franiscoder.mostructures.init.StructureInit;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructureManager;
@@ -11,10 +12,13 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -28,8 +32,21 @@ public class SmallBeachFeatures extends Feature<DefaultFeatureConfig> {
 
     @Override
     public boolean generate(ServerWorldAccess world, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-        //Random random2 = world.getRandom();
-        //int i = random2.nextInt(BEACHFEATURES.length);
+        List<Chunk> chunksToScan = new ArrayList<>(9);
+        chunksToScan.add(world.getChunk(pos));
+        chunksToScan.add(world.getChunk(pos.add(16, 0, 16)));
+        chunksToScan.add(world.getChunk(pos.add(-16, 0, -16)));
+        chunksToScan.add(world.getChunk(pos.add(0, 0, 16)));
+        chunksToScan.add(world.getChunk(pos.add(16, 0, 0)));
+        chunksToScan.add(world.getChunk(pos.add(-16, 0, 0)));
+        chunksToScan.add(world.getChunk(pos.add(0, 0, -16)));
+        chunksToScan.add(world.getChunk(pos.add(16, 0, -16)));
+        chunksToScan.add(world.getChunk(pos.add(-16, 0, 16)));
+        for (Chunk chunk : chunksToScan) {
+            if (!chunk.getStructureReferences(StructureInit.THE_CASTLE_IN_THE_SKY.field_24835).isEmpty()) {
+                return false;
+            }
+        }
         if (!Objects.requireNonNull(Registry.BIOME.getId(world.getBiome(pos))).getNamespace().equals("minecraft")) {
             return false;
         }
