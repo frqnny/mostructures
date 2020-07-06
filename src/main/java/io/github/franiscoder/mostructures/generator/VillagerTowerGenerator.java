@@ -44,7 +44,7 @@ public class VillagerTowerGenerator {
                                 new Pair<>(new ListPoolElement(ImmutableList.of(
                                         new LegacySinglePoolElement(MoStructures.MODID + ":villager/tower"),
                                         new LegacySinglePoolElement(MoStructures.MODID + ":villager/tower_overgrown",
-                                                ImmutableList.of(new BlockRotStructureProcessor(0.15F))))),
+                                                ImmutableList.of(new BlockRotStructureProcessor(0.45F))))),
                                         1)
                         ),
                         StructurePool.Projection.RIGID
