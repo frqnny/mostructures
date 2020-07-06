@@ -18,6 +18,7 @@ import net.minecraft.world.gen.feature.*;
 
 public class StructureInit {
 
+    //Features
     public static final Feature<DefaultFeatureConfig> AIR_FEATURES = Registry.register(Registry.FEATURE, MoStructures.id("airballoon"), new SmallAirFeature());
     public static final Feature<DefaultFeatureConfig> FALLEN_TREE = Registry.register(Registry.FEATURE, MoStructures.id("fallen_tree"), new FallenTreeFeature());
     public static final Feature<DefaultFeatureConfig> SMALL_DESERT_FEATURES = Registry.register(Registry.FEATURE, MoStructures.id("dead_tree"), new SmallDryFeature());
@@ -28,7 +29,7 @@ public class StructureInit {
     public static final Feature<DefaultFeatureConfig> SMALL_BEACH_FEATURES = Registry.register(Registry.FEATURE, MoStructures.id("beach_features"), new SmallBeachFeatures());
     public static final Feature<DefaultFeatureConfig> BOAT = Registry.register(Registry.FEATURE, MoStructures.id("boat"), new BoatFeature());
 
-
+    //Default Structures
     public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> BARN_HOUSE = register("barn_house_feature", new BarnHouseStructure(), 165755306, true);
     public static final StructurePieceType BARN_HOUSE_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("barn_house_piece"), BarnHouseGenerator.Piece::new);
     public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> PYRAMID = register("big_pyramid_feature", new BigPyramidStructure(), 130284294, true);
@@ -40,7 +41,13 @@ public class StructureInit {
     public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> VILLAGER_TOWER = register("villager_tower", new VillagerTowerStructure(), 150288492, true);
     public static final StructurePieceType VILLAGER_TOWER_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("villager_tower_piece"), VillagerTowerGenerator.Piece::new);
 
+    //Structures (biome specific design)
+    public static final StructureFeature<StructurePoolFeatureConfig> ABANDONED_CHURCH = new AbandonedChurchStructure();
+    public static final StructurePieceType ABANDONED_CHURCH_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("abandoned_church_piece"), AbandonedChurchGenerator.Piece::new);
+
     public static MoStructuresConfig config;
+    public static Biome.Category category;
+
 
     private static ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> register(String name, StructureFeature<DefaultFeatureConfig> structure, int salt, boolean surfaceAdjusting) {
         ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> configuredStructure = structure.configure(FeatureConfig.DEFAULT);
@@ -53,15 +60,24 @@ public class StructureInit {
         return configuredStructure;
     }
 
+    private static void registerSpecialStructures() {
+        ConfiguredStructureFeature<StructurePoolFeatureConfig, ? extends StructureFeature<StructurePoolFeatureConfig>> configuredStructure = StructureInit.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(AbandonedChurchGenerator.PLAINS_PLATE, 2));
+        LibStructure.registerSurfaceAdjustingStructure(MoStructures.id("abandoned_church"), StructureInit.ABANDONED_CHURCH, GenerationStep.Feature.SURFACE_STRUCTURES, new StructureConfig(32, 8, 160468400), configuredStructure);
+    }
+
     public static void init() {
+        //i'll fix this up before release
         config = MoStructures.getConfig();
-        Registry.BIOME.forEach(StructureInit::handleBiome);
-        RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> handleBiome(biome));
+        registerSpecialStructures();
+        Registry.BIOME.forEach(StructureInit::putFeatures);
+        Registry.BIOME.forEach(StructureInit::putStructures);
+        RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> putFeatures(biome));
+        RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> putStructures(biome));
 
     }
 
-    public static void handleBiome(Biome biome) {
-        Biome.Category category = biome.getCategory();
+    public static void putFeatures(Biome biome) {
+        category = biome.getCategory();
         //Overworld features
         if (category != Biome.Category.NETHER && category != Biome.Category.THEEND) {
             if (config.air_features) {
@@ -112,21 +128,8 @@ public class StructureInit {
                         .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(1000)))
                 );
             }
-            if (config.barn_house && (category == Biome.Category.PLAINS || category == Biome.Category.SAVANNA)) {
-                biome.addStructureFeature(BARN_HOUSE);
-            }
-            if (config.jungle_pyramid && category == Biome.Category.JUNGLE) {
-                biome.addStructureFeature(JUNGLE_PYRAMID);
-            }
-            if (config.big_pyramid && category == Biome.Category.DESERT) {
-                biome.addStructureFeature(PYRAMID);
-            }
-            if (config.the_castle_in_the_sky && category == Biome.Category.BEACH) {
-                biome.addStructureFeature(THE_CASTLE_IN_THE_SKY);
-            }
-            if (config.villager_tower && (category == Biome.Category.PLAINS || category == Biome.Category.SAVANNA || category == Biome.Category.FOREST)) {
-                biome.addStructureFeature(VILLAGER_TOWER);
-            }
+
+
         }
         //Lamppost & other non-end features
         if (category != Biome.Category.THEEND) {
@@ -137,6 +140,51 @@ public class StructureInit {
                 );
             }
 
+        }
+    }
+
+    public static void putStructures(Biome biome) {
+        category = biome.getCategory();
+
+        if (config.barn_house && (category == Biome.Category.PLAINS || category == Biome.Category.SAVANNA)) {
+            biome.addStructureFeature(BARN_HOUSE);
+        }
+        if (config.jungle_pyramid && category == Biome.Category.JUNGLE) {
+            biome.addStructureFeature(JUNGLE_PYRAMID);
+        }
+        if (config.big_pyramid && category == Biome.Category.DESERT) {
+            biome.addStructureFeature(PYRAMID);
+        }
+        if (config.the_castle_in_the_sky && category == Biome.Category.BEACH) {
+            biome.addStructureFeature(THE_CASTLE_IN_THE_SKY);
+        }
+        if (config.villager_tower && (category == Biome.Category.PLAINS || category == Biome.Category.SAVANNA || category == Biome.Category.FOREST)) {
+            biome.addStructureFeature(VILLAGER_TOWER);
+        }
+
+
+        if (config.abandoned_churches) {
+            if (category == Biome.Category.PLAINS) {
+                biome.addStructureFeature(ABANDONED_CHURCH
+                        .configure(new StructurePoolFeatureConfig(AbandonedChurchGenerator.PLAINS_PLATE, 2))
+                );
+            } else if (category == Biome.Category.SAVANNA) {
+                biome.addStructureFeature(ABANDONED_CHURCH
+                        .configure(new StructurePoolFeatureConfig(AbandonedChurchGenerator.SAVANNA_PLATE, 2))
+                );
+            } else if (category == Biome.Category.DESERT) {
+                biome.addStructureFeature(ABANDONED_CHURCH
+                        .configure(new StructurePoolFeatureConfig(AbandonedChurchGenerator.DESERT_PLATE, 2))
+                );
+            } else if (category == Biome.Category.ICY) {
+                biome.addStructureFeature(ABANDONED_CHURCH
+                        .configure(new StructurePoolFeatureConfig(AbandonedChurchGenerator.SNOWY_PLATE, 2))
+                );
+            } else if (category == Biome.Category.TAIGA) {
+                biome.addStructureFeature(ABANDONED_CHURCH
+                        .configure(new StructurePoolFeatureConfig(AbandonedChurchGenerator.TAIGA_PLATE, 2))
+                );
+            }
         }
     }
 }

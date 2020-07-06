@@ -38,6 +38,9 @@ public class LakeFeatureMixin {
             } else if (!chunk.getStructureReferences(StructureInit.JUNGLE_PYRAMID.field_24835).isEmpty()) {
                 info.setReturnValue(false);
                 break;
+            } else if (!chunk.getStructureReferences(StructureInit.VILLAGER_TOWER.field_24835).isEmpty()) {
+                info.setReturnValue(false);
+                break;
             }
         }
     }

@@ -35,4 +35,6 @@ public class MoStructuresConfig implements ConfigData {
     public boolean the_castle_in_the_sky = true;
     @Comment("Villager Tower")
     public boolean villager_tower = true;
+    @Comment("Abandoned Churches")
+    public boolean abandoned_churches = true;
 }
