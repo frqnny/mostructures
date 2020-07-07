@@ -57,17 +57,10 @@ public class BoulderFeature extends Feature<DefaultFeatureConfig> {
         Random randomFixed = world.getRandom();
         pos = world.getTopPosition(Heightmap.Type.OCEAN_FLOOR_WG, pos);
 
-        generateSphere(world, pos, 4 + randomFixed.nextInt(5));
-        if (new Random().nextBoolean()) {
-            generateSphere(world, pos.south().down(), 4 + randomFixed.nextInt(5));
-        } else {
-            generateSphere(world, pos.north().up(), 4 + randomFixed.nextInt(5));
-        }
-        if (new Random().nextBoolean()) {
-            generateSphere(world, pos.east().up(), 4 + randomFixed.nextInt(5));
-        } else {
-            generateSphere(world, pos.west().down(), 4 + randomFixed.nextInt(5));
-        }
+        generateSphere(world, pos, 6 + randomFixed.nextInt(5));
+        generateSphere(world, pos.add(random.nextInt(7),random.nextInt(2),random.nextInt(6)), 5 + randomFixed.nextInt(5));
+        generateSphere(world, pos.add(random.nextInt(6),random.nextInt(2),random.nextInt(7)), 5 + randomFixed.nextInt(5));
+
         return true;
     }
 }

@@ -30,15 +30,15 @@ public class StructureInit {
     public static final Feature<DefaultFeatureConfig> BOAT = Registry.register(Registry.FEATURE, MoStructures.id("boat"), new BoatFeature());
 
     //Default Structures
-    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> BARN_HOUSE = register("barn_house_feature", new BarnHouseStructure(), 165755306, true);
+    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> BARN_HOUSE = register("barn_house_feature", new BarnHouseStructure(), 165755306, true, false);
     public static final StructurePieceType BARN_HOUSE_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("barn_house_piece"), BarnHouseGenerator.Piece::new);
-    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> PYRAMID = register("big_pyramid_feature", new BigPyramidStructure(), 130284294, true);
+    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> PYRAMID = register("big_pyramid_feature", new BigPyramidStructure(), 130284294, true, true);
     public static final StructurePieceType PYRAMID_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("big_pyramid_piece"), BigPyramidGenerator.Piece::new);
-    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> JUNGLE_PYRAMID = register("jungle_pyramid_feature", new JunglePyramidStructure(), 112178942, true);
+    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> JUNGLE_PYRAMID = register("jungle_pyramid_feature", new JunglePyramidStructure(), 112178942, true, true);
     public static final StructurePieceType JUNGLE_PYRAMID_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("jungle_pyramid_feature"), JunglePyramidGenerator.Piece::new);
-    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> THE_CASTLE_IN_THE_SKY = register("the_castle_in_the_sky", new TheCastleInTheSkyStructure(), 123474938, false);
+    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> THE_CASTLE_IN_THE_SKY = register("the_castle_in_the_sky", new TheCastleInTheSkyStructure(), 123474938, false, true);
     public static final StructurePieceType THE_CASTLE_IN_THE_SKY_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("the_castle_in_the_sky_piece"), TheCastleInTheSkyGenerator.Piece::new);
-    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> VILLAGER_TOWER = register("villager_tower", new VillagerTowerStructure(), 150288492, true);
+    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> VILLAGER_TOWER = register("villager_tower", new VillagerTowerStructure(), 150288492, true, false);
     public static final StructurePieceType VILLAGER_TOWER_PIECE = Registry.register(Registry.STRUCTURE_PIECE, MoStructures.id("villager_tower_piece"), VillagerTowerGenerator.Piece::new);
 
     //Structures (biome specific design)
@@ -49,13 +49,13 @@ public class StructureInit {
     public static Biome.Category category;
 
 
-    private static ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> register(String name, StructureFeature<DefaultFeatureConfig> structure, int salt, boolean surfaceAdjusting) {
+    private static ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> register(String name, StructureFeature<DefaultFeatureConfig> structure, int salt, boolean surfaceAdjusting, boolean singleBiome) {
         ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> configuredStructure = structure.configure(FeatureConfig.DEFAULT);
         if (surfaceAdjusting) {
-            LibStructure.registerSurfaceAdjustingStructure(MoStructures.id(name), structure, GenerationStep.Feature.UNDERGROUND_DECORATION, new StructureConfig(32, 8, salt), structure.configure(FeatureConfig.DEFAULT));
+            LibStructure.registerSurfaceAdjustingStructure(MoStructures.id(name), structure, GenerationStep.Feature.UNDERGROUND_DECORATION, singleBiome? new StructureConfig(32, 8, salt) : new StructureConfig(40, 16, salt), structure.configure(FeatureConfig.DEFAULT));
 
         } else {
-            LibStructure.registerStructure(MoStructures.id(name), structure, GenerationStep.Feature.UNDERGROUND_DECORATION, new StructureConfig(32, 8, salt), structure.configure(FeatureConfig.DEFAULT));
+            LibStructure.registerStructure(MoStructures.id(name), structure, GenerationStep.Feature.UNDERGROUND_DECORATION, new StructureConfig(32, 16, salt), structure.configure(FeatureConfig.DEFAULT));
         }
         return configuredStructure;
     }
@@ -80,52 +80,52 @@ public class StructureInit {
         category = biome.getCategory();
         //Overworld features
         if (category != Biome.Category.NETHER && category != Biome.Category.THEEND) {
-            if (config.air_features) {
+            if (config.features.air_features) {
                 biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, AIR_FEATURES
                         .configure(FeatureConfig.DEFAULT)
-                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(6500 / SmallAirFeature.AIR_FEATURES.length)))
+                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(config.feature_chances.air_feature_chance / SmallAirFeature.AIR_FEATURES.length)))
                 );
             }
-            if (config.fallen_trees) {
+            if (config.features.fallen_trees) {
                 biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, FALLEN_TREE
                         .configure(FeatureConfig.DEFAULT)
-                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(11)))
+                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(config.feature_chances.fallen_trees_chance)))
                 );
             }
-            if (config.desert_features && category == Biome.Category.DESERT) {
+            if (config.features.desert_features && category == Biome.Category.DESERT) {
                 biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, SMALL_DESERT_FEATURES
                         .configure(FeatureConfig.DEFAULT)
-                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(500 / SmallDryFeature.IDENTIFIERS.length)))
+                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(config.feature_chances.desert_features_chance / SmallDryFeature.IDENTIFIERS.length)))
                 );
             }
-            if (config.ruins) {
+            if (config.features.ruins) {
                 biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, RUINS
                         .configure(FeatureConfig.DEFAULT)
-                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(2500)))
+                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(config.feature_chances.ruins_chance)))
                 );
             }
-            if (config.boulder) {
+            if (config.features.boulder) {
                 biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, BOULDER
                         .configure(FeatureConfig.DEFAULT)
-                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(400)))
+                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(config.feature_chances.boulder_chance)))
                 );
             }
-            if (config.volcanic_vent && category == Biome.Category.OCEAN) {
+            if (config.features.volcanic_vent && category == Biome.Category.OCEAN) {
                 biome.addFeature(GenerationStep.Feature.RAW_GENERATION, VOLCANIC_VENT
                         .configure(FeatureConfig.DEFAULT)
-                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(90)))
+                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(config.feature_chances.volcanic_vent_chance)))
                 );
             }
-            if (config.beach_features && category == Biome.Category.BEACH) {
+            if (config.features.beach_features && category == Biome.Category.BEACH) {
                 biome.addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, SMALL_BEACH_FEATURES
                         .configure(FeatureConfig.DEFAULT)
-                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(50)))
+                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(config.feature_chances.beach_features_chance)))
                 );
             }
-            if (config.boats && category == Biome.Category.OCEAN) {
+            if (config.features.boats && category == Biome.Category.OCEAN) {
                 biome.addFeature(GenerationStep.Feature.RAW_GENERATION, BOAT
                         .configure(FeatureConfig.DEFAULT)
-                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(1000)))
+                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(config.feature_chances.boats_chance)))
                 );
             }
 
@@ -133,10 +133,10 @@ public class StructureInit {
         }
         //Lamppost & other non-end features
         if (category != Biome.Category.THEEND) {
-            if (config.lamppost) {
+            if (config.features.lamppost) {
                 biome.addFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, LAMPPOST
                         .configure(FeatureConfig.DEFAULT)
-                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(85)))
+                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP.configure(new ChanceDecoratorConfig(config.feature_chances.lamppost_chance)))
                 );
             }
 
@@ -146,24 +146,24 @@ public class StructureInit {
     public static void putStructures(Biome biome) {
         category = biome.getCategory();
 
-        if (config.barn_house && (category == Biome.Category.PLAINS || category == Biome.Category.SAVANNA)) {
+        if (config.structures.barn_house && (category == Biome.Category.PLAINS || category == Biome.Category.SAVANNA)) {
             biome.addStructureFeature(BARN_HOUSE);
         }
-        if (config.jungle_pyramid && category == Biome.Category.JUNGLE) {
+        if (config.structures.jungle_pyramid && category == Biome.Category.JUNGLE) {
             biome.addStructureFeature(JUNGLE_PYRAMID);
         }
-        if (config.big_pyramid && category == Biome.Category.DESERT) {
+        if (config.structures.big_pyramid && category == Biome.Category.DESERT) {
             biome.addStructureFeature(PYRAMID);
         }
-        if (config.the_castle_in_the_sky && category == Biome.Category.BEACH) {
+        if (config.structures.the_castle_in_the_sky && category == Biome.Category.BEACH) {
             biome.addStructureFeature(THE_CASTLE_IN_THE_SKY);
         }
-        if (config.villager_tower && (category == Biome.Category.PLAINS || category == Biome.Category.SAVANNA || category == Biome.Category.FOREST)) {
+        if (config.structures.villager_tower && (category == Biome.Category.PLAINS || category == Biome.Category.SAVANNA || category == Biome.Category.FOREST)) {
             biome.addStructureFeature(VILLAGER_TOWER);
         }
 
 
-        if (config.abandoned_churches) {
+        if (config.structures.abandoned_churches) {
             if (category == Biome.Category.PLAINS) {
                 biome.addStructureFeature(ABANDONED_CHURCH
                         .configure(new StructurePoolFeatureConfig(AbandonedChurchGenerator.PLAINS_PLATE, 2))
