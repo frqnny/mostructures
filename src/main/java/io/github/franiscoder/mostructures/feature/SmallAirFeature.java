@@ -1,7 +1,6 @@
 package io.github.franiscoder.mostructures.feature;
 
 import io.github.franiscoder.mostructures.MoStructures;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructurePlacementData;
@@ -10,6 +9,7 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
@@ -29,15 +29,18 @@ public class SmallAirFeature extends Feature<DefaultFeatureConfig> {
 
     @Override
     public boolean generate(ServerWorldAccess world, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-        Random random2 = world.getRandom();
-        int i = random2.nextInt(AIR_FEATURES.length);
-        StructureManager manager = ((ServerWorld) world.getWorld()).getStructureManager();
-        Structure structure = manager.getStructureOrBlank(AIR_FEATURES[i]);
-        int yToAdd = Math.max(random2.nextInt(100), 40);
-        pos = pos.add(0, yToAdd, 0);
-        BlockRotation blockRotation = BlockRotation.random(random);
-        StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
-        structure.place(world, pos, structurePlacementData, random);
-        return true;
+        boolean result = world.getDimension() == DimensionType.getOverworldDimensionType();
+
+        if (result) {
+            int i = random.nextInt(AIR_FEATURES.length);
+            StructureManager manager = world.getWorld().getStructureManager();
+            Structure structure = manager.getStructureOrBlank(AIR_FEATURES[i]);
+            int yToAdd = Math.max(random.nextInt(100), 45);
+            BlockPos finalPos = pos.add(0, yToAdd, 0);
+            BlockRotation blockRotation = BlockRotation.random(random);
+            StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
+            structure.place(world, finalPos, structurePlacementData, random);
+        }
+        return result;
     }
 }

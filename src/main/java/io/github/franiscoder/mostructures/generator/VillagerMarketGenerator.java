@@ -10,7 +10,6 @@ import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.structure.pool.StructurePoolElement;
 import net.minecraft.structure.pool.TemplatePools;
-import net.minecraft.structure.processor.BlockRotStructureProcessor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.DynamicRegistryManager;
@@ -20,46 +19,51 @@ import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 import java.util.List;
 
-public class BarnHouseGenerator {
+public class VillagerMarketGenerator {
     public static final StructurePool STARTING_POOL;
-    private static final Identifier BASE_PLATES = MoStructures.id("barn_house/base_plates");
-    private static final Identifier BARNHOUSE = MoStructures.id("barn_house/barnhouses");
-    private static final Identifier FEATURE_PLATES = MoStructures.id("barn_house/feature_plates");
-    private static final Identifier FEATURES = MoStructures.id("barn_house/features");
+    public static final Identifier MAIN = MoStructures.id("market/main");
+    public static final Identifier VILLAGER = MoStructures.id("market/villager");
+    public static final Identifier IRON_GOLEM = MoStructures.id("market/iron_golem");
+    public static final Identifier FEATURE_PLATES = MoStructures.id("market/feature_plate");
+    public static final Identifier FEATURES = MoStructures.id("market/features");
 
     static {
         STARTING_POOL = TemplatePools.register(
                 new StructurePool(
-                        BASE_PLATES,
+                        MAIN,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":barn_house/base_plate"), 1)
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/main"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
         );
         TemplatePools.register(
                 new StructurePool(
-                        BARNHOUSE,
+                        VILLAGER,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30429(ImmutableList.of(
-                                        StructurePoolElement.method_30425(MoStructures.MODID + ":barn_house/barnhouse"),
-                                        StructurePoolElement.method_30426(MoStructures.MODID + ":barn_house/barnhouse_overgrown",
-                                                ImmutableList.of(new BlockRotStructureProcessor(0.05F))))),
-                                        1)
-
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/villager"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
         );
-
+        TemplatePools.register(
+                new StructurePool(
+                        IRON_GOLEM,
+                        new Identifier("empty"),
+                        ImmutableList.of(
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/iron_golem"), 1)
+                        ),
+                        StructurePool.Projection.RIGID
+                )
+        );
         TemplatePools.register(
                 new StructurePool(
                         FEATURE_PLATES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":barn_house/feature_plate"), 1)
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/feature_plate"), 1)
                         ),
                         StructurePool.Projection.TERRAIN_MATCHING
                 )
@@ -69,15 +73,18 @@ public class BarnHouseGenerator {
                         FEATURES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":barn_house/feature_cart"), 1),
-                                new Pair<>(StructurePoolElement.method_30425("pillager_outpost/feature_logs"), 1),
-                                new Pair<>(StructurePoolElement.method_30438(), 5)),
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/grill"), 1),
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/cart_1"), 1),
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/cart_2"), 1),
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/sign_post"), 1),
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/weaponsmith"), 1),
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/farmhouse"), 1),
+                                new Pair<>(StructurePoolElement.method_30438(), 6)
+                        ),
                         StructurePool.Projection.RIGID
                 )
         );
-
     }
-
 
     public static void addPieces(DynamicRegistryManager registry, StructurePoolFeatureConfig config, ChunkGenerator chunkGenerator, StructureManager structureManager, BlockPos pos, List<StructurePiece> pieces, ChunkRandom random) {
         StructurePoolBasedGenerator.method_30419(registry, config, PoolStructurePiece::new, chunkGenerator, structureManager, pos, pieces, random, true, true);

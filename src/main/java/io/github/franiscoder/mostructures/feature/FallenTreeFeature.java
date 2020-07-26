@@ -5,7 +5,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.PillarBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.biome.Biome;
@@ -25,17 +25,15 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
     public static BlockState getWoodToPlace(Biome biome) {
         Biome.Category category = biome.getCategory();
         if (biome == Biomes.BIRCH_FOREST || biome == Biomes.BIRCH_FOREST_HILLS || biome == Biomes.TALL_BIRCH_FOREST) {
-            return Blocks.BIRCH_WOOD.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
+            return Blocks.BIRCH_LOG.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
         } else if (category == Biome.Category.FOREST || biome == Biomes.PLAINS || category == Biome.Category.RIVER || category == Biome.Category.SWAMP) {
-            return Blocks.OAK_WOOD.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
-        } else if (category == Biome.Category.SAVANNA) {
-            return Blocks.ACACIA_WOOD.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
+            return Blocks.OAK_LOG.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
+        } else if (category == Biome.Category.SAVANNA || category == Biome.Category.DESERT) {
+            return Blocks.ACACIA_LOG.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
         } else if (category == Biome.Category.TAIGA || category == Biome.Category.ICY) {
-            return Blocks.SPRUCE_WOOD.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
-        } else if (category == Biome.Category.DESERT) {
-            return Blocks.ACACIA_WOOD.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
+            return Blocks.SPRUCE_LOG.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
         } else {
-            return Blocks.AIR.getDefaultState();
+            return Blocks.STRUCTURE_VOID.getDefaultState();
         }
     }
 
@@ -51,7 +49,7 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
                 || category == Biome.Category.BEACH
                 || category == Biome.Category.THEEND
                 || category == Biome.Category.NETHER
-                || !Objects.requireNonNull(Registry.BIOME.getId(world.getBiome(pos))).getNamespace().equals("minecraft")) {
+                || !Objects.requireNonNull(BuiltinRegistries.BIOME.getId(world.getBiome(pos))).getNamespace().equals("minecraft")) {
             return false;
         }
 
@@ -69,15 +67,27 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
                 return false;
             }
         }
-
+        int blocksitWillPlace = 0;
+        BlockPos simulationPos = newPos;
         for (int i = 6; i > 0; i--) {
-            if (canPlaceWood(world.getBlockState(newPos))) {
-                world.setBlockState(newPos, blockToPlace, 3);
-                newPos = newPos.east();
+            if (canPlaceWood(world.getBlockState(simulationPos))) {
+                blocksitWillPlace++;
+                simulationPos = simulationPos.east();
             } else {
                 break;
             }
         }
-        return true;
+        boolean canPlace = blocksitWillPlace > 3;
+        if (canPlace) {
+            for (int i = 6; i > 0; i--) {
+                if (canPlaceWood(world.getBlockState(newPos))) {
+                    world.setBlockState(newPos, blockToPlace, 3);
+                    newPos = newPos.east();
+                } else {
+                    break;
+                }
+            }
+        }
+        return canPlace;
     }
 }

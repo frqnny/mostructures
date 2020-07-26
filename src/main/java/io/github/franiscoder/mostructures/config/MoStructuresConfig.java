@@ -5,7 +5,7 @@ import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
 import me.sargunvohra.mcmods.autoconfig1u.shadowed.blue.endless.jankson.Comment;
 
-@Config(name = "mostructures")
+@Config(name = "mostructures-config-v1")
 public class MoStructuresConfig implements ConfigData {
     @Comment("Mo' Structures feature toggles.")
     @ConfigEntry.Gui.CollapsibleObject
@@ -18,6 +18,14 @@ public class MoStructuresConfig implements ConfigData {
     @Comment("Structure toggles. These do not have chances, but in the future they may. ")
     @ConfigEntry.Gui.CollapsibleObject
     public Structures structures = new Structures();
+
+    @Comment("Structure chances. Seperation is the least amount of chunks that a structure will spawn from itself. Spacing is the maximum amount of chunks, and both are used to randomly spawn structures and can be tweaked.")
+    @ConfigEntry.Gui.CollapsibleObject
+    public StructureChances structureChances = new StructureChances();
+
+    @Comment("You can use it to blacklist biomes yourself, overworld and modded dimensions in case I haven't covered them.")
+    public String[] biome_id_blacklist = {};
+
 
     public static class Features {
         @Comment("Airplanes & Air Balloons")
@@ -39,9 +47,10 @@ public class MoStructuresConfig implements ConfigData {
         @Comment("Boats")
         public boolean boats = true;
     }
+
     public static class FeatureChances {
         @Comment("Airplanes & Air Balloons")
-        public int air_feature_chance = 6500;
+        public int air_feature_chance = 4500;
         @Comment("Fallen Trees")
         public int fallen_trees_chance = 15;
         @Comment("Desert Features")
@@ -51,7 +60,7 @@ public class MoStructuresConfig implements ConfigData {
         @Comment("Lamppost")
         public int lamppost_chance = 85;
         @Comment("Boulder")
-        public int boulder_chance = 500;
+        public int boulder_chance = 4000;
         @Comment("Volcanic Vent")
         public int volcanic_vent_chance = 85;
         @Comment("Beach Features")
@@ -59,6 +68,7 @@ public class MoStructuresConfig implements ConfigData {
         @Comment("Boats")
         public int boats_chance = 1000;
     }
+
     public static class Structures {
         @Comment("Barnhouse")
         public boolean barn_house = true;
@@ -72,5 +82,31 @@ public class MoStructuresConfig implements ConfigData {
         public boolean villager_tower = true;
         @Comment("Abandoned Churches")
         public boolean abandoned_churches = true;
+        @Comment("Villager Market")
+        public boolean villager_market = true;
+    }
+
+    public static class StructureChances {
+        @Comment("Barn House")
+        public int barn_house_seperation = 16;
+        public int barn_house_spacing = 40;
+        @Comment("Big Pyramid")
+        public int big_pyramid_seperation = 8;
+        public int big_pyramid_spacing = 32;
+        @Comment("Jungle Pyramid")
+        public int jungle_pyramid_seperation = 8;
+        public int jungle_pyramid_spacing = 32;
+        @Comment("The Castle In The Sky")
+        public int the_castle_in_the_sky_seperation = 8;
+        public int the_castle_in_the_sky_spacing = 32;
+        @Comment("Villager Tower")
+        public int villager_tower_seperation = 16;
+        public int villager_tower_spacing = 40;
+        @Comment("Abandoned Church")
+        public int abandoned_church_seperation = 16;
+        public int abandoned_church_spacing = 40;
+        @Comment("Villager Market")
+        public int villager_market_seperation = 20;
+        public int villager_market_spacing = 45;
     }
 }

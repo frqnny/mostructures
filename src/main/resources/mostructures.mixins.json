@@ -3,7 +3,8 @@
   "package": "io.github.franiscoder.mostructures.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "LakeFeatureMixin"
+    "LakeFeatureMixin",
+    "ChunkSerializerMixin"
   ],
   "client": [
   ],

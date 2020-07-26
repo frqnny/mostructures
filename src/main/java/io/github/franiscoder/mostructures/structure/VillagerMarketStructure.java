@@ -1,6 +1,6 @@
 package io.github.franiscoder.mostructures.structure;
 
-import io.github.franiscoder.mostructures.generator.BigPyramidGenerator;
+import io.github.franiscoder.mostructures.generator.VillagerMarketGenerator;
 import net.minecraft.structure.MarginedStructureStart;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.util.math.BlockBox;
@@ -11,14 +11,14 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
-public class BigPyramidStructure extends SpacedStructure<StructurePoolFeatureConfig> {
-    public BigPyramidStructure() {
+public class VillagerMarketStructure extends SpacedStructure<StructurePoolFeatureConfig> {
+    public VillagerMarketStructure() {
         super(StructurePoolFeatureConfig.CODEC);
     }
 
     @Override
     public StructureStartFactory<StructurePoolFeatureConfig> getStructureStartFactory() {
-        return BigPyramidStructure.Start::new;
+        return VillagerMarketStructure.Start::new;
     }
 
     public static class Start extends MarginedStructureStart<StructurePoolFeatureConfig> {
@@ -28,7 +28,7 @@ public class BigPyramidStructure extends SpacedStructure<StructurePoolFeatureCon
 
         @Override
         public void init(DynamicRegistryManager registryManager, ChunkGenerator chunkGenerator, StructureManager structureManager, int x, int z, Biome biome, StructurePoolFeatureConfig config) {
-            BigPyramidGenerator.addPieces(registryManager, config, chunkGenerator, structureManager, new BlockPos(x << 4, 0, z << 4), children, random);
+            VillagerMarketGenerator.addPieces(registryManager, config, chunkGenerator, structureManager, new BlockPos(x << 4, 0, z << 4), children, random);
             this.setBoundingBoxFromChildren();
         }
     }

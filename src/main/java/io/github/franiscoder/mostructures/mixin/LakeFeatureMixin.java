@@ -1,6 +1,6 @@
 package io.github.franiscoder.mostructures.mixin;
 
-import io.github.franiscoder.mostructures.init.StructureInit;
+import io.github.franiscoder.mostructures.MoStructures;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.chunk.Chunk;
@@ -32,13 +32,13 @@ public class LakeFeatureMixin {
         chunksToScan.add(world.getChunk(blockPos.add(16, 0, -16)));
         chunksToScan.add(world.getChunk(blockPos.add(-16, 0, 16)));
         for (Chunk chunk : chunksToScan) {
-            if (!chunk.getStructureReferences(StructureInit.BARN_HOUSE.field_24835).isEmpty()) {
-                info.setReturnValue(false);
-                break;
-            } else if (!chunk.getStructureReferences(StructureInit.JUNGLE_PYRAMID.field_24835).isEmpty()) {
-                info.setReturnValue(false);
-                break;
-            } else if (!chunk.getStructureReferences(StructureInit.VILLAGER_TOWER.field_24835).isEmpty()) {
+            if (
+                    !chunk.getStructureReferences(MoStructures.BARN_HOUSE.feature).isEmpty()
+                            || !chunk.getStructureReferences(MoStructures.JUNGLE_PYRAMID.feature).isEmpty()
+                            || !chunk.getStructureReferences(MoStructures.VILLAGER_TOWER.feature).isEmpty()
+                            || !chunk.getStructureReferences(MoStructures.ABANDONED_CHURCH).isEmpty()
+                            || !chunk.getStructureReferences(MoStructures.VILLAGER_MARKET.feature).isEmpty()
+            ) {
                 info.setReturnValue(false);
                 break;
             }

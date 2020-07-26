@@ -3,7 +3,6 @@ package io.github.franiscoder.mostructures.feature;
 import io.github.franiscoder.mostructures.MoStructures;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructurePlacementData;
@@ -58,15 +57,15 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
 
             BlockRotation blockRotation = BlockRotation.random(random);
             StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
-            StructureManager manager = ((ServerWorld) world.getWorld()).getStructureManager();
+            StructureManager manager = world.getWorld().getStructureManager();
             Structure structure = manager.getStructureOrBlank(lamppost);
 
-            structure.place(world, newPos, structurePlacementData, random);
+            structure.place(world, newPos.down(), structurePlacementData, random);
             return true;
         } else if (category == Biome.Category.NETHER) {
             BlockRotation blockRotation = BlockRotation.random(random);
             StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
-            StructureManager manager = ((ServerWorld) world.getWorld()).getStructureManager();
+            StructureManager manager = world.getWorld().getStructureManager();
             Structure structure = manager.getStructureOrBlank(lamppost);
 
             BlockPos correctPos = getCorrectNetherHeight(pos, world);

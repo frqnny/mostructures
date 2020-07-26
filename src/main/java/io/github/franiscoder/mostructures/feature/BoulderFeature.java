@@ -19,27 +19,31 @@ public class BoulderFeature extends Feature<DefaultFeatureConfig> {
     }
 
     public static void generateSphere(ServerWorldAccess world, BlockPos pos, int range) {
-        BlockPos.Mutable pos1 = new BlockPos.Mutable().set(pos);
+        BlockPos.Mutable mutable = new BlockPos.Mutable().set(pos);
         int radius = range / 2;
+
+        int originalX = mutable.getX();
+        int originalY = mutable.getY();
+        int originalZ = mutable.getZ();
+        Random random = new Random();
 
         for (int x = -range; x <= range; x++) {
             for (int z = -range; z <= range; z++) {
                 for (int y = -range; y <= range; y++) {
                     if (MathHelper.square(z) + MathHelper.square(x) + MathHelper.square(y) <= MathHelper.square(radius)) {
-                        world.setBlockState(pos1.add(x, y, z), getRandomBlock(), 3);
+                        world.setBlockState(mutable.set(originalX + x, originalY + y, originalZ + z), getRandomBlock(random), 3);
                     }
                 }
             }
         }
     }
 
-    public static BlockState getRandomBlock() {
-        Random random = new Random();
+    public static BlockState getRandomBlock(Random random) {
         switch (random.nextInt(4)) {
             case 0:
                 return Blocks.STONE.getDefaultState();
             case 1:
-                return Blocks.MOSSY_COBBLESTONE.getDefaultState();
+                return Blocks.ANDESITE.getDefaultState();
             case 2:
                 return Blocks.COBBLESTONE.getDefaultState();
             case 3:
@@ -51,16 +55,19 @@ public class BoulderFeature extends Feature<DefaultFeatureConfig> {
 
     @Override
     public boolean generate(ServerWorldAccess world, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-        if (world.getBiome(pos).getCategory() == Biome.Category.NETHER && world.getBiome(pos).getCategory() == Biome.Category.THEEND) {
+        Biome.Category category = world.getBiome(pos).getCategory();
+
+        if (category == Biome.Category.NETHER || category == Biome.Category.THEEND) {
             return false;
+        } else {
+            Random randomFixed = world.getRandom();
+            pos = world.getTopPosition(Heightmap.Type.OCEAN_FLOOR_WG, pos);
+
+            generateSphere(world, pos, 6 + randomFixed.nextInt(5));
+            generateSphere(world, pos.add(random.nextInt(7), random.nextInt(2), random.nextInt(6)), 5 + randomFixed.nextInt(5));
+            generateSphere(world, pos.add(random.nextInt(6), random.nextInt(2), random.nextInt(7)), 5 + randomFixed.nextInt(5));
+
+            return true;
         }
-        Random randomFixed = world.getRandom();
-        pos = world.getTopPosition(Heightmap.Type.OCEAN_FLOOR_WG, pos);
-
-        generateSphere(world, pos, 6 + randomFixed.nextInt(5));
-        generateSphere(world, pos.add(random.nextInt(7),random.nextInt(2),random.nextInt(6)), 5 + randomFixed.nextInt(5));
-        generateSphere(world, pos.add(random.nextInt(6),random.nextInt(2),random.nextInt(7)), 5 + randomFixed.nextInt(5));
-
-        return true;
     }
 }
