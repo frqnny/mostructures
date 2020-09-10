@@ -50,9 +50,9 @@ public class MoStructuresConfig implements ConfigData {
 
     public static class FeatureChances {
         @Comment("Airplanes & Air Balloons")
-        public int air_feature_chance = 4500;
+        public int air_feature_chance = 4600;
         @Comment("Fallen Trees")
-        public int fallen_trees_chance = 15;
+        public int fallen_trees_chance = 17;
         @Comment("Desert Features")
         public int desert_features_chance = 555;
         @Comment("Ruins")
@@ -66,7 +66,7 @@ public class MoStructuresConfig implements ConfigData {
         @Comment("Beach Features")
         public int beach_features_chance = 75;
         @Comment("Boats")
-        public int boats_chance = 1000;
+        public int boats_chance = 4000;
     }
 
     public static class Structures {
@@ -106,7 +106,7 @@ public class MoStructuresConfig implements ConfigData {
         public int abandoned_church_seperation = 16;
         public int abandoned_church_spacing = 40;
         @Comment("Villager Market")
-        public int villager_market_seperation = 20;
-        public int villager_market_spacing = 45;
+        public int villager_market_seperation = 27;
+        public int villager_market_spacing = 50;
     }
 }

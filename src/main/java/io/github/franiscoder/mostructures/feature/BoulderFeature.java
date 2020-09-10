@@ -1,11 +1,14 @@
 package io.github.franiscoder.mostructures.feature;
 
+import io.github.franiscoder.mostructures.MoStructures;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -14,6 +17,9 @@ import net.minecraft.world.gen.feature.Feature;
 import java.util.Random;
 
 public class BoulderFeature extends Feature<DefaultFeatureConfig> {
+    public static final Identifier ID = MoStructures.id("boulder");
+
+
     public BoulderFeature() {
         super(DefaultFeatureConfig.CODEC);
     }
@@ -54,7 +60,7 @@ public class BoulderFeature extends Feature<DefaultFeatureConfig> {
     }
 
     @Override
-    public boolean generate(ServerWorldAccess world, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig featureConfig) {
         Biome.Category category = world.getBiome(pos).getCategory();
 
         if (category == Biome.Category.NETHER || category == Biome.Category.THEEND) {

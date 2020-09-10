@@ -1,12 +1,15 @@
 package io.github.franiscoder.mostructures.feature;
 
+import io.github.franiscoder.mostructures.MoStructures;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.StructureWorldAccess;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
@@ -14,6 +17,9 @@ import net.minecraft.world.gen.feature.Feature;
 import java.util.Random;
 
 public class RuinsFeature extends Feature<DefaultFeatureConfig> {
+    public static final Identifier ID = MoStructures.id("ruins");
+
+
     public RuinsFeature() {
         super(DefaultFeatureConfig.CODEC);
     }
@@ -65,7 +71,7 @@ public class RuinsFeature extends Feature<DefaultFeatureConfig> {
         float[] fs = new float[]{1.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F, 0.9F, 0.9F, 0.8F, 0.7F, 0.6F, 0.4F, 0.2F};
         int k = fs.length;
         int l = 16;
-        int m = random.nextInt(Math.max(1, 8 - l / 2));
+        int m = random.nextInt(Math.max(1, 8 - 16 / 2));
         BlockPos.Mutable mutable = BlockPos.ORIGIN.mutableCopy();
 
         for (int o = i - k; o <= i + k; ++o) {
@@ -86,8 +92,8 @@ public class RuinsFeature extends Feature<DefaultFeatureConfig> {
     }
 
     @Override
-    public boolean generate(ServerWorldAccess world, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-        if (world.getBiome(pos).getCategory() == Biome.Category.EXTREME_HILLS || world.getBiome(pos).getCategory() == Biome.Category.OCEAN || world.getBiome(pos).getCategory() == Biome.Category.FOREST || world.getBiome(pos).getCategory() == Biome.Category.THEEND || world.getBlockState(pos.down()).getBlock() == Blocks.WATER || world.getDimension() != DimensionType.getOverworldDimensionType())
+    public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig featureConfig) {
+        if (world.getBiome(pos).getCategory() == Biome.Category.EXTREME_HILLS || world.getBiome(pos).getCategory() == Biome.Category.OCEAN || world.getBiome(pos).getCategory() == Biome.Category.FOREST || world.getBiome(pos).getCategory() == Biome.Category.THEEND || world.getBlockState(pos.down()).getBlock() == Blocks.WATER || world.toServerWorld().getRegistryKey().equals(World.OVERWORLD))
             return false;
 
         placeBase(random, world, pos);

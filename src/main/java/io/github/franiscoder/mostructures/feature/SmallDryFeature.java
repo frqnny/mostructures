@@ -10,8 +10,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.StructureWorldAccess;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
@@ -23,6 +24,9 @@ public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
     //public static final Identifier DESERT_ATRIUM = MoStructures.id("desert/desert_atrium");
     //public static final Identifier[] IDENTIFIERS = {DEAD_TREE, DESERT_ATRIUM};
 
+    public static final Identifier ID = MoStructures.id("dead_tree");
+
+
     public SmallDryFeature() {
         super(DefaultFeatureConfig.CODEC);
     }
@@ -30,18 +34,18 @@ public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
     private static boolean canGenerate(ServerWorldAccess world, BlockPos pos) {
         Biome biome = world.getBiome(pos);
 
-        return biome.getCategory() == Biome.Category.DESERT && world.getDimension() == DimensionType.getOverworldDimensionType();
+        return biome.getCategory() == Biome.Category.DESERT && world.toServerWorld().getRegistryKey().equals(World.OVERWORLD);
     }
 
     @Override
-    public boolean generate(ServerWorldAccess world, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig featureConfig) {
         boolean result = canGenerate(world, pos) && world.getBlockState(pos.down()) == Blocks.SAND.getDefaultState();
 
         if (result) {
             //int randomStructureToPlace = world.getRandom().nextInt(IDENTIFIERS.length);
             //to come back soon
             //Identifier structureId = IDENTIFIERS[randomStructureToPlace];
-            Structure structure = world.getWorld().getStructureManager().getStructureOrBlank(DEAD_TREE);
+            Structure structure = world.toServerWorld().getStructureManager().getStructureOrBlank(DEAD_TREE);
 
             BlockPos newPos = world.getTopPosition(Heightmap.Type.OCEAN_FLOOR_WG, pos);
             BlockRotation blockRotation = BlockRotation.random(random);

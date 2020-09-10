@@ -9,7 +9,7 @@ import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.structure.pool.StructurePoolElement;
-import net.minecraft.structure.pool.TemplatePools;
+import net.minecraft.structure.pool.StructurePools;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.DynamicRegistryManager;
@@ -27,7 +27,7 @@ public class BigPyramidGenerator {
     public static final StructurePool STARTING_POOL;
 
     static {
-        STARTING_POOL = TemplatePools.register(
+        STARTING_POOL = StructurePools.register(
                 new StructurePool(
                         SW_STARTING_PIECE,
                         new Identifier("empty"),
@@ -37,7 +37,7 @@ public class BigPyramidGenerator {
                         StructurePool.Projection.RIGID
                 )
         );
-        TemplatePools.register(
+        StructurePools.register(
                 new StructurePool(
                         PYRAMID_PIECES,
                         new Identifier("empty"),
@@ -48,7 +48,7 @@ public class BigPyramidGenerator {
                         StructurePool.Projection.RIGID
                 )
         );
-        TemplatePools.register(
+        StructurePools.register(
                 new StructurePool(
                         NE_FINAL_PIECE,
                         new Identifier("empty"),

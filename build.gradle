@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.4-SNAPSHOT'
+	id 'fabric-loom' version '0.5-SNAPSHOT'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -22,11 +22,13 @@ dependencies {
 	modImplementation "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
 	include  "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
 
-	//modRuntime ("com.github.mrmangohands:sodium-fabric:97650e1acce5a34460b8d6946430171cff6e3d8a")
-	//modRuntime ("com.github.SuperCoder7979:phosphor-fabric:11d964bf07d44bdf6cbdbb7cce25ed9da81d9f78")
-	//modRuntime ("com.github.jellysquid3:lithium-fabric:21769c40c59330ea9eacbd8139a2057a86f0d028")
+	modRuntime "com.github.jellysquid3:lithium-fabric:mc1.16.2-0.5.4"
+	modRuntime "com.github.jellysquid3:phosphor-fabric:1.16.x~dev-SNAPSHOT"
+	modRuntime "com.github.FlashyReese:sodium-fabric:mc1.16.2-0.1.0-stable"
 
-	compileOnly ("com.google.code.findbugs:jsr305:3.0.2") { transitive = false }
+	runtime('net.fabricmc:sponge-mixin:0.8+build.18') {
+		force = true
+	}
 }
 
 processResources {
@@ -61,8 +63,6 @@ jar {
 	from "LICENSE"
 }
 repositories {
-	maven {
-		name = 'Earthcomputer Mods'
-		url = 'https://dl.bintray.com/earthcomputer/mods'
-	}
+	maven { url 'https://jitpack.io' }
 }
+

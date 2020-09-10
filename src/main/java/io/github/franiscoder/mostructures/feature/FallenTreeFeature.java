@@ -1,15 +1,19 @@
 package io.github.franiscoder.mostructures.feature;
 
+import io.github.franiscoder.mostructures.MoStructures;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PillarBlock;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.BuiltinRegistries;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
-import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
+import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.biome.BuiltinBiomes;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
@@ -18,22 +22,25 @@ import java.util.Objects;
 import java.util.Random;
 
 public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
+    public static final Identifier ID = MoStructures.id("fallen_tree");
+
+
     public FallenTreeFeature() {
         super(DefaultFeatureConfig.CODEC);
     }
 
     public static BlockState getWoodToPlace(Biome biome) {
         Biome.Category category = biome.getCategory();
-        if (biome == Biomes.BIRCH_FOREST || biome == Biomes.BIRCH_FOREST_HILLS || biome == Biomes.TALL_BIRCH_FOREST) {
+        if (biome == BuiltinRegistries.BIOME.get(BiomeKeys.BIRCH_FOREST) || biome == BuiltinRegistries.BIOME.get(BiomeKeys.BIRCH_FOREST_HILLS) || biome == BuiltinRegistries.BIOME.get(BiomeKeys.TALL_BIRCH_FOREST)) {
             return Blocks.BIRCH_LOG.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
-        } else if (category == Biome.Category.FOREST || biome == Biomes.PLAINS || category == Biome.Category.RIVER || category == Biome.Category.SWAMP) {
+        } else if (category == Biome.Category.FOREST || biome == BuiltinBiomes.PLAINS || category == Biome.Category.RIVER || category == Biome.Category.SWAMP) {
             return Blocks.OAK_LOG.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
         } else if (category == Biome.Category.SAVANNA || category == Biome.Category.DESERT) {
             return Blocks.ACACIA_LOG.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
         } else if (category == Biome.Category.TAIGA || category == Biome.Category.ICY) {
             return Blocks.SPRUCE_LOG.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
         } else {
-            return Blocks.STRUCTURE_VOID.getDefaultState();
+            return Blocks.AIR.getDefaultState();
         }
     }
 
@@ -42,14 +49,15 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
     }
 
     @Override
-    public boolean generate(ServerWorldAccess world, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig featureConfig) {
         Biome.Category category = world.getBiome(pos).getCategory();
+
         if (category == Biome.Category.OCEAN
                 || category == Biome.Category.RIVER
                 || category == Biome.Category.BEACH
                 || category == Biome.Category.THEEND
                 || category == Biome.Category.NETHER
-                || !Objects.requireNonNull(BuiltinRegistries.BIOME.getId(world.getBiome(pos))).getNamespace().equals("minecraft")) {
+                || !Objects.requireNonNull(world.toServerWorld().getRegistryManager().getOptional(Registry.BIOME_KEY).get().getId(world.getBiome(pos))).getNamespace().equals("minecraft")) {
             return false;
         }
 
@@ -60,6 +68,9 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
             newPos = newPos.down();
         }
         BlockState blockToPlace = getWoodToPlace(world.getBiome(newPos));
+        if (blockToPlace.getBlock() == Blocks.AIR) {
+            return false;
+        }
 
         //Makes Desert Fallen Trees rarer, as in Forest that is taken care whether it is to generate in an open space or not
         if (category == Biome.Category.DESERT || category == Biome.Category.PLAINS || category == Biome.Category.SWAMP) {

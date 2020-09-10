@@ -9,8 +9,9 @@ import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.structure.pool.StructurePoolElement;
-import net.minecraft.structure.pool.TemplatePools;
+import net.minecraft.structure.pool.StructurePools;
 import net.minecraft.structure.processor.BlockRotStructureProcessor;
+import net.minecraft.structure.processor.StructureProcessorList;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.DynamicRegistryManager;
@@ -27,8 +28,10 @@ public class JunglePyramidGenerator {
 
     public static final StructurePool STARTING_POOL;
 
+    public static final StructureProcessorList JUNGLE_ROT = MoStructures.register("jungle_rot", ImmutableList.of(new BlockRotStructureProcessor(0.15F)));
+
     static {
-        STARTING_POOL = TemplatePools.register(
+        STARTING_POOL = StructurePools.register(
                 new StructurePool(
                         SW_STARTING_PIECE,
                         new Identifier("empty"),
@@ -36,13 +39,13 @@ public class JunglePyramidGenerator {
                                 new Pair<>(StructurePoolElement.method_30429(ImmutableList.of(
                                         StructurePoolElement.method_30425(MoStructures.MODID + ":jungle_pyramid/sw"),
                                         StructurePoolElement.method_30426(MoStructures.MODID + ":jungle_pyramid/sw_overgrown",
-                                                ImmutableList.of(new BlockRotStructureProcessor(0.15F))))),
+                                                JUNGLE_ROT))),
                                         1)
                         ),
                         StructurePool.Projection.RIGID
                 )
         );
-        TemplatePools.register(
+        StructurePools.register(
                 new StructurePool(
                         MIDDLE_PIECES,
                         new Identifier("empty"),
@@ -50,18 +53,18 @@ public class JunglePyramidGenerator {
                                 new Pair<>(StructurePoolElement.method_30429(ImmutableList.of(
                                         StructurePoolElement.method_30425(MoStructures.MODID + ":jungle_pyramid/se"),
                                         StructurePoolElement.method_30426(MoStructures.MODID + ":jungle_pyramid/se_overgrown",
-                                                ImmutableList.of(new BlockRotStructureProcessor(0.15F))))),
+                                                JUNGLE_ROT))),
                                         1),
                                 new Pair<>(StructurePoolElement.method_30429(ImmutableList.of(
                                         StructurePoolElement.method_30425(MoStructures.MODID + ":jungle_pyramid/nw"),
                                         StructurePoolElement.method_30426(MoStructures.MODID + ":jungle_pyramid/nw_overgrown",
-                                                ImmutableList.of(new BlockRotStructureProcessor(0.15F))))),
+                                                JUNGLE_ROT))),
                                         1)
                         ),
                         StructurePool.Projection.RIGID
                 )
         );
-        TemplatePools.register(
+        StructurePools.register(
                 new StructurePool(
                         NE_FINAL_PIECE,
                         new Identifier("empty"),
@@ -69,7 +72,7 @@ public class JunglePyramidGenerator {
                                 new Pair<>(StructurePoolElement.method_30429(ImmutableList.of(
                                         StructurePoolElement.method_30425(MoStructures.MODID + ":jungle_pyramid/ne"),
                                         StructurePoolElement.method_30426(MoStructures.MODID + ":jungle_pyramid/ne_overgrown",
-                                                ImmutableList.of(new BlockRotStructureProcessor(0.15F))))),
+                                                JUNGLE_ROT))),
                                         1)
                         ),
                         StructurePool.Projection.RIGID

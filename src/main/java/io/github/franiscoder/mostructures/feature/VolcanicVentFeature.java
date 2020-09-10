@@ -1,11 +1,14 @@
 package io.github.franiscoder.mostructures.feature;
 
+import io.github.franiscoder.mostructures.MoStructures;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.StructureWorldAccess;
+import net.minecraft.world.World;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
@@ -13,6 +16,8 @@ import net.minecraft.world.gen.feature.Feature;
 import java.util.Random;
 
 public class VolcanicVentFeature extends Feature<DefaultFeatureConfig> {
+    public static final Identifier ID = MoStructures.id("volcanic_vent");
+
     public VolcanicVentFeature() {
         super(DefaultFeatureConfig.CODEC);
     }
@@ -48,8 +53,8 @@ public class VolcanicVentFeature extends Feature<DefaultFeatureConfig> {
     }
 
     @Override
-    public boolean generate(ServerWorldAccess world, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-        boolean result = getBaseHeight(world, pos.getX(), pos.getZ()) < 53 && world.getDimension() == DimensionType.getOverworldDimensionType();
+    public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig featureConfig) {
+        boolean result = getBaseHeight(world, pos.getX(), pos.getZ()) < 53 && world.toServerWorld().getRegistryKey().equals(World.OVERWORLD);
 
         if (result) {
             BlockPos actualPos = new BlockPos(pos.getX(), getBaseHeight(world, pos.getX(), pos.getZ()), pos.getZ());

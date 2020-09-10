@@ -17,7 +17,7 @@ public abstract class SpacedStructure<C extends FeatureConfig> extends Structure
 
     @Override
     protected boolean shouldStartAt(ChunkGenerator chunkGenerator, BiomeSource biomeSource, long worldSeed, ChunkRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, C featureConfig) {
-        StructureConfig structureConfig = chunkGenerator.getConfig().getForType(StructureFeature.VILLAGE);
+        StructureConfig structureConfig = chunkGenerator.getStructuresConfig().getForType(StructureFeature.VILLAGE);
         if (structureConfig != null) {
             for (int k = chunkX - 10; k <= chunkX + 10; ++k) {
                 for (int m = chunkZ - 10; m <= chunkZ + 10; ++m) {

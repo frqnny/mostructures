@@ -9,7 +9,7 @@ import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.structure.pool.StructurePoolElement;
-import net.minecraft.structure.pool.TemplatePools;
+import net.minecraft.structure.pool.StructurePools;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.DynamicRegistryManager;
@@ -28,7 +28,7 @@ public class VillagerMarketGenerator {
     public static final Identifier FEATURES = MoStructures.id("market/features");
 
     static {
-        STARTING_POOL = TemplatePools.register(
+        STARTING_POOL = StructurePools.register(
                 new StructurePool(
                         MAIN,
                         new Identifier("empty"),
@@ -38,7 +38,7 @@ public class VillagerMarketGenerator {
                         StructurePool.Projection.RIGID
                 )
         );
-        TemplatePools.register(
+        StructurePools.register(
                 new StructurePool(
                         VILLAGER,
                         new Identifier("empty"),
@@ -48,7 +48,7 @@ public class VillagerMarketGenerator {
                         StructurePool.Projection.RIGID
                 )
         );
-        TemplatePools.register(
+        StructurePools.register(
                 new StructurePool(
                         IRON_GOLEM,
                         new Identifier("empty"),
@@ -58,7 +58,7 @@ public class VillagerMarketGenerator {
                         StructurePool.Projection.RIGID
                 )
         );
-        TemplatePools.register(
+        StructurePools.register(
                 new StructurePool(
                         FEATURE_PLATES,
                         new Identifier("empty"),
@@ -68,7 +68,7 @@ public class VillagerMarketGenerator {
                         StructurePool.Projection.TERRAIN_MATCHING
                 )
         );
-        TemplatePools.register(
+        StructurePools.register(
                 new StructurePool(
                         FEATURES,
                         new Identifier("empty"),

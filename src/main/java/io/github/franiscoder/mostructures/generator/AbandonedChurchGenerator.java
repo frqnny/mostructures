@@ -9,7 +9,7 @@ import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.structure.pool.StructurePoolElement;
-import net.minecraft.structure.pool.TemplatePools;
+import net.minecraft.structure.pool.StructurePools;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.DynamicRegistryManager;
@@ -39,7 +39,7 @@ public class AbandonedChurchGenerator {
     public static final StructurePool TAIGA_STARTING_POOL;
 
     static {
-        PLAINS_STARTING_POOL = TemplatePools.register(
+        PLAINS_STARTING_POOL = StructurePools.register(
                 new StructurePool(
                         PLAINS_PLATE,
                         new Identifier("empty"),
@@ -49,7 +49,7 @@ public class AbandonedChurchGenerator {
                         StructurePool.Projection.RIGID
                 )
         );
-        SAVANNA_STARTING_POOL = TemplatePools.register(
+        SAVANNA_STARTING_POOL = StructurePools.register(
                 new StructurePool(
                         SAVANNA_PLATE,
                         new Identifier("empty"),
@@ -59,7 +59,7 @@ public class AbandonedChurchGenerator {
                         StructurePool.Projection.RIGID
                 )
         );
-        DESERT_STARTING_POOL = TemplatePools.register(
+        DESERT_STARTING_POOL = StructurePools.register(
                 new StructurePool(
                         DESERT_PLATE,
                         new Identifier("empty"),
@@ -69,7 +69,7 @@ public class AbandonedChurchGenerator {
                         StructurePool.Projection.RIGID
                 )
         );
-        SNOWY_STARTING_POOL = TemplatePools.register(
+        SNOWY_STARTING_POOL = StructurePools.register(
                 new StructurePool(
                         SNOWY_PLATE,
                         new Identifier("empty"),
@@ -79,7 +79,7 @@ public class AbandonedChurchGenerator {
                         StructurePool.Projection.RIGID
                 )
         );
-        TAIGA_STARTING_POOL = TemplatePools.register(
+        TAIGA_STARTING_POOL = StructurePools.register(
                 new StructurePool(
                         TAIGA_PLATE,
                         new Identifier("empty"),
@@ -89,7 +89,7 @@ public class AbandonedChurchGenerator {
                         StructurePool.Projection.RIGID
                 )
         );
-        TemplatePools.register(
+        StructurePools.register(
                 new StructurePool(
                         CHURCHES_PLAINS,
                         new Identifier("empty"),
@@ -100,7 +100,7 @@ public class AbandonedChurchGenerator {
                         StructurePool.Projection.RIGID
                 )
         );
-        TemplatePools.register(
+        StructurePools.register(
                 new StructurePool(
                         CHURCHES_SAVANNA,
                         new Identifier("empty"),
@@ -111,7 +111,7 @@ public class AbandonedChurchGenerator {
                         StructurePool.Projection.RIGID
                 )
         );
-        TemplatePools.register(
+        StructurePools.register(
                 new StructurePool(
                         CHURCHES_DESERT,
                         new Identifier("empty"),
@@ -122,7 +122,7 @@ public class AbandonedChurchGenerator {
                         StructurePool.Projection.RIGID
                 )
         );
-        TemplatePools.register(
+        StructurePools.register(
                 new StructurePool(
                         CHURCHES_SNOWY,
                         new Identifier("empty"),
@@ -132,7 +132,7 @@ public class AbandonedChurchGenerator {
                         StructurePool.Projection.RIGID
                 )
         );
-        TemplatePools.register(
+        StructurePools.register(
                 new StructurePool(
                         CHURCHES_TAIGA,
                         new Identifier("empty"),

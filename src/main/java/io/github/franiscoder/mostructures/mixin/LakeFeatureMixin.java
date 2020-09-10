@@ -2,7 +2,7 @@ package io.github.franiscoder.mostructures.mixin;
 
 import io.github.franiscoder.mostructures.MoStructures;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.LakeFeature;
@@ -19,8 +19,9 @@ import java.util.Random;
 @SuppressWarnings("unused")
 @Mixin(LakeFeature.class)
 public class LakeFeatureMixin {
+
     @Inject(at = @At("HEAD"), method = "generate", cancellable = true)
-    public void fixStructures(ServerWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, SingleStateFeatureConfig singleStateFeatureConfig, CallbackInfoReturnable<Boolean> info) {
+    public void fixStructures(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, SingleStateFeatureConfig featureConfig, CallbackInfoReturnable<Boolean> info) {
         List<Chunk> chunksToScan = new ArrayList<>(9);
         chunksToScan.add(world.getChunk(blockPos));
         chunksToScan.add(world.getChunk(blockPos.add(16, 0, 16)));
@@ -45,3 +46,5 @@ public class LakeFeatureMixin {
         }
     }
 }
+// (Lnet/minecraft/world/StructureWorldAccess;Lnet/minecraft/world/gen/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/gen/feature/DefaultFeatureConfig;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V!
+// (Lnet/minecraft/world/StructureWorldAccess;Lnet/minecraft/world/gen/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/gen/feature/DefaultFeatureConfig;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V

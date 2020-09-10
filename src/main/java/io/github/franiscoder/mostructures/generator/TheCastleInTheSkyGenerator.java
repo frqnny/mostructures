@@ -9,8 +9,9 @@ import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.structure.pool.StructurePoolElement;
-import net.minecraft.structure.pool.TemplatePools;
+import net.minecraft.structure.pool.StructurePools;
 import net.minecraft.structure.processor.BlockRotStructureProcessor;
+import net.minecraft.structure.processor.StructureProcessorList;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.DynamicRegistryManager;
@@ -27,8 +28,10 @@ public class TheCastleInTheSkyGenerator {
 
     public static final StructurePool STARTING_POOL;
 
+    public static final StructureProcessorList TCINS_ROT = MoStructures.register("tcins_rot", ImmutableList.of(new BlockRotStructureProcessor(0.25F)));
+
     static {
-        STARTING_POOL = TemplatePools.register(
+        STARTING_POOL = StructurePools.register(
                 new StructurePool(
                         SW_STARTING_PIECE,
                         new Identifier("empty"),
@@ -36,13 +39,13 @@ public class TheCastleInTheSkyGenerator {
                                 new Pair<>(StructurePoolElement.method_30429(ImmutableList.of(
                                         StructurePoolElement.method_30425(MoStructures.MODID + ":castle/sw"),
                                         StructurePoolElement.method_30426(MoStructures.MODID + ":castle/sw_overgrown",
-                                                ImmutableList.of(new BlockRotStructureProcessor(0.25F))))),
+                                                TCINS_ROT))),
                                         1)
                         ),
                         StructurePool.Projection.RIGID
                 )
         );
-        TemplatePools.register(
+        StructurePools.register(
                 new StructurePool(
                         MIDDLE_PIECES,
                         new Identifier("empty"),
@@ -50,18 +53,18 @@ public class TheCastleInTheSkyGenerator {
                                 new Pair<>(StructurePoolElement.method_30429(ImmutableList.of(
                                         StructurePoolElement.method_30425(MoStructures.MODID + ":castle/se"),
                                         StructurePoolElement.method_30426(MoStructures.MODID + ":castle/se_overgrown",
-                                                ImmutableList.of(new BlockRotStructureProcessor(0.25F))))),
+                                                TCINS_ROT))),
                                         1),
                                 new Pair<>(StructurePoolElement.method_30429(ImmutableList.of(
                                         StructurePoolElement.method_30425(MoStructures.MODID + ":castle/nw"),
                                         StructurePoolElement.method_30426(MoStructures.MODID + ":castle/nw_overgrown",
-                                                ImmutableList.of(new BlockRotStructureProcessor(0.25F))))),
+                                                TCINS_ROT))),
                                         1)
                         ),
                         StructurePool.Projection.RIGID
                 )
         );
-        TemplatePools.register(
+        StructurePools.register(
                 new StructurePool(
                         NE_FINAL_PIECE,
                         new Identifier("empty"),
@@ -69,7 +72,7 @@ public class TheCastleInTheSkyGenerator {
                                 new Pair<>(StructurePoolElement.method_30429(ImmutableList.of(
                                         StructurePoolElement.method_30425(MoStructures.MODID + ":castle/ne"),
                                         StructurePoolElement.method_30426(MoStructures.MODID + ":castle/ne_overgrown",
-                                                ImmutableList.of(new BlockRotStructureProcessor(0.25F))))),
+                                                TCINS_ROT))),
                                         1)
                         ),
                         StructurePool.Projection.RIGID

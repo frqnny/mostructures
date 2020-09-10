@@ -9,8 +9,8 @@ import net.minecraft.structure.StructurePiece;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.structure.pool.StructurePoolElement;
-import net.minecraft.structure.pool.TemplatePools;
-import net.minecraft.structure.processor.BlockRotStructureProcessor;
+import net.minecraft.structure.pool.StructurePools;
+import net.minecraft.structure.processor.StructureProcessorLists;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.DynamicRegistryManager;
@@ -28,7 +28,7 @@ public class BarnHouseGenerator {
     private static final Identifier FEATURES = MoStructures.id("barn_house/features");
 
     static {
-        STARTING_POOL = TemplatePools.register(
+        STARTING_POOL = StructurePools.register(
                 new StructurePool(
                         BASE_PLATES,
                         new Identifier("empty"),
@@ -38,7 +38,7 @@ public class BarnHouseGenerator {
                         StructurePool.Projection.RIGID
                 )
         );
-        TemplatePools.register(
+        StructurePools.register(
                 new StructurePool(
                         BARNHOUSE,
                         new Identifier("empty"),
@@ -46,7 +46,7 @@ public class BarnHouseGenerator {
                                 new Pair<>(StructurePoolElement.method_30429(ImmutableList.of(
                                         StructurePoolElement.method_30425(MoStructures.MODID + ":barn_house/barnhouse"),
                                         StructurePoolElement.method_30426(MoStructures.MODID + ":barn_house/barnhouse_overgrown",
-                                                ImmutableList.of(new BlockRotStructureProcessor(0.05F))))),
+                                                StructureProcessorLists.OUTPOST_ROT))),
                                         1)
 
                         ),
@@ -54,7 +54,7 @@ public class BarnHouseGenerator {
                 )
         );
 
-        TemplatePools.register(
+        StructurePools.register(
                 new StructurePool(
                         FEATURE_PLATES,
                         new Identifier("empty"),
@@ -64,7 +64,7 @@ public class BarnHouseGenerator {
                         StructurePool.Projection.TERRAIN_MATCHING
                 )
         );
-        TemplatePools.register(
+        StructurePools.register(
                 new StructurePool(
                         FEATURES,
                         new Identifier("empty"),
