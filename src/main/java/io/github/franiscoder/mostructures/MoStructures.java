@@ -136,48 +136,96 @@ public class MoStructures implements ModInitializer {
 
                 break;
             case FOREST:
-                addFeature(biome, ConfiguredFeatures.AIR_FEATURES);
-                addFeature(biome, ConfiguredFeatures.FALLEN_TREE);
-                addFeature(biome, ConfiguredFeatures.BOULDER);
-                addFeature(biome, ConfiguredFeatures.LAMPPOST);
+                if (config.features.air_features) {
+                    addFeature(biome, ConfiguredFeatures.AIR_FEATURES);
+                }
+                if (config.features.fallen_trees) {
+                    addFeature(biome, ConfiguredFeatures.FALLEN_TREE);
+                }
+                if (config.features.boulder) {
+                    addFeature(biome, ConfiguredFeatures.BOULDER);
+                }
+                if (config.features.lamppost) {
+                    addFeature(biome, ConfiguredFeatures.LAMPPOST);
+                }
                 break;
             case TAIGA:
             case ICY:
-                addFeature(biome, ConfiguredFeatures.AIR_FEATURES);
-                addFeature(biome, ConfiguredFeatures.FALLEN_TREE);
-                addFeature(biome, ConfiguredFeatures.BOULDER);
+                if (config.features.air_features) {
+                    addFeature(biome, ConfiguredFeatures.AIR_FEATURES);
+                }
+                if (config.features.fallen_trees) {
+                    addFeature(biome, ConfiguredFeatures.FALLEN_TREE);
+                }
+                if (config.features.boulder) {
+                    addFeature(biome, ConfiguredFeatures.BOULDER);
+                }
                 break;
             case DESERT:
-                addFeature(biome, ConfiguredFeatures.AIR_FEATURES);
-                addFeature(biome, ConfiguredFeatures.SMALL_DESERT_FEATURES);
-                addFeature(biome, ConfiguredFeatures.RUINS);
-                addFeature(biome, ConfiguredFeatures.BOULDER);
+                if (config.features.air_features) {
+                    addFeature(biome, ConfiguredFeatures.AIR_FEATURES);
+                }
+                if (config.features.desert_features) {
+                    addFeature(biome, ConfiguredFeatures.SMALL_DESERT_FEATURES);
+                }
+                if (config.features.ruins) {
+                    addFeature(biome, ConfiguredFeatures.RUINS);
+                }
+                if (config.features.boulder) {
+                    addFeature(biome, ConfiguredFeatures.BOULDER);
+                }
                 break;
             case OCEAN:
-                addFeature(biome, ConfiguredFeatures.AIR_FEATURES);
-                addFeature(biome, ConfiguredFeatures.BOULDER);
-                addFeature(biome, ConfiguredFeatures.VOLCANIC_VENT);
-                addFeature(biome, ConfiguredFeatures.BOAT);
+                if (config.features.air_features) {
+                    addFeature(biome, ConfiguredFeatures.AIR_FEATURES);
+                }
+                if (config.features.boulder) {
+                    addFeature(biome, ConfiguredFeatures.BOULDER);
+                }
+                if (config.features.volcanic_vent) {
+                    addFeature(biome, ConfiguredFeatures.VOLCANIC_VENT);
+                }
+                if (config.features.boats) {
+                    addFeature(biome, ConfiguredFeatures.BOAT);
+                }
                 break;
             case BEACH:
-                addFeature(biome, ConfiguredFeatures.AIR_FEATURES_BEACH);
-                addFeature(biome, ConfiguredFeatures.BOULDER);
-                addFeature(biome, ConfiguredFeatures.SMALL_BEACH_FEATURES);
+                if (config.features.air_features) {
+                    addFeature(biome, ConfiguredFeatures.AIR_FEATURES_BEACH);
+                }
+                if (config.features.boulder) {
+                    addFeature(biome, ConfiguredFeatures.BOULDER);
+                }
+                if (config.features.beach_features) {
+                    addFeature(biome, ConfiguredFeatures.SMALL_BEACH_FEATURES);
+                }
                 break;
             case JUNGLE:
             case EXTREME_HILLS:
             case RIVER:
-                addFeature(biome, ConfiguredFeatures.AIR_FEATURES);
-                addFeature(biome, ConfiguredFeatures.BOULDER);
+                if (config.features.air_features) {
+                    addFeature(biome, ConfiguredFeatures.AIR_FEATURES);
+                }
+                if (config.features.boulder) {
+                    addFeature(biome, ConfiguredFeatures.BOULDER);
+                }
                 break;
             case MUSHROOM:
             case MESA:
-                addFeature(biome, ConfiguredFeatures.AIR_FEATURES);
-                addFeature(biome, ConfiguredFeatures.RUINS);
-                addFeature(biome, ConfiguredFeatures.BOULDER);
+                if (config.features.air_features) {
+                    addFeature(biome, ConfiguredFeatures.AIR_FEATURES);
+                }
+                if (config.features.ruins) {
+                    addFeature(biome, ConfiguredFeatures.RUINS);
+                }
+                if (config.features.boulder) {
+                    addFeature(biome, ConfiguredFeatures.BOULDER);
+                }
                 break;
             case NETHER:
-                addFeature(biome, ConfiguredFeatures.LAMPPOST);
+                if (config.features.lamppost) {
+                    addFeature(biome, ConfiguredFeatures.LAMPPOST);
+                }
                 break;
             default:
                 //not included are THEEND and NONE because we don't need to be adding to them
