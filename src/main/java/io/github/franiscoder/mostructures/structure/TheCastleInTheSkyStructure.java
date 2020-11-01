@@ -1,8 +1,10 @@
 package io.github.franiscoder.mostructures.structure;
 
+import io.github.franiscoder.mostructures.MoStructures;
 import io.github.franiscoder.mostructures.generator.TheCastleInTheSkyGenerator;
 import net.minecraft.structure.MarginedStructureStart;
 import net.minecraft.structure.StructureManager;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.DynamicRegistryManager;
@@ -12,6 +14,8 @@ import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 public class TheCastleInTheSkyStructure extends SpacedStructure<StructurePoolFeatureConfig> {
+    public static final Identifier ID = MoStructures.id("the_castle_in_the_sky");
+
     public TheCastleInTheSkyStructure() {
         super(StructurePoolFeatureConfig.CODEC);
     }

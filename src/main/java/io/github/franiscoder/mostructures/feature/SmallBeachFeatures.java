@@ -1,7 +1,7 @@
 package io.github.franiscoder.mostructures.feature;
 
+import io.github.franiscoder.mostructures.ConfiguredFeatures;
 import io.github.franiscoder.mostructures.MoStructures;
-import net.minecraft.block.Blocks;
 import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructurePlacementData;
@@ -9,7 +9,6 @@ import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
@@ -19,7 +18,6 @@ import net.minecraft.world.gen.feature.Feature;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 public class SmallBeachFeatures extends Feature<DefaultFeatureConfig> {
@@ -34,7 +32,7 @@ public class SmallBeachFeatures extends Feature<DefaultFeatureConfig> {
 
     @Override
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig featureConfig) {
-        boolean result = world.toServerWorld().getRegistryKey().equals(World.OVERWORLD) && world.getBlockState(pos).isOf(Blocks.SAND);
+        boolean result = world.toServerWorld().getRegistryKey().equals(World.OVERWORLD);
 
         if (result) {
             List<Chunk> chunksToScan = new ArrayList<>(9);
@@ -48,13 +46,9 @@ public class SmallBeachFeatures extends Feature<DefaultFeatureConfig> {
             chunksToScan.add(world.getChunk(pos.add(16, 0, -16)));
             chunksToScan.add(world.getChunk(pos.add(-16, 0, 16)));
             for (Chunk chunk : chunksToScan) {
-                if (!chunk.getStructureReferences(MoStructures.THE_CASTLE_IN_THE_SKY.feature).isEmpty()) {
+                if (!chunk.getStructureReferences(ConfiguredFeatures.THE_CASTLE_IN_THE_SKY.feature).isEmpty()) {
                     return false;
                 }
-            }
-
-            if (!Objects.requireNonNull(BuiltinRegistries.BIOME.getId(world.getBiome(pos))).getNamespace().equals("minecraft")) {
-                return false;
             }
 
             BlockPos[] posToCheck = {pos.down().east(), pos.down().west(), pos.down().north(), pos.down().south(), pos};

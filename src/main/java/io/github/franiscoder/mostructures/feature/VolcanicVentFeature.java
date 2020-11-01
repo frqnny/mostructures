@@ -54,7 +54,7 @@ public class VolcanicVentFeature extends Feature<DefaultFeatureConfig> {
 
     @Override
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig featureConfig) {
-        boolean result = getBaseHeight(world, pos.getX(), pos.getZ()) < 53 && world.toServerWorld().getRegistryKey().equals(World.OVERWORLD);
+        boolean result = getBaseHeight(world, pos.getX(), pos.getZ()) < 50 && world.toServerWorld().getRegistryKey().equals(World.OVERWORLD);
 
         if (result) {
             BlockPos actualPos = new BlockPos(pos.getX(), getBaseHeight(world, pos.getX(), pos.getZ()), pos.getZ());

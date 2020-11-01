@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import io.github.franiscoder.mostructures.config.MoStructuresConfig;
 import io.github.franiscoder.mostructures.decorator.ChanceHeightmapDecorator;
 import io.github.franiscoder.mostructures.feature.*;
-import io.github.franiscoder.mostructures.generator.*;
 import io.github.franiscoder.mostructures.structure.*;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
@@ -24,7 +23,6 @@ import net.minecraft.world.gen.feature.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -40,12 +38,6 @@ public class MoStructures implements ModInitializer {
     public static final Feature<DefaultFeatureConfig> SMALL_BEACH_FEATURES = new SmallBeachFeatures();
     public static final Feature<DefaultFeatureConfig> BOAT = new BoatFeature();
 
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ? extends StructureFeature<StructurePoolFeatureConfig>> BARN_HOUSE = new BarnHouseStructure().configure(new StructurePoolFeatureConfig(pool(BarnHouseGenerator.STARTING_POOL), 2));
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ? extends StructureFeature<StructurePoolFeatureConfig>> BIG_PYRAMID = new BigPyramidStructure().configure(new StructurePoolFeatureConfig(pool(BigPyramidGenerator.STARTING_POOL), 2));
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ? extends StructureFeature<StructurePoolFeatureConfig>> JUNGLE_PYRAMID = new JunglePyramidStructure().configure(new StructurePoolFeatureConfig(pool(JunglePyramidGenerator.STARTING_POOL), 2));
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ? extends StructureFeature<StructurePoolFeatureConfig>> THE_CASTLE_IN_THE_SKY = new TheCastleInTheSkyStructure().configure(new StructurePoolFeatureConfig(pool(TheCastleInTheSkyGenerator.STARTING_POOL), 2));
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ? extends StructureFeature<StructurePoolFeatureConfig>> VILLAGER_TOWER = new VillagerTowerStructure().configure(new StructurePoolFeatureConfig(pool(VillagerTowerGenerator.STARTING_POOL), 2));
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ? extends StructureFeature<StructurePoolFeatureConfig>> VILLAGER_MARKET = new VillagerMarketStructure().configure(new StructurePoolFeatureConfig(pool(VillagerMarketGenerator.STARTING_POOL), 2));
 
     public static final StructureFeature<StructurePoolFeatureConfig> ABANDONED_CHURCH = new AbandonedChurchStructure();
 
@@ -53,51 +45,49 @@ public class MoStructures implements ModInitializer {
     //Because Auto Config is a shithole, we need to ban biomes that no one will really need to activate biomes
     public static final String[] always_banned_biomes = {"hotm:thinking_forest"};
     public static final ArrayList<String> full_list_of_banned_biomes = new ArrayList<>(1);
-    //fuck????????????
-    private static final List<Biome> checkedBiomes = new ArrayList<>();
     public static Biome.Category category;
     private static MoStructuresConfig config;
 
     private static void registerStructures() {
-        FabricStructureBuilder.create(MoStructures.id("barn_house"), BARN_HOUSE.feature)
+        FabricStructureBuilder.create(BarnHouseStructure.ID, ConfiguredFeatures.BARN_HOUSE.feature)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.barn_house_spacing, config.structureChances.barn_house_seperation, 165755306)
-                .superflatFeature(BARN_HOUSE)
+                .superflatFeature(ConfiguredFeatures.BARN_HOUSE)
                 .adjustsSurface()
                 .register();
-        FabricStructureBuilder.create(MoStructures.id("big_pyramid"), BIG_PYRAMID.feature)
+        FabricStructureBuilder.create(BigPyramidStructure.ID, ConfiguredFeatures.BIG_PYRAMID.feature)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.big_pyramid_spacing, config.structureChances.big_pyramid_seperation, 130284294)
-                .superflatFeature(BIG_PYRAMID)
+                .superflatFeature(ConfiguredFeatures.BIG_PYRAMID)
                 .adjustsSurface()
                 .register();
-        FabricStructureBuilder.create(MoStructures.id("jungle_pyramid"), JUNGLE_PYRAMID.feature)
+        FabricStructureBuilder.create(JunglePyramidStructure.ID, ConfiguredFeatures.JUNGLE_PYRAMID.feature)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.jungle_pyramid_spacing, config.structureChances.jungle_pyramid_seperation, 112178942)
-                .superflatFeature(JUNGLE_PYRAMID)
+                .superflatFeature(ConfiguredFeatures.JUNGLE_PYRAMID)
                 .adjustsSurface()
                 .register();
-        FabricStructureBuilder.create(MoStructures.id("the_castle_in_the_sky"), THE_CASTLE_IN_THE_SKY.feature)
+        FabricStructureBuilder.create(TheCastleInTheSkyStructure.ID, ConfiguredFeatures.THE_CASTLE_IN_THE_SKY.feature)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.the_castle_in_the_sky_spacing, config.structureChances.the_castle_in_the_sky_seperation, 123474938)
-                .superflatFeature(THE_CASTLE_IN_THE_SKY)
+                .superflatFeature(ConfiguredFeatures.THE_CASTLE_IN_THE_SKY)
                 .register();
-        FabricStructureBuilder.create(MoStructures.id("villager_tower"), VILLAGER_TOWER.feature)
+        FabricStructureBuilder.create(VillagerTowerStructure.ID, ConfiguredFeatures.VILLAGER_TOWER.feature)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.villager_tower_spacing, config.structureChances.villager_tower_seperation, 150288492)
-                .superflatFeature(VILLAGER_TOWER)
+                .superflatFeature(ConfiguredFeatures.VILLAGER_TOWER)
                 .adjustsSurface()
                 .register();
-        FabricStructureBuilder.create(MoStructures.id("abandoned_church"), ABANDONED_CHURCH)
+        FabricStructureBuilder.create(AbandonedChurchStructure.ID, ABANDONED_CHURCH)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.abandoned_church_spacing, config.structureChances.abandoned_church_seperation, 160468400)
-                .superflatFeature(ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(pool(AbandonedChurchGenerator.PLAINS_STARTING_POOL), 2)))
+                .superflatFeature(ConfiguredFeatures.PLAINS_ABANDONED_CHURCH)
                 .adjustsSurface()
                 .register();
-        FabricStructureBuilder.create(MoStructures.id("villager_market"), VILLAGER_MARKET.feature)
+        FabricStructureBuilder.create(VillagerMarketStructure.ID, ConfiguredFeatures.VILLAGER_MARKET.feature)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.villager_market_spacing, config.structureChances.villager_market_seperation, 284039542)
-                .superflatFeature(VILLAGER_MARKET)
+                .superflatFeature(ConfiguredFeatures.VILLAGER_MARKET)
                 .adjustsSurface()
                 .register();
     }
@@ -112,14 +102,10 @@ public class MoStructures implements ModInitializer {
         Registry.register(Registry.FEATURE, VolcanicVentFeature.ID, new VolcanicVentFeature());
         Registry.register(Registry.FEATURE, SmallBeachFeatures.ID, new SmallBeachFeatures());
         Registry.register(Registry.FEATURE, BoatFeature.ID, new BoatFeature());
+
     }
 
     public static void putFeatures(Biome biome) {
-        if (checkedBiomes.contains(biome)) {
-            //Just to be sure we dont add the stuff twice to the same biome
-            return;
-        }
-        checkedBiomes.add(biome);
         for (String string : full_list_of_banned_biomes) {
             Optional<Identifier> id = Optional.ofNullable(BuiltinRegistries.BIOME.getId(biome));
             if (id.isPresent()) {
@@ -129,50 +115,73 @@ public class MoStructures implements ModInitializer {
             }
         }
         category = biome.getCategory();
-        if (category == Biome.Category.NONE) {
-            return;
-        }
-        //Overworld features
-        if (category != Biome.Category.NETHER && category != Biome.Category.THEEND) {
-            //get air features to spawn more in beaches
 
-            if (config.features.air_features) {
-                if (category == Biome.Category.BEACH) {
-                    addFeature(biome, ConfiguredFeatures.AIR_FEATURES_BEACH);
-                } else {
+        //some of them have the same features so just made them the same
+        switch (category) {
+            case PLAINS:
+            case SWAMP:
+            case SAVANNA:
+                if (config.features.air_features) {
                     addFeature(biome, ConfiguredFeatures.AIR_FEATURES);
                 }
-            }
+                if (config.features.fallen_trees) {
+                    addFeature(biome, ConfiguredFeatures.FALLEN_TREE);
+                }
+                if (config.features.ruins) {
+                    addFeature(biome, ConfiguredFeatures.RUINS);
+                }
+                if (config.features.boulder) {
+                    addFeature(biome, ConfiguredFeatures.BOULDER);
+                }
 
-
-            if (config.features.fallen_trees) {
+                break;
+            case FOREST:
+                addFeature(biome, ConfiguredFeatures.AIR_FEATURES);
                 addFeature(biome, ConfiguredFeatures.FALLEN_TREE);
-            }
-            if (config.features.desert_features && category == Biome.Category.DESERT) {
-                addFeature(biome, ConfiguredFeatures.SMALL_DESERT_FEATURES);
-            }
-            if (config.features.ruins) {
-                addFeature(biome, ConfiguredFeatures.RUINS);
-            }
-            if (config.features.boulder) {
                 addFeature(biome, ConfiguredFeatures.BOULDER);
-            }
-            if (config.features.volcanic_vent && category == Biome.Category.OCEAN) {
-                addFeature(biome, ConfiguredFeatures.VOLCANIC_VENT);
-            }
-            if (config.features.beach_features && category == Biome.Category.BEACH) {
-                addFeature(biome, ConfiguredFeatures.SMALL_BEACH_FEATURES);
-            }
-            if (config.features.boats && category == Biome.Category.OCEAN) {
-                addFeature(biome, ConfiguredFeatures.BOAT);
-            }
-
-
-        }
-        if (category != Biome.Category.THEEND) {
-            if (config.features.lamppost) {
                 addFeature(biome, ConfiguredFeatures.LAMPPOST);
-            }
+                break;
+            case TAIGA:
+            case ICY:
+                addFeature(biome, ConfiguredFeatures.AIR_FEATURES);
+                addFeature(biome, ConfiguredFeatures.FALLEN_TREE);
+                addFeature(biome, ConfiguredFeatures.BOULDER);
+                break;
+            case DESERT:
+                addFeature(biome, ConfiguredFeatures.AIR_FEATURES);
+                addFeature(biome, ConfiguredFeatures.SMALL_DESERT_FEATURES);
+                addFeature(biome, ConfiguredFeatures.RUINS);
+                addFeature(biome, ConfiguredFeatures.BOULDER);
+                break;
+            case OCEAN:
+                addFeature(biome, ConfiguredFeatures.AIR_FEATURES);
+                addFeature(biome, ConfiguredFeatures.BOULDER);
+                addFeature(biome, ConfiguredFeatures.VOLCANIC_VENT);
+                addFeature(biome, ConfiguredFeatures.BOAT);
+                break;
+            case BEACH:
+                addFeature(biome, ConfiguredFeatures.AIR_FEATURES_BEACH);
+                addFeature(biome, ConfiguredFeatures.BOULDER);
+                addFeature(biome, ConfiguredFeatures.SMALL_BEACH_FEATURES);
+                break;
+            case JUNGLE:
+            case EXTREME_HILLS:
+            case RIVER:
+                addFeature(biome, ConfiguredFeatures.AIR_FEATURES);
+                addFeature(biome, ConfiguredFeatures.BOULDER);
+                break;
+            case MUSHROOM:
+            case MESA:
+                addFeature(biome, ConfiguredFeatures.AIR_FEATURES);
+                addFeature(biome, ConfiguredFeatures.RUINS);
+                addFeature(biome, ConfiguredFeatures.BOULDER);
+                break;
+            case NETHER:
+                addFeature(biome, ConfiguredFeatures.LAMPPOST);
+                break;
+            default:
+                //not included are THEEND and NONE because we don't need to be adding to them
+                break;
 
         }
     }
@@ -184,64 +193,78 @@ public class MoStructures implements ModInitializer {
                 if (id.toString().equals(string)) {
                     return;
                 }
-
             }
         }
 
         category = biome.getCategory();
+        switch (category) {
+            case PLAINS:
+                if (config.structures.barn_house) {
+                    addStructureToBiome(ConfiguredFeatures.BARN_HOUSE, biome);
+                }
+                if (config.structures.villager_tower) {
+                    addStructureToBiome(ConfiguredFeatures.VILLAGER_TOWER, biome);
+                }
+                if (config.structures.villager_market) {
+                    addStructureToBiome(ConfiguredFeatures.VILLAGER_MARKET, biome);
+                }
+                if (config.structures.abandoned_churches) {
+                    addStructureToBiome(ConfiguredFeatures.PLAINS_ABANDONED_CHURCH, biome);
+                }
+                break;
+            case SAVANNA:
+                if (config.structures.barn_house) {
+                    addStructureToBiome(ConfiguredFeatures.BARN_HOUSE, biome);
+                }
+                if (config.structures.villager_tower) {
+                    addStructureToBiome(ConfiguredFeatures.VILLAGER_TOWER, biome);
+                }
+                if (config.structures.villager_market) {
+                    addStructureToBiome(ConfiguredFeatures.VILLAGER_MARKET, biome);
+                }
+                if (config.structures.abandoned_churches) {
+                    addStructureToBiome(ConfiguredFeatures.SAVANNA_ABANDONED_CHURCH, biome);
+                }
+                break;
+            case DESERT:
+                if (config.structures.big_pyramid) {
+                    addStructureToBiome(ConfiguredFeatures.BIG_PYRAMID, biome);
+                }
+                if (config.structures.abandoned_churches) {
+                    addStructureToBiome(ConfiguredFeatures.DESERT_ABANDONED_CHURCH, biome);
+                }
+                break;
+            case JUNGLE:
+                if (config.structures.jungle_pyramid) {
+                    addStructureToBiome(ConfiguredFeatures.JUNGLE_PYRAMID, biome);
+                }
+                break;
+            case BEACH:
+                if (config.structures.the_castle_in_the_sky) {
+                    addStructureToBiome(ConfiguredFeatures.THE_CASTLE_IN_THE_SKY, biome);
+                }
+                break;
+            case FOREST:
+                if (config.structures.villager_tower) {
+                    addStructureToBiome(ConfiguredFeatures.VILLAGER_TOWER, biome);
+                }
+                if (config.structures.villager_market) {
+                    addStructureToBiome(ConfiguredFeatures.VILLAGER_MARKET, biome);
+                }
+                break;
+            case ICY:
+                if (config.structures.abandoned_churches) {
+                    addStructureToBiome(ConfiguredFeatures.SNOWY_ABANDONED_CHURCH, biome);
+                }
+                break;
+            case TAIGA:
+                if (config.structures.abandoned_churches) {
+                    addStructureToBiome(ConfiguredFeatures.TAIGA_ABANDONED_CHURCH, biome);
+                }
+                break;
+            default:
+                break;
 
-        if (config.structures.barn_house && (category == Biome.Category.PLAINS || category == Biome.Category.SAVANNA)) {
-            biome.getGenerationSettings().getStructureFeatures().add(() -> BARN_HOUSE);
-        }
-
-        if (config.structures.big_pyramid && category == Biome.Category.DESERT) {
-            addStructureToBiome(BIG_PYRAMID, biome);
-        }
-
-        if (config.structures.jungle_pyramid && category == Biome.Category.JUNGLE) {
-            addStructureToBiome(JUNGLE_PYRAMID, biome);
-        }
-
-        if (config.structures.the_castle_in_the_sky && category == Biome.Category.BEACH) {
-            addStructureToBiome(THE_CASTLE_IN_THE_SKY, biome);
-        }
-        if (category == Biome.Category.PLAINS || category == Biome.Category.SAVANNA || category == Biome.Category.FOREST) {
-            if (config.structures.villager_tower) {
-                addStructureToBiome(VILLAGER_TOWER, biome);
-            }
-            if (config.structures.villager_market) {
-                addStructureToBiome(VILLAGER_MARKET, biome);
-            }
-        }
-
-
-        if (config.structures.abandoned_churches) {
-            if (category == Biome.Category.PLAINS) {
-                addStructureToBiome(ABANDONED_CHURCH
-                                .configure(new StructurePoolFeatureConfig(pool(AbandonedChurchGenerator.PLAINS_STARTING_POOL), 2)),
-                        biome
-                );
-            } else if (category == Biome.Category.SAVANNA) {
-                addStructureToBiome(ABANDONED_CHURCH
-                                .configure(new StructurePoolFeatureConfig(pool(AbandonedChurchGenerator.SAVANNA_STARTING_POOL), 2)),
-                        biome
-                );
-            } else if (category == Biome.Category.DESERT) {
-                addStructureToBiome(ABANDONED_CHURCH
-                                .configure(new StructurePoolFeatureConfig(pool(AbandonedChurchGenerator.DESERT_STARTING_POOL), 2)),
-                        biome
-                );
-            } else if (category == Biome.Category.ICY) {
-                addStructureToBiome(ABANDONED_CHURCH
-                                .configure(new StructurePoolFeatureConfig(pool(AbandonedChurchGenerator.SNOWY_STARTING_POOL), 2)),
-                        biome
-                );
-            } else if (category == Biome.Category.TAIGA) {
-                addStructureToBiome(ABANDONED_CHURCH
-                                .configure(new StructurePoolFeatureConfig(pool(AbandonedChurchGenerator.TAIGA_STARTING_POOL), 2)),
-                        biome
-                );
-            }
         }
     }
 
@@ -280,15 +303,18 @@ public class MoStructures implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        //We first create the config.
         AutoConfig.register(MoStructuresConfig.class, JanksonConfigSerializer::new);
         config = MoStructures.getConfig();
 
+        //Have to register the features, structures, and configured structure/feature
         registerStructures();
         registerFeatures();
+        ConfiguredFeatures.registerConfiguredFeatures();
 
+        //prepare the banned biomes list for structure addition later on
+        //our biomes are added by the MinecraftServerMixin, which calls addFeaturesAndStructuresToBiome
         full_list_of_banned_biomes.addAll(Arrays.asList(always_banned_biomes));
         full_list_of_banned_biomes.addAll(Arrays.asList(config.biome_id_blacklist));
-        //puts all the structures and features in each biome already registered.
-
     }
 }

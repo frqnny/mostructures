@@ -1,8 +1,10 @@
 package io.github.franiscoder.mostructures.structure;
 
+import io.github.franiscoder.mostructures.MoStructures;
 import io.github.franiscoder.mostructures.generator.BigPyramidGenerator;
 import net.minecraft.structure.MarginedStructureStart;
 import net.minecraft.structure.StructureManager;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.DynamicRegistryManager;
@@ -12,6 +14,8 @@ import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 public class BigPyramidStructure extends SpacedStructure<StructurePoolFeatureConfig> {
+    public static final Identifier ID = MoStructures.id("big_pyramid");
+
     public BigPyramidStructure() {
         super(StructurePoolFeatureConfig.CODEC);
     }

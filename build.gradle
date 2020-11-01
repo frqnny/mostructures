@@ -22,13 +22,13 @@ dependencies {
 	modImplementation "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
 	include  "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
 
-	modRuntime "com.github.jellysquid3:lithium-fabric:mc1.16.2-0.5.4"
-	modRuntime "com.github.jellysquid3:phosphor-fabric:1.16.x~dev-SNAPSHOT"
-	modRuntime "com.github.FlashyReese:sodium-fabric:mc1.16.2-0.1.0-stable"
+	//modRuntime "com.github.jellysquid3:lithium-fabric:mc1.16.2-0.5.4"
+	//modRuntime "com.github.jellysquid3:phosphor-fabric:1.16.x~dev-SNAPSHOT"
+	//modRuntime "com.github.FlashyReese:sodium-fabric:mc1.16.2-0.1.0-stable"
 
-	runtime('net.fabricmc:sponge-mixin:0.8+build.18') {
-		force = true
-	}
+	//runtime('net.fabricmc:sponge-mixin:0.8+build.18') {
+	//	force = true
+	//}
 }
 
 processResources {
