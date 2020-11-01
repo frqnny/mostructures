@@ -63,7 +63,7 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
             StructureManager manager = world.toServerWorld().getStructureManager();
             Structure structure = manager.getStructureOrBlank(lamppost);
 
-            structure.place(world, newPos.down(), structurePlacementData, random);
+            structure.place(world, newPos, structurePlacementData, random);
             return true;
         } else if (category == Biome.Category.NETHER) {
             BlockRotation blockRotation = BlockRotation.random(random);
