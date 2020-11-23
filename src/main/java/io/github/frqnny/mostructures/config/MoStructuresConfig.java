@@ -23,10 +23,6 @@ public class MoStructuresConfig implements ConfigData {
     @ConfigEntry.Gui.CollapsibleObject
     public StructureChances structureChances = new StructureChances();
 
-    @Comment("You can use it to blacklist biomes yourself, overworld and modded dimensions in case I haven't covered them.")
-    public String[] biome_id_blacklist = {};
-
-
     public static class Features {
         @Comment("Airplanes & Air Balloons")
         public boolean air_features = true;

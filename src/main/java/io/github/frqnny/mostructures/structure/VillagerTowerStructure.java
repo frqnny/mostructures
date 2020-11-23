@@ -30,7 +30,6 @@ public class VillagerTowerStructure extends SpacedStructure<StructurePoolFeature
             super(feature, chunkX, chunkZ, box, references, seed);
         }
 
-
         @Override
         public void init(DynamicRegistryManager registryManager, ChunkGenerator chunkGenerator, StructureManager structureManager, int x, int z, Biome biome, StructurePoolFeatureConfig config) {
             VillagerTowerGenerator.addPieces(registryManager, config, chunkGenerator, structureManager, new BlockPos(x << 4, 0, z << 4), children, random);

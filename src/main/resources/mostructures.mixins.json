@@ -1,11 +1,9 @@
 {
   "required": true,
-  "package": "io.github.franiscoder.mostructures.mixin",
+  "package": "io.github.frqnny.mostructures.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "LakeFeatureMixin",
-    "GenerationSettingsAccessor",
-    "MinecraftServerMixin"
+    "LakeFeatureMixin"
   ],
   "client": [
   ],
