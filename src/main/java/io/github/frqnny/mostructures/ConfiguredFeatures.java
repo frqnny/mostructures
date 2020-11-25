@@ -18,6 +18,8 @@ public class ConfiguredFeatures {
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> THE_CASTLE_IN_THE_SKY = new TheCastleInTheSkyStructure().configure(new StructurePoolFeatureConfig(MoStructures.pool(TheCastleInTheSkyGenerator.STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> VILLAGER_TOWER = new VillagerTowerStructure().configure(new StructurePoolFeatureConfig(MoStructures.pool(VillagerTowerGenerator.STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> VILLAGER_MARKET = new VillagerMarketStructure().configure(new StructurePoolFeatureConfig(MoStructures.pool(VillagerMarketGenerator.STARTING_POOL), 2));
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> PILLAGER_FACTORY = new PillagerFactoryStructure().configure(new StructurePoolFeatureConfig(MoStructures.pool(PillagerFactoryGenerator.STARTING_POOL), 2));
+
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> PLAINS_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(MoStructures.pool(AbandonedChurchGenerator.PLAINS_STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> SAVANNA_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(MoStructures.pool(AbandonedChurchGenerator.SAVANNA_STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> DESERT_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(MoStructures.pool(AbandonedChurchGenerator.DESERT_STARTING_POOL), 2));
@@ -73,6 +75,7 @@ public class ConfiguredFeatures {
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, TheCastleInTheSkyStructure.ID, THE_CASTLE_IN_THE_SKY);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, VillagerTowerStructure.ID, VILLAGER_TOWER);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, VillagerMarketStructure.ID, VILLAGER_MARKET);
+        Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, PillagerFactoryStructure.ID, PILLAGER_FACTORY);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("plains_abandoned_church"), PLAINS_ABANDONED_CHURCH);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("savanna_abandoned_church"), SAVANNA_ABANDONED_CHURCH);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("desert_abandoned_church"), DESERT_ABANDONED_CHURCH);

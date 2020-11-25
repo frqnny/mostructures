@@ -80,6 +80,8 @@ public class MoStructuresConfig implements ConfigData {
         public boolean abandoned_churches = true;
         @Comment("Villager Market")
         public boolean villager_market = true;
+        @Comment("Pillager Factory")
+        public boolean pillager_factory = true;
     }
 
     public static class StructureChances {
@@ -90,7 +92,7 @@ public class MoStructuresConfig implements ConfigData {
         public int big_pyramid_seperation = 8;
         public int big_pyramid_spacing = 32;
         @Comment("Jungle Pyramid")
-        public int jungle_pyramid_seperation = 8;
+        public int jungle_pyramid_seperation = 5;
         public int jungle_pyramid_spacing = 32;
         @Comment("The Castle In The Sky")
         public int the_castle_in_the_sky_seperation = 8;
@@ -104,5 +106,8 @@ public class MoStructuresConfig implements ConfigData {
         @Comment("Villager Market")
         public int villager_market_seperation = 27;
         public int villager_market_spacing = 50;
+        @Comment("Pillager Factory")
+        public int pillager_factory_seperation = 27;
+        public int pillager_factory_spacing = 50;
     }
 }

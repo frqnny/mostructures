@@ -3,7 +3,8 @@
   "package": "io.github.frqnny.mostructures.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "LakeFeatureMixin"
+    "LakeFeatureMixin",
+    "MixinNoiseChunkGenerator"
   ],
   "client": [
   ],

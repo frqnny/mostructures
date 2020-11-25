@@ -48,45 +48,51 @@ public class MoStructures implements ModInitializer {
     private static MoStructuresConfig config;
 
     private static void registerStructures() {
-        FabricStructureBuilder.create(BarnHouseStructure.ID, io.github.frqnny.mostructures.ConfiguredFeatures.BARN_HOUSE.feature)
+        FabricStructureBuilder.create(BarnHouseStructure.ID, ConfiguredFeatures.BARN_HOUSE.feature)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.barn_house_spacing, config.structureChances.barn_house_seperation, 165757306)
-                .superflatFeature(io.github.frqnny.mostructures.ConfiguredFeatures.BARN_HOUSE)
+                .superflatFeature(ConfiguredFeatures.BARN_HOUSE)
                 .adjustsSurface()
                 .register();
-        FabricStructureBuilder.create(BigPyramidStructure.ID, io.github.frqnny.mostructures.ConfiguredFeatures.BIG_PYRAMID.feature)
+        FabricStructureBuilder.create(BigPyramidStructure.ID, ConfiguredFeatures.BIG_PYRAMID.feature)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.big_pyramid_spacing, config.structureChances.big_pyramid_seperation, 139284294)
-                .superflatFeature(io.github.frqnny.mostructures.ConfiguredFeatures.BIG_PYRAMID)
+                .superflatFeature(ConfiguredFeatures.BIG_PYRAMID)
                 .adjustsSurface()
                 .register();
-        FabricStructureBuilder.create(JunglePyramidStructure.ID, io.github.frqnny.mostructures.ConfiguredFeatures.JUNGLE_PYRAMID.feature)
+        FabricStructureBuilder.create(JunglePyramidStructure.ID, ConfiguredFeatures.JUNGLE_PYRAMID.feature)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.jungle_pyramid_spacing, config.structureChances.jungle_pyramid_seperation, 112178642)
-                .superflatFeature(io.github.frqnny.mostructures.ConfiguredFeatures.JUNGLE_PYRAMID)
+                .superflatFeature(ConfiguredFeatures.JUNGLE_PYRAMID)
                 .adjustsSurface()
                 .register();
-        FabricStructureBuilder.create(TheCastleInTheSkyStructure.ID, io.github.frqnny.mostructures.ConfiguredFeatures.THE_CASTLE_IN_THE_SKY.feature)
+        FabricStructureBuilder.create(TheCastleInTheSkyStructure.ID, ConfiguredFeatures.THE_CASTLE_IN_THE_SKY.feature)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.the_castle_in_the_sky_spacing, config.structureChances.the_castle_in_the_sky_seperation, 123494938)
-                .superflatFeature(io.github.frqnny.mostructures.ConfiguredFeatures.THE_CASTLE_IN_THE_SKY)
+                .superflatFeature(ConfiguredFeatures.THE_CASTLE_IN_THE_SKY)
                 .register();
-        FabricStructureBuilder.create(VillagerTowerStructure.ID, io.github.frqnny.mostructures.ConfiguredFeatures.VILLAGER_TOWER.feature)
+        FabricStructureBuilder.create(VillagerTowerStructure.ID, ConfiguredFeatures.VILLAGER_TOWER.feature)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.villager_tower_spacing, config.structureChances.villager_tower_seperation, 150292492)
-                .superflatFeature(io.github.frqnny.mostructures.ConfiguredFeatures.VILLAGER_TOWER)
+                .superflatFeature(ConfiguredFeatures.VILLAGER_TOWER)
                 .adjustsSurface()
                 .register();
         FabricStructureBuilder.create(AbandonedChurchStructure.ID, ABANDONED_CHURCH)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.abandoned_church_spacing, config.structureChances.abandoned_church_seperation, 169968400)
-                .superflatFeature(io.github.frqnny.mostructures.ConfiguredFeatures.PLAINS_ABANDONED_CHURCH)
+                .superflatFeature(ConfiguredFeatures.PLAINS_ABANDONED_CHURCH)
                 .adjustsSurface()
                 .register();
-        FabricStructureBuilder.create(VillagerMarketStructure.ID, io.github.frqnny.mostructures.ConfiguredFeatures.VILLAGER_MARKET.feature)
+        FabricStructureBuilder.create(VillagerMarketStructure.ID, ConfiguredFeatures.VILLAGER_MARKET.feature)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.villager_market_spacing, config.structureChances.villager_market_seperation, 284939542)
-                .superflatFeature(io.github.frqnny.mostructures.ConfiguredFeatures.VILLAGER_MARKET)
+                .superflatFeature(ConfiguredFeatures.VILLAGER_MARKET)
+                .adjustsSurface()
+                .register();
+        FabricStructureBuilder.create(PillagerFactoryStructure.ID, ConfiguredFeatures.PILLAGER_FACTORY.feature)
+                .step(GenerationStep.Feature.SURFACE_STRUCTURES)
+                .defaultConfig(config.structureChances.pillager_factory_spacing, config.structureChances.pillager_factory_seperation, 839204924)
+                .superflatFeature(ConfiguredFeatures.PILLAGER_FACTORY)
                 .adjustsSurface()
                 .register();
     }
@@ -188,7 +194,7 @@ public class MoStructures implements ModInitializer {
 
         addToBiome(VolcanicVentFeature.ID.getPath(),
                 (context) ->
-                        config.features.volcanic_vent &&
+                        config.features.volcanic_vent && !context.getBiomeKey().getValue().getPath().contains("frozen") &&
                                 context.getBiome().getCategory() == Biome.Category.OCEAN,
                 (context) ->
                         addFeature(context, ConfiguredFeatures.VOLCANIC_VENT)
@@ -269,6 +275,16 @@ public class MoStructures implements ModInitializer {
                 (context) ->
                         addStructure(context, ConfiguredFeatures.VILLAGER_MARKET)
         );
+        addToBiome(PillagerFactoryStructure.ID.getPath(),
+                (context) ->
+                        config.structures.pillager_factory && !context.getBiomeKey().getValue().getPath().contains("hill") &&
+                                (context.getBiome().getCategory() == Biome.Category.PLAINS ||
+                                        context.getBiome().getCategory() == Biome.Category.SAVANNA ||
+                                        context.getBiome().getCategory() == Biome.Category.TAIGA ||
+                                        context.getBiome().getCategory() == Biome.Category.ICY),
+                (context) ->
+                        addStructure(context, ConfiguredFeatures.PILLAGER_FACTORY)
+                );
 
         addToBiome(AbandonedChurchStructure.ID.getPath(),
                 (context) ->

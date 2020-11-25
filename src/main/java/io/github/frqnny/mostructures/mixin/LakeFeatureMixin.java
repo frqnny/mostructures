@@ -40,6 +40,7 @@ public class LakeFeatureMixin {
                             || !chunk.getStructureReferences(ConfiguredFeatures.VILLAGER_TOWER.feature).isEmpty()
                             || !chunk.getStructureReferences(MoStructures.ABANDONED_CHURCH).isEmpty()
                             || !chunk.getStructureReferences(ConfiguredFeatures.VILLAGER_MARKET.feature).isEmpty()
+                            || !chunk.getStructureReferences(ConfiguredFeatures.PILLAGER_FACTORY.feature).isEmpty()
             ) {
                 info.setReturnValue(false);
                 break;
@@ -47,5 +48,3 @@ public class LakeFeatureMixin {
         }
     }
 }
-// (Lnet/minecraft/world/StructureWorldAccess;Lnet/minecraft/world/gen/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/gen/feature/DefaultFeatureConfig;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V!
-// (Lnet/minecraft/world/StructureWorldAccess;Lnet/minecraft/world/gen/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/gen/feature/DefaultFeatureConfig;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V

@@ -21,10 +21,6 @@ dependencies {
 	//Dependencies
 	modImplementation "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
 	include  "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
-
-	//modRuntime "com.github.jellysquid3:lithium-fabric:1.16.x~stable-SNAPSHOT"
-	modRuntime "com.github.jellysquid3:phosphor-fabric:1.16.x~dev-SNAPSHOT"
-	modRuntime "com.github.jellysquid3:sodium-fabric:1.16.x~stable-SNAPSHOT"
 	
 }
 
