@@ -44,7 +44,7 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
             if (!world.getBlockState(posToWorkOn).getFluidState().isEmpty()) return null;
         }
 
-        return posToWorkOn.down();
+        return posToWorkOn;
     }
 
     @Override

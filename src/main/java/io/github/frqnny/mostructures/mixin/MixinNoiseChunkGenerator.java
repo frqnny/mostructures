@@ -1,14 +1,12 @@
 package io.github.frqnny.mostructures.mixin;
 
 import io.github.frqnny.mostructures.ConfiguredFeatures;
-import io.github.frqnny.mostructures.MoStructures;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.NoiseChunkGenerator;
-import net.minecraft.world.gen.feature.PillagerOutpostFeature;
 import net.minecraft.world.gen.feature.StructureFeature;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

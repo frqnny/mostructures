@@ -284,7 +284,7 @@ public class MoStructures implements ModInitializer {
                                         context.getBiome().getCategory() == Biome.Category.ICY),
                 (context) ->
                         addStructure(context, ConfiguredFeatures.PILLAGER_FACTORY)
-                );
+        );
 
         addToBiome(AbandonedChurchStructure.ID.getPath(),
                 (context) ->

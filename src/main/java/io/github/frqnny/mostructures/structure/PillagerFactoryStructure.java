@@ -1,7 +1,6 @@
 package io.github.frqnny.mostructures.structure;
 
 import io.github.frqnny.mostructures.MoStructures;
-import io.github.frqnny.mostructures.generator.AbandonedChurchGenerator;
 import io.github.frqnny.mostructures.generator.PillagerFactoryGenerator;
 import net.minecraft.structure.MarginedStructureStart;
 import net.minecraft.structure.StructureManager;
