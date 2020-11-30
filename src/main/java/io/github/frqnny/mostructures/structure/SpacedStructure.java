@@ -36,8 +36,8 @@ public abstract class SpacedStructure<C extends FeatureConfig> extends Structure
         StructureConfig configPillagerFactory = chunkGenerator.getStructuresConfig().getForType(ConfiguredFeatures.PILLAGER_FACTORY.feature);
         StructureConfig configVillagerMarket = chunkGenerator.getStructuresConfig().getForType(ConfiguredFeatures.VILLAGER_MARKET.feature);
         StructureConfig configVillagerTower = chunkGenerator.getStructuresConfig().getForType(ConfiguredFeatures.VILLAGER_TOWER.feature);
-        for (int k = chunkX - 10; k <= chunkX + 10; ++k) {
-            for (int m = chunkZ - 10; m <= chunkZ + 10; ++m) {
+        for (int k = chunkX - 2; k <= chunkX + 2; ++k) {
+            for (int m = chunkZ - 2; m <= chunkZ + 2; ++m) {
                 if (structureConfigVillage != null) {
                     ChunkPos possibleVillagePos = StructureFeature.VILLAGE.getStartChunk(structureConfigVillage, worldSeed, chunkRandom, k, m);
                     if (k == possibleVillagePos.x && m == possibleVillagePos.z) {

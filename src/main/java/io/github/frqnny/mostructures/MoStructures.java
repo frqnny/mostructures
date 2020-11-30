@@ -230,7 +230,7 @@ public class MoStructures implements ModInitializer {
 
         addToBiome(BigPyramidStructure.ID.getPath(),
                 (context) ->
-                        config.structures.big_pyramid &&
+                        config.structures.big_pyramid && !context.getBiomeKey().getValue().getPath().contains("hill") &&
                                 context.getBiome().getCategory() == Biome.Category.DESERT,
                 (context) ->
                         addStructure(context, ConfiguredFeatures.BIG_PYRAMID)
@@ -239,7 +239,7 @@ public class MoStructures implements ModInitializer {
 
         addToBiome(JunglePyramidStructure.ID.getPath(),
                 (context) ->
-                        config.structures.jungle_pyramid &&
+                        config.structures.jungle_pyramid && !context.getBiomeKey().getValue().getPath().contains("hill") &&
                                 context.getBiome().getCategory() == Biome.Category.JUNGLE,
                 (context) ->
                         addStructure(context, ConfiguredFeatures.JUNGLE_PYRAMID)
@@ -268,7 +268,7 @@ public class MoStructures implements ModInitializer {
 
         addToBiome(VillagerMarketStructure.ID.getPath(),
                 (context) ->
-                        config.structures.villager_market &&
+                        config.structures.villager_market && !context.getBiomeKey().getValue().getPath().contains("hill") &&
                                 (context.getBiome().getCategory() == Biome.Category.PLAINS ||
                                         context.getBiome().getCategory() == Biome.Category.SAVANNA ||
                                         context.getBiome().getCategory() == Biome.Category.FOREST),
