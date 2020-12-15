@@ -9,7 +9,7 @@ Mo' Structures is Fabric's best structure mod, carefully designed to enrich your
 
 
 ## Contributing
-Just contact me beforehand and then make a pr! 
+Just contact me beforehand and then make a pr! It will be fun, I promise!
 
 ## Setup
 
