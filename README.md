@@ -5,7 +5,7 @@
 [![](http://cf.way2muchnoise.eu/378266.svg)](https://www.curseforge.com/minecraft/mc-mods/mo-structures) 
 [![](http://cf.way2muchnoise.eu/versions/mo-structures.svg)](https://www.curseforge.com/minecraft/mc-mods/mo-structures) 
 
-Adding structures with interesting loot to Minecraft!
+The BEST Fabric structures mod ever!
 
 
 ## Contributing
