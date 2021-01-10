@@ -8,10 +8,7 @@ import io.github.frqnny.mostructures.structure.*;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.biome.v1.BiomeModificationContext;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
-import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
+import net.fabricmc.fabric.api.biome.v1.*;
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.processor.StructureProcessor;
@@ -20,6 +17,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.decorator.ChanceDecoratorConfig;
 import net.minecraft.world.gen.decorator.Decorator;
@@ -41,37 +39,43 @@ public class MoStructures implements ModInitializer {
     public static final Feature<DefaultFeatureConfig> SMALL_BEACH_FEATURES = new SmallBeachFeatures();
     public static final Feature<DefaultFeatureConfig> BOAT = new BoatFeature();
 
-
+    public static final StructureFeature<StructurePoolFeatureConfig> BARN_HOUSE = new BarnHouseStructure();
+    public static final StructureFeature<StructurePoolFeatureConfig> BIG_PYRAMID = new BigPyramidStructure();
+    public static final StructureFeature<StructurePoolFeatureConfig> JUNGLE_PYRAMID = new JunglePyramidStructure();
+    public static final StructureFeature<StructurePoolFeatureConfig> THE_CASTLE_IN_THE_SKY = new TheCastleInTheSkyStructure();
+    public static final StructureFeature<StructurePoolFeatureConfig> VILLAGER_TOWER = new VillagerTowerStructure();
+    public static final StructureFeature<StructurePoolFeatureConfig> VILLAGER_MARKET = new VillagerMarketStructure();
+    public static final StructureFeature<StructurePoolFeatureConfig> PILLAGER_FACTORY = new PillagerFactoryStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> ABANDONED_CHURCH = new AbandonedChurchStructure();
 
     public static final Decorator<ChanceDecoratorConfig> CHANCE_OCEAN_FLOOR_WG = Registry.register(Registry.DECORATOR, id("chance_heightmap_legacy"), new ChanceHeightmapDecorator());
     private static MoStructuresConfig config;
 
     private static void registerStructures() {
-        FabricStructureBuilder.create(BarnHouseStructure.ID, ConfiguredFeatures.BARN_HOUSE.feature)
+        FabricStructureBuilder.create(BarnHouseStructure.ID, BARN_HOUSE)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.barn_house_spacing, config.structureChances.barn_house_seperation, 165757306)
                 .superflatFeature(ConfiguredFeatures.BARN_HOUSE)
                 .adjustsSurface()
                 .register();
-        FabricStructureBuilder.create(BigPyramidStructure.ID, ConfiguredFeatures.BIG_PYRAMID.feature)
+        FabricStructureBuilder.create(BigPyramidStructure.ID, BIG_PYRAMID)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.big_pyramid_spacing, config.structureChances.big_pyramid_seperation, 139284294)
                 .superflatFeature(ConfiguredFeatures.BIG_PYRAMID)
                 .adjustsSurface()
                 .register();
-        FabricStructureBuilder.create(JunglePyramidStructure.ID, ConfiguredFeatures.JUNGLE_PYRAMID.feature)
+        FabricStructureBuilder.create(JunglePyramidStructure.ID, JUNGLE_PYRAMID)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.jungle_pyramid_spacing, config.structureChances.jungle_pyramid_seperation, 112178642)
                 .superflatFeature(ConfiguredFeatures.JUNGLE_PYRAMID)
                 .adjustsSurface()
                 .register();
-        FabricStructureBuilder.create(TheCastleInTheSkyStructure.ID, ConfiguredFeatures.THE_CASTLE_IN_THE_SKY.feature)
+        FabricStructureBuilder.create(TheCastleInTheSkyStructure.ID, THE_CASTLE_IN_THE_SKY)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.the_castle_in_the_sky_spacing, config.structureChances.the_castle_in_the_sky_seperation, 123494938)
                 .superflatFeature(ConfiguredFeatures.THE_CASTLE_IN_THE_SKY)
                 .register();
-        FabricStructureBuilder.create(VillagerTowerStructure.ID, ConfiguredFeatures.VILLAGER_TOWER.feature)
+        FabricStructureBuilder.create(VillagerTowerStructure.ID, VILLAGER_TOWER)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.villager_tower_spacing, config.structureChances.villager_tower_seperation, 150292492)
                 .superflatFeature(ConfiguredFeatures.VILLAGER_TOWER)
@@ -83,13 +87,13 @@ public class MoStructures implements ModInitializer {
                 .superflatFeature(ConfiguredFeatures.PLAINS_ABANDONED_CHURCH)
                 .adjustsSurface()
                 .register();
-        FabricStructureBuilder.create(VillagerMarketStructure.ID, ConfiguredFeatures.VILLAGER_MARKET.feature)
+        FabricStructureBuilder.create(VillagerMarketStructure.ID, VILLAGER_MARKET)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.villager_market_spacing, config.structureChances.villager_market_seperation, 284939542)
                 .superflatFeature(ConfiguredFeatures.VILLAGER_MARKET)
                 .adjustsSurface()
                 .register();
-        FabricStructureBuilder.create(PillagerFactoryStructure.ID, ConfiguredFeatures.PILLAGER_FACTORY.feature)
+        FabricStructureBuilder.create(PillagerFactoryStructure.ID, PILLAGER_FACTORY)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.pillager_factory_spacing, config.structureChances.pillager_factory_seperation, 839204924)
                 .superflatFeature(ConfiguredFeatures.PILLAGER_FACTORY)
@@ -110,211 +114,137 @@ public class MoStructures implements ModInitializer {
     }
 
     public static void putFeatures() {
-        addToBiome(SmallAirFeature.ID.getPath(),
-                (context) ->
-                        config.features.air_features &&
-                                (context.getBiome().getCategory() == Biome.Category.PLAINS ||
-                                        context.getBiome().getCategory() == Biome.Category.SWAMP ||
-                                        context.getBiome().getCategory() == Biome.Category.SAVANNA ||
-                                        context.getBiome().getCategory() == Biome.Category.FOREST ||
-                                        context.getBiome().getCategory() == Biome.Category.TAIGA ||
-                                        context.getBiome().getCategory() == Biome.Category.ICY ||
-                                        context.getBiome().getCategory() == Biome.Category.DESERT ||
-                                        context.getBiome().getCategory() == Biome.Category.OCEAN ||
-                                        !(context.getBiome().getCategory() == Biome.Category.BEACH)),
-                (context) ->
-                        addFeature(context, ConfiguredFeatures.AIR_FEATURES)
+        addToBiome(
+                SmallAirFeature.ID,
+                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SWAMP, Biome.Category.SAVANNA, Biome.Category.FOREST, Biome.Category.TAIGA, Biome.Category.ICY, Biome.Category.DESERT, Biome.Category.OCEAN).and(booleanToPredicate(config.features.air_features)),
+                (context) -> addFeature(context, ConfiguredFeatures.AIR_FEATURES)
         );
 
-        addToBiome(SmallAirFeature.ID.getPath(),
-                (context) ->
-                        config.features.air_features &&
-                                context.getBiome().getCategory() == Biome.Category.BEACH,
-                (context) ->
-                        addFeature(context, ConfiguredFeatures.AIR_FEATURES_BEACH)
+        addToBiome(
+                SmallAirFeature.ID,
+                BiomeSelectors.categories(Biome.Category.BEACH).and(booleanToPredicate(config.features.air_features)),
+                (context) -> addFeature(context, ConfiguredFeatures.AIR_FEATURES_BEACH)
         );
 
-        addToBiome(FallenTreeFeature.ID.getPath(),
-                (context) ->
-                        config.features.fallen_trees &&
-                                (context.getBiome().getCategory() == Biome.Category.PLAINS ||
-                                        context.getBiome().getCategory() == Biome.Category.SWAMP ||
-                                        context.getBiome().getCategory() == Biome.Category.SAVANNA ||
-                                        context.getBiome().getCategory() == Biome.Category.FOREST ||
-                                        context.getBiome().getCategory() == Biome.Category.TAIGA ||
-                                        context.getBiome().getCategory() == Biome.Category.ICY),
-                (context) ->
-                        addFeature(context, ConfiguredFeatures.FALLEN_TREE)
+        addToBiome(
+                FallenTreeFeature.ID,
+                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SWAMP, Biome.Category.SAVANNA, Biome.Category.FOREST, Biome.Category.TAIGA, Biome.Category.ICY).and(booleanToPredicate(config.features.fallen_trees)),
+                (context) -> addFeature(context, ConfiguredFeatures.FALLEN_TREE)
         );
 
-        addToBiome(SmallDryFeature.ID.getPath(),
-                (context) ->
-                        config.features.desert_features &&
-                                context.getBiome().getCategory() == Biome.Category.DESERT,
-                (context) ->
-                        addFeature(context, ConfiguredFeatures.SMALL_DESERT_FEATURES)
+        addToBiome(
+                SmallDryFeature.ID,
+                BiomeSelectors.categories(Biome.Category.DESERT).and(booleanToPredicate(config.features.desert_features)),
+                (context) -> addFeature(context, ConfiguredFeatures.SMALL_DESERT_FEATURES)
         );
 
-        addToBiome(RuinsFeature.ID.getPath(),
-                (context) ->
-                        config.features.ruins &&
-                                (context.getBiome().getCategory() == Biome.Category.PLAINS ||
-                                        context.getBiome().getCategory() == Biome.Category.SWAMP ||
-                                        context.getBiome().getCategory() == Biome.Category.SAVANNA ||
-                                        context.getBiome().getCategory() == Biome.Category.DESERT ||
-                                        context.getBiome().getCategory() == Biome.Category.MESA),
-                (context) ->
-                        addFeature(context, ConfiguredFeatures.RUINS)
+        addToBiome(
+                RuinsFeature.ID,
+                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SWAMP, Biome.Category.SAVANNA, Biome.Category.DESERT, Biome.Category.MESA).and(booleanToPredicate(config.features.ruins)),
+                (context) -> addFeature(context, ConfiguredFeatures.RUINS)
         );
 
-        addToBiome(LamppostFeature.ID.getPath(),
-                (context) ->
-                        config.features.lamppost &&
-                                (context.getBiome().getCategory() == Biome.Category.FOREST ||
-                                        context.getBiome().getCategory() == Biome.Category.NETHER),
-                (context) ->
-                        addFeature(context, ConfiguredFeatures.LAMPPOST)
+        addToBiome(
+                LamppostFeature.ID,
+                BiomeSelectors.categories(Biome.Category.FOREST, Biome.Category.NETHER).and(booleanToPredicate(config.features.lamppost)),
+                (context) -> addFeature(context, ConfiguredFeatures.LAMPPOST)
         );
 
-        addToBiome(BoulderFeature.ID.getPath(),
-                (context) ->
-                        config.features.boulder &&
-                                (context.getBiome().getCategory() == Biome.Category.PLAINS ||
-                                        context.getBiome().getCategory() == Biome.Category.SWAMP ||
-                                        context.getBiome().getCategory() == Biome.Category.SAVANNA ||
-                                        context.getBiome().getCategory() == Biome.Category.FOREST ||
-                                        context.getBiome().getCategory() == Biome.Category.TAIGA ||
-                                        context.getBiome().getCategory() == Biome.Category.ICY ||
-                                        context.getBiome().getCategory() == Biome.Category.DESERT ||
-                                        context.getBiome().getCategory() == Biome.Category.OCEAN ||
-                                        context.getBiome().getCategory() == Biome.Category.BEACH),
-                (context) ->
-                        addFeature(context, ConfiguredFeatures.BOULDER)
+        addToBiome(
+                BoulderFeature.ID,
+                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SWAMP, Biome.Category.SAVANNA, Biome.Category.FOREST, Biome.Category.TAIGA, Biome.Category.ICY, Biome.Category.DESERT, Biome.Category.OCEAN, Biome.Category.BEACH).and(booleanToPredicate(config.features.boulder)),
+                (context) -> addFeature(context, ConfiguredFeatures.BOULDER)
         );
 
-        addToBiome(VolcanicVentFeature.ID.getPath(),
-                (context) ->
-                        config.features.volcanic_vent && !context.getBiomeKey().getValue().getPath().contains("frozen") &&
-                                context.getBiome().getCategory() == Biome.Category.OCEAN,
-                (context) ->
-                        addFeature(context, ConfiguredFeatures.VOLCANIC_VENT)
+        addToBiome(
+                VolcanicVentFeature.ID,
+                BiomeSelectors.categories(Biome.Category.OCEAN).and(booleanToPredicate(config.features.volcanic_vent)).and(BiomeSelectors.excludeByKey(BiomeKeys.FROZEN_OCEAN)),
+                (context) -> addFeature(context, ConfiguredFeatures.VOLCANIC_VENT)
         );
 
-        addToBiome(SmallBeachFeatures.ID.getPath(),
-                (context) ->
-                        config.features.beach_features &&
-                                context.getBiome().getCategory() == Biome.Category.BEACH,
-                (context) ->
-                        addFeature(context, ConfiguredFeatures.SMALL_BEACH_FEATURES)
+        addToBiome(
+                SmallBeachFeatures.ID,
+                BiomeSelectors.categories(Biome.Category.BEACH).and(booleanToPredicate(config.features.beach_features)),
+                (context) -> addFeature(context, ConfiguredFeatures.SMALL_BEACH_FEATURES)
         );
 
-        addToBiome(BoatFeature.ID.getPath(),
-                (context) ->
-                        config.features.boats &&
-                                context.getBiome().getCategory() == Biome.Category.OCEAN,
-                (context) ->
-                        addFeature(context, ConfiguredFeatures.BOAT)
+        addToBiome(BoatFeature.ID,
+                BiomeSelectors.categories(Biome.Category.OCEAN).and(booleanToPredicate(config.features.boats)),
+                (context) -> addFeature(context, ConfiguredFeatures.BOAT)
         );
     }
 
     public static void putStructures() {
-        addToBiome(BarnHouseStructure.ID.getPath(),
-                (context) ->
-                        config.structures.barn_house &&
-                                (context.getBiome().getCategory() == Biome.Category.PLAINS ||
-                                        context.getBiome().getCategory() == Biome.Category.SAVANNA),
-                (context) ->
-                        addStructure(context, ConfiguredFeatures.BARN_HOUSE)
+        addToBiome(
+                BarnHouseStructure.ID,
+                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SAVANNA).and(booleanToPredicate(config.structures.barn_house)),
+                (context) -> addStructure(context, ConfiguredFeatures.BARN_HOUSE)
 
         );
 
-        addToBiome(BigPyramidStructure.ID.getPath(),
-                (context) ->
-                        config.structures.big_pyramid && !context.getBiomeKey().getValue().getPath().contains("hill") &&
-                                context.getBiome().getCategory() == Biome.Category.DESERT,
-                (context) ->
-                        addStructure(context, ConfiguredFeatures.BIG_PYRAMID)
+        addToBiome(
+                BigPyramidStructure.ID,
+                BiomeSelectors.categories(Biome.Category.DESERT).and(booleanToPredicate(config.structures.big_pyramid)).and((context) -> !context.getBiomeKey().getValue().getPath().contains("hill")),
+                (context) -> addStructure(context, ConfiguredFeatures.BIG_PYRAMID)
 
         );
 
-        addToBiome(JunglePyramidStructure.ID.getPath(),
-                (context) ->
-                        config.structures.jungle_pyramid && !context.getBiomeKey().getValue().getPath().contains("hill") &&
-                                context.getBiome().getCategory() == Biome.Category.JUNGLE,
-                (context) ->
-                        addStructure(context, ConfiguredFeatures.JUNGLE_PYRAMID)
+        addToBiome(
+                JunglePyramidStructure.ID,
+                BiomeSelectors.categories(Biome.Category.JUNGLE).and(booleanToPredicate(config.structures.jungle_pyramid)).and((context) -> !context.getBiomeKey().getValue().getPath().contains("hill")),
+                (context) -> addStructure(context, ConfiguredFeatures.JUNGLE_PYRAMID)
+        );
+
+        addToBiome(
+                TheCastleInTheSkyStructure.ID,
+                BiomeSelectors.categories(Biome.Category.BEACH).and(booleanToPredicate(config.structures.the_castle_in_the_sky)),
+                (context) -> addStructure(context, ConfiguredFeatures.THE_CASTLE_IN_THE_SKY)
 
         );
 
-        addToBiome(TheCastleInTheSkyStructure.ID.getPath(),
-                (context) ->
-                        config.structures.the_castle_in_the_sky &&
-                                context.getBiome().getCategory() == Biome.Category.BEACH,
-                (context) ->
-                        addStructure(context, ConfiguredFeatures.THE_CASTLE_IN_THE_SKY)
+        addToBiome(
+                VillagerTowerStructure.ID,
+                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SAVANNA, Biome.Category.FOREST).and(booleanToPredicate(config.structures.villager_tower)),
+                (context) -> addStructure(context, ConfiguredFeatures.VILLAGER_TOWER)
 
         );
 
-        addToBiome(VillagerTowerStructure.ID.getPath(),
-                (context) ->
-                        config.structures.villager_tower &&
-                                (context.getBiome().getCategory() == Biome.Category.PLAINS ||
-                                        context.getBiome().getCategory() == Biome.Category.SAVANNA ||
-                                        context.getBiome().getCategory() == Biome.Category.FOREST),
-                (context) ->
-                        addStructure(context, ConfiguredFeatures.VILLAGER_TOWER)
-
+        addToBiome(
+                VillagerMarketStructure.ID,
+                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SAVANNA, Biome.Category.FOREST).and(booleanToPredicate(config.structures.villager_market)).and((context) -> !context.getBiomeKey().getValue().getPath().contains("hill")),
+                (context) -> addStructure(context, ConfiguredFeatures.VILLAGER_MARKET)
         );
 
-        addToBiome(VillagerMarketStructure.ID.getPath(),
-                (context) ->
-                        config.structures.villager_market && !context.getBiomeKey().getValue().getPath().contains("hill") &&
-                                (context.getBiome().getCategory() == Biome.Category.PLAINS ||
-                                        context.getBiome().getCategory() == Biome.Category.SAVANNA ||
-                                        context.getBiome().getCategory() == Biome.Category.FOREST),
-                (context) ->
-                        addStructure(context, ConfiguredFeatures.VILLAGER_MARKET)
-        );
-        addToBiome(PillagerFactoryStructure.ID.getPath(),
-                (context) ->
-                        config.structures.pillager_factory && !context.getBiomeKey().getValue().getPath().contains("hill") &&
-                                (context.getBiome().getCategory() == Biome.Category.PLAINS ||
-                                        context.getBiome().getCategory() == Biome.Category.SAVANNA ||
-                                        context.getBiome().getCategory() == Biome.Category.TAIGA ||
-                                        context.getBiome().getCategory() == Biome.Category.ICY),
-                (context) ->
-                        addStructure(context, ConfiguredFeatures.PILLAGER_FACTORY)
+        addToBiome(
+                PillagerFactoryStructure.ID,
+                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SAVANNA, Biome.Category.TAIGA, Biome.Category.ICY).and(booleanToPredicate(config.structures.pillager_factory)).and((context) -> !context.getBiomeKey().getValue().getPath().contains("hill")),
+                (context) -> addStructure(context, ConfiguredFeatures.PILLAGER_FACTORY)
         );
 
-        addToBiome(AbandonedChurchStructure.ID.getPath(),
-                (context) ->
-                        config.structures.abandoned_churches && context.getBiome().getCategory() == Biome.Category.PLAINS,
-                (context) ->
-                        addStructure(context, ConfiguredFeatures.PLAINS_ABANDONED_CHURCH)
+        addToBiome(
+                AbandonedChurchStructure.ID,
+                BiomeSelectors.categories(Biome.Category.PLAINS).and(booleanToPredicate(config.structures.abandoned_churches)),
+                (context) -> addStructure(context, ConfiguredFeatures.PLAINS_ABANDONED_CHURCH)
         );
-        addToBiome(AbandonedChurchStructure.ID.getPath(),
-                (context) ->
-                        config.structures.abandoned_churches && context.getBiome().getCategory() == Biome.Category.DESERT,
-                (context) ->
-                        addStructure(context, ConfiguredFeatures.DESERT_ABANDONED_CHURCH)
+        addToBiome(
+                AbandonedChurchStructure.ID,
+                BiomeSelectors.categories(Biome.Category.DESERT).and(booleanToPredicate(config.structures.abandoned_churches)),
+                (context) -> addStructure(context, ConfiguredFeatures.DESERT_ABANDONED_CHURCH)
         );
-        addToBiome(AbandonedChurchStructure.ID.getPath(),
-                (context) ->
-                        config.structures.abandoned_churches && context.getBiome().getCategory() == Biome.Category.SAVANNA,
-                (context) ->
-                        addStructure(context, ConfiguredFeatures.SAVANNA_ABANDONED_CHURCH)
+        addToBiome(
+                AbandonedChurchStructure.ID,
+                BiomeSelectors.categories(Biome.Category.SAVANNA).and(booleanToPredicate(config.structures.abandoned_churches)),
+                (context) -> addStructure(context, ConfiguredFeatures.SAVANNA_ABANDONED_CHURCH)
         );
-        addToBiome(AbandonedChurchStructure.ID.getPath(),
-                (context) ->
-                        config.structures.abandoned_churches && context.getBiome().getCategory() == Biome.Category.TAIGA,
-                (context) ->
-                        addStructure(context, ConfiguredFeatures.TAIGA_ABANDONED_CHURCH)
+        addToBiome(
+                AbandonedChurchStructure.ID,
+                BiomeSelectors.categories(Biome.Category.TAIGA).and(booleanToPredicate(config.structures.abandoned_churches)),
+                (context) -> addStructure(context, ConfiguredFeatures.TAIGA_ABANDONED_CHURCH)
         );
-        addToBiome(AbandonedChurchStructure.ID.getPath(),
-                (context) ->
-                        config.structures.abandoned_churches && context.getBiome().getCategory() == Biome.Category.ICY,
-                (context) ->
-                        addStructure(context, ConfiguredFeatures.SNOWY_ABANDONED_CHURCH)
+        addToBiome(
+                AbandonedChurchStructure.ID,
+                BiomeSelectors.categories(Biome.Category.ICY).and(booleanToPredicate(config.structures.abandoned_churches)),
+                (context) -> addStructure(context, ConfiguredFeatures.SNOWY_ABANDONED_CHURCH)
         );
     }
 
@@ -331,8 +261,8 @@ public class MoStructures implements ModInitializer {
         return config;
     }
 
-    private static void addToBiome(String modificationName, Predicate<BiomeSelectionContext> selectorPredicate, Consumer<BiomeModificationContext> biomeAdditionConsumer) {
-        BiomeModifications.create(id(modificationName)).add(ModificationPhase.ADDITIONS, selectorPredicate, biomeAdditionConsumer);
+    private static void addToBiome(Identifier id, Predicate<BiomeSelectionContext> selectorPredicate, Consumer<BiomeModificationContext> biomeAdditionConsumer) {
+        BiomeModifications.create(id).add(ModificationPhase.ADDITIONS, selectorPredicate, biomeAdditionConsumer);
     }
 
     public static void addFeature(BiomeModificationContext context, ConfiguredFeature<?, ?> feature) {
@@ -343,6 +273,10 @@ public class MoStructures implements ModInitializer {
         context.getGenerationSettings().addBuiltInStructure(feature);
     }
 
+    public static Predicate<BiomeSelectionContext> booleanToPredicate(boolean bol) {
+        return (context) -> bol;
+    }
+
     public static StructureProcessorList register(String id, ImmutableList<StructureProcessor> processorList) {
         Identifier identifier = new Identifier(id);
         StructureProcessorList structureProcessorList = new StructureProcessorList(processorList);
@@ -351,11 +285,9 @@ public class MoStructures implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        //We first create the config.
         AutoConfig.register(MoStructuresConfig.class, JanksonConfigSerializer::new);
         config = MoStructures.getConfig();
 
-        //Have to register the features, structures, and configured structure/feature
         registerStructures();
         registerFeatures();
         ConfiguredFeatures.registerConfiguredFeatures();
