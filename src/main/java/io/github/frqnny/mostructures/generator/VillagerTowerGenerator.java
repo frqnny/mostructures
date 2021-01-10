@@ -70,7 +70,7 @@ public class VillagerTowerGenerator {
                         new Identifier("empty"),
                         ImmutableList.of(
                                 new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":villager/iron_golem"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + "villager/villager"), 3),
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":villager/villager"), 3),
                                 new Pair<>(StructurePoolElement.method_30438(), 1)
                         ),
                         StructurePool.Projection.RIGID
