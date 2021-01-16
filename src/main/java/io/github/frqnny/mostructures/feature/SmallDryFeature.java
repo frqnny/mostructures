@@ -21,9 +21,6 @@ import java.util.Random;
 
 public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
     public static final Identifier DEAD_TREE = MoStructures.id("desert/deadtree");
-    //public static final Identifier DESERT_ATRIUM = MoStructures.id("desert/desert_atrium");
-    //public static final Identifier[] IDENTIFIERS = {DEAD_TREE, DESERT_ATRIUM};
-
     public static final Identifier ID = MoStructures.id("dead_tree");
 
 
@@ -31,17 +28,10 @@ public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
         super(DefaultFeatureConfig.CODEC);
     }
 
-    private static boolean canGenerate(ServerWorldAccess world, BlockPos pos) {
-        Biome biome = world.getBiome(pos);
-
-        return biome.getCategory() == Biome.Category.DESERT && world.toServerWorld().getRegistryKey().equals(World.OVERWORLD);
-    }
 
     @Override
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig featureConfig) {
-        boolean result = canGenerate(world, pos) && world.getBlockState(pos.down()) == Blocks.SAND.getDefaultState();
-
-        if (result) {
+        if (world.getBlockState(pos.down()) == Blocks.SAND.getDefaultState()) {
             //int randomStructureToPlace = world.getRandom().nextInt(IDENTIFIERS.length);
             //to come back soon
             //Identifier structureId = IDENTIFIERS[randomStructureToPlace];
@@ -54,6 +44,6 @@ public class SmallDryFeature extends Feature<DefaultFeatureConfig> {
             structure.place(world, newPos, structurePlacementData, random);
         }
 
-        return result;
+        return true;
     }
 }

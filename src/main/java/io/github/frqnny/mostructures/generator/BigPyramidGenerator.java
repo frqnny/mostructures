@@ -20,44 +20,22 @@ import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 import java.util.List;
 
 public class BigPyramidGenerator {
-    public static final Identifier SW_STARTING_PIECE = MoStructures.id("pyramid/sw_piece");
-    public static final Identifier PYRAMID_PIECES = MoStructures.id("pyramid/pieces");
-    public static final Identifier NE_FINAL_PIECE = MoStructures.id("pyramid/ne_piece");
+    public static final Identifier BASE = MoStructures.id("pyramid/base");
 
     public static final StructurePool STARTING_POOL;
 
     static {
         STARTING_POOL = StructurePools.register(
                 new StructurePool(
-                        SW_STARTING_PIECE,
+                        BASE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":pyramid/sw"), 1)
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":pyramid/base"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
         );
-        StructurePools.register(
-                new StructurePool(
-                        PYRAMID_PIECES,
-                        new Identifier("empty"),
-                        ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":pyramid/se"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":pyramid/nw"), 1)
-                        ),
-                        StructurePool.Projection.RIGID
-                )
-        );
-        StructurePools.register(
-                new StructurePool(
-                        NE_FINAL_PIECE,
-                        new Identifier("empty"),
-                        ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":pyramid/ne"), 1)
-                        ),
-                        StructurePool.Projection.RIGID
-                )
-        );
+
     }
 
 

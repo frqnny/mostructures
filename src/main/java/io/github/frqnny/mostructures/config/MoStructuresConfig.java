@@ -89,11 +89,11 @@ public class MoStructuresConfig implements ConfigData {
         public int barn_house_seperation = 16;
         public int barn_house_spacing = 40;
         @Comment("Big Pyramid")
-        public int big_pyramid_seperation = 8;
-        public int big_pyramid_spacing = 32;
+        public int big_pyramid_seperation = 5;
+        public int big_pyramid_spacing = 25;
         @Comment("Jungle Pyramid")
         public int jungle_pyramid_seperation = 5;
-        public int jungle_pyramid_spacing = 32;
+        public int jungle_pyramid_spacing = 25;
         @Comment("The Castle In The Sky")
         public int the_castle_in_the_sky_seperation = 8;
         public int the_castle_in_the_sky_spacing = 32;

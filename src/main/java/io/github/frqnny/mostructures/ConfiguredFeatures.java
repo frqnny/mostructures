@@ -3,6 +3,7 @@ package io.github.frqnny.mostructures;
 import io.github.frqnny.mostructures.feature.SmallAirFeature;
 import io.github.frqnny.mostructures.generator.*;
 import io.github.frqnny.mostructures.structure.*;
+import io.github.frqnny.mostructures.util.RegistrationHelper;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.decorator.ChanceDecoratorConfig;
@@ -12,19 +13,19 @@ import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 public class ConfiguredFeatures {
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> BARN_HOUSE = MoStructures.BARN_HOUSE.configure(new StructurePoolFeatureConfig(MoStructures.pool(BarnHouseGenerator.STARTING_POOL), 2));
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> BIG_PYRAMID = MoStructures.BIG_PYRAMID.configure(new StructurePoolFeatureConfig(MoStructures.pool(BigPyramidGenerator.STARTING_POOL), 2));
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> JUNGLE_PYRAMID = MoStructures.JUNGLE_PYRAMID.configure(new StructurePoolFeatureConfig(MoStructures.pool(JunglePyramidGenerator.STARTING_POOL), 2));
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> THE_CASTLE_IN_THE_SKY = MoStructures.THE_CASTLE_IN_THE_SKY.configure(new StructurePoolFeatureConfig(MoStructures.pool(TheCastleInTheSkyGenerator.STARTING_POOL), 2));
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> VILLAGER_TOWER = MoStructures.VILLAGER_TOWER.configure(new StructurePoolFeatureConfig(MoStructures.pool(VillagerTowerGenerator.STARTING_POOL), 2));
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> VILLAGER_MARKET = MoStructures.VILLAGER_MARKET.configure(new StructurePoolFeatureConfig(MoStructures.pool(VillagerMarketGenerator.STARTING_POOL), 2));
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> PILLAGER_FACTORY = MoStructures.PILLAGER_FACTORY.configure(new StructurePoolFeatureConfig(MoStructures.pool(PillagerFactoryGenerator.STARTING_POOL), 2));
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> BARN_HOUSE = MoStructures.BARN_HOUSE.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(BarnHouseGenerator.STARTING_POOL), 2));
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> BIG_PYRAMID = MoStructures.BIG_PYRAMID.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(BigPyramidGenerator.STARTING_POOL), 2));
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> JUNGLE_PYRAMID = MoStructures.JUNGLE_PYRAMID.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(JunglePyramidGenerator.STARTING_POOL), 2));
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> THE_CASTLE_IN_THE_SKY = MoStructures.THE_CASTLE_IN_THE_SKY.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(TheCastleInTheSkyGenerator.STARTING_POOL), 2));
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> VILLAGER_TOWER = MoStructures.VILLAGER_TOWER.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(VillagerTowerGenerator.STARTING_POOL), 2));
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> VILLAGER_MARKET = MoStructures.VILLAGER_MARKET.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(VillagerMarketGenerator.STARTING_POOL), 2));
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> PILLAGER_FACTORY = MoStructures.PILLAGER_FACTORY.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(PillagerFactoryGenerator.STARTING_POOL), 2));
 
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> PLAINS_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(MoStructures.pool(AbandonedChurchGenerator.PLAINS_STARTING_POOL), 2));
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> SAVANNA_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(MoStructures.pool(AbandonedChurchGenerator.SAVANNA_STARTING_POOL), 2));
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> DESERT_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(MoStructures.pool(AbandonedChurchGenerator.DESERT_STARTING_POOL), 2));
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> SNOWY_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(MoStructures.pool(AbandonedChurchGenerator.SNOWY_STARTING_POOL), 2));
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> TAIGA_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(MoStructures.pool(AbandonedChurchGenerator.TAIGA_STARTING_POOL), 2));
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> PLAINS_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(AbandonedChurchGenerator.PLAINS_STARTING_POOL), 2));
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> SAVANNA_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(AbandonedChurchGenerator.SAVANNA_STARTING_POOL), 2));
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> DESERT_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(AbandonedChurchGenerator.DESERT_STARTING_POOL), 2));
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> SNOWY_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(AbandonedChurchGenerator.SNOWY_STARTING_POOL), 2));
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> TAIGA_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(AbandonedChurchGenerator.TAIGA_STARTING_POOL), 2));
 
     public static ConfiguredFeature<?, ?> AIR_FEATURES_BEACH = MoStructures.AIR_FEATURES
             .configure(FeatureConfig.DEFAULT)

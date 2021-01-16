@@ -61,19 +61,13 @@ public class BoulderFeature extends Feature<DefaultFeatureConfig> {
 
     @Override
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig featureConfig) {
-        Biome.Category category = world.getBiome(pos).getCategory();
+        Random randomFixed = world.getRandom();
+        pos = world.getTopPosition(Heightmap.Type.OCEAN_FLOOR_WG, pos);
 
-        if (category == Biome.Category.NETHER || category == Biome.Category.THEEND) {
-            return false;
-        } else {
-            Random randomFixed = world.getRandom();
-            pos = world.getTopPosition(Heightmap.Type.OCEAN_FLOOR_WG, pos);
+        generateSphere(world, pos, 6 + randomFixed.nextInt(5));
+        generateSphere(world, pos.add(random.nextInt(7), random.nextInt(2), random.nextInt(6)), 5 + randomFixed.nextInt(5));
+        generateSphere(world, pos.add(random.nextInt(6), random.nextInt(2), random.nextInt(7)), 5 + randomFixed.nextInt(5));
 
-            generateSphere(world, pos, 6 + randomFixed.nextInt(5));
-            generateSphere(world, pos.add(random.nextInt(7), random.nextInt(2), random.nextInt(6)), 5 + randomFixed.nextInt(5));
-            generateSphere(world, pos.add(random.nextInt(6), random.nextInt(2), random.nextInt(7)), 5 + randomFixed.nextInt(5));
-
-            return true;
-        }
+        return true;
     }
 }

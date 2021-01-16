@@ -61,16 +61,6 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig featureConfig) {
         Biome.Category category = world.getBiome(pos).getCategory();
 
-        if (category == Biome.Category.OCEAN
-                || category == Biome.Category.RIVER
-                || category == Biome.Category.BEACH
-                || category == Biome.Category.THEEND
-                || category == Biome.Category.NETHER
-                || !Objects.requireNonNull(world.toServerWorld().getRegistryManager().getOptional(Registry.BIOME_KEY).get().getId(world.getBiome(pos))).getNamespace().equals("minecraft")) {
-            return false;
-        }
-
-
         BlockPos newPos = world.getTopPosition(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos);
 
         if (world.getBlockState(newPos.down()) == Blocks.WATER.getDefaultState()) {
@@ -82,7 +72,7 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
         }
 
         //Makes Desert Fallen Trees rarer, as in Forest that is taken care whether it is to generate in an open space or not
-        if (category == Biome.Category.DESERT || category == Biome.Category.PLAINS || category == Biome.Category.SWAMP) {
+        if (category == Biome.Category.DESERT || category == Biome.Category.PLAINS || category == Biome.Category.SWAMP || category == Biome.Category.SAVANNA) {
             if (random.nextInt(10) != 1) {
                 return false;
             }

@@ -3,6 +3,7 @@ package io.github.frqnny.mostructures.generator;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import io.github.frqnny.mostructures.MoStructures;
+import io.github.frqnny.mostructures.util.RegistrationHelper;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructurePiece;
@@ -23,7 +24,7 @@ import java.util.List;
 
 public class VillagerTowerGenerator {
     public static final StructurePool STARTING_POOL;
-    public static final StructureProcessorList TOWER_ROT = MoStructures.register("tower_rot", ImmutableList.of(new BlockRotStructureProcessor(0.45F)));
+    public static final StructureProcessorList TOWER_ROT = RegistrationHelper.registerStructureProcessor("tower_rot", ImmutableList.of(new BlockRotStructureProcessor(0.45F)));
     private static final Identifier BASE_PLATES = MoStructures.id("villager/tower_plates");
     private static final Identifier TOWERS = MoStructures.id("villager/towers");
     private static final Identifier FEATURE_PLATES = MoStructures.id("villager/feature_plates");

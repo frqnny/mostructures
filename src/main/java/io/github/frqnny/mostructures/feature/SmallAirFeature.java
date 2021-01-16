@@ -30,19 +30,15 @@ public class SmallAirFeature extends Feature<DefaultFeatureConfig> {
 
     @Override
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig featureConfig) {
-        boolean result = world.toServerWorld().getRegistryKey().equals(World.OVERWORLD);
-
-        if (result) {
-            int i = random.nextInt(AIR_FEATURES.length);
-            StructureManager manager = world.toServerWorld().getStructureManager();
-            Structure structure = manager.getStructureOrBlank(AIR_FEATURES[i]);
-            int yToAdd = Math.max(random.nextInt(100), 45);
-            BlockPos finalPos = pos.add(0, yToAdd, 0);
-            BlockRotation blockRotation = BlockRotation.random(random);
-            StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
-            structure.place(world, finalPos, structurePlacementData, random);
-        }
-        return result;
+        int i = random.nextInt(AIR_FEATURES.length);
+        StructureManager manager = world.toServerWorld().getStructureManager();
+        Structure structure = manager.getStructureOrBlank(AIR_FEATURES[i]);
+        int yToAdd = Math.max(random.nextInt(100), 45);
+        BlockPos finalPos = pos.add(0, yToAdd, 0);
+        BlockRotation blockRotation = BlockRotation.random(random);
+        StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
+        structure.place(world, finalPos, structurePlacementData, random);
+        return true;
     }
 
 

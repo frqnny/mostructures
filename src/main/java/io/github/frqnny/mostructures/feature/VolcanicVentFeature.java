@@ -54,7 +54,7 @@ public class VolcanicVentFeature extends Feature<DefaultFeatureConfig> {
 
     @Override
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig featureConfig) {
-        boolean result = getBaseHeight(world, pos.getX(), pos.getZ()) < 50 && world.toServerWorld().getRegistryKey().equals(World.OVERWORLD);
+        boolean result = getBaseHeight(world, pos.getX(), pos.getZ()) < 50;
 
         if (result) {
             BlockPos actualPos = new BlockPos(pos.getX(), getBaseHeight(world, pos.getX(), pos.getZ()), pos.getZ());
@@ -63,14 +63,12 @@ public class VolcanicVentFeature extends Feature<DefaultFeatureConfig> {
             int z = pos.getZ();
             float[] percentageToRadius = new float[]{1.0F, .9F, 0.75F, 0.7F, 0.59F, 0.50F, .45F, 0.40F, 0.3F, 0.3F, 0.3F, 0.25F, 0.22F, 0.2F};
             int length = percentageToRadius.length;
-            int l = 16;
-            int m = random.nextInt(Math.max(1, 8 - l / 2));
             BlockPos.Mutable mutable = BlockPos.ORIGIN.mutableCopy();
 
             for (int o = x - length; o <= x + length; ++o) {
                 for (int p = z - length; p <= z + length; ++p) {
                     int q = Math.abs(o - x) + Math.abs(p - z);
-                    int r = Math.max(0, q + m);
+                    int r = Math.max(0, q);
                     if (r < length) {
                         float f = percentageToRadius[r];
                         if (random.nextDouble() < (double) f) {

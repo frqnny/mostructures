@@ -27,14 +27,11 @@ public class BoatFeature extends Feature<DefaultFeatureConfig> {
 
     @Override
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig featureConfig) {
-        boolean result = world.toServerWorld().getRegistryKey().equals(World.OVERWORLD);
-        if (result) {
-            BlockPos newPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, pos);
-            Structure structure = world.toServerWorld().getStructureManager().getStructureOrBlank(BOAT1);
-            BlockRotation blockRotation = BlockRotation.random(random);
-            StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
-            structure.place(world, newPos.add(0, -3, 0), structurePlacementData, random);
-        }
-        return result;
+        BlockPos newPos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, pos);
+        Structure structure = world.toServerWorld().getStructureManager().getStructureOrBlank(BOAT1);
+        BlockRotation blockRotation = BlockRotation.random(random);
+        StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
+        structure.place(world, newPos.add(0, -3, 0), structurePlacementData, random);
+        return true;
     }
 }

@@ -3,6 +3,7 @@ package io.github.frqnny.mostructures.generator;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import io.github.frqnny.mostructures.MoStructures;
+import io.github.frqnny.mostructures.util.RegistrationHelper;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructurePiece;
@@ -28,7 +29,7 @@ public class TheCastleInTheSkyGenerator {
 
     public static final StructurePool STARTING_POOL;
 
-    public static final StructureProcessorList TCINS_ROT = MoStructures.register("tcins_rot", ImmutableList.of(new BlockRotStructureProcessor(0.25F)));
+    public static final StructureProcessorList TCINS_ROT = RegistrationHelper.registerStructureProcessor("tcins_rot", ImmutableList.of(new BlockRotStructureProcessor(0.25F)));
 
     static {
         STARTING_POOL = StructurePools.register(
