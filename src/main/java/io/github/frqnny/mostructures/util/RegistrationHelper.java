@@ -1,6 +1,7 @@
 package io.github.frqnny.mostructures.util;
 
 import com.google.common.collect.ImmutableList;
+import io.github.frqnny.mostructures.MoStructures;
 import net.fabricmc.fabric.api.biome.v1.BiomeModificationContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
@@ -41,7 +42,7 @@ public class RegistrationHelper {
     }
 
     public static StructureProcessorList registerStructureProcessor(String id, ImmutableList<StructureProcessor> processorList) {
-        Identifier identifier = new Identifier(id);
+        Identifier identifier = MoStructures.id(id);
         StructureProcessorList structureProcessorList = new StructureProcessorList(processorList);
         return BuiltinRegistries.add(BuiltinRegistries.STRUCTURE_PROCESSOR_LIST, identifier, structureProcessorList);
     }

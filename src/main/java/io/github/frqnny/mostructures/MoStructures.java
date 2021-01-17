@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import io.github.frqnny.mostructures.config.MoStructuresConfig;
 import io.github.frqnny.mostructures.decorator.ChanceHeightmapDecorator;
 import io.github.frqnny.mostructures.feature.*;
+import io.github.frqnny.mostructures.generator.JunglePyramidGenerator;
 import io.github.frqnny.mostructures.structure.*;
 import io.github.frqnny.mostructures.util.RegistrationHelper;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
@@ -11,6 +12,7 @@ import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.*;
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
+import net.minecraft.structure.JungleTempleGenerator;
 import net.minecraft.structure.processor.StructureProcessor;
 import net.minecraft.structure.processor.StructureProcessorList;
 import net.minecraft.util.Identifier;
@@ -171,6 +173,7 @@ public class MoStructures implements ModInitializer {
     }
 
     public static void putStructures() {
+        JunglePyramidGenerator.registerJungleRotProcessor();
         RegistrationHelper.addToBiome(
                 BarnHouseStructure.ID,
                 BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SAVANNA).and(RegistrationHelper.booleanToPredicate(config.structures.barn_house)).and(BiomeSelectors.foundInOverworld()),
@@ -180,7 +183,7 @@ public class MoStructures implements ModInitializer {
 
         RegistrationHelper.addToBiome(
                 BigPyramidStructure.ID,
-                BiomeSelectors.categories(Biome.Category.DESERT).and(RegistrationHelper.booleanToPredicate(config.structures.big_pyramid)).and(RegistrationHelper.getNoHillsPredicate()).and(BiomeSelectors.foundInOverworld()),
+                BiomeSelectors.categories(Biome.Category.DESERT).and(RegistrationHelper.booleanToPredicate(config.structures.big_pyramid)).and(RegistrationHelper.getNoHillsPredicate()).and(BiomeSelectors.foundInOverworld()).and((context) -> !context.getBiomeKey().getValue().getPath().contains("lakes")),
                 (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.BIG_PYRAMID)
 
         );
