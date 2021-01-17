@@ -12,7 +12,6 @@ import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.structure.pool.StructurePoolElement;
 import net.minecraft.structure.pool.StructurePools;
-import net.minecraft.structure.processor.StructureProcessorList;
 import net.minecraft.structure.processor.StructureProcessorType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -28,16 +27,13 @@ public class JunglePyramidGenerator {
 
     public static final StructurePool STARTING_POOL;
 
-    public static StructureProcessorType<JungleTempleStructureProcessor> PROCESSOR;
-    public static StructureProcessorList JUNGLE_ROT_LIST;
-
     static {
         STARTING_POOL = StructurePools.register(
                 new StructurePool(
                         BASE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>((StructurePoolElement.method_30426(MoStructures.MODID + ":jungle_pyramid/base", JUNGLE_ROT_LIST)), 1)
+                                new Pair<>((StructurePoolElement.method_30426(MoStructures.MODID + ":jungle_pyramid/base", MoStructures.JUNGLE_ROT_LIST)), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -48,8 +44,4 @@ public class JunglePyramidGenerator {
         StructurePoolBasedGenerator.method_30419(registry, config, PoolStructurePiece::new, chunkGenerator, structureManager, pos, pieces, random, true, true);
     }
 
-    public static void registerJungleRotProcessor() {
-        PROCESSOR = StructureProcessorType.register("jungle_rot_processor", JungleTempleStructureProcessor.CODEC);
-        JUNGLE_ROT_LIST = RegistrationHelper.registerStructureProcessor("jungle_rot", ImmutableList.of(new JungleTempleStructureProcessor(0.15F)));
-    }
 }

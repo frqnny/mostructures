@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 import io.github.frqnny.mostructures.config.MoStructuresConfig;
 import io.github.frqnny.mostructures.decorator.ChanceHeightmapDecorator;
 import io.github.frqnny.mostructures.feature.*;
-import io.github.frqnny.mostructures.generator.JunglePyramidGenerator;
+import io.github.frqnny.mostructures.processor.JungleTempleStructureProcessor;
 import io.github.frqnny.mostructures.structure.*;
 import io.github.frqnny.mostructures.util.RegistrationHelper;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
@@ -12,11 +12,9 @@ import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.*;
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
-import net.minecraft.structure.JungleTempleGenerator;
-import net.minecraft.structure.processor.StructureProcessor;
 import net.minecraft.structure.processor.StructureProcessorList;
+import net.minecraft.structure.processor.StructureProcessorType;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
@@ -47,6 +45,8 @@ public class MoStructures implements ModInitializer {
     public static final StructureFeature<StructurePoolFeatureConfig> ABANDONED_CHURCH = new AbandonedChurchStructure();
 
     public static final Decorator<ChanceDecoratorConfig> CHANCE_OCEAN_FLOOR_WG = Registry.register(Registry.DECORATOR, id("chance_heightmap_legacy"), new ChanceHeightmapDecorator());
+    public static StructureProcessorType<JungleTempleStructureProcessor> PROCESSOR;
+    public static StructureProcessorList JUNGLE_ROT_LIST;
     private static MoStructuresConfig config;
 
     private static void registerStructures() {
@@ -173,7 +173,6 @@ public class MoStructures implements ModInitializer {
     }
 
     public static void putStructures() {
-        JunglePyramidGenerator.registerJungleRotProcessor();
         RegistrationHelper.addToBiome(
                 BarnHouseStructure.ID,
                 BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SAVANNA).and(RegistrationHelper.booleanToPredicate(config.structures.barn_house)).and(BiomeSelectors.foundInOverworld()),
@@ -256,10 +255,17 @@ public class MoStructures implements ModInitializer {
         return config;
     }
 
+    public static void registerJungleRotProcessor() {
+        PROCESSOR = StructureProcessorType.register("jungle_rot_processor", JungleTempleStructureProcessor.CODEC);
+        JUNGLE_ROT_LIST = RegistrationHelper.registerStructureProcessor("jungle_rot", ImmutableList.of(new JungleTempleStructureProcessor(0.15F)));
+    }
+
     @Override
     public void onInitialize() {
         AutoConfig.register(MoStructuresConfig.class, JanksonConfigSerializer::new);
         config = MoStructures.getConfig();
+
+        registerJungleRotProcessor();
 
         registerStructures();
         registerFeatures();

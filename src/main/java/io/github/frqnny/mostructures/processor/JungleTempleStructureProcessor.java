@@ -1,7 +1,8 @@
 package io.github.frqnny.mostructures.processor;
 
 import com.mojang.serialization.Codec;
-import io.github.frqnny.mostructures.generator.JunglePyramidGenerator;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import io.github.frqnny.mostructures.MoStructures;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -19,7 +20,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 
 public class JungleTempleStructureProcessor extends StructureProcessor {
-    public static final Codec<JungleTempleStructureProcessor> CODEC;
+    public static final Codec<JungleTempleStructureProcessor> CODEC =  RecordCodecBuilder.create((proc) -> proc.group(
+            Codec.FLOAT.fieldOf("mossiness").forGetter(processor-> processor.mossiness)
+    ).apply(proc, JungleTempleStructureProcessor::new));
     private final float mossiness;
 
     public JungleTempleStructureProcessor(float mossiness) {
@@ -64,10 +67,8 @@ public class JungleTempleStructureProcessor extends StructureProcessor {
     }
 
     protected StructureProcessorType<?> getType() {
-        return JunglePyramidGenerator.PROCESSOR;
+        return MoStructures.PROCESSOR;
     }
 
-    static {
-        CODEC = Codec.FLOAT.fieldOf("mossiness").xmap(JungleTempleStructureProcessor::new, (processor) -> processor.mossiness).codec();
-    }
+
 }
