@@ -82,6 +82,8 @@ public class MoStructuresConfig implements ConfigData {
         public boolean villager_market = true;
         @Comment("Pillager Factory")
         public boolean pillager_factory = true;
+        @Comment("Ice Tower")
+        public boolean ice_tower = true;
     }
 
     public static class StructureChances {
@@ -109,5 +111,8 @@ public class MoStructuresConfig implements ConfigData {
         @Comment("Pillager Factory")
         public int pillager_factory_seperation = 27;
         public int pillager_factory_spacing = 50;
+        @Comment("Ice Tower")
+        public int ice_tower_seperation = 8;
+        public int ice_tower_spacing = 32;
     }
 }

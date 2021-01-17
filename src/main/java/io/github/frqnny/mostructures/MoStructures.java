@@ -4,13 +4,13 @@ import com.google.common.collect.ImmutableList;
 import io.github.frqnny.mostructures.config.MoStructuresConfig;
 import io.github.frqnny.mostructures.decorator.ChanceHeightmapDecorator;
 import io.github.frqnny.mostructures.feature.*;
-import io.github.frqnny.mostructures.processor.JungleTempleStructureProcessor;
+import io.github.frqnny.mostructures.processor.SimpleStoneStructureProcessor;
 import io.github.frqnny.mostructures.structure.*;
 import io.github.frqnny.mostructures.util.RegistrationHelper;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.biome.v1.*;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
 import net.minecraft.structure.processor.StructureProcessorList;
 import net.minecraft.structure.processor.StructureProcessorType;
@@ -21,7 +21,10 @@ import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.decorator.ChanceDecoratorConfig;
 import net.minecraft.world.gen.decorator.Decorator;
-import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.DefaultFeatureConfig;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.StructureFeature;
+import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 public class MoStructures implements ModInitializer {
     public static final String MODID = "mostructures";
@@ -43,10 +46,12 @@ public class MoStructures implements ModInitializer {
     public static final StructureFeature<StructurePoolFeatureConfig> VILLAGER_MARKET = new VillagerMarketStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> PILLAGER_FACTORY = new PillagerFactoryStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> ABANDONED_CHURCH = new AbandonedChurchStructure();
+    public static final StructureFeature<StructurePoolFeatureConfig> ICE_TOWER = new IceTowerStructure();
 
     public static final Decorator<ChanceDecoratorConfig> CHANCE_OCEAN_FLOOR_WG = Registry.register(Registry.DECORATOR, id("chance_heightmap_legacy"), new ChanceHeightmapDecorator());
-    public static StructureProcessorType<JungleTempleStructureProcessor> PROCESSOR;
+    public static StructureProcessorType<SimpleStoneStructureProcessor> PROCESSOR;
     public static StructureProcessorList JUNGLE_ROT_LIST;
+    public static StructureProcessorList ICE_TOWER_LIST;
     private static MoStructuresConfig config;
 
     private static void registerStructures() {
@@ -95,6 +100,12 @@ public class MoStructures implements ModInitializer {
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.pillager_factory_spacing, config.structureChances.pillager_factory_seperation, 839204924)
                 .superflatFeature(ConfiguredFeatures.PILLAGER_FACTORY)
+                .adjustsSurface()
+                .register();
+        FabricStructureBuilder.create(IceTowerStructure.ID, ICE_TOWER)
+                .step(GenerationStep.Feature.SURFACE_STRUCTURES)
+                .defaultConfig(config.structureChances.ice_tower_spacing, config.structureChances.ice_tower_seperation, 164058305)
+                .superflatFeature(ConfiguredFeatures.ICE_TOWER)
                 .adjustsSurface()
                 .register();
     }
@@ -244,6 +255,11 @@ public class MoStructures implements ModInitializer {
                 BiomeSelectors.categories(Biome.Category.ICY).and(RegistrationHelper.booleanToPredicate(config.structures.abandoned_churches)).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.SNOWY_ABANDONED_CHURCH)
         );
+        RegistrationHelper.addToBiome(
+                IceTowerStructure.ID,
+                BiomeSelectors.categories(Biome.Category.ICY).and(RegistrationHelper.booleanToPredicate(config.structures.ice_tower)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.ICE_TOWER)
+        );
     }
 
     public static Identifier id(String name) {
@@ -255,9 +271,10 @@ public class MoStructures implements ModInitializer {
         return config;
     }
 
-    public static void registerJungleRotProcessor() {
-        PROCESSOR = StructureProcessorType.register("jungle_rot_processor", JungleTempleStructureProcessor.CODEC);
-        JUNGLE_ROT_LIST = RegistrationHelper.registerStructureProcessor("jungle_rot", ImmutableList.of(new JungleTempleStructureProcessor(0.15F)));
+    public static void registerStructureProcessors() {
+        PROCESSOR = StructureProcessorType.register("jungle_rot_processor", SimpleStoneStructureProcessor.CODEC);
+        JUNGLE_ROT_LIST = RegistrationHelper.registerStructureProcessor("jungle_rot", ImmutableList.of(new SimpleStoneStructureProcessor(0.15F)));
+        ICE_TOWER_LIST = RegistrationHelper.registerStructureProcessor("ice_tower_rot", ImmutableList.of(new SimpleStoneStructureProcessor(0)));
     }
 
     @Override
@@ -265,7 +282,7 @@ public class MoStructures implements ModInitializer {
         AutoConfig.register(MoStructuresConfig.class, JanksonConfigSerializer::new);
         config = MoStructures.getConfig();
 
-        registerJungleRotProcessor();
+        registerStructureProcessors();
 
         registerStructures();
         registerFeatures();

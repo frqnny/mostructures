@@ -19,14 +19,22 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-public class JungleTempleStructureProcessor extends StructureProcessor {
-    public static final Codec<JungleTempleStructureProcessor> CODEC =  RecordCodecBuilder.create((proc) -> proc.group(
-            Codec.FLOAT.fieldOf("mossiness").forGetter(processor-> processor.mossiness)
-    ).apply(proc, JungleTempleStructureProcessor::new));
+public class SimpleStoneStructureProcessor extends StructureProcessor {
+    public static final Codec<SimpleStoneStructureProcessor> CODEC = RecordCodecBuilder.create((proc) -> proc.group(
+            Codec.FLOAT.fieldOf("mossiness").forGetter(processor -> processor.mossiness)
+    ).apply(proc, SimpleStoneStructureProcessor::new));
     private final float mossiness;
 
-    public JungleTempleStructureProcessor(float mossiness) {
+    public SimpleStoneStructureProcessor(float mossiness) {
         this.mossiness = mossiness;
+    }
+
+    private static BlockState randomStairProperties(Random random, Block stairs) {
+        return stairs.getDefaultState().with(StairsBlock.FACING, Direction.Type.HORIZONTAL.random(random)).with(StairsBlock.HALF, BlockHalf.values()[random.nextInt(BlockHalf.values().length)]);
+    }
+
+    private static BlockState randomState(Random random, BlockState[] states) {
+        return states[random.nextInt(states.length)];
     }
 
     @Nullable
@@ -54,16 +62,8 @@ public class JungleTempleStructureProcessor extends StructureProcessor {
         }
     }
 
-    private static BlockState randomStairProperties(Random random, Block stairs) {
-        return stairs.getDefaultState().with(StairsBlock.FACING, Direction.Type.HORIZONTAL.random(random)).with(StairsBlock.HALF, BlockHalf.values()[random.nextInt(BlockHalf.values().length)]);
-    }
-
     private BlockState process(Random random, BlockState[] regularStates, BlockState[] mossyStates) {
         return random.nextFloat() < this.mossiness ? randomState(random, mossyStates) : randomState(random, regularStates);
-    }
-
-    private static BlockState randomState(Random random, BlockState[] states) {
-        return states[random.nextInt(states.length)];
     }
 
     protected StructureProcessorType<?> getType() {

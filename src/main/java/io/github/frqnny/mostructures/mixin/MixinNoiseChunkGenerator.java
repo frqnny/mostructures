@@ -1,6 +1,7 @@
 package io.github.frqnny.mostructures.mixin;
 
 import io.github.frqnny.mostructures.ConfiguredFeatures;
+import io.github.frqnny.mostructures.MoStructures;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
@@ -23,6 +24,11 @@ public class MixinNoiseChunkGenerator {
         if (accessor.getStructureAt(pos, false, ConfiguredFeatures.PILLAGER_FACTORY.feature).hasChildren()) {
             if (group == SpawnGroup.MONSTER) {
                 info.setReturnValue(StructureFeature.PILLAGER_OUTPOST.getMonsterSpawns());
+            }
+        }
+        if (accessor.getStructureAt(pos, false, ConfiguredFeatures.ICE_TOWER.feature).hasChildren()) {
+            if (group == SpawnGroup.MONSTER) {
+                info.setReturnValue(MoStructures.ICE_TOWER.getMonsterSpawns());
             }
         }
     }

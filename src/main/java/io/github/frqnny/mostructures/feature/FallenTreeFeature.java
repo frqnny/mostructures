@@ -18,7 +18,6 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
-import java.util.Objects;
 import java.util.Random;
 
 public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
