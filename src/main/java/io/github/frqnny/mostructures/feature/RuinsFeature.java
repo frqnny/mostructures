@@ -68,8 +68,7 @@ public class RuinsFeature extends Feature<DefaultFeatureConfig> {
         int j = pos.getZ();
         float[] fs = new float[]{1.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F, 0.9F, 0.9F, 0.8F, 0.7F, 0.6F, 0.4F, 0.2F};
         int k = fs.length;
-        int l = 16;
-        int m = random.nextInt(Math.max(1, 8 - 16 / 2));
+        int m = 0;
         BlockPos.Mutable mutable = BlockPos.ORIGIN.mutableCopy();
 
         for (int o = i - k; o <= i + k; ++o) {

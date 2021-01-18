@@ -1,11 +1,7 @@
 package io.github.frqnny.mostructures.feature;
 
 import io.github.frqnny.mostructures.MoStructures;
-import net.minecraft.structure.Structure;
-import net.minecraft.structure.StructureManager;
-import net.minecraft.structure.StructurePlacementData;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
+import io.github.frqnny.mostructures.util.FeatureHelper;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
@@ -32,15 +28,9 @@ public class SmallAirFeature extends Feature<DefaultFeatureConfig> {
     @Override
     public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, DefaultFeatureConfig featureConfig) {
         int i = random.nextInt(AIR_FEATURES.length);
-        StructureManager manager = world.toServerWorld().getStructureManager();
-        Structure structure = manager.getStructureOrBlank(AIR_FEATURES[i]);
         int yToAdd = Math.max(random.nextInt(100), 45);
         BlockPos finalPos = pos.add(0, yToAdd, 0);
-        BlockRotation blockRotation = BlockRotation.random(random);
-        StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
-        structure.place(world, finalPos, structurePlacementData, random);
+        FeatureHelper.placeStructure(AIR_FEATURES[i], finalPos, world, random);
         return true;
     }
-
-
 }

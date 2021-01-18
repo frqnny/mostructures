@@ -1,13 +1,9 @@
 package io.github.frqnny.mostructures.feature;
 
 import io.github.frqnny.mostructures.MoStructures;
+import io.github.frqnny.mostructures.util.FeatureHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.structure.Structure;
-import net.minecraft.structure.StructureManager;
-import net.minecraft.structure.StructurePlacementData;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
@@ -57,25 +53,20 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
         }
         Biome.Category category = world.getBiome(pos).getCategory();
         if (category == Biome.Category.FOREST && !inWater && random.nextBoolean()) {
+            FeatureHelper.placeStructure(lamppost, newPos, world, random);
 
-            BlockRotation blockRotation = BlockRotation.random(random);
-            StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
-            StructureManager manager = world.toServerWorld().getStructureManager();
-            Structure structure = manager.getStructureOrBlank(lamppost);
-
-            structure.place(world, newPos, structurePlacementData, random);
             return true;
         } else if (category == Biome.Category.NETHER) {
-            BlockRotation blockRotation = BlockRotation.random(random);
-            StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
-            StructureManager manager = world.toServerWorld().getStructureManager();
-            Structure structure = manager.getStructureOrBlank(lamppost);
-
             BlockPos correctPos = getCorrectNetherHeight(pos, world);
-            if (correctPos == null) return false;
+            if (correctPos == null) {
+                return false;
 
-            structure.place(world, correctPos, structurePlacementData, random);
-            return true;
+            } else {
+                FeatureHelper.placeStructure(lamppost, correctPos, world, random);
+                return true;
+
+            }
+
         }
         return false;
     }

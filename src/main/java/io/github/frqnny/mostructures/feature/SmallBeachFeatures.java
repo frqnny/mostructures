@@ -2,11 +2,7 @@ package io.github.frqnny.mostructures.feature;
 
 import io.github.frqnny.mostructures.ConfiguredFeatures;
 import io.github.frqnny.mostructures.MoStructures;
-import net.minecraft.structure.Structure;
-import net.minecraft.structure.StructureManager;
-import net.minecraft.structure.StructurePlacementData;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
+import io.github.frqnny.mostructures.util.FeatureHelper;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
@@ -55,11 +51,7 @@ public class SmallBeachFeatures extends Feature<DefaultFeatureConfig> {
             }
         }
 
-        StructureManager manager = world.toServerWorld().getStructureManager();
-        Structure structure = manager.getStructureOrBlank(VILLAGER_MOAI);
-        BlockRotation blockRotation = BlockRotation.random(random);
-        StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
-        structure.place(world, pos.add(0, -3, 0), structurePlacementData, random);
+        FeatureHelper.placeStructure(VILLAGER_MOAI, pos.add(0, -3, 0), world, random);
         return true;
     }
 }

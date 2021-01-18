@@ -9,6 +9,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.biome.Biome;
@@ -30,7 +31,8 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
 
     public static BlockState getWoodToPlace(Biome biome, ServerWorld world) {
         Biome.Category category = biome.getCategory();
-        if (world.getRegistryManager().get(Registry.BIOME_KEY).getKey(biome).get() == BiomeKeys.BIRCH_FOREST || world.getRegistryManager().get(Registry.BIOME_KEY).getKey(biome).get() == BiomeKeys.BIRCH_FOREST_HILLS || world.getRegistryManager().get(Registry.BIOME_KEY).getKey(biome).get() == BiomeKeys.TALL_BIRCH_FOREST || world.getRegistryManager().get(Registry.BIOME_KEY).getKey(biome).get() == BiomeKeys.TALL_BIRCH_HILLS) {
+        RegistryKey<Biome> biomeKey = world.getRegistryManager().get(Registry.BIOME_KEY).getKey(biome).get();
+        if (biomeKey == BiomeKeys.BIRCH_FOREST || biomeKey == BiomeKeys.BIRCH_FOREST_HILLS || biomeKey == BiomeKeys.TALL_BIRCH_FOREST || biomeKey == BiomeKeys.TALL_BIRCH_HILLS) {
 
             return Blocks.BIRCH_LOG.getDefaultState().with(PillarBlock.AXIS, Direction.Axis.X);
 
