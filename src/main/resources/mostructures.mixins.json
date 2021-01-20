@@ -6,8 +6,6 @@
     "LakeFeatureMixin",
     "MixinNoiseChunkGenerator"
   ],
-  "client": [
-  ],
   "injectors": {
     "defaultRequire": 1
   }

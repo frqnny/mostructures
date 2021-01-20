@@ -39,8 +39,6 @@ processResources {
 		exclude "fabric.mod.json"
 	}
 
-	// Minifies all .json files when building the mod.
-	// Source files are not minified, only the jar copies.
 	doLast {
 
 		def jsonMinifyStart = System.currentTimeMillis()
