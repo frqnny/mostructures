@@ -84,6 +84,8 @@ public class MoStructuresConfig implements ConfigData {
         public boolean pillager_factory = true;
         @Comment("Ice Tower")
         public boolean ice_tower = true;
+        @Comment("Boar Hat Tavern")
+        public boolean tavern = true;
     }
 
     public static class StructureChances {
@@ -114,5 +116,8 @@ public class MoStructuresConfig implements ConfigData {
         @Comment("Ice Tower")
         public int ice_tower_seperation = 8;
         public int ice_tower_spacing = 32;
+        @Comment("Boar Hat Tavern")
+        public int tavern_seperation = 8;
+        public int tavern_spacing = 32;
     }
 }

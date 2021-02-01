@@ -11,9 +11,19 @@ import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
+import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
+import net.fabricmc.fabric.impl.biome.modification.BiomeSelectionContextImpl;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.loot.ConstantLootTableRange;
+import net.minecraft.loot.condition.RandomChanceLootCondition;
+import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.structure.processor.StructureProcessorList;
 import net.minecraft.structure.processor.StructureProcessorType;
+import net.minecraft.text.LiteralText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
@@ -47,11 +57,15 @@ public class MoStructures implements ModInitializer {
     public static final StructureFeature<StructurePoolFeatureConfig> PILLAGER_FACTORY = new PillagerFactoryStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> ABANDONED_CHURCH = new AbandonedChurchStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> ICE_TOWER = new IceTowerStructure();
+    public static final StructureFeature<StructurePoolFeatureConfig> BOAR_HAT_TAVERN = new BoarHatTavernStructure();
 
     public static final Decorator<ChanceDecoratorConfig> CHANCE_OCEAN_FLOOR_WG = Registry.register(Registry.DECORATOR, id("chance_heightmap_legacy"), new ChanceHeightmapDecorator());
     public static StructureProcessorType<SimpleStoneStructureProcessor> PROCESSOR;
     public static StructureProcessorList JUNGLE_ROT_LIST;
     public static StructureProcessorList ICE_TOWER_LIST;
+
+    public static final ItemStack KILLER_BUNNY_NOTE = new ItemStack(Items.PAPER).setCustomName(new LiteralText("Note: The treasure is under the floor!").formatted(Formatting.GOLD));
+
     private static MoStructuresConfig config;
 
     private static void registerStructures() {
@@ -108,6 +122,13 @@ public class MoStructures implements ModInitializer {
                 .superflatFeature(ConfiguredFeatures.ICE_TOWER)
                 .adjustsSurface()
                 .register();
+        FabricStructureBuilder.create(BoarHatTavernStructure.ID, BOAR_HAT_TAVERN)
+                .step(GenerationStep.Feature.SURFACE_STRUCTURES)
+                .defaultConfig(config.structureChances.tavern_spacing, config.structureChances.tavern_seperation, 19296726)
+                .superflatFeature(ConfiguredFeatures.BOAR_HAT_TAVERN)
+                .adjustsSurface()
+                .register();
+
     }
 
     public static void registerFeatures() {
@@ -260,6 +281,11 @@ public class MoStructures implements ModInitializer {
                 BiomeSelectors.categories(Biome.Category.ICY).and(RegistrationHelper.booleanToPredicate(config.structures.ice_tower)).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.ICE_TOWER)
         );
+        RegistrationHelper.addToBiome(
+                BoarHatTavernStructure.ID,
+                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.FOREST).and(RegistrationHelper.booleanToPredicate(config.structures.tavern)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.BOAR_HAT_TAVERN)
+        );
     }
 
     public static Identifier id(String name) {
@@ -287,7 +313,19 @@ public class MoStructures implements ModInitializer {
         registerStructures();
         registerFeatures();
         ConfiguredFeatures.registerConfiguredFeatures();
+        /*
+        LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, supplier, setter) -> {
+            if (GRASS_LOOT_TABLE_ID.equals(id)) {
+                FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+                        .rolls(ConstantLootTableRange.create(1))
+                        .withFunction()
+                        .withEntry(ItemEntry.builder(KILLER_BUNNY_NOTE).build())
+                        .withCondition(RandomChanceLootCondition.builder(0.125F).build());
 
+                supplier.withPool(poolBuilder.build());
+            }
+        });
+         */
         putFeatures();
         putStructures();
     }

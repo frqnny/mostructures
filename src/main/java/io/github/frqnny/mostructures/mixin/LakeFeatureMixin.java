@@ -41,10 +41,12 @@ public class LakeFeatureMixin {
                             || !chunk.getStructureReferences(MoStructures.ABANDONED_CHURCH).isEmpty()
                             || !chunk.getStructureReferences(ConfiguredFeatures.VILLAGER_MARKET.feature).isEmpty()
                             || !chunk.getStructureReferences(ConfiguredFeatures.PILLAGER_FACTORY.feature).isEmpty()
+                            || !chunk.getStructureReferences(ConfiguredFeatures.BOAR_HAT_TAVERN.feature).isEmpty()
             ) {
                 info.setReturnValue(false);
                 break;
             }
         }
+
     }
 }

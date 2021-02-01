@@ -20,6 +20,7 @@ public class ConfiguredFeatures {
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> VILLAGER_MARKET = MoStructures.VILLAGER_MARKET.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(VillagerMarketGenerator.STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> PILLAGER_FACTORY = MoStructures.PILLAGER_FACTORY.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(PillagerFactoryGenerator.STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> ICE_TOWER = MoStructures.ICE_TOWER.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(IceTowerGenerator.STARTING_POOL), 2));
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> BOAR_HAT_TAVERN = MoStructures.BOAR_HAT_TAVERN.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(BoarHatTavernGenerator.STARTING_POOL), 2));
 
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> PLAINS_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(AbandonedChurchGenerator.PLAINS_STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> SAVANNA_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(AbandonedChurchGenerator.SAVANNA_STARTING_POOL), 2));
@@ -83,6 +84,7 @@ public class ConfiguredFeatures {
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("snowy_abandoned_church"), SNOWY_ABANDONED_CHURCH);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("taiga_abandoned_church"), TAIGA_ABANDONED_CHURCH);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_ice_tower"), ICE_TOWER);
+        Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_boar_hat_tavern"), BOAR_HAT_TAVERN);
     }
 
 }
