@@ -323,19 +323,7 @@ public class MoStructures implements ModInitializer {
         registerStructures();
         registerFeatures();
         ConfiguredFeatures.registerConfiguredFeatures();
-        /*
-        LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, supplier, setter) -> {
-            if (GRASS_LOOT_TABLE_ID.equals(id)) {
-                FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
-                        .rolls(ConstantLootTableRange.create(1))
-                        .withFunction()
-                        .withEntry(ItemEntry.builder(KILLER_BUNNY_NOTE).build())
-                        .withCondition(RandomChanceLootCondition.builder(0.125F).build());
 
-                supplier.withPool(poolBuilder.build());
-            }
-        });
-         */
         putFeatures();
         putStructures();
     }

@@ -1,8 +1,6 @@
 package io.github.frqnny.mostructures.structure;
 
-import com.mojang.serialization.Codec;
 import io.github.frqnny.mostructures.MoStructures;
-import io.github.frqnny.mostructures.generator.BigPyramidGenerator;
 import io.github.frqnny.mostructures.generator.BoarHatTavernGenerator;
 import net.minecraft.structure.MarginedStructureStart;
 import net.minecraft.structure.StructureManager;
