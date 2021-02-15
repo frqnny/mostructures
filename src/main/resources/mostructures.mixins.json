@@ -4,7 +4,9 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "LakeFeatureMixin",
-    "MixinNoiseChunkGenerator"
+    "MixinNoiseChunkGenerator",
+    "MixinMobEntity",
+    "MixinRabbitEntity"
   ],
   "injectors": {
     "defaultRequire": 1

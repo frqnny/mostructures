@@ -42,6 +42,7 @@ public class LakeFeatureMixin {
                             || !chunk.getStructureReferences(ConfiguredFeatures.VILLAGER_MARKET.feature).isEmpty()
                             || !chunk.getStructureReferences(ConfiguredFeatures.PILLAGER_FACTORY.feature).isEmpty()
                             || !chunk.getStructureReferences(ConfiguredFeatures.BOAR_HAT_TAVERN.feature).isEmpty()
+                            || !chunk.getStructureReferences(ConfiguredFeatures.KILLER_BUNNY_CASTLE.feature).isEmpty()
             ) {
                 info.setReturnValue(false);
                 break;

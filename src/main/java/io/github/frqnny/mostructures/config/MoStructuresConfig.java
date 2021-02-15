@@ -54,7 +54,7 @@ public class MoStructuresConfig implements ConfigData {
         @Comment("Ruins")
         public int ruins_chance = 3500;
         @Comment("Lamppost")
-        public int lamppost_chance = 85;
+        public int lamppost_chance = 100;
         @Comment("Boulder")
         public int boulder_chance = 4000;
         @Comment("Volcanic Vent")
@@ -86,6 +86,8 @@ public class MoStructuresConfig implements ConfigData {
         public boolean ice_tower = true;
         @Comment("Boar Hat Tavern")
         public boolean tavern = true;
+        @Comment("Killer Bunny Castle")
+        public boolean killer_bunny_castle = true;
     }
 
     public static class StructureChances {
@@ -119,5 +121,8 @@ public class MoStructuresConfig implements ConfigData {
         @Comment("Boar Hat Tavern")
         public int tavern_seperation = 8;
         public int tavern_spacing = 32;
+        @Comment("Killer Bunny Castle")
+        public int killer_bunny_castle_seperation = 25;
+        public int killer_bunny_castle_spacing = 50;
     }
 }

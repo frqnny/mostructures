@@ -58,13 +58,12 @@ public class MoStructures implements ModInitializer {
     public static final StructureFeature<StructurePoolFeatureConfig> ABANDONED_CHURCH = new AbandonedChurchStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> ICE_TOWER = new IceTowerStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> BOAR_HAT_TAVERN = new BoarHatTavernStructure();
+    public static final StructureFeature<StructurePoolFeatureConfig> KILLER_BUNNY_CASTLE = new KillerBunnyCastleStructure();
 
     public static final Decorator<ChanceDecoratorConfig> CHANCE_OCEAN_FLOOR_WG = Registry.register(Registry.DECORATOR, id("chance_heightmap_legacy"), new ChanceHeightmapDecorator());
     public static StructureProcessorType<SimpleStoneStructureProcessor> PROCESSOR;
     public static StructureProcessorList JUNGLE_ROT_LIST;
     public static StructureProcessorList ICE_TOWER_LIST;
-
-    public static final ItemStack KILLER_BUNNY_NOTE = new ItemStack(Items.PAPER).setCustomName(new LiteralText("Note: The treasure is under the floor!").formatted(Formatting.GOLD));
 
     private static MoStructuresConfig config;
 
@@ -77,36 +76,36 @@ public class MoStructures implements ModInitializer {
                 .register();
         FabricStructureBuilder.create(BigPyramidStructure.ID, BIG_PYRAMID)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
-                .defaultConfig(config.structureChances.big_pyramid_spacing, config.structureChances.big_pyramid_seperation, 139284294)
+                .defaultConfig(config.structureChances.big_pyramid_spacing, config.structureChances.big_pyramid_seperation, 239284294)
                 .superflatFeature(ConfiguredFeatures.BIG_PYRAMID)
                 .adjustsSurface()
                 .register();
         FabricStructureBuilder.create(JunglePyramidStructure.ID, JUNGLE_PYRAMID)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
-                .defaultConfig(config.structureChances.jungle_pyramid_spacing, config.structureChances.jungle_pyramid_seperation, 112178642)
+                .defaultConfig(config.structureChances.jungle_pyramid_spacing, config.structureChances.jungle_pyramid_seperation, 312178642)
                 .superflatFeature(ConfiguredFeatures.JUNGLE_PYRAMID)
                 .adjustsSurface()
                 .register();
         FabricStructureBuilder.create(TheCastleInTheSkyStructure.ID, THE_CASTLE_IN_THE_SKY)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
-                .defaultConfig(config.structureChances.the_castle_in_the_sky_spacing, config.structureChances.the_castle_in_the_sky_seperation, 123494938)
+                .defaultConfig(config.structureChances.the_castle_in_the_sky_spacing, config.structureChances.the_castle_in_the_sky_seperation, 423494938)
                 .superflatFeature(ConfiguredFeatures.THE_CASTLE_IN_THE_SKY)
                 .register();
         FabricStructureBuilder.create(VillagerTowerStructure.ID, VILLAGER_TOWER)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
-                .defaultConfig(config.structureChances.villager_tower_spacing, config.structureChances.villager_tower_seperation, 150292492)
+                .defaultConfig(config.structureChances.villager_tower_spacing, config.structureChances.villager_tower_seperation, 550292492)
                 .superflatFeature(ConfiguredFeatures.VILLAGER_TOWER)
                 .adjustsSurface()
                 .register();
         FabricStructureBuilder.create(AbandonedChurchStructure.ID, ABANDONED_CHURCH)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
-                .defaultConfig(config.structureChances.abandoned_church_spacing, config.structureChances.abandoned_church_seperation, 169968400)
+                .defaultConfig(config.structureChances.abandoned_church_spacing, config.structureChances.abandoned_church_seperation, 669968400)
                 .superflatFeature(ConfiguredFeatures.PLAINS_ABANDONED_CHURCH)
                 .adjustsSurface()
                 .register();
         FabricStructureBuilder.create(VillagerMarketStructure.ID, VILLAGER_MARKET)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
-                .defaultConfig(config.structureChances.villager_market_spacing, config.structureChances.villager_market_seperation, 284939542)
+                .defaultConfig(config.structureChances.villager_market_spacing, config.structureChances.villager_market_seperation, 784939542)
                 .superflatFeature(ConfiguredFeatures.VILLAGER_MARKET)
                 .adjustsSurface()
                 .register();
@@ -118,7 +117,7 @@ public class MoStructures implements ModInitializer {
                 .register();
         FabricStructureBuilder.create(IceTowerStructure.ID, ICE_TOWER)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
-                .defaultConfig(config.structureChances.ice_tower_spacing, config.structureChances.ice_tower_seperation, 164058305)
+                .defaultConfig(config.structureChances.ice_tower_spacing, config.structureChances.ice_tower_seperation, 964058305)
                 .superflatFeature(ConfiguredFeatures.ICE_TOWER)
                 .adjustsSurface()
                 .register();
@@ -126,6 +125,12 @@ public class MoStructures implements ModInitializer {
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.tavern_spacing, config.structureChances.tavern_seperation, 19296726)
                 .superflatFeature(ConfiguredFeatures.BOAR_HAT_TAVERN)
+                .adjustsSurface()
+                .register();
+        FabricStructureBuilder.create(KillerBunnyCastleStructure.ID, KILLER_BUNNY_CASTLE)
+                .step(GenerationStep.Feature.SURFACE_STRUCTURES)
+                .defaultConfig(config.structureChances.killer_bunny_castle_spacing, config.structureChances.killer_bunny_castle_seperation, 29573969)
+                .superflatFeature(ConfiguredFeatures.KILLER_BUNNY_CASTLE)
                 .adjustsSurface()
                 .register();
 
@@ -158,7 +163,7 @@ public class MoStructures implements ModInitializer {
 
         RegistrationHelper.addToBiome(
                 FallenTreeFeature.ID,
-                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SWAMP, Biome.Category.SAVANNA, Biome.Category.FOREST, Biome.Category.TAIGA, Biome.Category.ICY).and(RegistrationHelper.booleanToPredicate(config.features.fallen_trees)).and(BiomeSelectors.foundInOverworld()).and(BiomeSelectors.vanilla()),
+                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SWAMP, Biome.Category.SAVANNA, Biome.Category.FOREST, Biome.Category.TAIGA, Biome.Category.ICY).and(RegistrationHelper.booleanToPredicate(config.features.fallen_trees)).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.FALLEN_TREE)
         );
 
@@ -247,7 +252,7 @@ public class MoStructures implements ModInitializer {
 
         RegistrationHelper.addToBiome(
                 PillagerFactoryStructure.ID,
-                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SAVANNA, Biome.Category.TAIGA, Biome.Category.ICY).and(RegistrationHelper.booleanToPredicate(config.structures.pillager_factory)).and(RegistrationHelper.getNoHillsPredicate()).and(BiomeSelectors.foundInOverworld()),
+                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.TAIGA, Biome.Category.ICY).and(RegistrationHelper.booleanToPredicate(config.structures.pillager_factory)).and(RegistrationHelper.getNoHillsPredicate()).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.PILLAGER_FACTORY)
         );
 
@@ -285,6 +290,11 @@ public class MoStructures implements ModInitializer {
                 BoarHatTavernStructure.ID,
                 BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.FOREST).and(RegistrationHelper.booleanToPredicate(config.structures.tavern)).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.BOAR_HAT_TAVERN)
+        );
+        RegistrationHelper.addToBiome(
+                KillerBunnyCastleStructure.ID,
+                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.FOREST, Biome.Category.SAVANNA).and(RegistrationHelper.booleanToPredicate(config.structures.killer_bunny_castle)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.KILLER_BUNNY_CASTLE)
         );
     }
 
