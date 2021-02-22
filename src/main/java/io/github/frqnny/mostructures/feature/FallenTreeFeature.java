@@ -73,22 +73,22 @@ public class FallenTreeFeature extends Feature<DefaultFeatureConfig> {
         }
 
         //Makes Desert Fallen Trees rarer, as in Forest that is taken care whether it is to generate in an open space or not
-        if (category == Biome.Category.DESERT || category == Biome.Category.PLAINS || category == Biome.Category.SWAMP || category == Biome.Category.SAVANNA) {
+        if (category == Biome.Category.ICY || category == Biome.Category.PLAINS || category == Biome.Category.SWAMP || category == Biome.Category.SAVANNA) {
             if (random.nextInt(10) != 1) {
                 return false;
             }
         }
-        int blocksitWillPlace = 0;
+        int blocksItWillPlace = 0;
         BlockPos simulationPos = newPos;
         for (int i = 6; i > 0; i--) {
             if (canPlaceWood(world.getBlockState(simulationPos))) {
-                blocksitWillPlace++;
+                blocksItWillPlace++;
                 simulationPos = simulationPos.east();
             } else {
                 break;
             }
         }
-        boolean canPlace = blocksitWillPlace > 3;
+        boolean canPlace = blocksItWillPlace > 3;
         if (canPlace) {
             for (int i = 6; i > 0; i--) {
                 if (canPlaceWood(world.getBlockState(newPos))) {

@@ -48,14 +48,16 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
         Identifier lamppost = world.getBiome(pos).getCategory() == Biome.Category.NETHER ? NETHER_LAMPPOST : LAMPPOST;
         boolean inWater = false;
         BlockPos newPos = world.getTopPosition(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, pos);
+
         if (world.getBlockState(newPos.down()) == Blocks.WATER.getDefaultState()) {
             inWater = true;
         }
+
         Biome.Category category = world.getBiome(pos).getCategory();
         if (category == Biome.Category.FOREST && !inWater && random.nextBoolean()) {
             FeatureHelper.placeStructure(lamppost, newPos, world, random);
-
             return true;
+
         } else if (category == Biome.Category.NETHER) {
             BlockPos correctPos = getCorrectNetherHeight(pos, world);
             if (correctPos == null) {
@@ -66,9 +68,7 @@ public class LamppostFeature extends Feature<DefaultFeatureConfig> {
                 return true;
 
             }
-
         }
         return false;
     }
-
 }

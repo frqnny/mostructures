@@ -2,6 +2,7 @@ package io.github.frqnny.mostructures.mixin;
 
 import io.github.frqnny.mostructures.ConfiguredFeatures;
 import io.github.frqnny.mostructures.MoStructures;
+import io.github.frqnny.mostructures.util.FeatureHelper;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.chunk.Chunk;
@@ -23,31 +24,6 @@ public class LakeFeatureMixin {
 
     @Inject(at = @At("HEAD"), method = "generate", cancellable = true)
     public void fixStructures(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, SingleStateFeatureConfig featureConfig, CallbackInfoReturnable<Boolean> info) {
-        List<Chunk> chunksToScan = new ArrayList<>(9);
-        chunksToScan.add(world.getChunk(blockPos));
-        chunksToScan.add(world.getChunk(blockPos.add(16, 0, 16)));
-        chunksToScan.add(world.getChunk(blockPos.add(-16, 0, -16)));
-        chunksToScan.add(world.getChunk(blockPos.add(0, 0, 16)));
-        chunksToScan.add(world.getChunk(blockPos.add(16, 0, 0)));
-        chunksToScan.add(world.getChunk(blockPos.add(-16, 0, 0)));
-        chunksToScan.add(world.getChunk(blockPos.add(0, 0, -16)));
-        chunksToScan.add(world.getChunk(blockPos.add(16, 0, -16)));
-        chunksToScan.add(world.getChunk(blockPos.add(-16, 0, 16)));
-        for (Chunk chunk : chunksToScan) {
-            if (
-                    !chunk.getStructureReferences(ConfiguredFeatures.BARN_HOUSE.feature).isEmpty()
-                            || !chunk.getStructureReferences(ConfiguredFeatures.JUNGLE_PYRAMID.feature).isEmpty()
-                            || !chunk.getStructureReferences(ConfiguredFeatures.VILLAGER_TOWER.feature).isEmpty()
-                            || !chunk.getStructureReferences(MoStructures.ABANDONED_CHURCH).isEmpty()
-                            || !chunk.getStructureReferences(ConfiguredFeatures.VILLAGER_MARKET.feature).isEmpty()
-                            || !chunk.getStructureReferences(ConfiguredFeatures.PILLAGER_FACTORY.feature).isEmpty()
-                            || !chunk.getStructureReferences(ConfiguredFeatures.BOAR_HAT_TAVERN.feature).isEmpty()
-                            || !chunk.getStructureReferences(ConfiguredFeatures.KILLER_BUNNY_CASTLE.feature).isEmpty()
-            ) {
-                info.setReturnValue(false);
-                break;
-            }
-        }
-
+        info.setReturnValue(FeatureHelper.checkChunksForStructures(world, blockPos));
     }
 }
