@@ -2,7 +2,7 @@ import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
 
 plugins {
-	id 'fabric-loom' version '0.5-SNAPSHOT'
+	id 'fabric-loom' version '0.6-SNAPSHOT'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -22,8 +22,8 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	//Dependencies
-	modImplementation "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
-	include  "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
+	modImplementation "com.github.shedaniel:AutoConfig:1.16-SNAPSHOT"
+	include  "com.github.shedaniel:AutoConfig:1.16-SNAPSHOT"
 	
 }
 

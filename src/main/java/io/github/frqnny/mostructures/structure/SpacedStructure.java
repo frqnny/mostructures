@@ -18,15 +18,6 @@ public abstract class SpacedStructure<C extends FeatureConfig> extends Structure
 
     @Override
     protected boolean shouldStartAt(ChunkGenerator chunkGenerator, BiomeSource biomeSource, long worldSeed, ChunkRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, C featureConfig) {
-        int BIOME_RANGE = 2;
-
-        for (int curChunkX = chunkX - BIOME_RANGE; curChunkX <= chunkX + BIOME_RANGE; curChunkX++) {
-            for (int curChunkZ = chunkZ - BIOME_RANGE; curChunkZ <= chunkZ + BIOME_RANGE; curChunkZ++) {
-                if (!biomeSource.getBiomeForNoiseGen(curChunkX << 2, 60, curChunkZ << 2).getGenerationSettings().hasStructureFeature(this)) {
-                    return false;
-                }
-            }
-        }
 
         //cannot be near other specified structure
         StructureConfig structureConfigVillage = chunkGenerator.getStructuresConfig().getForType(StructureFeature.VILLAGE);
@@ -37,8 +28,8 @@ public abstract class SpacedStructure<C extends FeatureConfig> extends Structure
         StructureConfig configVillagerMarket = chunkGenerator.getStructuresConfig().getForType(ConfiguredFeatures.VILLAGER_MARKET.feature);
         StructureConfig configVillagerTower = chunkGenerator.getStructuresConfig().getForType(ConfiguredFeatures.VILLAGER_TOWER.feature);
 
-        for (int k = chunkX - 2; k <= chunkX + 2; ++k) {
-            for (int m = chunkZ - 2; m <= chunkZ + 2; ++m) {
+        for (int k = chunkX - 4; k <= chunkX + 4; ++k) {
+            for (int m = chunkZ - 4; m <= chunkZ + 4; ++m) {
                 if (structureConfigVillage != null) {
                     ChunkPos possibleVillagePos = StructureFeature.VILLAGE.getStartChunk(structureConfigVillage, worldSeed, chunkRandom, k, m);
                     if (k == possibleVillagePos.x && m == possibleVillagePos.z) {
