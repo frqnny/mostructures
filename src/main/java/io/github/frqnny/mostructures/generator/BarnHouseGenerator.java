@@ -42,7 +42,11 @@ public class BarnHouseGenerator {
                         BARNHOUSE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":barn_house/barnhouse"), 1)
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":barn_house/barnhouse_1"), 1),
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":barn_house/barnhouse_2"), 1),
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":barn_house/barnhouse_3"), 1),
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":barn_house/barnhouse_4"), 1)
+
                         ),
                         StructurePool.Projection.RIGID
                 )
