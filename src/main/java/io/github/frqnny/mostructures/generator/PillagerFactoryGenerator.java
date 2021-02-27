@@ -54,9 +54,9 @@ public class PillagerFactoryGenerator {
                         ImmutableList.of(
                                 new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":factory/quarry"), 1),
                                 new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":factory/logs"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":factory/lamp"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":factory/jail_golem"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":factory/jail_villager"), 1),
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":factory/lamp"), 2),
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":factory/jail_golem"), 3),
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":factory/jail_villager"), 2),
                                 new Pair<>(StructurePoolElement.method_30438(), 6)
                         ),
                         StructurePool.Projection.RIGID
