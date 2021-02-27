@@ -119,8 +119,8 @@ public class MoStructuresConfig implements ConfigData {
         public int ice_tower_seperation = 8;
         public int ice_tower_spacing = 32;
         @Comment("Boar Hat Tavern")
-        public int tavern_seperation = 12;
-        public int tavern_spacing = 32;
+        public int tavern_seperation = 16;
+        public int tavern_spacing = 46;
         @Comment("Killer Bunny Castle")
         public int killer_bunny_castle_seperation = 25;
         public int killer_bunny_castle_spacing = 50;
