@@ -47,7 +47,7 @@ public class MoStructures implements ModInitializer {
     public static final StructureFeature<StructurePoolFeatureConfig> PILLAGER_FACTORY = new PillagerFactoryStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> ABANDONED_CHURCH = new AbandonedChurchStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> ICE_TOWER = new IceTowerStructure();
-    public static final StructureFeature<StructurePoolFeatureConfig> BOAR_HAT_TAVERN = new BoarHatTavernStructure();
+    public static final StructureFeature<StructurePoolFeatureConfig> TAVERN = new TavernStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> KILLER_BUNNY_CASTLE = new KillerBunnyCastleStructure();
 
     public static final Decorator<ChanceDecoratorConfig> CHANCE_OCEAN_FLOOR_WG = Registry.register(Registry.DECORATOR, id("chance_heightmap_legacy"), new ChanceHeightmapDecorator());
@@ -111,10 +111,10 @@ public class MoStructures implements ModInitializer {
                 .superflatFeature(ConfiguredFeatures.ICE_TOWER)
                 .adjustsSurface()
                 .register();
-        FabricStructureBuilder.create(BoarHatTavernStructure.ID, BOAR_HAT_TAVERN)
+        FabricStructureBuilder.create(TavernStructure.ID, TAVERN)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                 .defaultConfig(config.structureChances.tavern_spacing, config.structureChances.tavern_seperation, 19296726)
-                .superflatFeature(ConfiguredFeatures.BOAR_HAT_TAVERN)
+                .superflatFeature(ConfiguredFeatures.TAVERN)
                 .adjustsSurface()
                 .register();
         FabricStructureBuilder.create(KillerBunnyCastleStructure.ID, KILLER_BUNNY_CASTLE)
@@ -277,9 +277,9 @@ public class MoStructures implements ModInitializer {
                 (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.ICE_TOWER)
         );
         RegistrationHelper.addToBiome(
-                BoarHatTavernStructure.ID,
+                TavernStructure.ID,
                 BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.FOREST).and(RegistrationHelper.booleanToPredicate(config.structures.tavern)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.BOAR_HAT_TAVERN)
+                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.TAVERN)
         );
         RegistrationHelper.addToBiome(
                 KillerBunnyCastleStructure.ID,

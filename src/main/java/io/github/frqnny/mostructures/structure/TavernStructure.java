@@ -13,16 +13,16 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
-public class BoarHatTavernStructure extends SpacedStructure<StructurePoolFeatureConfig> {
+public class TavernStructure extends SpacedStructure<StructurePoolFeatureConfig> {
     public static final Identifier ID = MoStructures.id("tavern");
 
-    public BoarHatTavernStructure() {
+    public TavernStructure() {
         super(StructurePoolFeatureConfig.CODEC);
     }
 
     @Override
     public StructureStartFactory<StructurePoolFeatureConfig> getStructureStartFactory() {
-        return BoarHatTavernStructure.Start::new;
+        return TavernStructure.Start::new;
     }
 
     public static class Start extends MarginedStructureStart<StructurePoolFeatureConfig> {

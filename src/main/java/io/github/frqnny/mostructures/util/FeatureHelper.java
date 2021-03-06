@@ -44,7 +44,7 @@ public class FeatureHelper {
                             || !chunk.getStructureReferences(MoStructures.ABANDONED_CHURCH).isEmpty()
                             || !chunk.getStructureReferences(ConfiguredFeatures.VILLAGER_MARKET.feature).isEmpty()
                             || !chunk.getStructureReferences(ConfiguredFeatures.PILLAGER_FACTORY.feature).isEmpty()
-                            || !chunk.getStructureReferences(ConfiguredFeatures.BOAR_HAT_TAVERN.feature).isEmpty()
+                            || !chunk.getStructureReferences(ConfiguredFeatures.TAVERN.feature).isEmpty()
                             || !chunk.getStructureReferences(ConfiguredFeatures.KILLER_BUNNY_CASTLE.feature).isEmpty()
             ) {
                 return false;
