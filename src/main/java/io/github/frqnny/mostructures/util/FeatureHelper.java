@@ -10,6 +10,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.gen.feature.DefaultFeatureConfig;
+import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +19,20 @@ import java.util.Random;
 
 public class FeatureHelper {
 
+    public static void placeStructure(Identifier structureId, FeatureContext<DefaultFeatureConfig> context) {
+        placeStructure(structureId, context.getOrigin(), context.getWorld(), context.getRandom());
+    }
+
+    public static void placeStructureWithNewPos(Identifier structureId, FeatureContext<DefaultFeatureConfig> context, BlockPos pos) {
+        placeStructure(structureId, pos, context.getWorld(), context.getRandom());
+
+    }
+
     public static void placeStructure(Identifier structureId, BlockPos pos, StructureWorldAccess world, Random random) {
         Structure structure = world.toServerWorld().getStructureManager().getStructureOrBlank(structureId);
         BlockRotation blockRotation = BlockRotation.random(random);
-        StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
-        structure.place(world, pos, structurePlacementData, random);
+        StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false);
+        structure.place(world, pos, pos, structurePlacementData, random, 2);
     }
 
     //Returns false if it can't generate, returns true if it can generate.

@@ -3,6 +3,7 @@ package io.github.frqnny.mostructures.structure;
 import com.mojang.serialization.Codec;
 import io.github.frqnny.mostructures.ConfiguredFeatures;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.HeightLimitView;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.source.BiomeSource;
 import net.minecraft.world.gen.ChunkRandom;
@@ -16,9 +17,11 @@ public abstract class SpacedStructure<C extends FeatureConfig> extends Structure
         super(codec);
     }
 
-    @Override
-    protected boolean shouldStartAt(ChunkGenerator chunkGenerator, BiomeSource biomeSource, long worldSeed, ChunkRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, C featureConfig) {
 
+    @Override
+    protected boolean shouldStartAt(ChunkGenerator chunkGenerator, BiomeSource biomeSource, long worldSeed, ChunkRandom chunkRandom, ChunkPos chunkPos, Biome biome, ChunkPos chunkPos2, C featureConfig, HeightLimitView heightLimitView) {
+        int chunkX = chunkPos.x;
+        int chunkZ = chunkPos.z;
         //cannot be near other specified structure
         StructureConfig structureConfigVillage = chunkGenerator.getStructuresConfig().getForType(StructureFeature.VILLAGE);
         StructureConfig configBarnHouse = chunkGenerator.getStructuresConfig().getForType(ConfiguredFeatures.BARN_HOUSE.feature);
