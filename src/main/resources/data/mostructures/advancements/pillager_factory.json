@@ -1,0 +1,33 @@
+{
+  "parent": "mostructures:root",
+  "display": {
+    "icon": {
+      "item": "minecraft:crossbow"
+    },
+    "title": {
+      "text": "Factories of War"
+    },
+    "description": {
+      "text": "So... many... pillagers..."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "pillager_factory": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "feature": "mostructures:pillager_factory"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "pillager_factory"
+    ]
+  ]
+}

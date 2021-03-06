@@ -1,0 +1,33 @@
+{
+  "parent": "mostructures:root",
+  "display": {
+    "icon": {
+      "item": "minecraft:sandstone"
+    },
+    "title": {
+      "text": "The Tomb of the Arrogant"
+    },
+    "description": {
+      "text": "Maybe you'll find something inside?"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "pyramid": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "feature": "mostructures:big_pyramid"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "pyramid"
+    ]
+  ]
+}

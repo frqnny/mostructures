@@ -1,0 +1,33 @@
+{
+  "parent": "mostructures:root",
+  "display": {
+    "icon": {
+      "item": "minecraft:potion"
+    },
+    "title": {
+      "text": "Food & Hospitality"
+    },
+    "description": {
+      "text": "Eat and rest, traveler! We got you covered."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "tavern": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "feature": "mostructures:tavern"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tavern"
+    ]
+  ]
+}

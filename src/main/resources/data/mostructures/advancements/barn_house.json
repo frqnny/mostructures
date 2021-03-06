@@ -1,0 +1,33 @@
+{
+  "parent": "mostructures:root",
+  "display": {
+    "icon": {
+      "item": "minecraft:wheat"
+    },
+    "title": {
+      "text": "A Lonely Farm"
+    },
+    "description": {
+      "text": "Looks like they left in a hurry..."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "barn_house": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "feature": "mostructures:barn_house"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "barn_house"
+    ]
+  ]
+}

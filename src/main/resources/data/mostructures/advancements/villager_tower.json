@@ -1,0 +1,33 @@
+{
+  "parent": "mostructures:root",
+  "display": {
+    "icon": {
+      "item": "minecraft:iron_ingot"
+    },
+    "title": {
+      "text": "A Veteran's Retirement"
+    },
+    "description": {
+      "text": "If you find an Iron Golem, salute him. He fought in the Forgotten War..."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "villager_tower": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "feature": "mostructures:villager_tower"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "villager_tower"
+    ]
+  ]
+}

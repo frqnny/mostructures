@@ -1,0 +1,33 @@
+{
+  "parent": "mostructures:root",
+  "display": {
+    "icon": {
+      "item": "minecraft:arrow"
+    },
+    "title": {
+      "text": "A Forgotten War"
+    },
+    "description": {
+      "text": "Maybe there's a clue somewhere..."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "church": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "feature": "mostructures:abandoned_church"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "church"
+    ]
+  ]
+}
