@@ -22,23 +22,12 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	//Dependencies
-	modImplementation "com.github.shedaniel:AutoConfig:1.16-SNAPSHOT"
-	include  "com.github.shedaniel:AutoConfig:1.16-SNAPSHOT"
+
+	modImplementation include("com.github.shedaniel:AutoConfig:1.16-SNAPSHOT")
 	
 }
 
 processResources {
-	inputs.property "version", project.version
-
-	from(sourceSets.main.resources.srcDirs) {
-		include "fabric.mod.json"
-		expand "version": project.version
-	}
-
-	from(sourceSets.main.resources.srcDirs) {
-		exclude "fabric.mod.json"
-	}
-
 	doLast {
 
 		def jsonMinifyStart = System.currentTimeMillis()
@@ -71,4 +60,3 @@ jar {
 repositories {
 	maven { url 'https://jitpack.io' }
 }
-
