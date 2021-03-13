@@ -1,27 +1,25 @@
 package io.github.frqnny.mostructures.config;
 
-import me.sargunvohra.mcmods.autoconfig1u.ConfigData;
-import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
-import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
-import me.sargunvohra.mcmods.autoconfig1u.shadowed.blue.endless.jankson.Comment;
+import draylar.omegaconfig.api.Comment;
+import draylar.omegaconfig.api.Config;
 
-@Config(name = "mostructures-config-v1")
-public class MoStructuresConfig implements ConfigData {
+public class MoStructuresConfig implements Config {
     @Comment("Mo' Structures feature toggles.")
-    @ConfigEntry.Gui.CollapsibleObject
     public Features features = new Features();
 
     @Comment("Chances are once per the number of chunks. A Chance 500 makes a feature spawn every 500 chunks. Affected by biomes it spawns in and the chunk, so not all are proportional.")
-    @ConfigEntry.Gui.CollapsibleObject
     public FeatureChances feature_chances = new FeatureChances();
 
     @Comment("Structure toggles. These do not have chances, but in the future they may. ")
-    @ConfigEntry.Gui.CollapsibleObject
     public Structures structures = new Structures();
 
     @Comment("Structure chances. Seperation is the least amount of chunks that a structure will spawn from itself. Spacing is the maximum amount of chunks, and both are used to randomly spawn structures and can be tweaked.")
-    @ConfigEntry.Gui.CollapsibleObject
     public StructureChances structureChances = new StructureChances();
+
+    @Override
+    public String getName() {
+        return "mostructures-config-v2";
+    }
 
     public static class Features {
         @Comment("Airplanes & Air Balloons")

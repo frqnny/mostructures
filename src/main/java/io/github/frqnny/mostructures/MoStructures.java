@@ -1,14 +1,13 @@
 package io.github.frqnny.mostructures;
 
 import com.google.common.collect.ImmutableList;
+import draylar.omegaconfig.OmegaConfig;
 import io.github.frqnny.mostructures.config.MoStructuresConfig;
 import io.github.frqnny.mostructures.decorator.ChanceHeightmapDecorator;
 import io.github.frqnny.mostructures.feature.*;
 import io.github.frqnny.mostructures.processor.SimpleStoneStructureProcessor;
 import io.github.frqnny.mostructures.structure.*;
 import io.github.frqnny.mostructures.util.RegistrationHelper;
-import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
-import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
@@ -55,7 +54,7 @@ public class MoStructures implements ModInitializer {
     public static StructureProcessorList JUNGLE_ROT_LIST;
     public static StructureProcessorList ICE_TOWER_LIST;
 
-    private static MoStructuresConfig config;
+    public static MoStructuresConfig config;
 
     private static void registerStructures() {
         FabricStructureBuilder.create(BarnHouseStructure.ID, BARN_HOUSE)
@@ -292,9 +291,8 @@ public class MoStructures implements ModInitializer {
         return new Identifier(MODID, name);
     }
 
-    public static MoStructuresConfig getConfig() {
-        config = AutoConfig.getConfigHolder(MoStructuresConfig.class).getConfig();
-        return config;
+    public static void registerConfig() {
+        config = OmegaConfig.register(MoStructuresConfig.class);
     }
 
     public static void registerStructureProcessors() {
@@ -305,8 +303,7 @@ public class MoStructures implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        AutoConfig.register(MoStructuresConfig.class, JanksonConfigSerializer::new);
-        config = MoStructures.getConfig();
+        registerConfig();
 
         registerStructureProcessors();
         registerStructures();

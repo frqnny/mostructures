@@ -31,34 +31,34 @@ public class ConfiguredFeatures {
 
     public static final ConfiguredFeature<?, ?> AIR_FEATURES_BEACH = MoStructures.AIR_FEATURES
             .configure(FeatureConfig.DEFAULT)
-            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.getConfig().feature_chances.air_feature_chance / 5)));
+            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.air_feature_chance / 5)));
     public static final ConfiguredFeature<?, ?> AIR_FEATURES = MoStructures.AIR_FEATURES
             .configure(FeatureConfig.DEFAULT)
-            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.getConfig().feature_chances.air_feature_chance / 3)));
+            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.air_feature_chance / 3)));
     public static final ConfiguredFeature<?, ?> FALLEN_TREE = MoStructures.FALLEN_TREE
             .configure(FeatureConfig.DEFAULT)
-            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.getConfig().feature_chances.fallen_trees_chance)));
+            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.fallen_trees_chance)));
     public static final ConfiguredFeature<?, ?> SMALL_DESERT_FEATURES = MoStructures.SMALL_DESERT_FEATURES
             .configure(FeatureConfig.DEFAULT)
-            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.getConfig().feature_chances.desert_features_chance)));
+            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.desert_features_chance)));
     public static final ConfiguredFeature<?, ?> RUINS = MoStructures.RUINS
             .configure(FeatureConfig.DEFAULT)
-            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.getConfig().feature_chances.ruins_chance)));
+            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.ruins_chance)));
     public static final ConfiguredFeature<?, ?> BOULDER = MoStructures.BOULDER
             .configure(FeatureConfig.DEFAULT)
-            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.getConfig().feature_chances.boulder_chance)));
+            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.boulder_chance)));
     public static final ConfiguredFeature<?, ?> VOLCANIC_VENT = MoStructures.VOLCANIC_VENT
             .configure(FeatureConfig.DEFAULT)
-            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.getConfig().feature_chances.volcanic_vent_chance)));
+            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.volcanic_vent_chance)));
     public static final ConfiguredFeature<?, ?> SMALL_BEACH_FEATURES = MoStructures.SMALL_BEACH_FEATURES
             .configure(FeatureConfig.DEFAULT)
-            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.getConfig().feature_chances.beach_features_chance)));
+            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.beach_features_chance)));
     public static final ConfiguredFeature<?, ?> BOAT = MoStructures.BOAT
             .configure(FeatureConfig.DEFAULT)
-            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.getConfig().feature_chances.boats_chance)));
+            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.boats_chance)));
     public static final ConfiguredFeature<?, ?> LAMPPOST = MoStructures.LAMPPOST
             .configure(FeatureConfig.DEFAULT)
-            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.getConfig().feature_chances.lamppost_chance)));
+            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.lamppost_chance)));
 
     public static void registerConfiguredFeatures() {
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_air_feature_beach"), AIR_FEATURES_BEACH);

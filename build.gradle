@@ -23,7 +23,8 @@ dependencies {
 
 	//Dependencies
 
-	modImplementation include("com.github.shedaniel:AutoConfig:1.16-SNAPSHOT")
+	modImplementation "com.github.Draylar.omega-config:omega-config-base:${project.config_version}"
+	include "com.github.Draylar.omega-config:omega-config-base:${project.config_version}:min"
 	
 }
 
