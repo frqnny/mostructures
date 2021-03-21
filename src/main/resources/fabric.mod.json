@@ -1,15 +1,16 @@
 {
   "schemaVersion": 1,
   "id": "mostructures",
-  "version": "1.1.0+mc.1.16.5",
+  "version": "1.2.0+mc.1.16.5",
   "name": "Mo' Structures",
   "description": "Adds structures with loot and spawners to Minecraft to increase the RPG aspect of the game.",
   "authors": [
     "frqnny"
   ],
   "contact": {
-    "homepage": "https://github.com/franiscoder/mostructures",
-    "sources": "https://github.com/franiscoder/mostructures"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/mo-structures",
+    "issues": "https://github.com/frqnny/mostructures/issues",
+    "sources": "https://github.com/frqnny/mostructures"
   },
   "license": "LGPL-3.0",
   "icon": "assets/mostructures/icon.png",
@@ -20,8 +21,6 @@
     ]
   },
   "depends": {
-    "fabricloader": ">=0.10.8",
-    "fabric": "*",
     "minecraft": "1.16.x"
   },
   "mixins": [
