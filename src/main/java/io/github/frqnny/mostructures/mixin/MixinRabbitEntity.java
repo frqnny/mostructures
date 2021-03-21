@@ -32,8 +32,8 @@ public abstract class MixinRabbitEntity extends LivingEntity {
             ItemStack ironIngots = new ItemStack(Items.IRON_INGOT);
             ironIngots.setCount(18);
             ItemHelper.spawnStack(thisEntity.world, thisEntity.getX(), thisEntity.getY() + 0.5, thisEntity.getZ(), ironIngots);
-
-
         }
+
+        super.onDeath(source);
     }
 }
