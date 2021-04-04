@@ -18,11 +18,16 @@ public class MoStructuresConfig implements Config {
 
     @Override
     public String getName() {
-        return "mostructures-config-v2";
+        return "mostructures-config-v1";
+    }
+
+    @Override
+    public String getExtension() {
+        return "json5";
     }
 
     public static class Features {
-        @Comment("Airplanes & Air Balloons")
+        @Comment("Air Balloons")
         public boolean air_features = true;
         @Comment("Fallen Trees")
         public boolean fallen_trees = true;
@@ -43,8 +48,9 @@ public class MoStructuresConfig implements Config {
     }
 
     public static class FeatureChances {
-        @Comment("Airplanes & Air Balloons")
-        public int air_feature_chance = 4600;
+        @Comment("Air Balloons")
+        public int air_feature_chance_normal = 6000;
+        public int air_feature_chance_in_beach_biomes = 1000;
         @Comment("Fallen Trees")
         public int fallen_trees_chance = 17;
         @Comment("Desert Features")
@@ -123,4 +129,6 @@ public class MoStructuresConfig implements Config {
         public int killer_bunny_castle_seperation = 25;
         public int killer_bunny_castle_spacing = 50;
     }
+
+
 }
