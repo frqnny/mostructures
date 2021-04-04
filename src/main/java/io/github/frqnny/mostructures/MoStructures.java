@@ -9,6 +9,7 @@ import io.github.frqnny.mostructures.processor.SimpleStoneStructureProcessor;
 import io.github.frqnny.mostructures.structure.*;
 import io.github.frqnny.mostructures.util.RegistrationHelper;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
 import net.minecraft.structure.processor.StructureProcessorList;
@@ -24,6 +25,8 @@ import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
+
+import java.util.function.Predicate;
 
 public class MoStructures implements ModInitializer {
     public static final String MODID = "mostructures";
@@ -170,7 +173,7 @@ public class MoStructures implements ModInitializer {
 
         RegistrationHelper.addToBiome(
                 LamppostFeature.ID,
-                BiomeSelectors.categories(Biome.Category.FOREST, Biome.Category.NETHER).and(RegistrationHelper.booleanToPredicate(config.features.lamppost)),
+                BiomeSelectors.categories(Biome.Category.FOREST, Biome.Category.NETHER).and(RegistrationHelper.booleanToPredicate(config.features.lamppost)).and(MoStructures.vanilla()).and(BiomeSelectors.foundInOverworld().or(BiomeSelectors.foundInTheNether())).and(BiomeSelectors.excludeByKey(BiomeKeys.BASALT_DELTAS)),
                 (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.LAMPPOST)
         );
 
@@ -299,6 +302,14 @@ public class MoStructures implements ModInitializer {
         PROCESSOR = StructureProcessorType.register("jungle_rot_processor", SimpleStoneStructureProcessor.CODEC);
         JUNGLE_ROT_LIST = RegistrationHelper.registerStructureProcessor("jungle_rot", ImmutableList.of(new SimpleStoneStructureProcessor(0.15F)));
         ICE_TOWER_LIST = RegistrationHelper.registerStructureProcessor("ice_tower_rot", ImmutableList.of(new SimpleStoneStructureProcessor(0)));
+    }
+
+    //vanilla check that doesn't crash on servers
+    public static Predicate<BiomeSelectionContext> vanilla() {
+        return context -> {
+            // No data pack check bc it crash
+            return context.getBiomeKey().getValue().getNamespace().equals("minecraft");
+        };
     }
 
     @Override
