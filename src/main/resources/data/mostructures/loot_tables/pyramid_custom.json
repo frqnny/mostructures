@@ -263,18 +263,33 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 15,
+          "weight": 1,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "min": 1.0,
-                "max": 16.0,
+                "max": 3.0,
                 "type": "minecraft:uniform"
               }
             }
           ],
           "name": "minecraft:torch"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 5.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "minecraft:diamond"
         }
       ]
     }
