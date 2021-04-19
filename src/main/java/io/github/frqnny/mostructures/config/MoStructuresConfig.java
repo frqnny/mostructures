@@ -33,8 +33,6 @@ public class MoStructuresConfig implements Config {
         public boolean fallen_trees = true;
         @Comment("Desert Features")
         public boolean desert_features = true;
-        @Comment("Ruins")
-        public boolean ruins = true;
         @Comment("Lamppost")
         public boolean lamppost = true;
         @Comment("Boulder")
@@ -43,8 +41,6 @@ public class MoStructuresConfig implements Config {
         public boolean volcanic_vent = true;
         @Comment("Beach Features")
         public boolean beach_features = true;
-        @Comment("Boats")
-        public boolean boats = true;
     }
 
     public static class FeatureChances {
@@ -55,8 +51,7 @@ public class MoStructuresConfig implements Config {
         public int fallen_trees_chance = 17;
         @Comment("Desert Features")
         public int desert_features_chance = 555;
-        @Comment("Ruins")
-        public int ruins_chance = 3500;
+
         @Comment("Lamppost")
         public int lamppost_chance = 100;
         @Comment("Boulder")
@@ -65,8 +60,6 @@ public class MoStructuresConfig implements Config {
         public int volcanic_vent_chance = 85;
         @Comment("Beach Features")
         public int beach_features_chance = 75;
-        @Comment("Boats")
-        public int boats_chance = 4000;
     }
 
     public static class Structures {

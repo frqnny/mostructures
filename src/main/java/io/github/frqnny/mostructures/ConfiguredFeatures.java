@@ -41,9 +41,6 @@ public class ConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> SMALL_DESERT_FEATURES = MoStructures.SMALL_DESERT_FEATURES
             .configure(FeatureConfig.DEFAULT)
             .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.desert_features_chance)));
-    public static final ConfiguredFeature<?, ?> RUINS = MoStructures.RUINS
-            .configure(FeatureConfig.DEFAULT)
-            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.ruins_chance)));
     public static final ConfiguredFeature<?, ?> BOULDER = MoStructures.BOULDER
             .configure(FeatureConfig.DEFAULT)
             .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.boulder_chance)));
@@ -53,9 +50,6 @@ public class ConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> SMALL_BEACH_FEATURES = MoStructures.SMALL_BEACH_FEATURES
             .configure(FeatureConfig.DEFAULT)
             .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.beach_features_chance)));
-    public static final ConfiguredFeature<?, ?> BOAT = MoStructures.BOAT
-            .configure(FeatureConfig.DEFAULT)
-            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.boats_chance)));
     public static final ConfiguredFeature<?, ?> LAMPPOST = MoStructures.LAMPPOST
             .configure(FeatureConfig.DEFAULT)
             .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.lamppost_chance)));
@@ -65,11 +59,9 @@ public class ConfiguredFeatures {
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_air_feature"), AIR_FEATURES);
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_fallen_tree"), FALLEN_TREE);
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_small_desert_feature"), SMALL_DESERT_FEATURES);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_ruins"), RUINS);
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_boulder"), BOULDER);
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_volcanic_vent"), VOLCANIC_VENT);
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_small_beach_feature"), SMALL_BEACH_FEATURES);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_boat"), BOAT);
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_lamppost"), LAMPPOST);
 
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, BarnHouseStructure.ID, BARN_HOUSE);

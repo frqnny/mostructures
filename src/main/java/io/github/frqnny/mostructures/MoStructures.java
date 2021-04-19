@@ -33,12 +33,10 @@ public class MoStructures implements ModInitializer {
     public static final Feature<DefaultFeatureConfig> AIR_FEATURES = new SmallAirFeature();
     public static final Feature<DefaultFeatureConfig> FALLEN_TREE = new FallenTreeFeature();
     public static final Feature<DefaultFeatureConfig> SMALL_DESERT_FEATURES = new SmallDryFeature();
-    public static final Feature<DefaultFeatureConfig> RUINS = new RuinsFeature();
     public static final Feature<DefaultFeatureConfig> LAMPPOST = new LamppostFeature();
     public static final Feature<DefaultFeatureConfig> BOULDER = new BoulderFeature();
     public static final Feature<DefaultFeatureConfig> VOLCANIC_VENT = new VolcanicVentFeature();
     public static final Feature<DefaultFeatureConfig> SMALL_BEACH_FEATURES = new SmallBeachFeatures();
-    public static final Feature<DefaultFeatureConfig> BOAT = new BoatFeature();
 
     public static final StructureFeature<StructurePoolFeatureConfig> BARN_HOUSE = new BarnHouseStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> BIG_PYRAMID = new BigPyramidStructure();
@@ -132,12 +130,10 @@ public class MoStructures implements ModInitializer {
         Registry.register(Registry.FEATURE, SmallAirFeature.ID, AIR_FEATURES);
         Registry.register(Registry.FEATURE, FallenTreeFeature.ID, FALLEN_TREE);
         Registry.register(Registry.FEATURE, SmallDryFeature.ID, SMALL_DESERT_FEATURES);
-        Registry.register(Registry.FEATURE, RuinsFeature.ID, RUINS);
         Registry.register(Registry.FEATURE, LamppostFeature.ID, LAMPPOST);
         Registry.register(Registry.FEATURE, BoulderFeature.ID, BOULDER);
         Registry.register(Registry.FEATURE, VolcanicVentFeature.ID, VOLCANIC_VENT);
         Registry.register(Registry.FEATURE, SmallBeachFeatures.ID, SMALL_BEACH_FEATURES);
-        Registry.register(Registry.FEATURE, BoatFeature.ID, BOAT);
     }
 
     public static void putFeatures() {
@@ -166,12 +162,6 @@ public class MoStructures implements ModInitializer {
         );
 
         RegistrationHelper.addToBiome(
-                RuinsFeature.ID,
-                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SWAMP, Biome.Category.SAVANNA, Biome.Category.DESERT, Biome.Category.MESA).and(RegistrationHelper.booleanToPredicate(config.features.ruins)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.RUINS)
-        );
-
-        RegistrationHelper.addToBiome(
                 LamppostFeature.ID,
                 BiomeSelectors.categories(Biome.Category.FOREST, Biome.Category.NETHER).and(RegistrationHelper.booleanToPredicate(config.features.lamppost)).and(MoStructures.vanilla()).and(BiomeSelectors.foundInOverworld().or(BiomeSelectors.foundInTheNether())).and(BiomeSelectors.excludeByKey(BiomeKeys.BASALT_DELTAS)),
                 (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.LAMPPOST)
@@ -193,11 +183,6 @@ public class MoStructures implements ModInitializer {
                 SmallBeachFeatures.ID,
                 BiomeSelectors.categories(Biome.Category.BEACH).and(RegistrationHelper.booleanToPredicate(config.features.beach_features)).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.SMALL_BEACH_FEATURES)
-        );
-
-        RegistrationHelper.addToBiome(BoatFeature.ID,
-                BiomeSelectors.categories(Biome.Category.OCEAN).and(RegistrationHelper.booleanToPredicate(config.features.boats)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.BOAT)
         );
     }
 
