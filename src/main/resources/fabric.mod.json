@@ -14,7 +14,6 @@
   },
   "license": "LGPL-3.0",
   "icon": "assets/mostructures/icon.png",
-  "environment": "*",
   "entrypoints": {
     "main": [
       "io.github.frqnny.mostructures.MoStructures"
