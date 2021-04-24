@@ -9,14 +9,14 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
-public class VillagerBazaarStructure extends SpacedStructure<StructurePoolFeatureConfig> {
-    public VillagerBazaarStructure() {
+public class PillagerDungeonStructure extends SpacedStructure<StructurePoolFeatureConfig> {
+    public PillagerDungeonStructure() {
         super(StructurePoolFeatureConfig.CODEC);
     }
 
     @Override
     public StructureStartFactory<StructurePoolFeatureConfig> getStructureStartFactory() {
-        return VillagerBazaarStructure.Start::new;
+        return PillagerDungeonStructure.Start::new;
     }
 
     public static class Start extends MarginedStructureStart<StructurePoolFeatureConfig> {

@@ -51,7 +51,6 @@ public class MoStructuresConfig implements Config {
         public int fallen_trees_chance = 17;
         @Comment("Desert Features")
         public int desert_features_chance = 555;
-
         @Comment("Lamppost")
         public int lamppost_chance = 100;
         @Comment("Boulder")
