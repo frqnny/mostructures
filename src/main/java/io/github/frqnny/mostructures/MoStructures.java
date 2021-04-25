@@ -5,6 +5,7 @@ import draylar.omegaconfig.OmegaConfig;
 import io.github.frqnny.mostructures.config.MoStructuresConfig;
 import io.github.frqnny.mostructures.decorator.ChanceHeightmapDecorator;
 import io.github.frqnny.mostructures.feature.*;
+import io.github.frqnny.mostructures.processor.SimpleCobblestoneProcessor;
 import io.github.frqnny.mostructures.processor.SimpleStoneStructureProcessor;
 import io.github.frqnny.mostructures.structure.*;
 import io.github.frqnny.mostructures.util.RegistrationHelper;
@@ -51,9 +52,11 @@ public class MoStructures implements ModInitializer {
     public static final StructureFeature<StructurePoolFeatureConfig> KILLER_BUNNY_CASTLE = new KillerBunnyCastleStructure();
 
     public static final Decorator<ChanceDecoratorConfig> CHANCE_OCEAN_FLOOR_WG = Registry.register(Registry.DECORATOR, id("chance_heightmap_legacy"), new ChanceHeightmapDecorator());
-    public static StructureProcessorType<SimpleStoneStructureProcessor> PROCESSOR;
+    public static StructureProcessorType<SimpleStoneStructureProcessor> SIMPLE_STONE;
+    public static StructureProcessorType<SimpleCobblestoneProcessor> SIMPLE_COBBLESTONE;
     public static StructureProcessorList JUNGLE_ROT_LIST;
     public static StructureProcessorList ICE_TOWER_LIST;
+    public static StructureProcessorList VILLAGER_TOWER_LIST;
 
     public static MoStructuresConfig config;
 
@@ -216,8 +219,14 @@ public class MoStructures implements ModInitializer {
 
         RegistrationHelper.addToBiome(
                 VillagerTowerStructure.ID,
-                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SAVANNA, Biome.Category.FOREST).and(RegistrationHelper.booleanToPredicate(config.structures.villager_tower)).and(BiomeSelectors.foundInOverworld()),
+                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.FOREST).and(RegistrationHelper.booleanToPredicate(config.structures.villager_tower)).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.VILLAGER_TOWER)
+
+        );
+        RegistrationHelper.addToBiome(
+                VillagerTowerStructure.ID,
+                BiomeSelectors.categories(Biome.Category.SAVANNA).and(RegistrationHelper.booleanToPredicate(config.structures.villager_tower)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.SAVANNA_VILLAGER_TOWER)
 
         );
 
@@ -284,9 +293,11 @@ public class MoStructures implements ModInitializer {
     }
 
     public static void registerStructureProcessors() {
-        PROCESSOR = StructureProcessorType.register("jungle_rot_processor", SimpleStoneStructureProcessor.CODEC);
+        SIMPLE_STONE = StructureProcessorType.register("jungle_rot_processor", SimpleStoneStructureProcessor.CODEC);
+        SIMPLE_COBBLESTONE = StructureProcessorType.register("simple_cobblestone", SimpleCobblestoneProcessor.CODEC);
         JUNGLE_ROT_LIST = RegistrationHelper.registerStructureProcessor("jungle_rot", ImmutableList.of(new SimpleStoneStructureProcessor(0.15F)));
         ICE_TOWER_LIST = RegistrationHelper.registerStructureProcessor("ice_tower_rot", ImmutableList.of(new SimpleStoneStructureProcessor(0)));
+        VILLAGER_TOWER_LIST = RegistrationHelper.registerStructureProcessor("villager_tower_rot", ImmutableList.of(new SimpleCobblestoneProcessor(0.15F)));
     }
 
     //vanilla check that doesn't crash on servers

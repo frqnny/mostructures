@@ -16,12 +16,14 @@ public class ConfiguredFeatures {
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> BIG_PYRAMID = MoStructures.BIG_PYRAMID.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(BigPyramidGenerator.STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> JUNGLE_PYRAMID = MoStructures.JUNGLE_PYRAMID.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(JunglePyramidGenerator.STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> THE_CASTLE_IN_THE_SKY = MoStructures.THE_CASTLE_IN_THE_SKY.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(TheCastleInTheSkyGenerator.STARTING_POOL), 2));
-    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> VILLAGER_TOWER = MoStructures.VILLAGER_TOWER.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(VillagerTowerGenerator.STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> VILLAGER_MARKET = MoStructures.VILLAGER_MARKET.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(VillagerMarketGenerator.STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> PILLAGER_FACTORY = MoStructures.PILLAGER_FACTORY.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(PillagerFactoryGenerator.STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> ICE_TOWER = MoStructures.ICE_TOWER.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(IceTowerGenerator.STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> TAVERN = MoStructures.TAVERN.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(BoarHatTavernGenerator.STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> KILLER_BUNNY_CASTLE = MoStructures.KILLER_BUNNY_CASTLE.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(KillerBunnyCastleGenerator.STARTING_POOL), 2));
+
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> VILLAGER_TOWER = MoStructures.VILLAGER_TOWER.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(VillagerTowerGenerator.DEFAULT_STARTING_POOL), 2));
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> SAVANNA_VILLAGER_TOWER = MoStructures.VILLAGER_TOWER.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(VillagerTowerGenerator.SAVANNA_STARTING_POOL), 2));
 
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> PLAINS_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(AbandonedChurchGenerator.PLAINS_STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> SAVANNA_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(AbandonedChurchGenerator.SAVANNA_STARTING_POOL), 2));
@@ -69,6 +71,7 @@ public class ConfiguredFeatures {
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, JunglePyramidStructure.ID, JUNGLE_PYRAMID);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, TheCastleInTheSkyStructure.ID, THE_CASTLE_IN_THE_SKY);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, VillagerTowerStructure.ID, VILLAGER_TOWER);
+        Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_savanna_village_tower"), SAVANNA_VILLAGER_TOWER);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, VillagerMarketStructure.ID, VILLAGER_MARKET);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, PillagerFactoryStructure.ID, PILLAGER_FACTORY);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("plains_abandoned_church"), PLAINS_ABANDONED_CHURCH);

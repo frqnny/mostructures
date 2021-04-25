@@ -67,7 +67,7 @@ public class SimpleStoneStructureProcessor extends StructureProcessor {
     }
 
     protected StructureProcessorType<?> getType() {
-        return MoStructures.PROCESSOR;
+        return MoStructures.SIMPLE_STONE;
     }
 
 
