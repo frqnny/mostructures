@@ -232,12 +232,15 @@ public class MoStructures implements ModInitializer {
                 (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.SAVANNA_VILLAGER_TOWER)
 
         );
+        /* worst structure, should remove/rebuild
         RegistrationHelper.addToBiome(
                 VillagerTowerStructure.ID,
                 BiomeSelectors.categories(Biome.Category.DESERT).and(RegistrationHelper.booleanToPredicate(config.structures.villager_tower)).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.DESERT_VILLAGER_TOWER)
 
         );
+
+         */
 
         RegistrationHelper.addToBiome(
                 VillagerMarketStructure.ID,
