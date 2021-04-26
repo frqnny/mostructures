@@ -5,6 +5,10 @@ import draylar.omegaconfig.OmegaConfig;
 import io.github.frqnny.mostructures.config.MoStructuresConfig;
 import io.github.frqnny.mostructures.decorator.ChanceHeightmapDecorator;
 import io.github.frqnny.mostructures.feature.*;
+import io.github.frqnny.mostructures.feature.config.ArmorStandFeatureConfig;
+import io.github.frqnny.mostructures.feature.entity.ArmorStandFeature;
+import io.github.frqnny.mostructures.feature.entity.VillagerEntityFeature;
+import io.github.frqnny.mostructures.processor.DataBlockStructureProcessor;
 import io.github.frqnny.mostructures.processor.SimpleCobblestoneProcessor;
 import io.github.frqnny.mostructures.processor.SimpleStoneStructureProcessor;
 import io.github.frqnny.mostructures.structure.*;
@@ -27,10 +31,12 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
+import java.util.Random;
 import java.util.function.Predicate;
 
 public class MoStructures implements ModInitializer {
     public static final String MODID = "mostructures";
+    public static final Random random = new Random();
     public static final Feature<DefaultFeatureConfig> AIR_FEATURES = new SmallAirFeature();
     public static final Feature<DefaultFeatureConfig> FALLEN_TREE = new FallenTreeFeature();
     public static final Feature<DefaultFeatureConfig> SMALL_DESERT_FEATURES = new SmallDryFeature();
@@ -38,6 +44,8 @@ public class MoStructures implements ModInitializer {
     public static final Feature<DefaultFeatureConfig> BOULDER = new BoulderFeature();
     public static final Feature<DefaultFeatureConfig> VOLCANIC_VENT = new VolcanicVentFeature();
     public static final Feature<DefaultFeatureConfig> SMALL_BEACH_FEATURES = new SmallBeachFeatures();
+    public static final Feature<ArmorStandFeatureConfig> ARMOR_STAND_SPAWN = new ArmorStandFeature();
+    public static final Feature<DefaultFeatureConfig> VILLAGER_SPAWN = new VillagerEntityFeature();
 
     public static final StructureFeature<StructurePoolFeatureConfig> BARN_HOUSE = new BarnHouseStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> BIG_PYRAMID = new BigPyramidStructure();
@@ -54,6 +62,7 @@ public class MoStructures implements ModInitializer {
     public static final Decorator<ChanceDecoratorConfig> CHANCE_OCEAN_FLOOR_WG = Registry.register(Registry.DECORATOR, id("chance_heightmap_legacy"), new ChanceHeightmapDecorator());
     public static StructureProcessorType<SimpleStoneStructureProcessor> SIMPLE_STONE;
     public static StructureProcessorType<SimpleCobblestoneProcessor> SIMPLE_COBBLESTONE;
+    public static StructureProcessorType<DataBlockStructureProcessor> DATA_BLOCK_STRUCTURE_PROCESSOR;
     public static StructureProcessorList JUNGLE_ROT_LIST;
     public static StructureProcessorList ICE_TOWER_LIST;
     public static StructureProcessorList VILLAGER_TOWER_LIST;
@@ -137,6 +146,8 @@ public class MoStructures implements ModInitializer {
         Registry.register(Registry.FEATURE, BoulderFeature.ID, BOULDER);
         Registry.register(Registry.FEATURE, VolcanicVentFeature.ID, VOLCANIC_VENT);
         Registry.register(Registry.FEATURE, SmallBeachFeatures.ID, SMALL_BEACH_FEATURES);
+        Registry.register(Registry.FEATURE, ArmorStandFeature.ID, ARMOR_STAND_SPAWN);
+        Registry.register(Registry.FEATURE, VillagerEntityFeature.ID, VILLAGER_SPAWN);
     }
 
     public static void putFeatures() {
@@ -229,6 +240,12 @@ public class MoStructures implements ModInitializer {
                 (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.SAVANNA_VILLAGER_TOWER)
 
         );
+        RegistrationHelper.addToBiome(
+                VillagerTowerStructure.ID,
+                BiomeSelectors.categories(Biome.Category.DESERT).and(RegistrationHelper.booleanToPredicate(config.structures.villager_tower)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.DESERT_VILLAGER_TOWER)
+
+        );
 
         RegistrationHelper.addToBiome(
                 VillagerMarketStructure.ID,
@@ -295,9 +312,10 @@ public class MoStructures implements ModInitializer {
     public static void registerStructureProcessors() {
         SIMPLE_STONE = StructureProcessorType.register("jungle_rot_processor", SimpleStoneStructureProcessor.CODEC);
         SIMPLE_COBBLESTONE = StructureProcessorType.register("simple_cobblestone", SimpleCobblestoneProcessor.CODEC);
+        DATA_BLOCK_STRUCTURE_PROCESSOR = StructureProcessorType.register("data_block_structure_processor", DataBlockStructureProcessor.CODEC);
         JUNGLE_ROT_LIST = RegistrationHelper.registerStructureProcessor("jungle_rot", ImmutableList.of(new SimpleStoneStructureProcessor(0.15F)));
         ICE_TOWER_LIST = RegistrationHelper.registerStructureProcessor("ice_tower_rot", ImmutableList.of(new SimpleStoneStructureProcessor(0)));
-        VILLAGER_TOWER_LIST = RegistrationHelper.registerStructureProcessor("villager_tower_rot", ImmutableList.of(new SimpleCobblestoneProcessor(0.15F)));
+        VILLAGER_TOWER_LIST = RegistrationHelper.registerStructureProcessor("villager_tower_rot", ImmutableList.of(new SimpleCobblestoneProcessor(0.15F), new DataBlockStructureProcessor()));
     }
 
     //vanilla check that doesn't crash on servers
