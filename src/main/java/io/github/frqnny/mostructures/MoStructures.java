@@ -41,7 +41,6 @@ public class MoStructures implements ModInitializer {
     public static final Feature<DefaultFeatureConfig> FALLEN_TREE = new FallenTreeFeature();
     public static final Feature<DefaultFeatureConfig> SMALL_DESERT_FEATURES = new SmallDryFeature();
     public static final Feature<DefaultFeatureConfig> LAMPPOST = new LamppostFeature();
-    public static final Feature<DefaultFeatureConfig> BOULDER = new BoulderFeature();
     public static final Feature<DefaultFeatureConfig> VOLCANIC_VENT = new VolcanicVentFeature();
     public static final Feature<DefaultFeatureConfig> SMALL_BEACH_FEATURES = new SmallBeachFeatures();
     public static final Feature<ArmorStandFeatureConfig> ARMOR_STAND_SPAWN = new ArmorStandFeature();
@@ -143,7 +142,6 @@ public class MoStructures implements ModInitializer {
         Registry.register(Registry.FEATURE, FallenTreeFeature.ID, FALLEN_TREE);
         Registry.register(Registry.FEATURE, SmallDryFeature.ID, SMALL_DESERT_FEATURES);
         Registry.register(Registry.FEATURE, LamppostFeature.ID, LAMPPOST);
-        Registry.register(Registry.FEATURE, BoulderFeature.ID, BOULDER);
         Registry.register(Registry.FEATURE, VolcanicVentFeature.ID, VOLCANIC_VENT);
         Registry.register(Registry.FEATURE, SmallBeachFeatures.ID, SMALL_BEACH_FEATURES);
         Registry.register(Registry.FEATURE, ArmorStandFeature.ID, ARMOR_STAND_SPAWN);
@@ -179,12 +177,6 @@ public class MoStructures implements ModInitializer {
                 LamppostFeature.ID,
                 BiomeSelectors.categories(Biome.Category.FOREST, Biome.Category.NETHER).and(RegistrationHelper.booleanToPredicate(config.features.lamppost)).and(MoStructures.vanilla()).and(BiomeSelectors.foundInOverworld().or(BiomeSelectors.foundInTheNether())).and(BiomeSelectors.excludeByKey(BiomeKeys.BASALT_DELTAS)),
                 (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.LAMPPOST)
-        );
-
-        RegistrationHelper.addToBiome(
-                BoulderFeature.ID,
-                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SWAMP, Biome.Category.SAVANNA, Biome.Category.FOREST, Biome.Category.TAIGA, Biome.Category.ICY, Biome.Category.DESERT, Biome.Category.OCEAN, Biome.Category.BEACH).and(RegistrationHelper.booleanToPredicate(config.features.boulder)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.BOULDER)
         );
 
         RegistrationHelper.addToBiome(

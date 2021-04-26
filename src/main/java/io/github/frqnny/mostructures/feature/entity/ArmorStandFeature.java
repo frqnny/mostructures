@@ -46,6 +46,7 @@ public class ArmorStandFeature extends EntitySpawnFeature<ArmorStandFeatureConfi
         }
         entity.updateTrackedPosition(pos.getX(), pos.getY(), pos.getZ());
         entity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), config.bodyy, 0.0F);
+
         return entity;
     }
 }
