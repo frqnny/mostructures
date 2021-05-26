@@ -16,7 +16,7 @@
     "background": "minecraft:textures/gui/advancements/backgrounds/adventure.png"
   },
   "criteria": {
-    "simple_trigger": {
+    "very_simple_trigger": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "simple_trigger"
+      "very_simple_trigger"
     ]
   ]
 }

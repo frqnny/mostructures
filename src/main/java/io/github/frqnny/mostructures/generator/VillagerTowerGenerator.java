@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import io.github.frqnny.mostructures.ConfiguredFeatures;
 import io.github.frqnny.mostructures.MoStructures;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructurePiece;
@@ -71,8 +72,8 @@ public class VillagerTowerGenerator {
                         new Identifier("empty"),
                         ImmutableList.of(
                                 new Pair<>((StructurePoolElement.method_30426(MoStructures.MODID + ":villager/tower_1", MoStructures.VILLAGER_TOWER_LIST)), 1),
-                                new Pair<>((StructurePoolElement.method_30426(MoStructures.MODID + ":villager/tower_2", MoStructures.VILLAGER_TOWER_LIST)), 1)
-
+                                new Pair<>((StructurePoolElement.method_30426(MoStructures.MODID + ":villager/tower_2", MoStructures.VILLAGER_TOWER_LIST)), 1),
+                                new Pair<>((StructurePoolElement.method_30426(MoStructures.MODID + ":villager/tower_3", MoStructures.VILLAGER_TOWER_LIST)), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )

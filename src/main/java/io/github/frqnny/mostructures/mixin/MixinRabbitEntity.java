@@ -22,15 +22,15 @@ public abstract class MixinRabbitEntity extends LivingEntity {
         RabbitEntity thisEntity = ((RabbitEntity) (Object) this);
         if (thisEntity.getRabbitType() == 99) {
             ItemStack diamonds = new ItemStack(Items.DIAMOND);
-            diamonds.setCount(8);
+            diamonds.setCount(Math.max(8, random.nextInt(10)));
             ItemHelper.spawnStack(thisEntity.world, thisEntity.getX(), thisEntity.getY() + 0.5, thisEntity.getZ(), diamonds);
 
             ItemStack emeralds = new ItemStack(Items.EMERALD);
-            emeralds.setCount(10);
+            emeralds.setCount(Math.max(10, random.nextInt(12)));
             ItemHelper.spawnStack(thisEntity.world, thisEntity.getX(), thisEntity.getY() + 0.5, thisEntity.getZ(), emeralds);
 
             ItemStack ironIngots = new ItemStack(Items.IRON_INGOT);
-            ironIngots.setCount(18);
+            ironIngots.setCount(Math.max(18, random.nextInt(20)));
             ItemHelper.spawnStack(thisEntity.world, thisEntity.getX(), thisEntity.getY() + 0.5, thisEntity.getZ(), ironIngots);
         }
 
