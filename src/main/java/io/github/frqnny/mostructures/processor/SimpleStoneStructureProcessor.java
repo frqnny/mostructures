@@ -48,7 +48,7 @@ public class SimpleStoneStructureProcessor extends StructureProcessor {
         }
 
 
-        return blockState2 != null ? new Structure.StructureBlockInfo(blockPos2, blockState2, structureBlockInfo2.tag) : structureBlockInfo2;
+        return blockState2 != null ? new Structure.StructureBlockInfo(blockPos2, blockState2, structureBlockInfo2.nbt) : structureBlockInfo2;
     }
 
     @Nullable

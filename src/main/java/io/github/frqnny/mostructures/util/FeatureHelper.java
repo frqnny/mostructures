@@ -20,8 +20,8 @@ public class FeatureHelper {
     public static void placeStructure(Identifier structureId, BlockPos pos, StructureWorldAccess world, Random random) {
         Structure structure = world.toServerWorld().getStructureManager().getStructureOrBlank(structureId);
         BlockRotation blockRotation = BlockRotation.random(random);
-        StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(false).setChunkPosition(null);
-        structure.place(world, pos, structurePlacementData, random);
+        StructurePlacementData structurePlacementData = (new StructurePlacementData()).setMirror(BlockMirror.NONE).setRotation(blockRotation).setIgnoreEntities(true);
+        structure.place(world, pos, pos, structurePlacementData, random, 2);
     }
 
     //Returns false if it can't generate, returns true if it can generate.

@@ -4,11 +4,9 @@ import com.mojang.serialization.Codec;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureConfig;
-
-import java.util.Random;
+import net.minecraft.world.gen.feature.util.FeatureContext;
 
 public abstract class EntitySpawnFeature<FC extends FeatureConfig> extends Feature<FC> {
 
@@ -17,9 +15,13 @@ public abstract class EntitySpawnFeature<FC extends FeatureConfig> extends Featu
     }
 
     @Override
-    public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, FC config) {
+    public boolean generate(FeatureContext<FC> context) {
+        StructureWorldAccess world = context.getWorld();
+        BlockPos pos = context.getOrigin();
+        FC config = context.getConfig();
+
         Entity entity = getEntity(world, pos, config);
-        world.toServerWorld().loadEntity(entity);
+        world.toServerWorld().spawnEntity(entity);
         return true;
     }
 

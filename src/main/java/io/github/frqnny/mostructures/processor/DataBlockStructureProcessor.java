@@ -22,11 +22,11 @@ public class DataBlockStructureProcessor extends StructureProcessor {
         BlockState state = structureBlockInfoWorld.state;
 
         if (state.isOf(Blocks.STRUCTURE_BLOCK)) {
-            String mode = structureBlockInfoWorld.tag.getString("mode");
+            String mode = structureBlockInfoWorld.nbt.getString("mode");
 
 
             if (mode.contains("DATA")) {
-                String metadata = structureBlockInfoWorld.tag.getString("metadata");
+                String metadata = structureBlockInfoWorld.nbt.getString("metadata");
                 BlockPos worldPos = structureBlockInfoWorld.pos;
 
             }

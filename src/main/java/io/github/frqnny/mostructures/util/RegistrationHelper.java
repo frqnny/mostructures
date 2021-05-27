@@ -40,7 +40,7 @@ public class RegistrationHelper {
         return (context) -> bol;
     }
 
-    public static StructureProcessorList registerStructureProcessor(String id, ImmutableList<StructureProcessor> processorList) {
+    public static StructureProcessorList registerStructureProcessorList(String id, ImmutableList<StructureProcessor> processorList) {
         Identifier identifier = MoStructures.id(id);
         StructureProcessorList structureProcessorList = new StructureProcessorList(processorList);
         return BuiltinRegistries.add(BuiltinRegistries.STRUCTURE_PROCESSOR_LIST, identifier, structureProcessorList);

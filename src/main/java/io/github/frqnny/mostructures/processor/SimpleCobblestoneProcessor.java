@@ -37,7 +37,7 @@ public class SimpleCobblestoneProcessor extends StructureProcessor {
             blockState2 = this.processBlocks(random);
         }
 
-        return blockState2 != null ? new Structure.StructureBlockInfo(blockPos2, blockState2, structureBlockInfo2.tag) : structureBlockInfo2;
+        return blockState2 != null ? new Structure.StructureBlockInfo(blockPos2, blockState2, structureBlockInfo2.nbt) : structureBlockInfo2;
     }
 
     @Override
