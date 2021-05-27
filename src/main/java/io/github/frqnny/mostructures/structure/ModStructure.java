@@ -108,7 +108,7 @@ public class ModStructure extends StructureFeature<StructurePoolFeatureConfig> {
         @Override
         public void init(DynamicRegistryManager registryManager, ChunkGenerator chunkGenerator, StructureManager manager, ChunkPos pos, Biome biome, StructurePoolFeatureConfig config, HeightLimitView world) {
             StructureHelper.initPools();
-            StructurePoolBasedGenerator.method_30419(registryManager, config, PoolStructurePiece::new, chunkGenerator, manager, new BlockPos(pos.x << 4, ((ModStructure)this.getFeature()).structureStartY, pos.z << 4), this, this.random, true, true, world);
+            StructurePoolBasedGenerator.method_30419(registryManager, config, PoolStructurePiece::new, chunkGenerator, manager, new BlockPos(pos.x << 4, ((ModStructure) this.getFeature()).structureStartY, pos.z << 4), this, this.random, true, true, world);
             this.setBoundingBoxFromChildren();
         }
     }

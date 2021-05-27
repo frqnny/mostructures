@@ -19,9 +19,6 @@ public class ConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> AIR_FEATURES_BEACH = MoStructures.AIR_FEATURES
             .configure(FeatureConfig.DEFAULT)
             .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.air_feature_chance_in_beach_biomes)));
-    public static final ConfiguredFeature<?, ?> AIR_FEATURES = MoStructures.AIR_FEATURES
-            .configure(FeatureConfig.DEFAULT)
-            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.air_feature_chance_normal)));
     public static final ConfiguredFeature<?, ?> FALLEN_TREE = MoStructures.FALLEN_TREE
             .configure(FeatureConfig.DEFAULT)
             .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.fallen_trees_chance)));
@@ -60,7 +57,6 @@ public class ConfiguredFeatures {
 
     public static void registerConfiguredFeatures() {
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_air_feature_beach"), AIR_FEATURES_BEACH);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_air_feature"), AIR_FEATURES);
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_fallen_tree"), FALLEN_TREE);
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_small_desert_feature"), SMALL_DESERT_FEATURES);
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_volcanic_vent"), VOLCANIC_VENT);
@@ -75,7 +71,6 @@ public class ConfiguredFeatures {
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, StructureHelper.THE_CASTLE_IN_THE_SKY, THE_CASTLE_IN_THE_SKY);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, StructureHelper.VILLAGER_TOWER, VILLAGER_TOWER);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_savanna_village_tower"), SAVANNA_VILLAGER_TOWER);
-        //Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_desert_village_tower"), DESERT_VILLAGER_TOWER);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, StructureHelper.VILLAGER_MARKET, VILLAGER_MARKET);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, StructureHelper.PILLAGER_FACTORY, PILLAGER_FACTORY);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("plains_abandoned_church"), PLAINS_ABANDONED_CHURCH);

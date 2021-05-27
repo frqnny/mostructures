@@ -19,8 +19,7 @@ public class IceTowerGenerator {
                         BASE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                //new Pair<>(StructurePoolElement.method_30435(MoStructures.MODID + ":ice_tower/base", MoStructures.ICE_TOWER_LIST), 1)
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":ice_tower/base"), 1)
+                                new Pair<>(StructurePoolElement.method_30435(MoStructures.MODID + ":ice_tower/base", MoStructures.ICE_TOWER_LIST), 1)
 
                         ),
                         StructurePool.Projection.RIGID

@@ -59,12 +59,18 @@ public class MoStructures implements ModInitializer {
 
     public static final Decorator<ChanceDecoratorConfig> CHANCE_OCEAN_FLOOR_WG = Registry.register(Registry.DECORATOR, id("chance_heightmap_legacy"), new ChanceHeightmapDecorator());
     public static final MoStructuresConfig config = OmegaConfig.register(MoStructuresConfig.class);
-    public static StructureProcessorType<SimpleStoneStructureProcessor> SIMPLE_STONE;
-    public static StructureProcessorType<SimpleCobblestoneProcessor> SIMPLE_COBBLESTONE;
-    public static StructureProcessorType<DataBlockStructureProcessor> DATA_BLOCK_STRUCTURE_PROCESSOR;
-    public static StructureProcessorList JUNGLE_ROT_LIST;
-    public static StructureProcessorList ICE_TOWER_LIST;
-    public static StructureProcessorList VILLAGER_TOWER_LIST;
+    public static StructureProcessorType<SimpleStoneStructureProcessor> SIMPLE_STONE = StructureProcessorType.register("jungle_rot_processor", SimpleStoneStructureProcessor.CODEC);
+    public static StructureProcessorType<SimpleCobblestoneProcessor> SIMPLE_COBBLESTONE = StructureProcessorType.register("simple_cobblestone", SimpleCobblestoneProcessor.CODEC);
+    public static StructureProcessorType<DataBlockStructureProcessor> DATA_BLOCK_STRUCTURE_PROCESSOR = StructureProcessorType.register("data_block_structure_processor", DataBlockStructureProcessor.CODEC);
+    public static StructureProcessorList JUNGLE_ROT_LIST = RegistrationHelper.registerStructureProcessorList("jungle_rot", ImmutableList.of(
+            new SimpleStoneStructureProcessor(0.15F)
+    ));
+    public static StructureProcessorList ICE_TOWER_LIST = RegistrationHelper.registerStructureProcessorList("ice_tower_rot", ImmutableList.of(
+            new SimpleStoneStructureProcessor(0)
+    ));
+    public static StructureProcessorList VILLAGER_TOWER_LIST = RegistrationHelper.registerStructureProcessorList("villager_tower_rot", ImmutableList.of(
+            new SimpleCobblestoneProcessor(0.15F)
+    ));
 
     private static void registerStructures() {
         FabricStructureBuilder.create(StructureHelper.BARN_HOUSE, BARN_HOUSE)
@@ -147,11 +153,6 @@ public class MoStructures implements ModInitializer {
     }
 
     public static void putFeatures() {
-        RegistrationHelper.addToBiome(
-                SmallAirFeature.ID,
-                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SWAMP, Biome.Category.SAVANNA, Biome.Category.FOREST, Biome.Category.TAIGA, Biome.Category.ICY, Biome.Category.DESERT, Biome.Category.OCEAN).and(RegistrationHelper.booleanToPredicate(config.features.air_features)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.AIR_FEATURES)
-        );
 
         RegistrationHelper.addToBiome(
                 SmallAirFeature.ID,
@@ -298,21 +299,6 @@ public class MoStructures implements ModInitializer {
         return new Identifier(MODID, name);
     }
 
-    public static void registerStructureProcessors() {
-        SIMPLE_STONE = StructureProcessorType.register("jungle_rot_processor", SimpleStoneStructureProcessor.CODEC);
-        SIMPLE_COBBLESTONE = StructureProcessorType.register("simple_cobblestone", SimpleCobblestoneProcessor.CODEC);
-        DATA_BLOCK_STRUCTURE_PROCESSOR = StructureProcessorType.register("data_block_structure_processor", DataBlockStructureProcessor.CODEC);
-        JUNGLE_ROT_LIST = RegistrationHelper.registerStructureProcessorList("jungle_rot", ImmutableList.of(
-                new SimpleStoneStructureProcessor(0.15F)
-        ));
-        ICE_TOWER_LIST = RegistrationHelper.registerStructureProcessorList("ice_tower_rot", ImmutableList.of(
-                new SimpleStoneStructureProcessor(0)
-        ));
-        VILLAGER_TOWER_LIST = RegistrationHelper.registerStructureProcessorList("villager_tower_rot", ImmutableList.of(
-                new SimpleCobblestoneProcessor(0.15F)
-        ));
-    }
-
     //vanilla check that doesn't crash on servers
     public static Predicate<BiomeSelectionContext> vanilla() {
         return context -> {
@@ -323,7 +309,6 @@ public class MoStructures implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        registerStructureProcessors();
         registerStructures();
         registerFeatures();
         ConfiguredFeatures.registerConfiguredFeatures();

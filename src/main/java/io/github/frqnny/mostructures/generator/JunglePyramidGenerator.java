@@ -19,8 +19,8 @@ public class JunglePyramidGenerator {
                         BASE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                //TODO new Pair<>((StructurePoolElement.method_30426(MoStructures.MODID + ":jungle_pyramid/base", MoStructures.JUNGLE_ROT_LIST)), 1),
-                                new Pair<>((StructurePoolElement.method_30425(MoStructures.MODID + ":jungle_pyramid/base")), 1)
+                                new Pair<>((StructurePoolElement.method_30426(MoStructures.MODID + ":jungle_pyramid/base", MoStructures.JUNGLE_ROT_LIST)), 1)
+                                //new Pair<>((StructurePoolElement.method_30425(MoStructures.MODID + ":jungle_pyramid/base")), 1)
 
                         ),
                         StructurePool.Projection.RIGID
