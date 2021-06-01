@@ -20,7 +20,7 @@ import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 public class ModStructure extends StructureFeature<StructurePoolFeatureConfig> {
-    private int structureStartY;
+    private final int structureStartY;
 
     public ModStructure() {
         this(0);

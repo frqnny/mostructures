@@ -5,10 +5,10 @@
       "item": "minecraft:ice"
     },
     "title": {
-      "text": "Shivering Haunts"
+      "translate": "advancements.mostructures.icetower.title"
     },
     "description": {
-      "text": "This place seems to attract lots of strays..."
+      "translate": "advancements.mostructures.icetower.description"
     },
     "frame": "task",
     "show_toast": true,

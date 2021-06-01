@@ -5,10 +5,10 @@
       "item": "minecraft:arrow"
     },
     "title": {
-      "text": "A Forgotten War"
+      "translate": "advancements.mostructures.church.title"
     },
     "description": {
-      "text": "Maybe there's a clue somewhere..."
+      "translate": "advancements.mostructures.church.description"
     },
     "frame": "task",
     "show_toast": true,
