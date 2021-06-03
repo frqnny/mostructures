@@ -23,6 +23,7 @@ public class StructureHelper {
     public static final Identifier VILLAGER_TOWER = MoStructures.id("villager_tower");
     public static final Identifier THE_CASTLE_IN_THE_SKY = MoStructures.id("the_castle_in_the_sky");
     public static final Identifier VILLAGER_MARKET = MoStructures.id("villager_market");
+    public static final Identifier PIRATE_SHIP = MoStructures.id("pirate_ship");
 
     //Makes sures pools are registered
     public static void initPools() {
@@ -33,10 +34,10 @@ public class StructureHelper {
         JunglePyramidGenerator.init();
         KillerBunnyCastleGenerator.init();
         PillagerFactoryGenerator.init();
+        PirateShipGenerator.init();
         TavernGenerator.init();
         TheCastleInTheSkyGenerator.init();
         VillagerMarketGenerator.init();
         VillagerTowerGenerator.init();
-
     }
 }

@@ -12,8 +12,6 @@ import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 public class ConfiguredFeatures {
-    //public static final ConfiguredFeature<?, ?> ARMOR_STAND_SPAWN = MoStructures.ARMOR_STAND_SPAWN
-    //      .configure(new ArmorStandFeatureConfig(2.0491872F, 2.927639F, 0, 0F, -0.3036089F, 0F));
     public static final ConfiguredFeature<?, ?> VILLAGER_SPAWN = MoStructures.VILLAGER_SPAWN
             .configure(FeatureConfig.DEFAULT);
     public static final ConfiguredFeature<?, ?> AIR_FEATURES_BEACH = MoStructures.AIR_FEATURES
@@ -46,7 +44,7 @@ public class ConfiguredFeatures {
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> KILLER_BUNNY_CASTLE = MoStructures.KILLER_BUNNY_CASTLE.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(KillerBunnyCastleGenerator.STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> VILLAGER_TOWER = MoStructures.VILLAGER_TOWER.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(VillagerTowerGenerator.DEFAULT_STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> SAVANNA_VILLAGER_TOWER = MoStructures.VILLAGER_TOWER.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(VillagerTowerGenerator.SAVANNA_STARTING_POOL), 2));
-    //public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> DESERT_VILLAGER_TOWER = MoStructures.VILLAGER_TOWER.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(VillagerTowerGenerator.DESERT_STARTING_POOL), 2));
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> PIRATE_SHIP = MoStructures.PIRATE_SHIP.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(PirateShipGenerator.STARTING_POOL), 2));
 
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> PLAINS_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(AbandonedChurchGenerator.PLAINS_STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> SAVANNA_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(AbandonedChurchGenerator.SAVANNA_STARTING_POOL), 2));
@@ -62,7 +60,6 @@ public class ConfiguredFeatures {
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_volcanic_vent"), VOLCANIC_VENT);
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_small_beach_feature"), SMALL_BEACH_FEATURES);
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_lamppost"), LAMPPOST);
-        //Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_armor_stand"), ARMOR_STAND_SPAWN);
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_villager_feature"), VILLAGER_SPAWN);
 
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, StructureHelper.BARN_HOUSE, BARN_HOUSE);
@@ -81,6 +78,7 @@ public class ConfiguredFeatures {
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_ice_tower"), ICE_TOWER);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_boar_hat_tavern"), TAVERN);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_killer_bunny_castle"), KILLER_BUNNY_CASTLE);
+        Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_pirate_ship"), PIRATE_SHIP);
     }
 
 }

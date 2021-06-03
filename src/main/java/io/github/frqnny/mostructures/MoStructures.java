@@ -6,9 +6,7 @@ import io.github.frqnny.mostructures.config.MoStructuresConfig;
 import io.github.frqnny.mostructures.decorator.ChanceHeightmapDecorator;
 import io.github.frqnny.mostructures.feature.*;
 import io.github.frqnny.mostructures.feature.entity.VillagerEntityFeature;
-import io.github.frqnny.mostructures.processor.DataBlockStructureProcessor;
-import io.github.frqnny.mostructures.processor.SimpleCobblestoneProcessor;
-import io.github.frqnny.mostructures.processor.SimpleStoneStructureProcessor;
+import io.github.frqnny.mostructures.processor.*;
 import io.github.frqnny.mostructures.structure.ModStructure;
 import io.github.frqnny.mostructures.util.RegistrationHelper;
 import io.github.frqnny.mostructures.util.StructureHelper;
@@ -30,19 +28,16 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
-import java.util.Random;
 import java.util.function.Predicate;
 
 public class MoStructures implements ModInitializer {
     public static final String MODID = "mostructures";
-    public static final Random random = new Random();
     public static final Feature<DefaultFeatureConfig> AIR_FEATURES = new SmallAirFeature();
-    public static final Feature<DefaultFeatureConfig> FALLEN_TREE = new FallenTreeFeature();
-    public static final Feature<DefaultFeatureConfig> SMALL_DESERT_FEATURES = new SmallDryFeature();
+    public static final Feature<DefaultFeatureConfig> FALLEN_TREE = new FallenTreeFeature(); //REMOVE
+    public static final Feature<DefaultFeatureConfig> SMALL_DESERT_FEATURES = new SmallDryFeature();//REMOVE
     public static final Feature<DefaultFeatureConfig> LAMPPOST = new LamppostFeature();
     public static final Feature<DefaultFeatureConfig> VOLCANIC_VENT = new VolcanicVentFeature();
     public static final Feature<DefaultFeatureConfig> SMALL_BEACH_FEATURES = new SmallBeachFeatures();
-    //public static final Feature<ArmorStandFeatureConfig> ARMOR_STAND_SPAWN = new ArmorStandFeature();
     public static final Feature<DefaultFeatureConfig> VILLAGER_SPAWN = new VillagerEntityFeature();
 
     public static final StructureFeature<StructurePoolFeatureConfig> BARN_HOUSE = new ModStructure();
@@ -56,12 +51,15 @@ public class MoStructures implements ModInitializer {
     public static final StructureFeature<StructurePoolFeatureConfig> ICE_TOWER = new ModStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> TAVERN = new ModStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> KILLER_BUNNY_CASTLE = new ModStructure();
+    public static final StructureFeature<StructurePoolFeatureConfig> PIRATE_SHIP = new ModStructure(58, false, false);
 
     public static final Decorator<ChanceDecoratorConfig> CHANCE_OCEAN_FLOOR_WG = Registry.register(Registry.DECORATOR, id("chance_heightmap_legacy"), new ChanceHeightmapDecorator());
     public static final MoStructuresConfig config = OmegaConfig.register(MoStructuresConfig.class);
     public static StructureProcessorType<SimpleStoneStructureProcessor> SIMPLE_STONE = StructureProcessorType.register("jungle_rot_processor", SimpleStoneStructureProcessor.CODEC);
     public static StructureProcessorType<SimpleCobblestoneProcessor> SIMPLE_COBBLESTONE = StructureProcessorType.register("simple_cobblestone", SimpleCobblestoneProcessor.CODEC);
     public static StructureProcessorType<DataBlockStructureProcessor> DATA_BLOCK_STRUCTURE_PROCESSOR = StructureProcessorType.register("data_block_structure_processor", DataBlockStructureProcessor.CODEC);
+    public static StructureProcessorType<AirStructureProcessor> AIR_STRUCTURE_PROCESSOR = StructureProcessorType.register("air_structure_processor", AirStructureProcessor.CODEC);
+    public static StructureProcessorType<RemoveWaterloggedProcessor> REMOVE_WATERLOGGED = StructureProcessorType.register("remove_waterlog_processor", RemoveWaterloggedProcessor.CODEC);
     public static StructureProcessorList JUNGLE_ROT_LIST = RegistrationHelper.registerStructureProcessorList("jungle_rot", ImmutableList.of(
             new SimpleStoneStructureProcessor(0.15F)
     ));
@@ -70,6 +68,10 @@ public class MoStructures implements ModInitializer {
     ));
     public static StructureProcessorList VILLAGER_TOWER_LIST = RegistrationHelper.registerStructureProcessorList("villager_tower_rot", ImmutableList.of(
             new SimpleCobblestoneProcessor(0.15F)
+    ));
+    public static StructureProcessorList PIRATE_SHIP_LIST = RegistrationHelper.registerStructureProcessorList("simple_air_keep_list", ImmutableList.of(
+            new AirStructureProcessor(),
+            new RemoveWaterloggedProcessor()
     ));
 
     private static void registerStructures() {
@@ -138,6 +140,11 @@ public class MoStructures implements ModInitializer {
                 .superflatFeature(ConfiguredFeatures.KILLER_BUNNY_CASTLE)
                 .adjustsSurface()
                 .register();
+        FabricStructureBuilder.create(StructureHelper.PIRATE_SHIP, PIRATE_SHIP)
+                .step(GenerationStep.Feature.SURFACE_STRUCTURES)
+                .defaultConfig(config.structureChances.pirate_ship_spacing, config.structureChances.pirate_ship_seperation, 583957395)
+                .superflatFeature(ConfiguredFeatures.PIRATE_SHIP)
+                .register();
 
     }
 
@@ -148,7 +155,6 @@ public class MoStructures implements ModInitializer {
         Registry.register(Registry.FEATURE, LamppostFeature.ID, LAMPPOST);
         Registry.register(Registry.FEATURE, VolcanicVentFeature.ID, VOLCANIC_VENT);
         Registry.register(Registry.FEATURE, SmallBeachFeatures.ID, SMALL_BEACH_FEATURES);
-        //Registry.register(Registry.FEATURE, ArmorStandFeature.ID, ARMOR_STAND_SPAWN);
         Registry.register(Registry.FEATURE, VillagerEntityFeature.ID, VILLAGER_SPAWN);
     }
 
@@ -231,15 +237,6 @@ public class MoStructures implements ModInitializer {
                 (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.SAVANNA_VILLAGER_TOWER)
 
         );
-        /* worst structure, should remove/rebuild
-        RegistrationHelper.addToBiome(
-                VillagerTowerStructure.ID,
-                BiomeSelectors.categories(Biome.Category.DESERT).and(RegistrationHelper.booleanToPredicate(config.structures.villager_tower)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.DESERT_VILLAGER_TOWER)
-
-        );
-
-         */
 
         RegistrationHelper.addToBiome(
                 StructureHelper.VILLAGER_MARKET,
@@ -251,6 +248,14 @@ public class MoStructures implements ModInitializer {
                 StructureHelper.PILLAGER_FACTORY,
                 BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.TAIGA, Biome.Category.ICY).and(RegistrationHelper.booleanToPredicate(config.structures.pillager_factory)).and(RegistrationHelper.getNoHillsPredicate()).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.PILLAGER_FACTORY)
+        );
+        RegistrationHelper.addToBiome(
+                StructureHelper.PIRATE_SHIP,
+                BiomeSelectors.categories(Biome.Category.OCEAN).and((context) -> {
+                    String string =  context.getBiomeKey().getValue().toString();
+                    return string.contains("deep") && !string.contains("frozen");
+                }).and(RegistrationHelper.booleanToPredicate(config.structures.pirate_ship)),
+                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.PIRATE_SHIP)
         );
 
         RegistrationHelper.addToBiome(
