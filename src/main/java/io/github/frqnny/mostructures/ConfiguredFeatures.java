@@ -17,22 +17,12 @@ public class ConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> AIR_FEATURES_BEACH = MoStructures.AIR_FEATURES
             .configure(FeatureConfig.DEFAULT)
             .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.air_feature_chance_in_beach_biomes)));
-    public static final ConfiguredFeature<?, ?> FALLEN_TREE = MoStructures.FALLEN_TREE
-            .configure(FeatureConfig.DEFAULT)
-            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.fallen_trees_chance)));
-    public static final ConfiguredFeature<?, ?> SMALL_DESERT_FEATURES = MoStructures.SMALL_DESERT_FEATURES
-            .configure(FeatureConfig.DEFAULT)
-            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.desert_features_chance)));
-    public static final ConfiguredFeature<?, ?> VOLCANIC_VENT = MoStructures.VOLCANIC_VENT
+   public static final ConfiguredFeature<?, ?> VOLCANIC_VENT = MoStructures.VOLCANIC_VENT
             .configure(FeatureConfig.DEFAULT)
             .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.volcanic_vent_chance)));
     public static final ConfiguredFeature<?, ?> SMALL_BEACH_FEATURES = MoStructures.SMALL_BEACH_FEATURES
             .configure(FeatureConfig.DEFAULT)
             .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.beach_features_chance)));
-    public static final ConfiguredFeature<?, ?> LAMPPOST = MoStructures.LAMPPOST
-            .configure(FeatureConfig.DEFAULT)
-            .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.lamppost_chance)));
-
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> BARN_HOUSE = MoStructures.BARN_HOUSE.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(BarnHouseGenerator.STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> BIG_PYRAMID = MoStructures.BIG_PYRAMID.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(BigPyramidGenerator.STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> JUNGLE_PYRAMID = MoStructures.JUNGLE_PYRAMID.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(JunglePyramidGenerator.STARTING_POOL), 2));
@@ -55,11 +45,8 @@ public class ConfiguredFeatures {
 
     public static void registerConfiguredFeatures() {
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_air_feature_beach"), AIR_FEATURES_BEACH);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_fallen_tree"), FALLEN_TREE);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_small_desert_feature"), SMALL_DESERT_FEATURES);
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_volcanic_vent"), VOLCANIC_VENT);
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_small_beach_feature"), SMALL_BEACH_FEATURES);
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_lamppost"), LAMPPOST);
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_villager_feature"), VILLAGER_SPAWN);
 
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, StructureHelper.BARN_HOUSE, BARN_HOUSE);

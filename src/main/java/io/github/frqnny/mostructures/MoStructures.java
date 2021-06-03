@@ -11,7 +11,6 @@ import io.github.frqnny.mostructures.structure.ModStructure;
 import io.github.frqnny.mostructures.util.RegistrationHelper;
 import io.github.frqnny.mostructures.util.StructureHelper;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
 import net.minecraft.structure.processor.StructureProcessorList;
@@ -28,16 +27,12 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
-import java.util.function.Predicate;
-
 public class MoStructures implements ModInitializer {
     public static final String MODID = "mostructures";
     public static final Feature<DefaultFeatureConfig> AIR_FEATURES = new SmallAirFeature();
-    public static final Feature<DefaultFeatureConfig> FALLEN_TREE = new FallenTreeFeature(); //REMOVE
-    public static final Feature<DefaultFeatureConfig> SMALL_DESERT_FEATURES = new SmallDryFeature();//REMOVE
-    public static final Feature<DefaultFeatureConfig> LAMPPOST = new LamppostFeature();
     public static final Feature<DefaultFeatureConfig> VOLCANIC_VENT = new VolcanicVentFeature();
     public static final Feature<DefaultFeatureConfig> SMALL_BEACH_FEATURES = new SmallBeachFeatures();
+
     public static final Feature<DefaultFeatureConfig> VILLAGER_SPAWN = new VillagerEntityFeature();
 
     public static final StructureFeature<StructurePoolFeatureConfig> BARN_HOUSE = new ModStructure();
@@ -150,9 +145,6 @@ public class MoStructures implements ModInitializer {
 
     public static void registerFeatures() {
         Registry.register(Registry.FEATURE, SmallAirFeature.ID, AIR_FEATURES);
-        Registry.register(Registry.FEATURE, FallenTreeFeature.ID, FALLEN_TREE);
-        Registry.register(Registry.FEATURE, SmallDryFeature.ID, SMALL_DESERT_FEATURES);
-        Registry.register(Registry.FEATURE, LamppostFeature.ID, LAMPPOST);
         Registry.register(Registry.FEATURE, VolcanicVentFeature.ID, VOLCANIC_VENT);
         Registry.register(Registry.FEATURE, SmallBeachFeatures.ID, SMALL_BEACH_FEATURES);
         Registry.register(Registry.FEATURE, VillagerEntityFeature.ID, VILLAGER_SPAWN);
@@ -164,24 +156,6 @@ public class MoStructures implements ModInitializer {
                 SmallAirFeature.ID,
                 BiomeSelectors.categories(Biome.Category.BEACH).and(RegistrationHelper.booleanToPredicate(config.features.air_features)).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.AIR_FEATURES_BEACH)
-        );
-
-        RegistrationHelper.addToBiome(
-                FallenTreeFeature.ID,
-                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SWAMP, Biome.Category.SAVANNA, Biome.Category.FOREST, Biome.Category.TAIGA, Biome.Category.ICY).and(RegistrationHelper.booleanToPredicate(config.features.fallen_trees)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.FALLEN_TREE)
-        );
-
-        RegistrationHelper.addToBiome(
-                SmallDryFeature.ID,
-                BiomeSelectors.categories(Biome.Category.DESERT).and(RegistrationHelper.booleanToPredicate(config.features.desert_features)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.SMALL_DESERT_FEATURES)
-        );
-
-        RegistrationHelper.addToBiome(
-                LamppostFeature.ID,
-                BiomeSelectors.categories(Biome.Category.FOREST, Biome.Category.NETHER).and(RegistrationHelper.booleanToPredicate(config.features.lamppost)).and(MoStructures.vanilla()).and(BiomeSelectors.foundInOverworld().or(BiomeSelectors.foundInTheNether())).and(BiomeSelectors.excludeByKey(BiomeKeys.BASALT_DELTAS)),
-                (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.LAMPPOST)
         );
 
         RegistrationHelper.addToBiome(
@@ -304,13 +278,6 @@ public class MoStructures implements ModInitializer {
         return new Identifier(MODID, name);
     }
 
-    //vanilla check that doesn't crash on servers
-    public static Predicate<BiomeSelectionContext> vanilla() {
-        return context -> {
-            // No data pack check bc it crash
-            return context.getBiomeKey().getValue().getNamespace().equals("minecraft");
-        };
-    }
 
     @Override
     public void onInitialize() {
