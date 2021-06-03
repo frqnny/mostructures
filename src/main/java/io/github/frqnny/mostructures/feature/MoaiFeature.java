@@ -11,13 +11,13 @@ import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.Random;
 
-public class SmallBeachFeatures extends Feature<DefaultFeatureConfig> {
+public class MoaiFeature extends Feature<DefaultFeatureConfig> {
     public static final Identifier VILLAGER_MOAI = MoStructures.id("beach/villager_moai");
 
     public static final Identifier ID = MoStructures.id("beach_features");
 
 
-    public SmallBeachFeatures() {
+    public MoaiFeature() {
         super(DefaultFeatureConfig.CODEC);
     }
 

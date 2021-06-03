@@ -5,7 +5,7 @@ import draylar.omegaconfig.OmegaConfig;
 import io.github.frqnny.mostructures.config.MoStructuresConfig;
 import io.github.frqnny.mostructures.decorator.ChanceHeightmapDecorator;
 import io.github.frqnny.mostructures.feature.SmallAirFeature;
-import io.github.frqnny.mostructures.feature.SmallBeachFeatures;
+import io.github.frqnny.mostructures.feature.MoaiFeature;
 import io.github.frqnny.mostructures.feature.VolcanicVentFeature;
 import io.github.frqnny.mostructures.feature.entity.VillagerEntityFeature;
 import io.github.frqnny.mostructures.processor.*;
@@ -35,7 +35,7 @@ public class MoStructures implements ModInitializer {
 
     public static final Feature<DefaultFeatureConfig> AIR_FEATURES = new SmallAirFeature();
     public static final Feature<DefaultFeatureConfig> VOLCANIC_VENT = new VolcanicVentFeature();
-    public static final Feature<DefaultFeatureConfig> SMALL_BEACH_FEATURES = new SmallBeachFeatures();
+    public static final Feature<DefaultFeatureConfig> SMALL_BEACH_FEATURES = new MoaiFeature();
 
     public static final Feature<DefaultFeatureConfig> VILLAGER_SPAWN = new VillagerEntityFeature();
 
@@ -149,7 +149,7 @@ public class MoStructures implements ModInitializer {
     public static void registerFeatures() {
         Registry.register(Registry.FEATURE, SmallAirFeature.ID, AIR_FEATURES);
         Registry.register(Registry.FEATURE, VolcanicVentFeature.ID, VOLCANIC_VENT);
-        Registry.register(Registry.FEATURE, SmallBeachFeatures.ID, SMALL_BEACH_FEATURES);
+        Registry.register(Registry.FEATURE, MoaiFeature.ID, SMALL_BEACH_FEATURES);
         Registry.register(Registry.FEATURE, VillagerEntityFeature.ID, VILLAGER_SPAWN);
     }
 
@@ -167,8 +167,8 @@ public class MoStructures implements ModInitializer {
         );
 
         RegistrationHelper.addToBiome(
-                SmallBeachFeatures.ID,
-                BiomeSelectors.categories(Biome.Category.BEACH).and(RegistrationHelper.booleanToPredicate(config.features.beach_features)).and(BiomeSelectors.foundInOverworld()),
+                MoaiFeature.ID,
+                BiomeSelectors.categories(Biome.Category.BEACH).and(RegistrationHelper.booleanToPredicate(config.features.moai)).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.SMALL_BEACH_FEATURES)
         );
     }

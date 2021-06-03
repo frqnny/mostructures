@@ -31,8 +31,8 @@ public class MoStructuresConfig implements Config {
         public boolean air_features = true;
         @Comment("Volcanic Vent")
         public boolean volcanic_vent = true;
-        @Comment("Beach Features")
-        public boolean beach_features = true;
+        @Comment("Moai")
+        public boolean moai = true;
     }
 
     public static class FeatureChances {
