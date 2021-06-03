@@ -31,6 +31,8 @@ import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 public class MoStructures implements ModInitializer {
     public static final String MODID = "mostructures";
+    public static final MoStructuresConfig config = OmegaConfig.register(MoStructuresConfig.class);
+
     public static final Feature<DefaultFeatureConfig> AIR_FEATURES = new SmallAirFeature();
     public static final Feature<DefaultFeatureConfig> VOLCANIC_VENT = new VolcanicVentFeature();
     public static final Feature<DefaultFeatureConfig> SMALL_BEACH_FEATURES = new SmallBeachFeatures();
@@ -51,7 +53,6 @@ public class MoStructures implements ModInitializer {
     public static final StructureFeature<StructurePoolFeatureConfig> PIRATE_SHIP = new ModStructure(58, false, false);
 
     public static final Decorator<ChanceDecoratorConfig> CHANCE_OCEAN_FLOOR_WG = Registry.register(Registry.DECORATOR, id("chance_heightmap_legacy"), new ChanceHeightmapDecorator());
-    public static final MoStructuresConfig config = OmegaConfig.register(MoStructuresConfig.class);
     public static StructureProcessorType<SimpleStoneStructureProcessor> SIMPLE_STONE = StructureProcessorType.register("jungle_rot_processor", SimpleStoneStructureProcessor.CODEC);
     public static StructureProcessorType<SimpleCobblestoneProcessor> SIMPLE_COBBLESTONE = StructureProcessorType.register("simple_cobblestone", SimpleCobblestoneProcessor.CODEC);
     public static StructureProcessorType<DataBlockStructureProcessor> DATA_BLOCK_STRUCTURE_PROCESSOR = StructureProcessorType.register("data_block_structure_processor", DataBlockStructureProcessor.CODEC);
@@ -153,7 +154,6 @@ public class MoStructures implements ModInitializer {
     }
 
     public static void putFeatures() {
-
         RegistrationHelper.addToBiome(
                 SmallAirFeature.ID,
                 BiomeSelectors.categories(Biome.Category.BEACH).and(RegistrationHelper.booleanToPredicate(config.features.air_features)).and(BiomeSelectors.foundInOverworld()),

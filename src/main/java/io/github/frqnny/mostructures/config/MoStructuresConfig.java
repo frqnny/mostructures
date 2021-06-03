@@ -29,14 +29,6 @@ public class MoStructuresConfig implements Config {
     public static class Features {
         @Comment("Air Balloons")
         public boolean air_features = true;
-        @Comment("Fallen Trees")
-        public boolean fallen_trees = true;
-        @Comment("Desert Features")
-        public boolean desert_features = true;
-        @Comment("Lamppost")
-        public boolean lamppost = true;
-        @Comment("Boulder")
-        public boolean boulder = true;
         @Comment("Volcanic Vent")
         public boolean volcanic_vent = true;
         @Comment("Beach Features")
@@ -45,16 +37,7 @@ public class MoStructuresConfig implements Config {
 
     public static class FeatureChances {
         @Comment("Air Balloons")
-        public int air_feature_chance_normal = 6000;
         public int air_feature_chance_in_beach_biomes = 1000;
-        @Comment("Fallen Trees")
-        public int fallen_trees_chance = 17;
-        @Comment("Desert Features")
-        public int desert_features_chance = 555;
-        @Comment("Lamppost")
-        public int lamppost_chance = 100;
-        @Comment("Boulder")
-        public int boulder_chance = 4000;
         @Comment("Volcanic Vent")
         public int volcanic_vent_chance = 85;
         @Comment("Beach Features")
