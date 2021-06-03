@@ -2,11 +2,7 @@ package io.github.frqnny.mostructures.processor;
 
 import com.mojang.serialization.Codec;
 import io.github.frqnny.mostructures.MoStructures;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.Waterloggable;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.state.property.Properties;
 import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.structure.processor.StructureProcessor;
@@ -19,7 +15,6 @@ import net.minecraft.world.chunk.Chunk;
 import org.jetbrains.annotations.Nullable;
 
 
-
 //A more aggresive form of removal waterlloging
 public class RemoveWaterloggedProcessor extends StructureProcessor {
     public static final Codec<RemoveWaterloggedProcessor> CODEC = Codec.unit(RemoveWaterloggedProcessor::new);
@@ -30,9 +25,9 @@ public class RemoveWaterloggedProcessor extends StructureProcessor {
     public Structure.StructureBlockInfo process(WorldView worldReader, BlockPos pos, BlockPos pos2, Structure.StructureBlockInfo infoIn1, Structure.StructureBlockInfo infoIn2, StructurePlacementData settings) {
 
         ChunkPos currentChunkPos = new ChunkPos(infoIn2.pos);
-        if(infoIn2.state.getBlock() instanceof Waterloggable){
+        if (infoIn2.state.getBlock() instanceof Waterloggable) {
             Chunk currentChunk = worldReader.getChunk(currentChunkPos.x, currentChunkPos.z);
-            if(worldReader.getFluidState(infoIn2.pos).isIn(FluidTags.WATER)){
+            if (worldReader.getFluidState(infoIn2.pos).isIn(FluidTags.WATER)) {
                 currentChunk.setBlockState(infoIn2.pos, infoIn2.state, false);
             }
 

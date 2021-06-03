@@ -4,7 +4,9 @@ import com.google.common.collect.ImmutableList;
 import draylar.omegaconfig.OmegaConfig;
 import io.github.frqnny.mostructures.config.MoStructuresConfig;
 import io.github.frqnny.mostructures.decorator.ChanceHeightmapDecorator;
-import io.github.frqnny.mostructures.feature.*;
+import io.github.frqnny.mostructures.feature.SmallAirFeature;
+import io.github.frqnny.mostructures.feature.SmallBeachFeatures;
+import io.github.frqnny.mostructures.feature.VolcanicVentFeature;
 import io.github.frqnny.mostructures.feature.entity.VillagerEntityFeature;
 import io.github.frqnny.mostructures.processor.*;
 import io.github.frqnny.mostructures.structure.ModStructure;
@@ -226,7 +228,7 @@ public class MoStructures implements ModInitializer {
         RegistrationHelper.addToBiome(
                 StructureHelper.PIRATE_SHIP,
                 BiomeSelectors.categories(Biome.Category.OCEAN).and((context) -> {
-                    String string =  context.getBiomeKey().getValue().toString();
+                    String string = context.getBiomeKey().getValue().toString();
                     return string.contains("deep") && !string.contains("frozen");
                 }).and(RegistrationHelper.booleanToPredicate(config.structures.pirate_ship)),
                 (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.PIRATE_SHIP)

@@ -17,7 +17,7 @@ public class ConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> AIR_FEATURES_BEACH = MoStructures.AIR_FEATURES
             .configure(FeatureConfig.DEFAULT)
             .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.air_feature_chance_in_beach_biomes)));
-   public static final ConfiguredFeature<?, ?> VOLCANIC_VENT = MoStructures.VOLCANIC_VENT
+    public static final ConfiguredFeature<?, ?> VOLCANIC_VENT = MoStructures.VOLCANIC_VENT
             .configure(FeatureConfig.DEFAULT)
             .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.volcanic_vent_chance)));
     public static final ConfiguredFeature<?, ?> SMALL_BEACH_FEATURES = MoStructures.SMALL_BEACH_FEATURES
