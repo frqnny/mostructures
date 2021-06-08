@@ -14,6 +14,8 @@ import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 public class ConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> VILLAGER_SPAWN = MoStructures.VILLAGER_SPAWN
             .configure(FeatureConfig.DEFAULT);
+    public static final ConfiguredFeature<?,?> LIGTHOUSE_BASE = MoStructures.LIGHTHOUSE_BASE
+            .configure(FeatureConfig.DEFAULT);
     public static final ConfiguredFeature<?, ?> AIR_FEATURES_BEACH = MoStructures.AIR_FEATURES
             .configure(FeatureConfig.DEFAULT)
             .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.air_feature_chance_in_beach_biomes)));
@@ -35,6 +37,7 @@ public class ConfiguredFeatures {
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> VILLAGER_TOWER = MoStructures.VILLAGER_TOWER.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(VillagerTowerGenerator.DEFAULT_STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> SAVANNA_VILLAGER_TOWER = MoStructures.VILLAGER_TOWER.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(VillagerTowerGenerator.SAVANNA_STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> PIRATE_SHIP = MoStructures.PIRATE_SHIP.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(PirateShipGenerator.STARTING_POOL), 2));
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> LIGHTHOUSE = MoStructures.LIGHTHOUSE.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(LighthouseGenerator.STARTING_POOL), 2));
 
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> PLAINS_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(AbandonedChurchGenerator.PLAINS_STARTING_POOL), 2));
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> SAVANNA_ABANDONED_CHURCH = MoStructures.ABANDONED_CHURCH.configure(new StructurePoolFeatureConfig(RegistrationHelper.pool(AbandonedChurchGenerator.SAVANNA_STARTING_POOL), 2));
@@ -66,6 +69,7 @@ public class ConfiguredFeatures {
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_boar_hat_tavern"), TAVERN);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_killer_bunny_castle"), KILLER_BUNNY_CASTLE);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_pirate_ship"), PIRATE_SHIP);
+        Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_light_house"), LIGHTHOUSE);
     }
 
 }

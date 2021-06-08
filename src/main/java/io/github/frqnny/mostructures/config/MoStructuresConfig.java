@@ -69,6 +69,8 @@ public class MoStructuresConfig implements Config {
         public boolean killer_bunny_castle = true;
         @Comment("Pirate Ship")
         public boolean pirate_ship = true;
+        @Comment("Light House")
+        public boolean lighthouse = true;
     }
 
     public static class StructureChances {
@@ -108,6 +110,9 @@ public class MoStructuresConfig implements Config {
         @Comment("Pirate Ship")
         public int pirate_ship_seperation = 16;
         public int pirate_ship_spacing = 40;
+        @Comment("Light House")
+        public int ligthouse_seperation = 16;
+        public int lighthouse_spacing = 32;
     }
 
 

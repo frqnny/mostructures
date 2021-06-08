@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import draylar.omegaconfig.OmegaConfig;
 import io.github.frqnny.mostructures.config.MoStructuresConfig;
 import io.github.frqnny.mostructures.decorator.ChanceHeightmapDecorator;
+import io.github.frqnny.mostructures.feature.LighthouseBaseFeature;
 import io.github.frqnny.mostructures.feature.SmallAirFeature;
 import io.github.frqnny.mostructures.feature.MoaiFeature;
 import io.github.frqnny.mostructures.feature.VolcanicVentFeature;
@@ -38,6 +39,7 @@ public class MoStructures implements ModInitializer {
     public static final Feature<DefaultFeatureConfig> SMALL_BEACH_FEATURES = new MoaiFeature();
 
     public static final Feature<DefaultFeatureConfig> VILLAGER_SPAWN = new VillagerEntityFeature();
+    public static final Feature<DefaultFeatureConfig> LIGHTHOUSE_BASE = new LighthouseBaseFeature();
 
     public static final StructureFeature<StructurePoolFeatureConfig> BARN_HOUSE = new ModStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> BIG_PYRAMID = new ModStructure();
@@ -51,6 +53,7 @@ public class MoStructures implements ModInitializer {
     public static final StructureFeature<StructurePoolFeatureConfig> TAVERN = new ModStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> KILLER_BUNNY_CASTLE = new ModStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> PIRATE_SHIP = new ModStructure(58, false, false);
+    public static final StructureFeature<StructurePoolFeatureConfig> LIGHTHOUSE = new ModStructure(65, false, false);
 
     public static final Decorator<ChanceDecoratorConfig> CHANCE_OCEAN_FLOOR_WG = Registry.register(Registry.DECORATOR, id("chance_heightmap_legacy"), new ChanceHeightmapDecorator());
     public static StructureProcessorType<SimpleStoneStructureProcessor> SIMPLE_STONE = StructureProcessorType.register("jungle_rot_processor", SimpleStoneStructureProcessor.CODEC);
@@ -143,6 +146,12 @@ public class MoStructures implements ModInitializer {
                 .defaultConfig(config.structureChances.pirate_ship_spacing, config.structureChances.pirate_ship_seperation, 583957395)
                 .superflatFeature(ConfiguredFeatures.PIRATE_SHIP)
                 .register();
+        FabricStructureBuilder.create(StructureHelper.LIGHTHOUSE, LIGHTHOUSE)
+                .step(GenerationStep.Feature.SURFACE_STRUCTURES)
+                .defaultConfig(config.structureChances.lighthouse_spacing, config.structureChances.ligthouse_seperation, 29502322)
+                .superflatFeature(ConfiguredFeatures.LIGHTHOUSE)
+                .register();
+
 
     }
 
@@ -151,6 +160,7 @@ public class MoStructures implements ModInitializer {
         Registry.register(Registry.FEATURE, VolcanicVentFeature.ID, VOLCANIC_VENT);
         Registry.register(Registry.FEATURE, MoaiFeature.ID, SMALL_BEACH_FEATURES);
         Registry.register(Registry.FEATURE, VillagerEntityFeature.ID, VILLAGER_SPAWN);
+        Registry.register(Registry.FEATURE, LighthouseBaseFeature.ID, LIGHTHOUSE_BASE);
     }
 
     public static void putFeatures() {
@@ -273,6 +283,11 @@ public class MoStructures implements ModInitializer {
                 StructureHelper.KILLER_BUNNY_CASTLE,
                 BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.FOREST, Biome.Category.SAVANNA).and(RegistrationHelper.booleanToPredicate(config.structures.killer_bunny_castle)).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.KILLER_BUNNY_CASTLE)
+        );
+        RegistrationHelper.addToBiome(
+                StructureHelper.LIGHTHOUSE,
+                BiomeSelectors.categories(Biome.Category.BEACH).and(RegistrationHelper.booleanToPredicate(config.structures.lighthouse)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.LIGHTHOUSE)
         );
     }
 
