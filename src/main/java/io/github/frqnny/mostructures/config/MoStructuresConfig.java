@@ -75,8 +75,8 @@ public class MoStructuresConfig implements Config {
 
     public static class StructureChances {
         @Comment("Barn House")
-        public int barn_house_seperation = 16;
-        public int barn_house_spacing = 40;
+        public int barn_house_seperation = 8;
+        public int barn_house_spacing = 38;
         @Comment("Big Pyramid")
         public int big_pyramid_seperation = 5;
         public int big_pyramid_spacing = 25;
@@ -88,19 +88,19 @@ public class MoStructuresConfig implements Config {
         public int the_castle_in_the_sky_spacing = 30;
         @Comment("Villager Tower")
         public int villager_tower_seperation = 16;
-        public int villager_tower_spacing = 40;
+        public int villager_tower_spacing = 34;
         @Comment("Abandoned Church")
-        public int abandoned_church_seperation = 16;
-        public int abandoned_church_spacing = 40;
+        public int abandoned_church_seperation = 14;
+        public int abandoned_church_spacing = 38;
         @Comment("Villager Market")
-        public int villager_market_seperation = 27;
-        public int villager_market_spacing = 40;
+        public int villager_market_seperation = 16;
+        public int villager_market_spacing = 36;
         @Comment("Pillager Factory")
-        public int pillager_factory_seperation = 27;
-        public int pillager_factory_spacing = 40;
+        public int pillager_factory_seperation = 16;
+        public int pillager_factory_spacing = 36;
         @Comment("Ice Tower")
         public int ice_tower_seperation = 8;
-        public int ice_tower_spacing = 32;
+        public int ice_tower_spacing = 28;
         @Comment("Boar Hat Tavern")
         public int tavern_seperation = 16;
         public int tavern_spacing = 46;
