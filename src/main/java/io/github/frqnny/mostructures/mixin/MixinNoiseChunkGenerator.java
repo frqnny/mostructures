@@ -1,6 +1,7 @@
 package io.github.frqnny.mostructures.mixin;
 
 import io.github.frqnny.mostructures.ConfiguredFeatures;
+import io.github.frqnny.mostructures.MoStructures;
 import io.github.frqnny.mostructures.util.StructureHelper;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.util.collection.Pool;
@@ -20,15 +21,23 @@ public class MixinNoiseChunkGenerator {
 
     @Inject(at = @At("HEAD"), method = "getEntitySpawnList", cancellable = true)
     public void injectSpawnList(Biome biome, StructureAccessor accessor, SpawnGroup group, BlockPos pos, CallbackInfoReturnable<Pool<SpawnSettings.SpawnEntry>> info) {
-        if (accessor.getStructureAt(pos, false, ConfiguredFeatures.PILLAGER_FACTORY.feature).hasChildren()) {
+        if (accessor.getStructureAt(pos, false, MoStructures.PILLAGER_FACTORY).hasChildren()) {
             if (group == SpawnGroup.MONSTER) {
                 info.setReturnValue(StructureFeature.PILLAGER_OUTPOST.getMonsterSpawns());
             }
-        }
-        if (accessor.getStructureAt(pos, false, ConfiguredFeatures.ICE_TOWER.feature).hasChildren()) {
+        } else if (accessor.getStructureAt(pos, false, MoStructures.ICE_TOWER).hasChildren()) {
             if (group == SpawnGroup.MONSTER) {
                 info.setReturnValue(StructureHelper.ICE_TOWER_SPAWNS);
             }
+        } else if (accessor.getStructureAt(pos, false, MoStructures.BARN_HOUSE).hasChildren()) {
+            if (group == SpawnGroup.AMBIENT) {
+                info.setReturnValue(StructureHelper.BARN_HOUSE_SPAWNS);
+            }
+        } else if (accessor.getStructureAt(pos, false, MoStructures.ABANDONED_CHURCH).hasChildren()) {
+            if (group == SpawnGroup.MONSTER) {
+                info.setReturnValue(StructureHelper.ABANDONED_CHURCH_SPAWNS);
+            }
         }
+
     }
 }

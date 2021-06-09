@@ -34,7 +34,10 @@ public class TavernGenerator {
                         TAVERNS,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":tavern/tavern"), 1)
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":tavern/tavern_1"), 1),
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":tavern/tavern_2"), 2),
+                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":tavern/tavern_3"), 1)
+
                         ),
                         StructurePool.Projection.RIGID
                 )
