@@ -14,8 +14,7 @@ import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 public class ConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> VILLAGER_SPAWN = MoStructures.VILLAGER_SPAWN
             .configure(FeatureConfig.DEFAULT);
-    public static final ConfiguredFeature<?,?> LIGTHOUSE_BASE = MoStructures.LIGHTHOUSE_BASE
-            .configure(FeatureConfig.DEFAULT);
+
     public static final ConfiguredFeature<?, ?> AIR_FEATURES_BEACH = MoStructures.AIR_FEATURES
             .configure(FeatureConfig.DEFAULT)
             .decorate(MoStructures.CHANCE_OCEAN_FLOOR_WG.configure(new ChanceDecoratorConfig(MoStructures.config.feature_chances.air_feature_chance_in_beach_biomes)));

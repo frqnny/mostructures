@@ -4,9 +4,8 @@ import com.google.common.collect.ImmutableList;
 import draylar.omegaconfig.OmegaConfig;
 import io.github.frqnny.mostructures.config.MoStructuresConfig;
 import io.github.frqnny.mostructures.decorator.ChanceHeightmapDecorator;
-import io.github.frqnny.mostructures.feature.LighthouseBaseFeature;
-import io.github.frqnny.mostructures.feature.SmallAirFeature;
 import io.github.frqnny.mostructures.feature.MoaiFeature;
+import io.github.frqnny.mostructures.feature.SmallAirFeature;
 import io.github.frqnny.mostructures.feature.VolcanicVentFeature;
 import io.github.frqnny.mostructures.feature.entity.VillagerEntityFeature;
 import io.github.frqnny.mostructures.processor.*;
@@ -39,7 +38,6 @@ public class MoStructures implements ModInitializer {
     public static final Feature<DefaultFeatureConfig> SMALL_BEACH_FEATURES = new MoaiFeature();
 
     public static final Feature<DefaultFeatureConfig> VILLAGER_SPAWN = new VillagerEntityFeature();
-    public static final Feature<DefaultFeatureConfig> LIGHTHOUSE_BASE = new LighthouseBaseFeature();
 
     public static final StructureFeature<StructurePoolFeatureConfig> BARN_HOUSE = new ModStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> BIG_PYRAMID = new ModStructure();
@@ -160,7 +158,6 @@ public class MoStructures implements ModInitializer {
         Registry.register(Registry.FEATURE, VolcanicVentFeature.ID, VOLCANIC_VENT);
         Registry.register(Registry.FEATURE, MoaiFeature.ID, SMALL_BEACH_FEATURES);
         Registry.register(Registry.FEATURE, VillagerEntityFeature.ID, VILLAGER_SPAWN);
-        Registry.register(Registry.FEATURE, LighthouseBaseFeature.ID, LIGHTHOUSE_BASE);
     }
 
     public static void putFeatures() {
