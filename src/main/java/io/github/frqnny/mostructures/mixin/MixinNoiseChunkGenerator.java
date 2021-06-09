@@ -1,6 +1,6 @@
 package io.github.frqnny.mostructures.mixin;
 
-Cloimport io.github.frqnny.mostructures.MoStructures;
+import io.github.frqnny.mostructures.MoStructures;
 import io.github.frqnny.mostructures.util.StructureHelper;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.util.collection.Pool;
