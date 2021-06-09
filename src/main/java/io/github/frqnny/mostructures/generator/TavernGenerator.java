@@ -3,10 +3,12 @@ package io.github.frqnny.mostructures.generator;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import io.github.frqnny.mostructures.MoStructures;
+import net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolElement;
 import net.minecraft.structure.pool.StructurePools;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.gen.feature.ConfiguredFeatures;
 
 public class TavernGenerator {
     public static final StructurePool STARTING_POOL;
@@ -14,6 +16,7 @@ public class TavernGenerator {
     private static final Identifier TAVERNS = MoStructures.id("tavern/taverns");
     private static final Identifier FEATURE_PLATES = MoStructures.id("tavern/feature_plates");
     private static final Identifier FEATURES = MoStructures.id("tavern/features");
+    private static final Identifier TREE = MoStructures.id("tavern/trees");
 
     static {
         STARTING_POOL = StructurePools.register(
@@ -53,10 +56,22 @@ public class TavernGenerator {
                         new Identifier("empty"),
                         ImmutableList.of(
                                 new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":tavern/campfire"), 1),
-                                new Pair<>(StructurePoolElement.method_30438(), 5)),
+                                new Pair<>(StructurePoolElement.method_30438(), 5)
+                        ),
                         StructurePool.Projection.RIGID
                 )
         );
+        StructurePools.register(
+                new StructurePool(
+                        TREE,
+                        new Identifier("empty"),
+                        ImmutableList.of(
+                                new Pair<>(StructurePoolElement.method_30421(ConfiguredFeatures.OAK), 1),
+                                new Pair<>(StructurePoolElement.method_30421(ConfiguredFeatures.BIRCH), 1)
+                        ),
+                        StructurePool.Projection.RIGID)
+        );
+
 
     }
 
