@@ -50,12 +50,14 @@ public class ModStructure extends StructureFeature<StructurePoolFeatureConfig> {
 
         //cannot be near other specified structure
         StructureConfig structureConfigVillage = chunkGenerator.getStructuresConfig().getForType(StructureFeature.VILLAGE);
-        StructureConfig configBarnHouse = chunkGenerator.getStructuresConfig().getForType(ConfiguredFeatures.BARN_HOUSE.feature);
-        StructureConfig configBigPyramid = chunkGenerator.getStructuresConfig().getForType(ConfiguredFeatures.BIG_PYRAMID.feature);
-        StructureConfig configJunglePyramid = chunkGenerator.getStructuresConfig().getForType(ConfiguredFeatures.JUNGLE_PYRAMID.feature);
-        StructureConfig configPillagerFactory = chunkGenerator.getStructuresConfig().getForType(ConfiguredFeatures.PILLAGER_FACTORY.feature);
-        StructureConfig configVillagerMarket = chunkGenerator.getStructuresConfig().getForType(ConfiguredFeatures.VILLAGER_MARKET.feature);
-        StructureConfig configVillagerTower = chunkGenerator.getStructuresConfig().getForType(ConfiguredFeatures.VILLAGER_TOWER.feature);
+        StructureConfig configBarnHouse = chunkGenerator.getStructuresConfig().getForType(MoStructures.BARN_HOUSE);
+        StructureConfig configBigPyramid = chunkGenerator.getStructuresConfig().getForType(MoStructures.BIG_PYRAMID);
+        StructureConfig configJunglePyramid = chunkGenerator.getStructuresConfig().getForType(MoStructures.JUNGLE_PYRAMID);
+        StructureConfig configPillagerFactory = chunkGenerator.getStructuresConfig().getForType(MoStructures.PILLAGER_FACTORY);
+        StructureConfig configVillagerMarket = chunkGenerator.getStructuresConfig().getForType(MoStructures.VILLAGER_MARKET);
+        StructureConfig configVillagerTower = chunkGenerator.getStructuresConfig().getForType(MoStructures.VILLAGER_TOWER);
+        StructureConfig configKillerBunnyCastle = chunkGenerator.getStructuresConfig().getForType(MoStructures.KILLER_BUNNY_CASTLE);
+        StructureConfig configTavern = chunkGenerator.getStructuresConfig().getForType(MoStructures.TAVERN);
 
 
         for (int k = pos.x - 6; k <= pos.x + 6; ++k) {
@@ -67,37 +69,49 @@ public class ModStructure extends StructureFeature<StructurePoolFeatureConfig> {
                     }
                 }
                 if (configBarnHouse != null) {
-                    ChunkPos possibleBarnhousePos = ConfiguredFeatures.BARN_HOUSE.feature.getStartChunk(configBarnHouse, worldSeed, random, k, m);
+                    ChunkPos possibleBarnhousePos = MoStructures.BARN_HOUSE.getStartChunk(configBarnHouse, worldSeed, random, k, m);
                     if (k == possibleBarnhousePos.x && m == possibleBarnhousePos.z && this != MoStructures.BARN_HOUSE) {
                         return false;
                     }
                 }
                 if (configBigPyramid != null) {
-                    ChunkPos possibleBigPyramidPos = ConfiguredFeatures.BIG_PYRAMID.feature.getStartChunk(configBigPyramid, worldSeed, random, k, m);
+                    ChunkPos possibleBigPyramidPos = MoStructures.BIG_PYRAMID.getStartChunk(configBigPyramid, worldSeed, random, k, m);
                     if (k == possibleBigPyramidPos.x && m == possibleBigPyramidPos.z && this != MoStructures.BIG_PYRAMID) {
                         return false;
                     }
                 }
                 if (configJunglePyramid != null) {
-                    ChunkPos possibleJunglePyramidPos = ConfiguredFeatures.JUNGLE_PYRAMID.feature.getStartChunk(configJunglePyramid, worldSeed, random, k, m);
+                    ChunkPos possibleJunglePyramidPos = MoStructures.JUNGLE_PYRAMID.getStartChunk(configJunglePyramid, worldSeed, random, k, m);
                     if (k == possibleJunglePyramidPos.x && m == possibleJunglePyramidPos.z && this != MoStructures.JUNGLE_PYRAMID) {
                         return false;
                     }
                 }
                 if (configPillagerFactory != null) {
-                    ChunkPos possiblePillagerFactoryPos = ConfiguredFeatures.PILLAGER_FACTORY.feature.getStartChunk(configPillagerFactory, worldSeed, random, k, m);
+                    ChunkPos possiblePillagerFactoryPos = MoStructures.PILLAGER_FACTORY.getStartChunk(configPillagerFactory, worldSeed, random, k, m);
                     if (k == possiblePillagerFactoryPos.x && m == possiblePillagerFactoryPos.z && this != MoStructures.PILLAGER_FACTORY) {
                         return false;
                     }
                 }
                 if (configVillagerMarket != null) {
-                    ChunkPos possibleVillagerMarketPos = ConfiguredFeatures.VILLAGER_MARKET.feature.getStartChunk(configVillagerMarket, worldSeed, random, k, m);
+                    ChunkPos possibleVillagerMarketPos = MoStructures.VILLAGER_MARKET.getStartChunk(configVillagerMarket, worldSeed, random, k, m);
                     if (k == possibleVillagerMarketPos.x && m == possibleVillagerMarketPos.z && this != MoStructures.VILLAGER_MARKET) {
                         return false;
                     }
                 }
                 if (configVillagerTower != null) {
-                    ChunkPos possibleVillagerTowerPos = ConfiguredFeatures.VILLAGER_TOWER.feature.getStartChunk(configVillagerTower, worldSeed, random, k, m);
+                    ChunkPos possibleVillagerTowerPos = MoStructures.VILLAGER_TOWER.getStartChunk(configVillagerTower, worldSeed, random, k, m);
+                    if (k == possibleVillagerTowerPos.x && m == possibleVillagerTowerPos.z && this != MoStructures.VILLAGER_TOWER) {
+                        return false;
+                    }
+                }
+                if (configTavern != null) {
+                    ChunkPos possibleVillagerTowerPos = MoStructures.TAVERN.getStartChunk(configTavern, worldSeed, random, k, m);
+                    if (k == possibleVillagerTowerPos.x && m == possibleVillagerTowerPos.z && this != MoStructures.VILLAGER_TOWER) {
+                        return false;
+                    }
+                }
+                if (configKillerBunnyCastle != null) {
+                    ChunkPos possibleVillagerTowerPos = MoStructures.KILLER_BUNNY_CASTLE.getStartChunk(configKillerBunnyCastle, worldSeed, random, k, m);
                     if (k == possibleVillagerTowerPos.x && m == possibleVillagerTowerPos.z && this != MoStructures.VILLAGER_TOWER) {
                         return false;
                     }
