@@ -24,7 +24,6 @@ public class IceTowerGenerator {
                                 new Pair<>(StructurePoolElement.method_30435(MoStructures.MODID + ":ice_tower/base_3", MoStructures.ICE_TOWER_LIST), 1)
 
 
-
                         ),
                         StructurePool.Projection.RIGID
                 )

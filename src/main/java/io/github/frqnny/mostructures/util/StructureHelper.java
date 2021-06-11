@@ -27,6 +27,10 @@ public class StructureHelper {
     public static final Identifier VILLAGER_MARKET = MoStructures.id("villager_market");
     public static final Identifier PIRATE_SHIP = MoStructures.id("pirate_ship");
     public static final Identifier LIGHTHOUSE = MoStructures.id("lighthouse");
+    public static final Identifier VOLCANIC_VENT = MoStructures.id("volcanic_vent");
+    public static final Identifier MOAI = MoStructures.id("moai");
+    public static final Identifier AIR_BALLOON = MoStructures.id("air_balloon");
+
 
     //Makes sures pools are registered
     public static void initPools() {
@@ -44,4 +48,5 @@ public class StructureHelper {
         VillagerMarketGenerator.init();
         VillagerTowerGenerator.init();
     }
+
 }

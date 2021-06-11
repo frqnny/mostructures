@@ -19,19 +19,18 @@ public class LighthouseGenerator {
                         LIGHTHOUSES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":lighthouse/lighthouse_1"), 1)
+                                new Pair<>(StructurePoolElement.method_30434(MoStructures.MODID + ":lighthouse/lighthouse_1"), 1)
 
                         ),
                         StructurePool.Projection.RIGID
                 )
         );
-
         StructurePools.register(
                 new StructurePool(
                         BASE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":lighthouse/base"), 1)
+                                new Pair<>(StructurePoolElement.method_30426(MoStructures.MODID + ":lighthouse/base", MoStructures.PIRATE_SHIP_LIST), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )

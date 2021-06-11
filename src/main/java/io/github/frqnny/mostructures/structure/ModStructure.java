@@ -1,6 +1,5 @@
 package io.github.frqnny.mostructures.structure;
 
-import io.github.frqnny.mostructures.ConfiguredFeatures;
 import io.github.frqnny.mostructures.MoStructures;
 import io.github.frqnny.mostructures.util.StructureHelper;
 import net.minecraft.structure.MarginedStructureStart;

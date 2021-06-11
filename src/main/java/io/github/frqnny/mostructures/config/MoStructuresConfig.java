@@ -2,23 +2,31 @@ package io.github.frqnny.mostructures.config;
 
 import draylar.omegaconfig.api.Comment;
 import draylar.omegaconfig.api.Config;
+import net.minecraft.util.Identifier;
+
+import java.util.Map;
 
 public class MoStructuresConfig implements Config {
-    @Comment("Mo' Structures feature toggles.")
-    public Features features = new Features();
 
-    @Comment("Chances are once per the number of chunks. A Chance 500 makes a feature spawn every 500 chunks. Affected by biomes it spawns in and the chunk, so not all are proportional.")
-    public FeatureChances feature_chances = new FeatureChances();
-
-    @Comment("Structure toggles. These do not have chances, but in the future they may. ")
-    public Structures structures = new Structures();
-
-    @Comment("Structure chances. Seperation is the minimum amount of chunks that a structure will spawn from itself. Spacing is the average amount of chunks, and both are used to randomly spawn structures and can be tweaked.")
-    public StructureChances structureChances = new StructureChances();
+    @Comment("""
+            Welcome to Mo'Structures Config!
+              //
+              //Here, you can turn off structures, change their chance, and also change their salt. 
+              //
+              //To turn off a structure, simply go to the corresponding entry and set `activating` to false.
+              //
+              //Mo' Structures uses the vanilla structure spawning system. That is-
+              //- Seperation is the minimum chunks between structures
+              //- Spacing is the average chunks between structures
+              //
+              //Salt is a special field that gives structures unique spawning positions. DO NOT TOUCH IT, ONLY ADVANCED TROUBLESHOOTING!
+            
+            """)
+    public Map<String, StructureConfigEntry> structureConfigEntries = StructureConfigEntry.getConfigMap();
 
     @Override
     public String getName() {
-        return "mostructures-config-v1";
+        return "mostructures-config-v2";
     }
 
     @Override
@@ -26,94 +34,32 @@ public class MoStructuresConfig implements Config {
         return "json5";
     }
 
-    public static class Features {
-        @Comment("Air Balloons")
-        public boolean air_features = true;
-        @Comment("Volcanic Vent")
-        public boolean volcanic_vent = true;
-        @Comment("Moai")
-        public boolean moai = true;
+    public int spacing(Identifier id) {
+        return get(id).spacing;
     }
 
-    public static class FeatureChances {
-        @Comment("Air Balloons")
-        public int air_feature_chance_in_beach_biomes = 1000;
-        @Comment("Volcanic Vent")
-        public int volcanic_vent_chance = 85;
-        @Comment("Beach Features")
-        public int beach_features_chance = 75;
+    public int seperation(Identifier id) {
+        return get(id).seperation;
     }
 
-    public static class Structures {
-        @Comment("Barnhouse")
-        public boolean barn_house = true;
-        @Comment("Jungle Pyramid")
-        public boolean jungle_pyramid = true;
-        @Comment("Big Pyramid")
-        public boolean big_pyramid = true;
-        @Comment("The Castle In The Sky")
-        public boolean the_castle_in_the_sky = true;
-        @Comment("Villager Tower")
-        public boolean villager_tower = true;
-        @Comment("Abandoned Churches")
-        public boolean abandoned_churches = true;
-        @Comment("Villager Market")
-        public boolean villager_market = true;
-        @Comment("Pillager Factory")
-        public boolean pillager_factory = true;
-        @Comment("Ice Tower")
-        public boolean ice_tower = true;
-        @Comment("Boar Hat Tavern")
-        public boolean tavern = true;
-        @Comment("Killer Bunny Castle")
-        public boolean killer_bunny_castle = true;
-        @Comment("Pirate Ship")
-        public boolean pirate_ship = true;
-        @Comment("Light House")
-        public boolean lighthouse = true;
+    public int salt(Identifier id) {
+        return get(id).salt;
     }
 
-    public static class StructureChances {
-        @Comment("Barn House")
-        public int barn_house_seperation = 8;
-        public int barn_house_spacing = 38;
-        @Comment("Big Pyramid")
-        public int big_pyramid_seperation = 5;
-        public int big_pyramid_spacing = 25;
-        @Comment("Jungle Pyramid")
-        public int jungle_pyramid_seperation = 5;
-        public int jungle_pyramid_spacing = 25;
-        @Comment("The Castle In The Sky")
-        public int the_castle_in_the_sky_seperation = 8;
-        public int the_castle_in_the_sky_spacing = 30;
-        @Comment("Villager Tower")
-        public int villager_tower_seperation = 16;
-        public int villager_tower_spacing = 34;
-        @Comment("Abandoned Church")
-        public int abandoned_church_seperation = 14;
-        public int abandoned_church_spacing = 38;
-        @Comment("Villager Market")
-        public int villager_market_seperation = 16;
-        public int villager_market_spacing = 36;
-        @Comment("Pillager Factory")
-        public int pillager_factory_seperation = 16;
-        public int pillager_factory_spacing = 36;
-        @Comment("Ice Tower")
-        public int ice_tower_seperation = 8;
-        public int ice_tower_spacing = 28;
-        @Comment("Boar Hat Tavern")
-        public int tavern_seperation = 12;
-        public int tavern_spacing = 32;
-        @Comment("Killer Bunny Castle")
-        public int killer_bunny_castle_seperation = 25;
-        public int killer_bunny_castle_spacing = 45;
-        @Comment("Pirate Ship")
-        public int pirate_ship_seperation = 16;
-        public int pirate_ship_spacing = 40;
-        @Comment("Light House")
-        public int ligthouse_seperation = 16;
-        public int lighthouse_spacing = 32;
+    public boolean activated(Identifier id) {
+        return get(id).activated;
     }
 
 
+    public StructureConfigEntry get(Identifier id) {
+
+
+        for (String string : structureConfigEntries.keySet()) {
+            if (string.equals(id.getPath())) {
+                return structureConfigEntries.get(string);
+            }
+        }
+
+        throw new NullPointerException("Tried getting structure config entry with id: " + id + ", but it was null!");
+    }
 }
