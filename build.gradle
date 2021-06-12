@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.8-SNAPSHOT'
+	id 'fabric-loom' version '0.8.local'
 }
 
 sourceCompatibility = JavaVersion.VERSION_16
@@ -48,6 +48,8 @@ processResources {
 // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
 tasks.withType(JavaCompile) {
 	options.encoding = "UTF-8"
+	options.fork = true
+	options.release = 16
 }
 
 jar {

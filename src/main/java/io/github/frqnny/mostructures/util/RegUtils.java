@@ -11,25 +11,21 @@ import net.minecraft.structure.processor.StructureProcessor;
 import net.minecraft.structure.processor.StructureProcessorList;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.ConfiguredStructureFeature;
+import net.minecraft.world.gen.feature.StructureFeature;
+import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
-public class RegistrationHelper {
-    public static Supplier<StructurePool> pool(StructurePool pool) {
-        return () -> pool;
+public class RegUtils {
+
+    public static ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> config(StructureFeature<StructurePoolFeatureConfig> s, StructurePool p) {
+        return s.configure(new StructurePoolFeatureConfig(() -> p, 2));
     }
 
     public static void addToBiome(Identifier id, Predicate<BiomeSelectionContext> selectorPredicate, Consumer<BiomeModificationContext> biomeAdditionConsumer) {
         BiomeModifications.create(id).add(ModificationPhase.ADDITIONS, selectorPredicate, biomeAdditionConsumer);
-    }
-
-    public static void addFeature(BiomeModificationContext context, ConfiguredFeature<?, ?> feature) {
-        context.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, feature);
     }
 
     public static void addStructure(BiomeModificationContext context, ConfiguredStructureFeature<?, ?> feature) {

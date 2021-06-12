@@ -35,12 +35,14 @@ public class StructureHelper {
     //Makes sures pools are registered
     public static void initPools() {
         AbandonedChurchGenerator.init();
+        AirBalloonGenerator.init();
         BarnHouseGenerator.init();
         BigPyramidGenerator.init();
         IceTowerGenerator.init();
         JunglePyramidGenerator.init();
         KillerBunnyCastleGenerator.init();
         LighthouseGenerator.init();
+        MoaiGenerator.init();
         PillagerFactoryGenerator.init();
         PirateShipGenerator.init();
         TavernGenerator.init();

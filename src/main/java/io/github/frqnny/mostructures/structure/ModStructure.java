@@ -44,6 +44,7 @@ public class ModStructure extends StructureFeature<StructurePoolFeatureConfig> {
         return ModStructure.Start::new;
     }
 
+    @SuppressWarnings("ObjectAllocationInLoop")
     @Override
     protected boolean shouldStartAt(ChunkGenerator chunkGenerator, BiomeSource biomeSource, long worldSeed, ChunkRandom random, ChunkPos pos, Biome biome, ChunkPos chunkPos, StructurePoolFeatureConfig config, HeightLimitView world) {
 

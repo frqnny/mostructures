@@ -1,4 +1,4 @@
-package io.github.frqnny.mostructures.feature.entity;
+package io.github.frqnny.mostructures.feature;
 
 import io.github.frqnny.mostructures.MoStructures;
 import net.minecraft.entity.Entity;

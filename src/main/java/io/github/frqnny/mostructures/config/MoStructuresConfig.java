@@ -4,25 +4,26 @@ import draylar.omegaconfig.api.Comment;
 import draylar.omegaconfig.api.Config;
 import net.minecraft.util.Identifier;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class MoStructuresConfig implements Config {
 
     @Comment("""
-            Welcome to Mo'Structures Config!
+             Welcome to Mo'Structures Config!
               //
-              //Here, you can turn off structures, change their chance, and also change their salt. 
+              // Here, you can turn off structures, change their chance, and also change their salt.
               //
-              //To turn off a structure, simply go to the corresponding entry and set `activating` to false.
+              // To turn off a structure, simply go to the corresponding entry and set `activated` to false.
               //
-              //Mo' Structures uses the vanilla structure spawning system. That is-
-              //- Seperation is the minimum chunks between structures
-              //- Spacing is the average chunks between structures
+              // Mo' Structures uses the vanilla structure spawning system. That is-
+              // - Seperation is the minimum chunks between structures
+              // - Spacing is the average chunks between structures
               //
-              //Salt is a special field that gives structures unique spawning positions. DO NOT TOUCH IT, ONLY ADVANCED TROUBLESHOOTING!
-            
+              // Salt is a special field that gives structures unique spawning positions. DO NOT TOUCH IT, ONLY ADVANCED TROUBLESHOOTING!
+                        
             """)
-    public Map<String, StructureConfigEntry> structureConfigEntries = StructureConfigEntry.getConfigMap();
+    public final Map<String, StructureConfigEntry> structureConfigEntries = new HashMap<>(17);
 
     @Override
     public String getName() {
@@ -54,12 +55,19 @@ public class MoStructuresConfig implements Config {
     public StructureConfigEntry get(Identifier id) {
 
 
-        for (String string : structureConfigEntries.keySet()) {
-            if (string.equals(id.getPath())) {
-                return structureConfigEntries.get(string);
+        for (Map.Entry<String, StructureConfigEntry> entry : structureConfigEntries.entrySet()) {
+            if (entry.getKey().equals(id.getPath())) {
+                return entry.getValue();
             }
         }
 
-        throw new NullPointerException("Tried getting structure config entry with id: " + id + ", but it was null!");
+        throw new NullPointerException("Tried StructureConfigEntry with id: " + id + ", but it was null!");
+    }
+
+
+    @Override
+    public void save() {
+        StructureConfigEntry.computeConfigMap(structureConfigEntries);
+        Config.super.save();
     }
 }

@@ -88,20 +88,6 @@ public class VillagerTowerGenerator {
                         StructurePool.Projection.RIGID
                 )
         );
-        /*
-        StructurePools.register(
-                new StructurePool(
-                        ARMOR_STANDS,
-                        new Identifier("empty"),
-                        ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30421(ConfiguredFeatures.ARMOR_STAND_SPAWN), 1)
-
-                        ),
-                        StructurePool.Projection.RIGID
-                )
-        );
-
-         */
     }
 
 
