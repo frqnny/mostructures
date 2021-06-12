@@ -19,7 +19,7 @@ public class BigPyramidGenerator {
                         BASE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":pyramid/base"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":pyramid/base"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )

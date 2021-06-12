@@ -106,13 +106,13 @@ public class ModStructure extends StructureFeature<StructurePoolFeatureConfig> {
                 }
                 if (configTavern != null) {
                     ChunkPos possibleVillagerTowerPos = MoStructures.TAVERN.getStartChunk(configTavern, worldSeed, random, k, m);
-                    if (k == possibleVillagerTowerPos.x && m == possibleVillagerTowerPos.z && this != MoStructures.VILLAGER_TOWER) {
+                    if (k == possibleVillagerTowerPos.x && m == possibleVillagerTowerPos.z && this != MoStructures.TAVERN) {
                         return false;
                     }
                 }
                 if (configKillerBunnyCastle != null) {
                     ChunkPos possibleVillagerTowerPos = MoStructures.KILLER_BUNNY_CASTLE.getStartChunk(configKillerBunnyCastle, worldSeed, random, k, m);
-                    if (k == possibleVillagerTowerPos.x && m == possibleVillagerTowerPos.z && this != MoStructures.VILLAGER_TOWER) {
+                    if (k == possibleVillagerTowerPos.x && m == possibleVillagerTowerPos.z && this != MoStructures.KILLER_BUNNY_CASTLE) {
                         return false;
                     }
                 }

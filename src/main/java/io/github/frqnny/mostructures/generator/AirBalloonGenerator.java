@@ -18,11 +18,11 @@ public class AirBalloonGenerator {
                         AIR_BALLOONS,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":air/airballoon1"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":air/airballoon2"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":air/airballoon3"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":air/airballoon4"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":air/airballoon5"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":air/airballoon1"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":air/airballoon2"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":air/airballoon3"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":air/airballoon4"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":air/airballoon5"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )

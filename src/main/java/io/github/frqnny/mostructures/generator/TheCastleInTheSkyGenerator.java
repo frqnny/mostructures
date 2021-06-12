@@ -26,9 +26,9 @@ public class TheCastleInTheSkyGenerator {
                         SW_STARTING_PIECE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30429(ImmutableList.of(
-                                        StructurePoolElement.method_30425(MoStructures.MODID + ":castle/sw"),
-                                        StructurePoolElement.method_30426(MoStructures.MODID + ":castle/sw_overgrown",
+                                new Pair<>(StructurePoolElement.ofList(ImmutableList.of(
+                                        StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":castle/sw"),
+                                        StructurePoolElement.ofProcessedLegacySingle(MoStructures.MODID + ":castle/sw_overgrown",
                                                 TCINS_ROT))),
                                         1)
                         ),
@@ -40,14 +40,14 @@ public class TheCastleInTheSkyGenerator {
                         MIDDLE_PIECES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30429(ImmutableList.of(
-                                        StructurePoolElement.method_30425(MoStructures.MODID + ":castle/se"),
-                                        StructurePoolElement.method_30426(MoStructures.MODID + ":castle/se_overgrown",
+                                new Pair<>(StructurePoolElement.ofList(ImmutableList.of(
+                                        StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":castle/se"),
+                                        StructurePoolElement.ofProcessedLegacySingle(MoStructures.MODID + ":castle/se_overgrown",
                                                 TCINS_ROT))),
                                         1),
-                                new Pair<>(StructurePoolElement.method_30429(ImmutableList.of(
-                                        StructurePoolElement.method_30425(MoStructures.MODID + ":castle/nw"),
-                                        StructurePoolElement.method_30426(MoStructures.MODID + ":castle/nw_overgrown",
+                                new Pair<>(StructurePoolElement.ofList(ImmutableList.of(
+                                        StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":castle/nw"),
+                                        StructurePoolElement.ofProcessedLegacySingle(MoStructures.MODID + ":castle/nw_overgrown",
                                                 TCINS_ROT))),
                                         1)
                         ),
@@ -59,9 +59,9 @@ public class TheCastleInTheSkyGenerator {
                         NE_FINAL_PIECE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30429(ImmutableList.of(
-                                        StructurePoolElement.method_30425(MoStructures.MODID + ":castle/ne"),
-                                        StructurePoolElement.method_30426(MoStructures.MODID + ":castle/ne_overgrown",
+                                new Pair<>(StructurePoolElement.ofList(ImmutableList.of(
+                                        StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":castle/ne"),
+                                        StructurePoolElement.ofProcessedLegacySingle(MoStructures.MODID + ":castle/ne_overgrown",
                                                 TCINS_ROT))),
                                         1)
                         ),

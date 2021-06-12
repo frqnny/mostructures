@@ -26,7 +26,7 @@ public class VillagerTowerGenerator {
                         BASE_PLATES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":villager/tower_plate"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":villager/tower_plate"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -36,7 +36,7 @@ public class VillagerTowerGenerator {
                         SAVANNA_BASE_PLATES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":villager/savanna_tower_plate"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":villager/savanna_tower_plate"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -46,9 +46,9 @@ public class VillagerTowerGenerator {
                         TOWERS,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>((StructurePoolElement.method_30426(MoStructures.MODID + ":villager/tower_1", MoStructures.VILLAGER_TOWER_LIST)), 1),
-                                new Pair<>((StructurePoolElement.method_30426(MoStructures.MODID + ":villager/tower_2", MoStructures.VILLAGER_TOWER_LIST)), 1),
-                                new Pair<>((StructurePoolElement.method_30426(MoStructures.MODID + ":villager/tower_3", MoStructures.VILLAGER_TOWER_LIST)), 1)
+                                new Pair<>((StructurePoolElement.ofProcessedLegacySingle(MoStructures.MODID + ":villager/tower_1", MoStructures.VILLAGER_TOWER_LIST)), 1),
+                                new Pair<>((StructurePoolElement.ofProcessedLegacySingle(MoStructures.MODID + ":villager/tower_2", MoStructures.VILLAGER_TOWER_LIST)), 1),
+                                new Pair<>((StructurePoolElement.ofProcessedLegacySingle(MoStructures.MODID + ":villager/tower_3", MoStructures.VILLAGER_TOWER_LIST)), 1)
 
                         ),
                         StructurePool.Projection.RIGID
@@ -60,7 +60,7 @@ public class VillagerTowerGenerator {
                         new Identifier("empty"),
                         ImmutableList.of(
                                 //new Pair<>((StructurePoolElement.method_30426(MoStructures.MODID + ":villager/savanna_tower_1", MoStructures.VILLAGER_TOWER_LIST)), 1),
-                                new Pair<>((StructurePoolElement.method_30425(MoStructures.MODID + ":villager/savanna_tower_1")), 1)
+                                new Pair<>((StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":villager/savanna_tower_1")), 1)
 
                         ),
                         StructurePool.Projection.RIGID
@@ -71,7 +71,7 @@ public class VillagerTowerGenerator {
                         FEATURE_PLATES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":villager/feature_plate"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":villager/feature_plate"), 1)
                         ),
                         StructurePool.Projection.TERRAIN_MATCHING
                 )
@@ -81,9 +81,9 @@ public class VillagerTowerGenerator {
                         FEATURES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":villager/iron_golem"), 1),
-                                new Pair<>(StructurePoolElement.method_30421(ConfiguredFeatures.VILLAGER_SPAWN), 3),
-                                new Pair<>(StructurePoolElement.method_30438(), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":villager/iron_golem"), 1),
+                                new Pair<>(StructurePoolElement.ofFeature(ConfiguredFeatures.VILLAGER_SPAWN), 3),
+                                new Pair<>(StructurePoolElement.ofEmpty(), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )

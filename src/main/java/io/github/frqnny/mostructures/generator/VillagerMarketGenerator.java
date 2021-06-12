@@ -22,7 +22,7 @@ public class VillagerMarketGenerator {
                         MAIN,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/main"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":market/main"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -32,7 +32,7 @@ public class VillagerMarketGenerator {
                         VILLAGER,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/villager"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":market/villager"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -42,7 +42,7 @@ public class VillagerMarketGenerator {
                         IRON_GOLEM,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/iron_golem"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":market/iron_golem"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -52,7 +52,7 @@ public class VillagerMarketGenerator {
                         FEATURE_PLATES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/feature_plate"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":market/feature_plate"), 1)
                         ),
                         StructurePool.Projection.TERRAIN_MATCHING
                 )
@@ -62,13 +62,13 @@ public class VillagerMarketGenerator {
                         FEATURES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/grill"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/cart_1"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/cart_2"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/sign_post"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/weaponsmith"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":market/farmhouse"), 1),
-                                new Pair<>(StructurePoolElement.method_30438(), 6)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":market/grill"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":market/cart_1"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":market/cart_2"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":market/sign_post"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":market/weaponsmith"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":market/farmhouse"), 1),
+                                new Pair<>(StructurePoolElement.ofEmpty(), 6)
                         ),
                         StructurePool.Projection.RIGID
                 )

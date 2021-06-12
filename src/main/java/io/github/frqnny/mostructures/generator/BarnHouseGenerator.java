@@ -21,7 +21,7 @@ public class BarnHouseGenerator {
                         BASE_PLATES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":barn_house/base_plate"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":barn_house/base_plate"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -31,10 +31,10 @@ public class BarnHouseGenerator {
                         BARNHOUSE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":barn_house/barnhouse_1"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":barn_house/barnhouse_2"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":barn_house/barnhouse_3"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":barn_house/barnhouse_4"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":barn_house/barnhouse_1"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":barn_house/barnhouse_2"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":barn_house/barnhouse_3"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":barn_house/barnhouse_4"), 1)
 
                         ),
                         StructurePool.Projection.RIGID
@@ -46,7 +46,7 @@ public class BarnHouseGenerator {
                         FEATURE_PLATES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":barn_house/feature_plate"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":barn_house/feature_plate"), 1)
                         ),
                         StructurePool.Projection.TERRAIN_MATCHING
                 )
@@ -56,9 +56,9 @@ public class BarnHouseGenerator {
                         FEATURES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":barn_house/feature_cart"), 1),
-                                new Pair<>(StructurePoolElement.method_30425("pillager_outpost/feature_logs"), 1),
-                                new Pair<>(StructurePoolElement.method_30438(), 5)),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":barn_house/feature_cart"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle("pillager_outpost/feature_logs"), 1),
+                                new Pair<>(StructurePoolElement.ofEmpty(), 5)),
                         StructurePool.Projection.RIGID
                 )
         );

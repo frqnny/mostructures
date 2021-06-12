@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MixinNoiseChunkGenerator {
 
     @Inject(at = @At("HEAD"), method = "getEntitySpawnList", cancellable = true)
-    public static void injectSpawnList(Biome biome, StructureAccessor accessor, SpawnGroup group, BlockPos pos, CallbackInfoReturnable<Pool<SpawnSettings.SpawnEntry>> info) {
+    public void injectSpawnList(Biome biome, StructureAccessor accessor, SpawnGroup group, BlockPos pos, CallbackInfoReturnable<Pool<SpawnSettings.SpawnEntry>> info) {
         if (group == SpawnGroup.MONSTER) {
             if (accessor.getStructureAt(pos, false, MoStructures.PILLAGER_FACTORY).hasChildren()) {
                 info.setReturnValue(StructureFeature.PILLAGER_OUTPOST.getMonsterSpawns());

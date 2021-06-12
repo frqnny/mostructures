@@ -33,7 +33,7 @@ public class AbandonedChurchGenerator {
                         PLAINS_PLATE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":abandoned/village/plate/plains"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":abandoned/village/plate/plains"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -43,7 +43,7 @@ public class AbandonedChurchGenerator {
                         SAVANNA_PLATE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":abandoned/village/plate/savanna"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":abandoned/village/plate/savanna"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -53,7 +53,7 @@ public class AbandonedChurchGenerator {
                         DESERT_PLATE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":abandoned/village/plate/desert"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":abandoned/village/plate/desert"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -63,7 +63,7 @@ public class AbandonedChurchGenerator {
                         SNOWY_PLATE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":abandoned/village/plate/snowy"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":abandoned/village/plate/snowy"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -73,7 +73,7 @@ public class AbandonedChurchGenerator {
                         TAIGA_PLATE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":abandoned/village/plate/taiga"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":abandoned/village/plate/taiga"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -83,8 +83,8 @@ public class AbandonedChurchGenerator {
                         CHURCHES_PLAINS,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":abandoned/village/plains_temple1"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":abandoned/village/plains_temple2"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":abandoned/village/plains_temple1"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":abandoned/village/plains_temple2"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -94,8 +94,8 @@ public class AbandonedChurchGenerator {
                         CHURCHES_SAVANNA,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":abandoned/village/savanna_temple1"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":abandoned/village/savanna_temple2"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":abandoned/village/savanna_temple1"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":abandoned/village/savanna_temple2"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -105,8 +105,8 @@ public class AbandonedChurchGenerator {
                         CHURCHES_DESERT,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":abandoned/village/desert_temple1"), 1),
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":abandoned/village/desert_temple2"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":abandoned/village/desert_temple1"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":abandoned/village/desert_temple2"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -116,7 +116,7 @@ public class AbandonedChurchGenerator {
                         CHURCHES_SNOWY,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":abandoned/village/snowy_temple1"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":abandoned/village/snowy_temple1"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -126,7 +126,7 @@ public class AbandonedChurchGenerator {
                         CHURCHES_TAIGA,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":abandoned/village/taiga_temple1"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":abandoned/village/taiga_temple1"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )

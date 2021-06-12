@@ -20,7 +20,7 @@ public class KillerBunnyCastleGenerator {
                         BASE,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":bunny/base"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":bunny/base"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -30,7 +30,7 @@ public class KillerBunnyCastleGenerator {
                         KILLER_BUNNY,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30425(MoStructures.MODID + ":bunny/bunny"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":bunny/bunny"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )

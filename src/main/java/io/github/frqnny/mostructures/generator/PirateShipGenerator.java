@@ -21,7 +21,7 @@ public class PirateShipGenerator {
                         BOTTOM_LOWER,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30426(MoStructures.MODID + ":ship/bottom_lower", MoStructures.PIRATE_SHIP_LIST), 1)
+                                new Pair<>(StructurePoolElement.ofProcessedLegacySingle(MoStructures.MODID + ":ship/bottom_lower", MoStructures.PIRATE_SHIP_LIST), 1)
 
                         ),
                         StructurePool.Projection.RIGID
@@ -32,7 +32,7 @@ public class PirateShipGenerator {
                         BOTTOM_UPPER,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30426(MoStructures.MODID + ":ship/bottom_upper", MoStructures.PIRATE_SHIP_LIST), 1)
+                                new Pair<>(StructurePoolElement.ofProcessedLegacySingle(MoStructures.MODID + ":ship/bottom_upper", MoStructures.PIRATE_SHIP_LIST), 1)
 
                         ),
                         StructurePool.Projection.RIGID
@@ -43,7 +43,7 @@ public class PirateShipGenerator {
                         TOP_LOWER,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30426(MoStructures.MODID + ":ship/top_lower", MoStructures.PIRATE_SHIP_LIST), 1)
+                                new Pair<>(StructurePoolElement.ofProcessedLegacySingle(MoStructures.MODID + ":ship/top_lower", MoStructures.PIRATE_SHIP_LIST), 1)
 
                         ),
                         StructurePool.Projection.RIGID
@@ -54,7 +54,7 @@ public class PirateShipGenerator {
                         TOP_UPPER,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30426(MoStructures.MODID + ":ship/top_upper", MoStructures.PIRATE_SHIP_LIST), 1)
+                                new Pair<>(StructurePoolElement.ofProcessedLegacySingle(MoStructures.MODID + ":ship/top_upper", MoStructures.PIRATE_SHIP_LIST), 1)
 
                         ),
                         StructurePool.Projection.RIGID

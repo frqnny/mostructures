@@ -21,7 +21,7 @@ import java.util.List;
 public class LakeFeatureMixin {
 
     @Inject(at = @At("HEAD"), method = "generate", cancellable = true)
-    public static void fixStructures(FeatureContext<DefaultFeatureConfig> context, CallbackInfoReturnable<Boolean> info) {
+    public void fixStructures(FeatureContext<DefaultFeatureConfig> context, CallbackInfoReturnable<Boolean> info) {
         List<Chunk> chunksToScan = new ArrayList<>(9);
         StructureWorldAccess world = context.getWorld();
         BlockPos pos = context.getOrigin();
