@@ -1,7 +1,7 @@
 package io.github.frqnny.mostructures.mixin;
 
 import io.github.frqnny.mostructures.MoStructures;
-import io.github.frqnny.mostructures.util.StructureHelper;
+import io.github.frqnny.mostructures.util.StructureUtils;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.util.collection.Pool;
 import net.minecraft.util.math.BlockPos;
@@ -24,13 +24,13 @@ public class MixinNoiseChunkGenerator {
             if (accessor.getStructureAt(pos, false, MoStructures.PILLAGER_FACTORY).hasChildren()) {
                 info.setReturnValue(StructureFeature.PILLAGER_OUTPOST.getMonsterSpawns());
             } else if (accessor.getStructureAt(pos, false, MoStructures.ICE_TOWER).hasChildren()) {
-                info.setReturnValue(StructureHelper.ICE_TOWER_SPAWNS);
+                info.setReturnValue(StructureUtils.ICE_TOWER_SPAWNS);
             } else if (accessor.getStructureAt(pos, false, MoStructures.ABANDONED_CHURCH).hasChildren()) {
-                info.setReturnValue(StructureHelper.ABANDONED_CHURCH_SPAWNS);
+                info.setReturnValue(StructureUtils.ABANDONED_CHURCH_SPAWNS);
             }
         } else if (group == SpawnGroup.AMBIENT) {
             if (accessor.getStructureAt(pos, false, MoStructures.BARN_HOUSE).hasChildren()) {
-                info.setReturnValue(StructureHelper.BARN_HOUSE_SPAWNS);
+                info.setReturnValue(StructureUtils.BARN_HOUSE_SPAWNS);
             }
         }
 

@@ -1,7 +1,7 @@
 package io.github.frqnny.mostructures.structure;
 
 import io.github.frqnny.mostructures.MoStructures;
-import io.github.frqnny.mostructures.util.StructureHelper;
+import io.github.frqnny.mostructures.util.StructureUtils;
 import net.minecraft.structure.MarginedStructureStart;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;
@@ -130,7 +130,7 @@ public class ModStructure extends StructureFeature<StructurePoolFeatureConfig> {
         @Override
         public void init(DynamicRegistryManager registryManager, ChunkGenerator chunkGenerator, StructureManager manager, ChunkPos pos, Biome biome, StructurePoolFeatureConfig config, HeightLimitView world) {
             ModStructure structure = (ModStructure) this.getFeature();
-            StructureHelper.initPools();
+            StructureUtils.initPools();
             StructurePoolBasedGenerator.method_30419(registryManager, config, PoolStructurePiece::new, chunkGenerator, manager, new BlockPos(pos.x << 4, structure.structureStartY, pos.z << 4), this, this.random, structure.field_25836, structure.surface, world);
             this.setBoundingBoxFromChildren();
         }

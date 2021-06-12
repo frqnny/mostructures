@@ -4,7 +4,7 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ItemHelper {
+public class ItemUtils {
     public static void spawnStack(World world, double x, double y, double z, ItemStack stack) {
         ItemEntity item = new ItemEntity(world, x, y, z, stack);
         item.setToDefaultPickupDelay();

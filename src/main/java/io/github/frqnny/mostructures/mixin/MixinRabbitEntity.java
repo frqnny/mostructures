@@ -1,6 +1,6 @@
 package io.github.frqnny.mostructures.mixin;
 
-import io.github.frqnny.mostructures.util.ItemHelper;
+import io.github.frqnny.mostructures.util.ItemUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -23,15 +23,15 @@ public abstract class MixinRabbitEntity extends LivingEntity {
         if (thisEntity.getRabbitType() == 99) {
             ItemStack diamonds = new ItemStack(Items.DIAMOND);
             diamonds.setCount(Math.max(8, random.nextInt(10)));
-            ItemHelper.spawnStack(thisEntity.world, thisEntity.getX(), thisEntity.getY() + 0.5, thisEntity.getZ(), diamonds);
+            ItemUtils.spawnStack(thisEntity.world, thisEntity.getX(), thisEntity.getY() + 0.5, thisEntity.getZ(), diamonds);
 
             ItemStack emeralds = new ItemStack(Items.EMERALD);
             emeralds.setCount(Math.max(10, random.nextInt(12)));
-            ItemHelper.spawnStack(thisEntity.world, thisEntity.getX(), thisEntity.getY() + 0.5, thisEntity.getZ(), emeralds);
+            ItemUtils.spawnStack(thisEntity.world, thisEntity.getX(), thisEntity.getY() + 0.5, thisEntity.getZ(), emeralds);
 
             ItemStack ironIngots = new ItemStack(Items.IRON_INGOT);
             ironIngots.setCount(Math.max(18, random.nextInt(20)));
-            ItemHelper.spawnStack(thisEntity.world, thisEntity.getX(), thisEntity.getY() + 0.5, thisEntity.getZ(), ironIngots);
+            ItemUtils.spawnStack(thisEntity.world, thisEntity.getX(), thisEntity.getY() + 0.5, thisEntity.getZ(), ironIngots);
         }
 
         super.onDeath(source);
