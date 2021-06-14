@@ -49,6 +49,7 @@ public class StructureUtils {
         TheCastleInTheSkyGenerator.init();
         VillagerMarketGenerator.init();
         VillagerTowerGenerator.init();
+        VillageBazaarGenerator.init();
     }
 
 }

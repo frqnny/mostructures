@@ -14,6 +14,8 @@ import io.github.frqnny.mostructures.util.RegUtils;
 import io.github.frqnny.mostructures.util.StructureUtils;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback;
+import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.minecraft.structure.StructurePieceType;
 import net.minecraft.structure.processor.StructureProcessorList;
 import net.minecraft.structure.processor.StructureProcessorType;
@@ -72,10 +74,9 @@ public class MoStructures implements ModInitializer {
     ));
 
     private static void registerStructures() {
-        RegUtils.registerStructure(StructureUtils.BIG_PYRAMID, BARN_HOUSE, ConfiguredFeatures.BARN_HOUSE);
+        RegUtils.registerStructure(StructureUtils.BARN_HOUSE, BARN_HOUSE, ConfiguredFeatures.BARN_HOUSE);
         RegUtils.registerStructure(StructureUtils.BIG_PYRAMID, BIG_PYRAMID, ConfiguredFeatures.BIG_PYRAMID);
         RegUtils.registerStructure(StructureUtils.JUNGLE_PYRAMID, JUNGLE_PYRAMID, ConfiguredFeatures.JUNGLE_PYRAMID);
-        RegUtils.registerStructure(StructureUtils.THE_CASTLE_IN_THE_SKY, THE_CASTLE_IN_THE_SKY, ConfiguredFeatures.THE_CASTLE_IN_THE_SKY, false);
         RegUtils.registerStructure(StructureUtils.VILLAGER_TOWER, VILLAGER_TOWER, ConfiguredFeatures.VILLAGER_TOWER);
         RegUtils.registerStructure(StructureUtils.ABANDONED_CHURCH, ABANDONED_CHURCH, ConfiguredFeatures.PLAINS_ABANDONED_CHURCH);
         RegUtils.registerStructure(StructureUtils.VILLAGER_MARKET, VILLAGER_MARKET, ConfiguredFeatures.VILLAGER_MARKET);
@@ -83,6 +84,7 @@ public class MoStructures implements ModInitializer {
         RegUtils.registerStructure(StructureUtils.ICE_TOWER, ICE_TOWER, ConfiguredFeatures.ICE_TOWER);
         RegUtils.registerStructure(StructureUtils.TAVERN, TAVERN, ConfiguredFeatures.TAVERN);
         RegUtils.registerStructure(StructureUtils.KILLER_BUNNY_CASTLE, KILLER_BUNNY_CASTLE, ConfiguredFeatures.KILLER_BUNNY_CASTLE);
+        RegUtils.registerStructure(StructureUtils.THE_CASTLE_IN_THE_SKY, THE_CASTLE_IN_THE_SKY, ConfiguredFeatures.THE_CASTLE_IN_THE_SKY, false);
         RegUtils.registerStructure(StructureUtils.PIRATE_SHIP, PIRATE_SHIP, ConfiguredFeatures.PIRATE_SHIP, false);
         RegUtils.registerStructure(StructureUtils.LIGHTHOUSE, LIGHTHOUSE, ConfiguredFeatures.LIGHTHOUSE, false);
         RegUtils.registerStructure(StructureUtils.VOLCANIC_VENT, VOLCANIC_VENT, ConfiguredFeatures.VOLCANIC_VENT, false);

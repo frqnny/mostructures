@@ -18,7 +18,6 @@ public class VillagerTowerGenerator {
     private static final Identifier SAVANNA_TOWERS = MoStructures.id("villager/savanna_towers");
     private static final Identifier FEATURE_PLATES = MoStructures.id("villager/feature_plates");
     private static final Identifier FEATURES = MoStructures.id("villager/features");
-    private static final Identifier ARMOR_STANDS = MoStructures.id("villager/armorstands");
 
     static {
         DEFAULT_STARTING_POOL = StructurePools.register(
@@ -59,7 +58,6 @@ public class VillagerTowerGenerator {
                         SAVANNA_TOWERS,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                //new Pair<>((StructurePoolElement.method_30426(MoStructures.MODID + ":villager/savanna_tower_1", MoStructures.VILLAGER_TOWER_LIST)), 1),
                                 new Pair<>((StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":villager/savanna_tower_1")), 1)
 
                         ),
