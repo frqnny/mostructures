@@ -3,7 +3,6 @@ package io.github.frqnny.mostructures;
 import com.google.common.collect.ImmutableList;
 import draylar.omegaconfig.OmegaConfig;
 import io.github.frqnny.mostructures.config.MoStructuresConfig;
-import io.github.frqnny.mostructures.config.StructureConfigEntry;
 import io.github.frqnny.mostructures.feature.VillagerEntityFeature;
 import io.github.frqnny.mostructures.processor.*;
 import io.github.frqnny.mostructures.structure.AirBalloonStructure;
@@ -14,8 +13,6 @@ import io.github.frqnny.mostructures.util.RegUtils;
 import io.github.frqnny.mostructures.util.StructureUtils;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback;
-import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.minecraft.structure.StructurePieceType;
 import net.minecraft.structure.processor.StructureProcessorList;
 import net.minecraft.structure.processor.StructureProcessorType;
@@ -28,20 +25,17 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
-import java.util.Locale;
-
 public class MoStructures implements ModInitializer {
     public static final String MODID = "mostructures";
     public static final MoStructuresConfig config = OmegaConfig.register(MoStructuresConfig.class);
-
     public static final Feature<DefaultFeatureConfig> VILLAGER_SPAWN = new VillagerEntityFeature();
-
     public static final StructureFeature<StructurePoolFeatureConfig> BARN_HOUSE = new ModStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> BIG_PYRAMID = new ModStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> JUNGLE_PYRAMID = new ModStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> THE_CASTLE_IN_THE_SKY = new ModStructure(60);
     public static final StructureFeature<StructurePoolFeatureConfig> VILLAGER_TOWER = new ModStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> VILLAGER_MARKET = new ModStructure();
+    public static final StructureFeature<StructurePoolFeatureConfig> VILLAGER_BAZAAR = new ModStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> PILLAGER_FACTORY = new ModStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> ABANDONED_CHURCH = new ModStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> ICE_TOWER = new ModStructure();
@@ -52,7 +46,6 @@ public class MoStructures implements ModInitializer {
     public static final StructureFeature<DefaultFeatureConfig> VOLCANIC_VENT = new VolcanicVentStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> MOAI = new MoaiStructure(-3);
     public static final StructureFeature<StructurePoolFeatureConfig> AIR_BALLOON = new AirBalloonStructure();
-
     public static final StructurePieceType VOLCANIC_VENT_TYPE = Registry.register(Registry.STRUCTURE_PIECE, id("volcanic_vent"), VolcanicVentStructure.Piece::new);
     public static final StructureProcessorType<SimpleStoneStructureProcessor> SIMPLE_STONE = StructureProcessorType.register("jungle_rot_processor", SimpleStoneStructureProcessor.CODEC);
     public static final StructureProcessorType<SimpleCobblestoneProcessor> SIMPLE_COBBLESTONE = StructureProcessorType.register("simple_cobblestone", SimpleCobblestoneProcessor.CODEC);
@@ -73,6 +66,10 @@ public class MoStructures implements ModInitializer {
             new RemoveWaterloggedProcessor()
     ));
 
+    public static Identifier id(String name) {
+        return new Identifier(MODID, name);
+    }
+
     private static void registerStructures() {
         RegUtils.registerStructure(StructureUtils.BARN_HOUSE, BARN_HOUSE, ConfiguredFeatures.BARN_HOUSE);
         RegUtils.registerStructure(StructureUtils.BIG_PYRAMID, BIG_PYRAMID, ConfiguredFeatures.BIG_PYRAMID);
@@ -80,6 +77,7 @@ public class MoStructures implements ModInitializer {
         RegUtils.registerStructure(StructureUtils.VILLAGER_TOWER, VILLAGER_TOWER, ConfiguredFeatures.VILLAGER_TOWER);
         RegUtils.registerStructure(StructureUtils.ABANDONED_CHURCH, ABANDONED_CHURCH, ConfiguredFeatures.PLAINS_ABANDONED_CHURCH);
         RegUtils.registerStructure(StructureUtils.VILLAGER_MARKET, VILLAGER_MARKET, ConfiguredFeatures.VILLAGER_MARKET);
+        RegUtils.registerStructure(StructureUtils.VILLAGER_BAZAAR, VILLAGER_BAZAAR, ConfiguredFeatures.VILLAGER_BAZAAR);
         RegUtils.registerStructure(StructureUtils.PILLAGER_FACTORY, PILLAGER_FACTORY, ConfiguredFeatures.PILLAGER_FACTORY);
         RegUtils.registerStructure(StructureUtils.ICE_TOWER, ICE_TOWER, ConfiguredFeatures.ICE_TOWER);
         RegUtils.registerStructure(StructureUtils.TAVERN, TAVERN, ConfiguredFeatures.TAVERN);
@@ -93,58 +91,46 @@ public class MoStructures implements ModInitializer {
 
     }
 
-    public static void registerFeatures() {
+    private static void registerFeatures() {
         Registry.register(Registry.FEATURE, VillagerEntityFeature.ID, VILLAGER_SPAWN);
     }
 
-
-    public static void putStructures() {
+    private static void putStructures() {
         RegUtils.addToBiome(
                 StructureUtils.BARN_HOUSE,
                 BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SAVANNA).and(RegUtils.booleanToPredicate(config.activated(StructureUtils.BARN_HOUSE))).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegUtils.addStructure(context, ConfiguredFeatures.BARN_HOUSE)
-
         );
-
         RegUtils.addToBiome(
                 StructureUtils.BIG_PYRAMID,
                 BiomeSelectors.categories(Biome.Category.DESERT).and(RegUtils.booleanToPredicate(config.activated(StructureUtils.BIG_PYRAMID))).and(RegUtils.getNoHillsPredicate()).and(BiomeSelectors.foundInOverworld()).and((context) -> !context.getBiomeKey().getValue().getPath().contains("lakes")),
                 (context) -> RegUtils.addStructure(context, ConfiguredFeatures.BIG_PYRAMID)
-
         );
-
         RegUtils.addToBiome(
                 StructureUtils.JUNGLE_PYRAMID,
                 BiomeSelectors.categories(Biome.Category.JUNGLE).and(RegUtils.booleanToPredicate(config.activated(StructureUtils.JUNGLE_PYRAMID))).and(RegUtils.getNoHillsPredicate()).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegUtils.addStructure(context, ConfiguredFeatures.JUNGLE_PYRAMID)
         );
-
         RegUtils.addToBiome(
                 StructureUtils.THE_CASTLE_IN_THE_SKY,
                 BiomeSelectors.categories(Biome.Category.BEACH).and(RegUtils.booleanToPredicate(config.activated(StructureUtils.THE_CASTLE_IN_THE_SKY))).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegUtils.addStructure(context, ConfiguredFeatures.THE_CASTLE_IN_THE_SKY)
-
         );
-
         RegUtils.addToBiome(
                 StructureUtils.VILLAGER_TOWER,
                 BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.FOREST).and(RegUtils.booleanToPredicate(config.activated(StructureUtils.VILLAGER_TOWER))).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegUtils.addStructure(context, ConfiguredFeatures.VILLAGER_TOWER)
-
         );
         RegUtils.addToBiome(
                 StructureUtils.VILLAGER_TOWER,
                 BiomeSelectors.categories(Biome.Category.SAVANNA).and(RegUtils.booleanToPredicate(config.activated(StructureUtils.VILLAGER_TOWER))).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegUtils.addStructure(context, ConfiguredFeatures.SAVANNA_VILLAGER_TOWER)
-
         );
-
         RegUtils.addToBiome(
                 StructureUtils.VILLAGER_MARKET,
                 BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SAVANNA, Biome.Category.FOREST).and(RegUtils.booleanToPredicate(config.activated(StructureUtils.VILLAGER_MARKET))).and(RegUtils.getNoHillsPredicate()).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegUtils.addStructure(context, ConfiguredFeatures.VILLAGER_MARKET)
         );
-
         RegUtils.addToBiome(
                 StructureUtils.PILLAGER_FACTORY,
                 BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.TAIGA, Biome.Category.ICY).and(RegUtils.booleanToPredicate(config.activated(StructureUtils.PILLAGER_FACTORY))).and(RegUtils.getNoHillsPredicate()).and(BiomeSelectors.foundInOverworld()),
@@ -158,7 +144,6 @@ public class MoStructures implements ModInitializer {
                 }).and(RegUtils.booleanToPredicate(config.activated(StructureUtils.PIRATE_SHIP))),
                 (context) -> RegUtils.addStructure(context, ConfiguredFeatures.PIRATE_SHIP)
         );
-
         RegUtils.addToBiome(
                 StructureUtils.ABANDONED_CHURCH,
                 BiomeSelectors.categories(Biome.Category.PLAINS).and(RegUtils.booleanToPredicate(config.activated(StructureUtils.ABANDONED_CHURCH))).and(BiomeSelectors.foundInOverworld()),
@@ -219,16 +204,15 @@ public class MoStructures implements ModInitializer {
                 BiomeSelectors.categories(Biome.Category.BEACH).and(RegUtils.booleanToPredicate(config.activated(StructureUtils.AIR_BALLOON))).and(BiomeSelectors.foundInOverworld()),
                 (context) -> RegUtils.addStructure(context, ConfiguredFeatures.AIR_BALLOON)
         );
-    }
-
-    public static Identifier id(String name) {
-        return new Identifier(MODID, name.toLowerCase(Locale.ROOT));
+        RegUtils.addToBiome(
+                StructureUtils.VILLAGER_BAZAAR,
+                BiomeSelectors.categories(Biome.Category.DESERT).and(RegUtils.booleanToPredicate(config.activated(StructureUtils.VILLAGER_BAZAAR))).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.VILLAGER_BAZAAR)
+        );
     }
 
     @Override
     public void onInitialize() {
-        //Compute missing structure config entries
-        StructureConfigEntry.computeConfigMap(config.structureConfigEntries);
         //Registering
         registerStructures();
         registerFeatures();

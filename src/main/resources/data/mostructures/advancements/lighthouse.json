@@ -1,0 +1,33 @@
+{
+  "parent": "mostructures:root",
+  "display": {
+    "icon": {
+      "item": "minecraft:redstone_lamp"
+    },
+    "title": {
+      "translate": "advancements.mostructures.lighthouse.title"
+    },
+    "description": {
+      "translate": "advancements.mostructures.lighthouse.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "lighthouse": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "feature": "mostructures:lighthouse"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "lighthouse"
+    ]
+  ]
+}

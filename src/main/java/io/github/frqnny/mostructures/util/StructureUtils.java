@@ -30,6 +30,7 @@ public class StructureUtils {
     public static final Identifier VOLCANIC_VENT = MoStructures.id("volcanic_vent");
     public static final Identifier MOAI = MoStructures.id("moai");
     public static final Identifier AIR_BALLOON = MoStructures.id("air_balloon");
+    public static final Identifier VILLAGER_BAZAAR = MoStructures.id("village_bazaar");
 
 
     //Makes sures pools are registered

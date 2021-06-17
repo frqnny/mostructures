@@ -108,7 +108,9 @@ public class VolcanicVentStructure extends StructureFeature<DefaultFeatureConfig
                         if (random.nextDouble() < (double) f) {
                             int t = getBaseHeight(world, o, p);
                             mutable.set(o, t, p);
-                            placeBottom(world, mutable, f);
+                            if (random.nextBoolean()) {
+                                placeBottom(world, mutable, f);
+                            }
                         }
                     }
                 }

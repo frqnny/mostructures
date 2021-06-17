@@ -18,7 +18,7 @@ public class MoaiGenerator {
                         MOAI,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":beach/villager_moai"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":moai/villager_moai"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )

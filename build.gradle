@@ -1,5 +1,6 @@
 plugins {
-	id 'fabric-loom' version '0.8.local'
+	id 'fabric-loom' version '0.8-SNAPSHOT'
+	id 'io.github.juuxel.loom-quiltflower' version '1.1.1'
 }
 
 sourceCompatibility = JavaVersion.VERSION_16
@@ -18,11 +19,12 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-
 	//Dependencies
 	modImplementation include("com.github.Draylar.omega-config:omega-config-base:${project.config_version}")
 }
 
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
 processResources {
 	doLast {
 
@@ -35,7 +37,7 @@ processResources {
 			File file = it
 			jsonMinified++
 			def oldLength = file.length()
-			file.text = groovy.json.JsonOutput.toJson(new groovy.json.JsonSlurper().parse(file))
+			file.text = JsonOutput.toJson(new JsonSlurper().parse(file))
 			jsonBytesSaved += oldLength - file.length()
 		}
 

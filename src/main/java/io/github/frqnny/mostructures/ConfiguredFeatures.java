@@ -25,6 +25,7 @@ public class ConfiguredFeatures {
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> MOAI = RegUtils.config(MoStructures.MOAI, MoaiGenerator.STARTING_POOL);
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> AIR_BALLOON = RegUtils.config(MoStructures.AIR_BALLOON, AirBalloonGenerator.STARTING_POOL);
     public static final ConfiguredStructureFeature<DefaultFeatureConfig, ?> VOLCANIC_VENT = MoStructures.VOLCANIC_VENT.configure(FeatureConfig.DEFAULT);
+    public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> VILLAGER_BAZAAR = RegUtils.config(MoStructures.VILLAGER_BAZAAR, VillageBazaarGenerator.STARTING_POOL);
 
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> PLAINS_ABANDONED_CHURCH = RegUtils.config(MoStructures.ABANDONED_CHURCH, AbandonedChurchGenerator.PLAINS_STARTING_POOL);
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> SAVANNA_ABANDONED_CHURCH = RegUtils.config(MoStructures.ABANDONED_CHURCH, AbandonedChurchGenerator.SAVANNA_STARTING_POOL);
@@ -57,6 +58,7 @@ public class ConfiguredFeatures {
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_volcanic_vent"), VOLCANIC_VENT);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_moai"), MOAI);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_air_balloon"), AIR_BALLOON);
+        Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_villager_bazaar"), VILLAGER_BAZAAR);
     }
 
 }

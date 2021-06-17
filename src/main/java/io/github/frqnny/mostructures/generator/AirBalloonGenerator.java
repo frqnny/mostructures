@@ -22,7 +22,9 @@ public class AirBalloonGenerator {
                                 new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":air/airballoon2"), 1),
                                 new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":air/airballoon3"), 1),
                                 new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":air/airballoon4"), 1),
-                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":air/airballoon5"), 1)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":air/airballoon5"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":air/airballoon6"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":air/airballoon7"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )

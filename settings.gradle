@@ -6,7 +6,10 @@ pluginManagement {
             url = 'https://maven.fabricmc.net/'
         }
         maven { url = "https://jitpack.io" }
-
+        maven {
+                        name = 'Cotton'
+                         url = 'https://server.bbkr.space/artifactory/libs-release/'
+        }
         mavenLocal()
         gradlePluginPortal()
     }
