@@ -5,10 +5,10 @@
       "item": "minecraft:diamond"
     },
     "title": {
-      "text": "A Distant Memory in the Sky..."
+      "translate": "advancements.mostructures.tcits.title"
     },
     "description": {
-      "text": "Nostalgia brought this structure back from the dead."
+      "translate": "advancements.mostructures.tcits.description"
     },
     "frame": "task",
     "show_toast": true,

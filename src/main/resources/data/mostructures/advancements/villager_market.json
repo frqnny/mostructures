@@ -5,10 +5,10 @@
       "item": "minecraft:emerald"
     },
     "title": {
-      "text": "Where The Tradesmen Go"
+      "translate": "advancements.mostructures.market.title"
     },
     "description": {
-      "text": "A lively place for trading & selling your goods! Also serves as a nice base."
+      "translate": "advancements.mostructures.market.description"
     },
     "frame": "task",
     "show_toast": true,

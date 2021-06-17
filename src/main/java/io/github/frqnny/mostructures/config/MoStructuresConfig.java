@@ -4,12 +4,6 @@ import draylar.omegaconfig.api.Comment;
 import draylar.omegaconfig.api.Config;
 
 public class MoStructuresConfig implements Config {
-    @Comment("Mo' Structures feature toggles.")
-    public Features features = new Features();
-
-    @Comment("Chances are once per the number of chunks. A Chance 500 makes a feature spawn every 500 chunks. Affected by biomes it spawns in and the chunk, so not all are proportional.")
-    public FeatureChances feature_chances = new FeatureChances();
-
     @Comment("Structure toggles. These do not have chances, but in the future they may. ")
     public Structures structures = new Structures();
 
@@ -26,40 +20,6 @@ public class MoStructuresConfig implements Config {
         return "json5";
     }
 
-    public static class Features {
-        @Comment("Air Balloons")
-        public boolean air_features = true;
-        @Comment("Fallen Trees")
-        public boolean fallen_trees = true;
-        @Comment("Desert Features")
-        public boolean desert_features = true;
-        @Comment("Lamppost")
-        public boolean lamppost = true;
-        @Comment("Boulder")
-        public boolean boulder = true;
-        @Comment("Volcanic Vent")
-        public boolean volcanic_vent = true;
-        @Comment("Beach Features")
-        public boolean beach_features = true;
-    }
-
-    public static class FeatureChances {
-        @Comment("Air Balloons")
-        public int air_feature_chance_normal = 6000;
-        public int air_feature_chance_in_beach_biomes = 1000;
-        @Comment("Fallen Trees")
-        public int fallen_trees_chance = 17;
-        @Comment("Desert Features")
-        public int desert_features_chance = 555;
-        @Comment("Lamppost")
-        public int lamppost_chance = 100;
-        @Comment("Boulder")
-        public int boulder_chance = 4000;
-        @Comment("Volcanic Vent")
-        public int volcanic_vent_chance = 85;
-        @Comment("Beach Features")
-        public int beach_features_chance = 75;
-    }
 
     public static class Structures {
         @Comment("Barnhouse")
@@ -84,12 +44,24 @@ public class MoStructuresConfig implements Config {
         public boolean tavern = true;
         @Comment("Killer Bunny Castle")
         public boolean killer_bunny_castle = true;
+        @Comment("Moai")
+        public boolean moai = true;
+        @Comment("Volcanic Vent")
+        public boolean volcanic_vent = true;
+        @Comment("Air Balloons")
+        public boolean air_balloons = true;
+        @Comment("Pirate Ship")
+        public boolean pirate_ship = true;
+        @Comment("Lighthouse")
+        public boolean lighthouse = true;
+        @Comment("Village Bazaar")
+        public boolean bazaar = false;
     }
 
     public static class StructureChances {
         @Comment("Barn House")
-        public int barn_house_seperation = 16;
-        public int barn_house_spacing = 40;
+        public int barn_house_seperation = 8;
+        public int barn_house_spacing = 38;
         @Comment("Big Pyramid")
         public int big_pyramid_seperation = 5;
         public int big_pyramid_spacing = 25;
@@ -101,25 +73,43 @@ public class MoStructuresConfig implements Config {
         public int the_castle_in_the_sky_spacing = 30;
         @Comment("Villager Tower")
         public int villager_tower_seperation = 16;
-        public int villager_tower_spacing = 40;
+        public int villager_tower_spacing = 34;
         @Comment("Abandoned Church")
-        public int abandoned_church_seperation = 16;
-        public int abandoned_church_spacing = 40;
+        public int abandoned_church_seperation = 14;
+        public int abandoned_church_spacing = 38;
         @Comment("Villager Market")
-        public int villager_market_seperation = 27;
-        public int villager_market_spacing = 40;
+        public int villager_market_seperation = 16;
+        public int villager_market_spacing = 36;
         @Comment("Pillager Factory")
-        public int pillager_factory_seperation = 27;
-        public int pillager_factory_spacing = 40;
+        public int pillager_factory_seperation = 16;
+        public int pillager_factory_spacing = 36;
         @Comment("Ice Tower")
         public int ice_tower_seperation = 8;
-        public int ice_tower_spacing = 32;
+        public int ice_tower_spacing = 28;
         @Comment("Boar Hat Tavern")
-        public int tavern_seperation = 16;
-        public int tavern_spacing = 46;
+        public int tavern_seperation = 12;
+        public int tavern_spacing = 32;
         @Comment("Killer Bunny Castle")
         public int killer_bunny_castle_seperation = 25;
         public int killer_bunny_castle_spacing = 45;
+        @Comment("Pirate Ship")
+        public int pirate_ship_seperation = 16;
+        public int pirate_ship_spacing = 40;
+        @Comment("Lighthouse")
+        public int lighthouse_seperation = 16;
+        public int lighthouse_spacing = 32;
+        @Comment("Volcanic Vent")
+        public int volcanic_vent_seperation = 4;
+        public int volcanic_vent_spacing = 8;
+        @Comment("Moai")
+        public int moai_seperation = 2;
+        public int moai_spacing = 4;
+        @Comment("Air Balloon")
+        public int air_balloon_seperation = 1;
+        public int air_balloon_spacing = 6;
+        @Comment("Village Bazaar (Be sure to turn it on in the other settings for it to generate!")
+        public int village_bazaar_seperation = 16;
+        public int village_bazaar_spacing = 32;
     }
 
 

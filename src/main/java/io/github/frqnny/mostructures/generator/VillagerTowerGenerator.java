@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import io.github.frqnny.mostructures.ConfiguredFeatures;
 import io.github.frqnny.mostructures.MoStructures;
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructurePiece;
@@ -33,7 +32,6 @@ public class VillagerTowerGenerator {
     private static final Identifier DESERT_TOWERS = MoStructures.id("villager/desert_towers");
     private static final Identifier FEATURE_PLATES = MoStructures.id("villager/feature_plates");
     private static final Identifier FEATURES = MoStructures.id("villager/features");
-    private static final Identifier ARMOR_STANDS = MoStructures.id("villager/armorstands");
 
     static {
         DEFAULT_STARTING_POOL = StructurePools.register(
@@ -120,17 +118,7 @@ public class VillagerTowerGenerator {
                         StructurePool.Projection.RIGID
                 )
         );
-        StructurePools.register(
-                new StructurePool(
-                        ARMOR_STANDS,
-                        new Identifier("empty"),
-                        ImmutableList.of(
-                                new Pair<>(StructurePoolElement.method_30421(ConfiguredFeatures.ARMOR_STAND_SPAWN), 1)
 
-                        ),
-                        StructurePool.Projection.RIGID
-                )
-        );
     }
 
 

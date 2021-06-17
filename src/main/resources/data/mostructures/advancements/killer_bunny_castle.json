@@ -5,10 +5,10 @@
       "item": "minecraft:rabbit_foot"
     },
     "title": {
-      "text": "The Killer Bunny of Caerbannog"
+      "translate": "advancements.mostructures.killerbunny.title"
     },
     "description": {
-      "text": "Mission: Kill Bunny, Get Loot!"
+      "translate": "advancements.mostructures.killerbunny.description"
     },
     "frame": "task",
     "show_toast": true,

@@ -5,10 +5,10 @@
       "item": "minecraft:sandstone"
     },
     "title": {
-      "text": "The Tomb of the Arrogant"
+      "translate": "advancements.mostructures.pyramid.title"
     },
     "description": {
-      "text": "Maybe you'll find something inside?"
+      "translate": "advancements.mostructures.pyramid.description"
     },
     "frame": "task",
     "show_toast": true,

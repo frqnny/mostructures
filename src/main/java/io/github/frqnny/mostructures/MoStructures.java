@@ -3,20 +3,14 @@ package io.github.frqnny.mostructures;
 import com.google.common.collect.ImmutableList;
 import draylar.omegaconfig.OmegaConfig;
 import io.github.frqnny.mostructures.config.MoStructuresConfig;
-import io.github.frqnny.mostructures.decorator.ChanceHeightmapDecorator;
-import io.github.frqnny.mostructures.feature.*;
-import io.github.frqnny.mostructures.feature.config.ArmorStandFeatureConfig;
-import io.github.frqnny.mostructures.feature.entity.ArmorStandFeature;
-import io.github.frqnny.mostructures.feature.entity.VillagerEntityFeature;
-import io.github.frqnny.mostructures.processor.DataBlockStructureProcessor;
-import io.github.frqnny.mostructures.processor.SimpleCobblestoneProcessor;
-import io.github.frqnny.mostructures.processor.SimpleStoneStructureProcessor;
+import io.github.frqnny.mostructures.feature.VillagerEntityFeature;
+import io.github.frqnny.mostructures.processor.*;
 import io.github.frqnny.mostructures.structure.*;
-import io.github.frqnny.mostructures.util.RegistrationHelper;
+import io.github.frqnny.mostructures.util.RegUtils;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
+import net.minecraft.structure.StructurePieceType;
 import net.minecraft.structure.processor.StructureProcessorList;
 import net.minecraft.structure.processor.StructureProcessorType;
 import net.minecraft.util.Identifier;
@@ -24,26 +18,16 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.decorator.ChanceDecoratorConfig;
-import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 import java.util.Random;
-import java.util.function.Predicate;
 
 public class MoStructures implements ModInitializer {
     public static final String MODID = "mostructures";
     public static final Random random = new Random();
-    public static final Feature<DefaultFeatureConfig> AIR_FEATURES = new SmallAirFeature();
-    public static final Feature<DefaultFeatureConfig> FALLEN_TREE = new FallenTreeFeature();
-    public static final Feature<DefaultFeatureConfig> SMALL_DESERT_FEATURES = new SmallDryFeature();
-    public static final Feature<DefaultFeatureConfig> LAMPPOST = new LamppostFeature();
-    public static final Feature<DefaultFeatureConfig> VOLCANIC_VENT = new VolcanicVentFeature();
-    public static final Feature<DefaultFeatureConfig> SMALL_BEACH_FEATURES = new SmallBeachFeatures();
-    public static final Feature<ArmorStandFeatureConfig> ARMOR_STAND_SPAWN = new ArmorStandFeature();
     public static final Feature<DefaultFeatureConfig> VILLAGER_SPAWN = new VillagerEntityFeature();
 
     public static final StructureFeature<StructurePoolFeatureConfig> BARN_HOUSE = new BarnHouseStructure();
@@ -57,14 +41,32 @@ public class MoStructures implements ModInitializer {
     public static final StructureFeature<StructurePoolFeatureConfig> ICE_TOWER = new IceTowerStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> TAVERN = new TavernStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> KILLER_BUNNY_CASTLE = new KillerBunnyCastleStructure();
+    public static final StructureFeature<StructurePoolFeatureConfig> PIRATE_SHIP = new PirateShipStructure();
+    public static final StructureFeature<StructurePoolFeatureConfig> LIGHTHOUSE = new LighthouseStructure();
+    public static final StructureFeature<StructurePoolFeatureConfig> MOAI = new MoaiStructure();
+    public static final StructureFeature<StructurePoolFeatureConfig> AIR_BALLOON = new AirBalloonStructure();
+    public static final StructureFeature<StructurePoolFeatureConfig> VILLAGER_BAZAAR = new VillagerBazaarStructure();
+    public static final StructureFeature<DefaultFeatureConfig> VOLCANIC_VENT = new VolcanicVentStructure();
 
-    public static final Decorator<ChanceDecoratorConfig> CHANCE_OCEAN_FLOOR_WG = Registry.register(Registry.DECORATOR, id("chance_heightmap_legacy"), new ChanceHeightmapDecorator());
-    public static StructureProcessorType<SimpleStoneStructureProcessor> SIMPLE_STONE;
-    public static StructureProcessorType<SimpleCobblestoneProcessor> SIMPLE_COBBLESTONE;
-    public static StructureProcessorType<DataBlockStructureProcessor> DATA_BLOCK_STRUCTURE_PROCESSOR;
-    public static StructureProcessorList JUNGLE_ROT_LIST;
-    public static StructureProcessorList ICE_TOWER_LIST;
-    public static StructureProcessorList VILLAGER_TOWER_LIST;
+    public static final StructurePieceType VOLCANIC_VENT_TYPE = Registry.register(Registry.STRUCTURE_PIECE, id("volcanic_vent"), VolcanicVentStructure.Piece::new);
+    public static final StructureProcessorType<SimpleStoneStructureProcessor> SIMPLE_STONE = StructureProcessorType.register("jungle_rot_processor", SimpleStoneStructureProcessor.CODEC);
+    public static final StructureProcessorType<SimpleCobblestoneProcessor> SIMPLE_COBBLESTONE = StructureProcessorType.register("simple_cobblestone", SimpleCobblestoneProcessor.CODEC);
+    public static final StructureProcessorType<DataBlockStructureProcessor> DATA_BLOCK_STRUCTURE_PROCESSOR = StructureProcessorType.register("data_block_structure_processor", DataBlockStructureProcessor.CODEC);
+    public static final StructureProcessorType<AirStructureProcessor> AIR_STRUCTURE_PROCESSOR = StructureProcessorType.register("air_structure_processor", AirStructureProcessor.CODEC);
+    public static final StructureProcessorType<RemoveWaterloggedProcessor> REMOVE_WATERLOGGED = StructureProcessorType.register("remove_waterlog_processor", RemoveWaterloggedProcessor.CODEC);
+    public static final StructureProcessorList JUNGLE_ROT_LIST = RegUtils.registerStructureProcessorList("jungle_rot", ImmutableList.of(
+            new SimpleStoneStructureProcessor(0.15F)
+    ));
+    public static final StructureProcessorList ICE_TOWER_LIST = RegUtils.registerStructureProcessorList("ice_tower_rot", ImmutableList.of(
+            new SimpleStoneStructureProcessor(0)
+    ));
+    public static final StructureProcessorList VILLAGER_TOWER_LIST = RegUtils.registerStructureProcessorList("villager_tower_rot", ImmutableList.of(
+            new SimpleCobblestoneProcessor(0.15F)
+    ));
+    public static final StructureProcessorList PIRATE_SHIP_LIST = RegUtils.registerStructureProcessorList("simple_air_keep_list", ImmutableList.of(
+            new AirStructureProcessor(),
+            new RemoveWaterloggedProcessor()
+    ));
 
     public static MoStructuresConfig config;
 
@@ -134,165 +136,160 @@ public class MoStructures implements ModInitializer {
                 .superflatFeature(ConfiguredFeatures.KILLER_BUNNY_CASTLE)
                 .adjustsSurface()
                 .register();
+        FabricStructureBuilder.create(PirateShipStructure.ID, PIRATE_SHIP)
+                .step(GenerationStep.Feature.SURFACE_STRUCTURES)
+                .defaultConfig(config.structureChances.pirate_ship_spacing, config.structureChances.pirate_ship_seperation, 583957395)
+                .superflatFeature(ConfiguredFeatures.PIRATE_SHIP)
+                .register();
+        FabricStructureBuilder.create(LighthouseStructure.ID, LIGHTHOUSE)
+                .step(GenerationStep.Feature.SURFACE_STRUCTURES)
+                .defaultConfig(config.structureChances.lighthouse_spacing, config.structureChances.lighthouse_seperation, 29502322)
+                .superflatFeature(ConfiguredFeatures.LIGHTHOUSE)
+                .register();
+        FabricStructureBuilder.create(AirBalloonStructure.ID, AIR_BALLOON)
+                .step(GenerationStep.Feature.SURFACE_STRUCTURES)
+                .defaultConfig(config.structureChances.air_balloon_spacing, config.structureChances.air_balloon_seperation, 12994829)
+                .superflatFeature(ConfiguredFeatures.AIR_BALLOON)
+                .register();
+        FabricStructureBuilder.create(VillagerBazaarStructure.ID, VILLAGER_BAZAAR)
+                .step(GenerationStep.Feature.SURFACE_STRUCTURES)
+                .defaultConfig(config.structureChances.village_bazaar_spacing, config.structureChances.village_bazaar_seperation, 34842291)
+                .superflatFeature(ConfiguredFeatures.VILLAGE_BAZAAR)
+                .adjustsSurface()
+                .register();
+        FabricStructureBuilder.create(MoaiStructure.ID, MOAI)
+                .step(GenerationStep.Feature.SURFACE_STRUCTURES)
+                .defaultConfig(config.structureChances.moai_spacing, config.structureChances.moai_seperation, 12994829)
+                .superflatFeature(ConfiguredFeatures.MOAI)
+                .register();
+        FabricStructureBuilder.create(VolcanicVentStructure.ID, VOLCANIC_VENT)
+                .step(GenerationStep.Feature.SURFACE_STRUCTURES)
+                .defaultConfig(config.structureChances.volcanic_vent_spacing, config.structureChances.volcanic_vent_seperation, 84981094)
+                .superflatFeature(ConfiguredFeatures.VOLCANIC_VENT)
+                .adjustsSurface()
+                .register();
+
 
     }
 
     public static void registerFeatures() {
-        Registry.register(Registry.FEATURE, SmallAirFeature.ID, AIR_FEATURES);
-        Registry.register(Registry.FEATURE, FallenTreeFeature.ID, FALLEN_TREE);
-        Registry.register(Registry.FEATURE, SmallDryFeature.ID, SMALL_DESERT_FEATURES);
-        Registry.register(Registry.FEATURE, LamppostFeature.ID, LAMPPOST);
-        Registry.register(Registry.FEATURE, VolcanicVentFeature.ID, VOLCANIC_VENT);
-        Registry.register(Registry.FEATURE, SmallBeachFeatures.ID, SMALL_BEACH_FEATURES);
-        Registry.register(Registry.FEATURE, ArmorStandFeature.ID, ARMOR_STAND_SPAWN);
         Registry.register(Registry.FEATURE, VillagerEntityFeature.ID, VILLAGER_SPAWN);
     }
 
-    public static void putFeatures() {
-        RegistrationHelper.addToBiome(
-                SmallAirFeature.ID,
-                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SWAMP, Biome.Category.SAVANNA, Biome.Category.FOREST, Biome.Category.TAIGA, Biome.Category.ICY, Biome.Category.DESERT, Biome.Category.OCEAN).and(RegistrationHelper.booleanToPredicate(config.features.air_features)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.AIR_FEATURES)
-        );
-
-        RegistrationHelper.addToBiome(
-                SmallAirFeature.ID,
-                BiomeSelectors.categories(Biome.Category.BEACH).and(RegistrationHelper.booleanToPredicate(config.features.air_features)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.AIR_FEATURES_BEACH)
-        );
-
-        RegistrationHelper.addToBiome(
-                FallenTreeFeature.ID,
-                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SWAMP, Biome.Category.SAVANNA, Biome.Category.FOREST, Biome.Category.TAIGA, Biome.Category.ICY).and(RegistrationHelper.booleanToPredicate(config.features.fallen_trees)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.FALLEN_TREE)
-        );
-
-        RegistrationHelper.addToBiome(
-                SmallDryFeature.ID,
-                BiomeSelectors.categories(Biome.Category.DESERT).and(RegistrationHelper.booleanToPredicate(config.features.desert_features)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.SMALL_DESERT_FEATURES)
-        );
-
-        RegistrationHelper.addToBiome(
-                LamppostFeature.ID,
-                BiomeSelectors.categories(Biome.Category.FOREST, Biome.Category.NETHER).and(RegistrationHelper.booleanToPredicate(config.features.lamppost)).and(MoStructures.vanilla()).and(BiomeSelectors.foundInOverworld().or(BiomeSelectors.foundInTheNether())).and(BiomeSelectors.excludeByKey(BiomeKeys.BASALT_DELTAS)),
-                (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.LAMPPOST)
-        );
-
-        RegistrationHelper.addToBiome(
-                VolcanicVentFeature.ID,
-                BiomeSelectors.categories(Biome.Category.OCEAN).and(RegistrationHelper.booleanToPredicate(config.features.volcanic_vent)).and(BiomeSelectors.excludeByKey(BiomeKeys.FROZEN_OCEAN, BiomeKeys.DEEP_FROZEN_OCEAN)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.VOLCANIC_VENT)
-        );
-
-        RegistrationHelper.addToBiome(
-                SmallBeachFeatures.ID,
-                BiomeSelectors.categories(Biome.Category.BEACH).and(RegistrationHelper.booleanToPredicate(config.features.beach_features)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addFeature(context, ConfiguredFeatures.SMALL_BEACH_FEATURES)
-        );
-    }
-
     public static void putStructures() {
-        RegistrationHelper.addToBiome(
+        RegUtils.addToBiome(
                 BarnHouseStructure.ID,
-                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SAVANNA).and(RegistrationHelper.booleanToPredicate(config.structures.barn_house)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.BARN_HOUSE)
-
+                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SAVANNA).and(RegUtils.booleanToPredicate(config.structures.barn_house)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.BARN_HOUSE)
         );
-
-        RegistrationHelper.addToBiome(
+        RegUtils.addToBiome(
                 BigPyramidStructure.ID,
-                BiomeSelectors.categories(Biome.Category.DESERT).and(RegistrationHelper.booleanToPredicate(config.structures.big_pyramid)).and(RegistrationHelper.getNoHillsPredicate()).and(BiomeSelectors.foundInOverworld()).and((context) -> !context.getBiomeKey().getValue().getPath().contains("lakes")),
-                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.BIG_PYRAMID)
-
+                BiomeSelectors.categories(Biome.Category.DESERT).and(RegUtils.booleanToPredicate(config.structures.big_pyramid)).and(RegUtils.getNoHillsPredicate()).and(BiomeSelectors.foundInOverworld()).and((context) -> !context.getBiomeKey().getValue().getPath().contains("lakes")),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.BIG_PYRAMID)
         );
-
-        RegistrationHelper.addToBiome(
+        RegUtils.addToBiome(
                 JunglePyramidStructure.ID,
-                BiomeSelectors.categories(Biome.Category.JUNGLE).and(RegistrationHelper.booleanToPredicate(config.structures.jungle_pyramid)).and(RegistrationHelper.getNoHillsPredicate()).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.JUNGLE_PYRAMID)
+                BiomeSelectors.categories(Biome.Category.JUNGLE).and(RegUtils.booleanToPredicate(config.structures.jungle_pyramid)).and(RegUtils.getNoHillsPredicate()).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.JUNGLE_PYRAMID)
         );
-
-        RegistrationHelper.addToBiome(
+        RegUtils.addToBiome(
                 TheCastleInTheSkyStructure.ID,
-                BiomeSelectors.categories(Biome.Category.BEACH).and(RegistrationHelper.booleanToPredicate(config.structures.the_castle_in_the_sky)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.THE_CASTLE_IN_THE_SKY)
-
+                BiomeSelectors.categories(Biome.Category.BEACH).and(RegUtils.booleanToPredicate(config.structures.the_castle_in_the_sky)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.THE_CASTLE_IN_THE_SKY)
         );
-
-        RegistrationHelper.addToBiome(
+        RegUtils.addToBiome(
                 VillagerTowerStructure.ID,
-                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.FOREST).and(RegistrationHelper.booleanToPredicate(config.structures.villager_tower)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.VILLAGER_TOWER)
-
+                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.FOREST).and(RegUtils.booleanToPredicate(config.structures.villager_tower)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.VILLAGER_TOWER)
         );
-        RegistrationHelper.addToBiome(
+        RegUtils.addToBiome(
                 VillagerTowerStructure.ID,
-                BiomeSelectors.categories(Biome.Category.SAVANNA).and(RegistrationHelper.booleanToPredicate(config.structures.villager_tower)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.SAVANNA_VILLAGER_TOWER)
-
+                BiomeSelectors.categories(Biome.Category.SAVANNA).and(RegUtils.booleanToPredicate(config.structures.villager_tower)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.SAVANNA_VILLAGER_TOWER)
         );
-        /* worst structure, should remove/rebuild
-        RegistrationHelper.addToBiome(
-                VillagerTowerStructure.ID,
-                BiomeSelectors.categories(Biome.Category.DESERT).and(RegistrationHelper.booleanToPredicate(config.structures.villager_tower)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.DESERT_VILLAGER_TOWER)
-
-        );
-
-         */
-
-        RegistrationHelper.addToBiome(
+        RegUtils.addToBiome(
                 VillagerMarketStructure.ID,
-                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SAVANNA, Biome.Category.FOREST).and(RegistrationHelper.booleanToPredicate(config.structures.villager_market)).and(RegistrationHelper.getNoHillsPredicate()).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.VILLAGER_MARKET)
+                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SAVANNA, Biome.Category.FOREST).and(RegUtils.booleanToPredicate(config.structures.villager_market)).and(RegUtils.getNoHillsPredicate()).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.VILLAGER_MARKET)
         );
-
-        RegistrationHelper.addToBiome(
+        RegUtils.addToBiome(
                 PillagerFactoryStructure.ID,
-                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.TAIGA, Biome.Category.ICY).and(RegistrationHelper.booleanToPredicate(config.structures.pillager_factory)).and(RegistrationHelper.getNoHillsPredicate()).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.PILLAGER_FACTORY)
+                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.TAIGA, Biome.Category.ICY).and(RegUtils.booleanToPredicate(config.structures.pillager_factory)).and(RegUtils.getNoHillsPredicate()).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.PILLAGER_FACTORY)
         );
+        RegUtils.addToBiome(
+                PirateShipStructure.ID,
+                BiomeSelectors.categories(Biome.Category.OCEAN).and((context) -> {
+                    String string = context.getBiomeKey().getValue().toString();
+                    return string.contains("deep") && !string.contains("frozen");
+                }).and(RegUtils.booleanToPredicate(config.structures.pirate_ship)),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.PIRATE_SHIP)
+        );
+        RegUtils.addToBiome(
+                AbandonedChurchStructure.ID,
+                BiomeSelectors.categories(Biome.Category.PLAINS).and(RegUtils.booleanToPredicate(config.structures.abandoned_churches)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.PLAINS_ABANDONED_CHURCH)
+        );
+        RegUtils.addToBiome(
+                AbandonedChurchStructure.ID,
 
-        RegistrationHelper.addToBiome(
-                AbandonedChurchStructure.ID,
-                BiomeSelectors.categories(Biome.Category.PLAINS).and(RegistrationHelper.booleanToPredicate(config.structures.abandoned_churches)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.PLAINS_ABANDONED_CHURCH)
+                BiomeSelectors.categories(Biome.Category.DESERT).and(RegUtils.booleanToPredicate(config.structures.abandoned_churches)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.DESERT_ABANDONED_CHURCH)
         );
-        RegistrationHelper.addToBiome(
+        RegUtils.addToBiome(
                 AbandonedChurchStructure.ID,
-                BiomeSelectors.categories(Biome.Category.DESERT).and(RegistrationHelper.booleanToPredicate(config.structures.abandoned_churches)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.DESERT_ABANDONED_CHURCH)
+                BiomeSelectors.categories(Biome.Category.SAVANNA).and(RegUtils.booleanToPredicate(config.structures.abandoned_churches)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.SAVANNA_ABANDONED_CHURCH)
         );
-        RegistrationHelper.addToBiome(
+        RegUtils.addToBiome(
                 AbandonedChurchStructure.ID,
-                BiomeSelectors.categories(Biome.Category.SAVANNA).and(RegistrationHelper.booleanToPredicate(config.structures.abandoned_churches)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.SAVANNA_ABANDONED_CHURCH)
+                BiomeSelectors.categories(Biome.Category.TAIGA).and(RegUtils.booleanToPredicate(config.structures.abandoned_churches)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.TAIGA_ABANDONED_CHURCH)
         );
-        RegistrationHelper.addToBiome(
+        RegUtils.addToBiome(
                 AbandonedChurchStructure.ID,
-                BiomeSelectors.categories(Biome.Category.TAIGA).and(RegistrationHelper.booleanToPredicate(config.structures.abandoned_churches)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.TAIGA_ABANDONED_CHURCH)
+                BiomeSelectors.categories(Biome.Category.ICY).and(RegUtils.booleanToPredicate(config.structures.abandoned_churches)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.SNOWY_ABANDONED_CHURCH)
         );
-        RegistrationHelper.addToBiome(
-                AbandonedChurchStructure.ID,
-                BiomeSelectors.categories(Biome.Category.ICY).and(RegistrationHelper.booleanToPredicate(config.structures.abandoned_churches)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.SNOWY_ABANDONED_CHURCH)
-        );
-        RegistrationHelper.addToBiome(
+        RegUtils.addToBiome(
                 IceTowerStructure.ID,
-                BiomeSelectors.categories(Biome.Category.ICY).and(RegistrationHelper.booleanToPredicate(config.structures.ice_tower)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.ICE_TOWER)
+                BiomeSelectors.categories(Biome.Category.ICY).and(RegUtils.booleanToPredicate(config.structures.ice_tower)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.ICE_TOWER)
         );
-        RegistrationHelper.addToBiome(
+        RegUtils.addToBiome(
                 TavernStructure.ID,
-                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.FOREST).and(RegistrationHelper.booleanToPredicate(config.structures.tavern)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.TAVERN)
+                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.FOREST).and(RegUtils.booleanToPredicate(config.structures.tavern)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.TAVERN)
         );
-        RegistrationHelper.addToBiome(
+        RegUtils.addToBiome(
                 KillerBunnyCastleStructure.ID,
-                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.FOREST, Biome.Category.SAVANNA).and(RegistrationHelper.booleanToPredicate(config.structures.killer_bunny_castle)).and(BiomeSelectors.foundInOverworld()),
-                (context) -> RegistrationHelper.addStructure(context, ConfiguredFeatures.KILLER_BUNNY_CASTLE)
+                BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.FOREST, Biome.Category.SAVANNA).and(RegUtils.booleanToPredicate(config.structures.the_castle_in_the_sky)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.KILLER_BUNNY_CASTLE)
+        );
+        RegUtils.addToBiome(
+                LighthouseStructure.ID,
+                BiomeSelectors.categories(Biome.Category.BEACH).and(RegUtils.booleanToPredicate(config.structures.lighthouse)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.LIGHTHOUSE)
+        );
+        RegUtils.addToBiome(
+                VolcanicVentStructure.ID,
+                BiomeSelectors.categories(Biome.Category.OCEAN).and(RegUtils.booleanToPredicate(config.structures.volcanic_vent)).and(BiomeSelectors.excludeByKey(BiomeKeys.FROZEN_OCEAN, BiomeKeys.DEEP_FROZEN_OCEAN)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.VOLCANIC_VENT)
+        );
+        RegUtils.addToBiome(
+                MoaiStructure.ID,
+                BiomeSelectors.categories(Biome.Category.BEACH).and(RegUtils.booleanToPredicate(config.structures.moai)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.MOAI)
+        );
+        RegUtils.addToBiome(
+                AirBalloonStructure.ID,
+                BiomeSelectors.categories(Biome.Category.BEACH).and(RegUtils.booleanToPredicate(config.structures.air_balloons)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.AIR_BALLOON)
+        );
+        RegUtils.addToBiome(
+                VillagerBazaarStructure.ID,
+                BiomeSelectors.categories(Biome.Category.DESERT).and(RegUtils.booleanToPredicate(config.structures.bazaar)).and(BiomeSelectors.foundInOverworld()),
+                (context) -> RegUtils.addStructure(context, ConfiguredFeatures.VILLAGE_BAZAAR)
         );
     }
 
@@ -304,33 +301,15 @@ public class MoStructures implements ModInitializer {
         config = OmegaConfig.register(MoStructuresConfig.class);
     }
 
-    public static void registerStructureProcessors() {
-        SIMPLE_STONE = StructureProcessorType.register("jungle_rot_processor", SimpleStoneStructureProcessor.CODEC);
-        SIMPLE_COBBLESTONE = StructureProcessorType.register("simple_cobblestone", SimpleCobblestoneProcessor.CODEC);
-        DATA_BLOCK_STRUCTURE_PROCESSOR = StructureProcessorType.register("data_block_structure_processor", DataBlockStructureProcessor.CODEC);
-        JUNGLE_ROT_LIST = RegistrationHelper.registerStructureProcessor("jungle_rot", ImmutableList.of(new SimpleStoneStructureProcessor(0.15F)));
-        ICE_TOWER_LIST = RegistrationHelper.registerStructureProcessor("ice_tower_rot", ImmutableList.of(new SimpleStoneStructureProcessor(0)));
-        VILLAGER_TOWER_LIST = RegistrationHelper.registerStructureProcessor("villager_tower_rot", ImmutableList.of(new SimpleCobblestoneProcessor(0.15F), new DataBlockStructureProcessor()));
-    }
-
-    //vanilla check that doesn't crash on servers
-    public static Predicate<BiomeSelectionContext> vanilla() {
-        return context -> {
-            // No data pack check bc it crash
-            return context.getBiomeKey().getValue().getNamespace().equals("minecraft");
-        };
-    }
 
     @Override
     public void onInitialize() {
         registerConfig();
 
-        registerStructureProcessors();
         registerStructures();
         registerFeatures();
         ConfiguredFeatures.registerConfiguredFeatures();
 
-        putFeatures();
         putStructures();
     }
 }

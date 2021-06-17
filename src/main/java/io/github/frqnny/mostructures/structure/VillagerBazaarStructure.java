@@ -1,8 +1,14 @@
 package io.github.frqnny.mostructures.structure;
 
+import io.github.frqnny.mostructures.MoStructures;
+import io.github.frqnny.mostructures.generator.VillageBazaarGenerator;
 import net.minecraft.structure.MarginedStructureStart;
+import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;
+import net.minecraft.structure.pool.StructurePoolBasedGenerator;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockBox;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.DynamicRegistryManager;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
@@ -10,6 +16,8 @@ import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 public class VillagerBazaarStructure extends SpacedStructure<StructurePoolFeatureConfig> {
+    public static final Identifier ID = MoStructures.id("bazaar");
+
     public VillagerBazaarStructure() {
         super(StructurePoolFeatureConfig.CODEC);
     }
@@ -26,7 +34,9 @@ public class VillagerBazaarStructure extends SpacedStructure<StructurePoolFeatur
 
         @Override
         public void init(DynamicRegistryManager registryManager, ChunkGenerator chunkGenerator, StructureManager manager, int chunkX, int chunkZ, Biome biome, StructurePoolFeatureConfig config) {
-
+            VillageBazaarGenerator.init();
+            StructurePoolBasedGenerator.method_30419(registryManager, config, PoolStructurePiece::new, chunkGenerator, manager, new BlockPos(chunkX << 4, -3, chunkZ << 4), this.children, this.random, true, true);
+            this.setBoundingBoxFromChildren();
         }
     }
 }
