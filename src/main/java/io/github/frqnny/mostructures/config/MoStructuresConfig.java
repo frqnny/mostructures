@@ -25,23 +25,23 @@ public class MoStructuresConfig implements Config {
     public final Map<String, StructureConfigEntry> structureConfigEntries = new HashMap<>(17);
 
     public static void computeConfigMap(Map<String, StructureConfigEntry> map) {
-        map.computeIfAbsent("abandoned_church", (id) -> StructureConfigEntry.of(14, 38, 66996840));
-        map.computeIfAbsent("barn_house", (id) -> StructureConfigEntry.of(8, 38, 165757306));
-        map.computeIfAbsent("big_pyramid", (id) -> StructureConfigEntry.of(5, 25, 239284294));
-        map.computeIfAbsent("jungle_pyramid", (id) -> StructureConfigEntry.of(5, 25, 312178642));
-        map.computeIfAbsent("the_castle_in_the_sky", (id) -> StructureConfigEntry.of(8, 30, 423494938));
-        map.computeIfAbsent("killer_bunny_castle", (id) -> StructureConfigEntry.of(25, 45, 48123900));
-        map.computeIfAbsent("villager_tower", (id) -> StructureConfigEntry.of(16, 34, 550292492));
-        map.computeIfAbsent("villager_market", (id) -> StructureConfigEntry.of(16, 36, 784939542));
-        map.computeIfAbsent("pillager_factory", (id) -> StructureConfigEntry.of(16, 36, 839204924));
-        map.computeIfAbsent("ice_tower", (id) -> StructureConfigEntry.of(8, 28, 964058305));
-        map.computeIfAbsent("tavern", (id) -> StructureConfigEntry.of(12, 32, 19296726));
-        map.computeIfAbsent("pirate_ship", (id) -> StructureConfigEntry.of(16, 40, 583957395));
-        map.computeIfAbsent("lighthouse", (id) -> StructureConfigEntry.of(16, 32, 29502322));
-        map.computeIfAbsent("volcanic_vent", (id) -> StructureConfigEntry.of(4, 8, 84981094));
-        map.computeIfAbsent("moai", (id) -> StructureConfigEntry.of(2, 4, 12994829));
-        map.computeIfAbsent("air_balloon", (id) -> StructureConfigEntry.of(1, 6, 29483148));
-        map.computeIfAbsent("village_bazaar", (id) -> StructureConfigEntry.ofExperimental(16, 32, 34842291));
+        map.putIfAbsent("abandoned_church", StructureConfigEntry.of(14, 38, 66996840));
+        map.putIfAbsent("barn_house", StructureConfigEntry.of(8, 38, 165757306));
+        map.putIfAbsent("big_pyramid", StructureConfigEntry.of(5, 25, 239284294));
+        map.putIfAbsent("jungle_pyramid", StructureConfigEntry.of(5, 25, 312178642));
+        map.putIfAbsent("the_castle_in_the_sky", StructureConfigEntry.of(8, 30, 423494938));
+        map.putIfAbsent("killer_bunny_castle", StructureConfigEntry.of(25, 45, 48123900));
+        map.putIfAbsent("villager_tower", StructureConfigEntry.of(16, 34, 550292492));
+        map.putIfAbsent("villager_market", StructureConfigEntry.of(16, 36, 784939542));
+        map.putIfAbsent("pillager_factory", StructureConfigEntry.of(16, 36, 839204924));
+        map.putIfAbsent("ice_tower", StructureConfigEntry.of(8, 28, 964058305));
+        map.putIfAbsent("tavern", StructureConfigEntry.of(12, 32, 19296726));
+        map.putIfAbsent("pirate_ship", StructureConfigEntry.of(16, 40, 583957395));
+        map.putIfAbsent("lighthouse", StructureConfigEntry.of(16, 32, 29502322));
+        map.putIfAbsent("volcanic_vent", StructureConfigEntry.of(4, 8, 84981094));
+        map.putIfAbsent("moai", StructureConfigEntry.of(2, 4, 12994829));
+        map.putIfAbsent("air_balloon", StructureConfigEntry.of(1, 6, 29483148));
+        map.putIfAbsent("village_bazaar", StructureConfigEntry.ofExperimental(16, 32, 34842291));
     }
 
     @Override
