@@ -6,7 +6,7 @@
     "LakeFeatureMixin",
     "MixinNoiseChunkGenerator",
     "MixinMobEntity",
-    "MixinRabbitEntity",
+    "MixinLivingEntity",
     "MixinStructurePools"
   ],
   "injectors": {

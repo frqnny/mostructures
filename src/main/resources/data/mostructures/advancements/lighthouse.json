@@ -5,10 +5,10 @@
       "item": "minecraft:redstone_lamp"
     },
     "title": {
-      "translate": "advancements.mostructures.lighthouse.title"
+      "translate": "Battlet- err, Lighthouse!"
     },
     "description": {
-      "translate": "advancements.mostructures.lighthouse.description"
+      "translate": "Get to the top!"
     },
     "frame": "task",
     "show_toast": true,

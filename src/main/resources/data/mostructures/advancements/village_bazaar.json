@@ -5,10 +5,10 @@
       "item": "minecraft:sand"
     },
     "title": {
-      "translate": "advancements.mostructures.bazaar.title"
+      "translate": "Sandy Bartering"
     },
     "description": {
-      "translate": "advancements.mostructures.bazaar.description"
+      "translate": "Traveling villagers who needed a trading place, in the desert!"
     },
     "frame": "task",
     "show_toast": true,

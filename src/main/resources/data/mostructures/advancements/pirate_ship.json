@@ -5,10 +5,10 @@
       "item": "minecraft:trident"
     },
     "title": {
-      "translate": "advancements.mostructures.pirateship.title"
+      "translate": "Ahoy, mateys!"
     },
     "description": {
-      "translate": "advancements.mostructures.pirateship.description"
+      "translate": "Wait, are those strays??"
     },
     "frame": "task",
     "show_toast": true,

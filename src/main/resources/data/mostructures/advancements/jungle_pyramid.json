@@ -5,10 +5,10 @@
       "item": "minecraft:wither_rose"
     },
     "title": {
-      "translate": "advancements.mostructures.junglepyramid.title"
+      "translate": "The Gem of the Jungle"
     },
     "description": {
-      "translate": "advancements.mostructures.junglepyramid.description"
+      "translate": "Watch out for the priests on the lower level!"
     },
     "frame": "task",
     "show_toast": true,

@@ -5,10 +5,10 @@
       "item": "minecraft:iron_ingot"
     },
     "title": {
-      "translate": "advancements.mostructures.villagertower.title"
+      "translate": "A Veteran's Retirement"
     },
     "description": {
-      "translate": "advancements.mostructures.villagertower.description"
+      "translate": "If you find an Iron Golem, salute him. He fought in the Forgotten War..."
     },
     "frame": "task",
     "show_toast": true,

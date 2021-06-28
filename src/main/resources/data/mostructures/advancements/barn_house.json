@@ -5,10 +5,10 @@
       "item": "minecraft:wheat"
     },
     "title": {
-      "translate": "advancements.mostructures.barnhouse.title"
+      "translate": "A Lonely Farm"
     },
     "description": {
-      "translate": "advancements.mostructures.barnhouse.description"
+      "translate": "Looks like they left in a hurry..."
     },
     "frame": "task",
     "show_toast": true,

@@ -5,10 +5,10 @@
       "item": "minecraft:crossbow"
     },
     "title": {
-      "translate": "advancements.mostructures.pillagerfactory.title"
+      "translate": "Factories of War"
     },
     "description": {
-      "translate": "advancements.mostructures.pillagerfactory.description"
+      "translate": "So... many... pillagers..."
     },
     "frame": "task",
     "show_toast": true,

@@ -28,12 +28,6 @@ public class MixinNoiseChunkGenerator {
             } else if (accessor.getStructureAt(pos, false, MoStructures.ABANDONED_CHURCH).hasChildren()) {
                 info.setReturnValue(StructureUtils.ABANDONED_CHURCH_SPAWNS);
             }
-        } else if (group == SpawnGroup.AMBIENT) {
-            if (accessor.getStructureAt(pos, false, MoStructures.BARN_HOUSE).hasChildren()) {
-                info.setReturnValue(StructureUtils.BARN_HOUSE_SPAWNS);
-            }
         }
-
-
     }
 }

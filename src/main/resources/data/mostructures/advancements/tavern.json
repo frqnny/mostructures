@@ -5,10 +5,10 @@
       "item": "minecraft:potion"
     },
     "title": {
-      "translate": "advancements.mostructures.tavern.title"
+      "translate": "Food & Hospitality"
     },
     "description": {
-      "translate": "advancements.mostructures.tavern.description"
+      "translate": "Eat and rest, traveler! We got you covered."
     },
     "frame": "task",
     "show_toast": true,
