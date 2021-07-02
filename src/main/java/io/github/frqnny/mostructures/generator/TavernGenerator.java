@@ -7,7 +7,6 @@ import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolElement;
 import net.minecraft.structure.pool.StructurePools;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.gen.feature.ConfiguredFeatures;
 
 public class TavernGenerator {
     public static final StructurePool STARTING_POOL;
@@ -15,7 +14,6 @@ public class TavernGenerator {
     private static final Identifier TAVERNS = MoStructures.id("tavern/taverns");
     private static final Identifier FEATURE_PLATES = MoStructures.id("tavern/feature_plates");
     private static final Identifier FEATURES = MoStructures.id("tavern/features");
-    private static final Identifier TREE = MoStructures.id("tavern/trees");
 
     static {
         STARTING_POOL = StructurePools.register(
@@ -57,21 +55,14 @@ public class TavernGenerator {
                         FEATURES,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":tavern/campfire"), 1),
-                                new Pair<>(StructurePoolElement.ofEmpty(), 5)
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":tavern/campfire"), 1), new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":tavern/campfire"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":tavern/cut_wood"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":tavern/well"), 1),
+                                new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":tavern/wagon"), 2),
+                                new Pair<>(StructurePoolElement.ofEmpty(), 3)
                         ),
                         StructurePool.Projection.RIGID
                 )
-        );
-        StructurePools.register(
-                new StructurePool(
-                        TREE,
-                        new Identifier("empty"),
-                        ImmutableList.of(
-                                new Pair<>(StructurePoolElement.ofFeature(ConfiguredFeatures.OAK), 1),
-                                new Pair<>(StructurePoolElement.ofFeature(ConfiguredFeatures.BIRCH), 1)
-                        ),
-                        StructurePool.Projection.RIGID)
         );
 
 
