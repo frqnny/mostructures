@@ -14,13 +14,13 @@ import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 public class AirBalloonStructure extends ModStructure {
+
     @Override
     public StructureStartFactory<StructurePoolFeatureConfig> getStructureStartFactory() {
         return AirBalloonStructure.Start::new;
     }
 
     public static class Start extends MarginedStructureStart<StructurePoolFeatureConfig> {
-
         public Start(StructureFeature<StructurePoolFeatureConfig> structureFeature, ChunkPos chunkPos, int i, long l) {
             super(structureFeature, chunkPos, i, l);
         }
@@ -28,11 +28,9 @@ public class AirBalloonStructure extends ModStructure {
         @Override
         public void init(DynamicRegistryManager registryManager, ChunkGenerator chunkGenerator, StructureManager manager, ChunkPos pos, Biome biome, StructurePoolFeatureConfig config, HeightLimitView world) {
             int yToAdd = Math.max(random.nextInt(100), 45);
-            StructurePoolBasedGenerator.method_30419(registryManager, config, PoolStructurePiece::new, chunkGenerator, manager, new BlockPos(pos.x << 4, yToAdd, pos.z << 4), this, this.random, true, true, world);
+            StructurePoolBasedGenerator.generate(registryManager, config, PoolStructurePiece::new, chunkGenerator, manager, new BlockPos(pos.x << 4, yToAdd, pos.z << 4), this, this.random, true, true, world);
 
             this.setBoundingBoxFromChildren();
         }
     }
-
-
 }

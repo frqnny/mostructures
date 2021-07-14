@@ -8,7 +8,7 @@ import net.minecraft.util.collection.Pool;
 import net.minecraft.world.biome.SpawnSettings;
 
 //Helper class to move all the IDs from former Structure classes
-public class StructureUtils {
+public class StrucUtils {
     public static final Pool<SpawnSettings.SpawnEntry> ICE_TOWER_SPAWNS = Pool.of(new SpawnSettings.SpawnEntry(EntityType.STRAY, 1, 2, 2), new SpawnSettings.SpawnEntry(EntityType.CREEPER, 1, 1, 1));
     public static final Pool<SpawnSettings.SpawnEntry> ABANDONED_CHURCH_SPAWNS = Pool.of(new SpawnSettings.SpawnEntry(EntityType.ZOMBIE, 1, 7, 10));
 

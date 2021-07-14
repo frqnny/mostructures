@@ -1,7 +1,7 @@
 package io.github.frqnny.mostructures.structure;
 
 import io.github.frqnny.mostructures.MoStructures;
-import io.github.frqnny.mostructures.util.StructureUtils;
+import io.github.frqnny.mostructures.util.StrucUtils;
 import net.minecraft.structure.MarginedStructureStart;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.StructureManager;
@@ -19,7 +19,7 @@ import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 public class ModStructure extends StructureFeature<StructurePoolFeatureConfig> {
-    final boolean field_25836;
+    final boolean modifyBoundingBox;
     final boolean surface;
     private final int structureStartY;
 
@@ -31,13 +31,12 @@ public class ModStructure extends StructureFeature<StructurePoolFeatureConfig> {
         this(structureStartY, true, true);
     }
 
-    public ModStructure(int structureStartY, boolean field_25836, boolean surface) {
+    public ModStructure(int structureStartY, boolean modifyBoundingBox, boolean surface) {
         super(StructurePoolFeatureConfig.CODEC);
         this.structureStartY = structureStartY;
-        this.field_25836 = field_25836;
+        this.modifyBoundingBox = modifyBoundingBox;
         this.surface = surface;
     }
-
 
     @Override
     public StructureStartFactory<StructurePoolFeatureConfig> getStructureStartFactory() {
@@ -47,7 +46,6 @@ public class ModStructure extends StructureFeature<StructurePoolFeatureConfig> {
     @SuppressWarnings("ObjectAllocationInLoop")
     @Override
     protected boolean shouldStartAt(ChunkGenerator chunkGenerator, BiomeSource biomeSource, long worldSeed, ChunkRandom random, ChunkPos pos, Biome biome, ChunkPos chunkPos, StructurePoolFeatureConfig config, HeightLimitView world) {
-
         //cannot be near other specified structure
         StructureConfig structureConfigVillage = chunkGenerator.getStructuresConfig().getForType(StructureFeature.VILLAGE);
         StructureConfig configBarnHouse = chunkGenerator.getStructuresConfig().getForType(MoStructures.BARN_HOUSE);
@@ -130,10 +128,9 @@ public class ModStructure extends StructureFeature<StructurePoolFeatureConfig> {
         @Override
         public void init(DynamicRegistryManager registryManager, ChunkGenerator chunkGenerator, StructureManager manager, ChunkPos pos, Biome biome, StructurePoolFeatureConfig config, HeightLimitView world) {
             ModStructure structure = (ModStructure) this.getFeature();
-            StructureUtils.initPools();
-            StructurePoolBasedGenerator.method_30419(registryManager, config, PoolStructurePiece::new, chunkGenerator, manager, new BlockPos(pos.x << 4, structure.structureStartY, pos.z << 4), this, this.random, structure.field_25836, structure.surface, world);
+            StrucUtils.initPools();
+            StructurePoolBasedGenerator.generate(registryManager, config, PoolStructurePiece::new, chunkGenerator, manager, new BlockPos(pos.x << 4, structure.structureStartY, pos.z << 4), this, this.random, structure.modifyBoundingBox, structure.surface, world);
             this.setBoundingBoxFromChildren();
         }
     }
-
 }

@@ -10,7 +10,6 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 
 public class MoaiStructure extends ModStructure {
-
     public MoaiStructure(int y) {
         super(y);
     }

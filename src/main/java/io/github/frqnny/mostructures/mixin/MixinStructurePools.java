@@ -1,6 +1,6 @@
 package io.github.frqnny.mostructures.mixin;
 
-import io.github.frqnny.mostructures.util.StructureUtils;
+import io.github.frqnny.mostructures.util.StrucUtils;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePools;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,6 +13,6 @@ public class MixinStructurePools {
 
     @Inject(at = @At("TAIL"), method = "initDefaultPools", cancellable = true)
     private static void initModPools(CallbackInfoReturnable<StructurePool> info) {
-        StructureUtils.initPools();
+        StrucUtils.initPools();
     }
 }

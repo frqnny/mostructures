@@ -29,7 +29,6 @@ import net.minecraft.world.gen.feature.StructureFeature;
 import java.util.Random;
 
 public class VolcanicVentStructure extends StructureFeature<DefaultFeatureConfig> {
-
     public VolcanicVentStructure() {
         super(DefaultFeatureConfig.CODEC);
     }
@@ -57,7 +56,6 @@ public class VolcanicVentStructure extends StructureFeature<DefaultFeatureConfig
     }
 
     public static class Piece extends SimpleStructurePiece {
-
         public Piece(StructureManager structureManager, BlockPos blockPos, Identifier identifier) {
             super(MoStructures.VOLCANIC_VENT_TYPE, 0, structureManager, identifier, identifier.toString(), new StructurePlacementData(), blockPos);
         }
