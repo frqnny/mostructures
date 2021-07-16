@@ -31,6 +31,10 @@ public class MixinLivingEntity {
                 ItemStack ironIngots = new ItemStack(Items.IRON_INGOT);
                 ironIngots.setCount(Math.max(18, rabbit.getRandom().nextInt(20)));
                 ItemUtils.spawnStack(rabbit.world, rabbit.getX(), rabbit.getY() + 0.5, rabbit.getZ(), ironIngots);
+
+                ItemStack goldIngots = new ItemStack(Items.IRON_INGOT);
+                goldIngots.setCount(Math.max(16, rabbit.getRandom().nextInt(18)));
+                ItemUtils.spawnStack(rabbit.world, rabbit.getX(), rabbit.getY() + 0.5, rabbit.getZ(), goldIngots);
             }
         }
     }
