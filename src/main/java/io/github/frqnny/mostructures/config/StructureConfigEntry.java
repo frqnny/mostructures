@@ -8,10 +8,7 @@ public class StructureConfigEntry {
     public final int salt;
 
     private StructureConfigEntry(int seperation, int spacing, int salt) {
-        this.activated = true;
-        this.spacing = spacing;
-        this.seperation = seperation;
-        this.salt = salt;
+        this(true, seperation, spacing, salt);
     }
 
     private StructureConfigEntry(boolean activated, int seperation, int spacing, int salt) {
