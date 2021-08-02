@@ -24,15 +24,13 @@ public class ConfiguredFeatures {
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> LIGHTHOUSE = RegUtils.config(MoStructures.LIGHTHOUSE, LighthouseGenerator.STARTING_POOL);
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> MOAI = RegUtils.config(MoStructures.MOAI, MoaiGenerator.STARTING_POOL);
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> AIR_BALLOON = RegUtils.config(MoStructures.AIR_BALLOON, AirBalloonGenerator.STARTING_POOL);
-    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ?> VOLCANIC_VENT = MoStructures.VOLCANIC_VENT.configure(FeatureConfig.DEFAULT);
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> VILLAGER_BAZAAR = RegUtils.config(MoStructures.VILLAGER_BAZAAR, VillageBazaarGenerator.STARTING_POOL);
-
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> PLAINS_ABANDONED_CHURCH = RegUtils.config(MoStructures.ABANDONED_CHURCH, AbandonedChurchGenerator.PLAINS_STARTING_POOL);
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> SAVANNA_ABANDONED_CHURCH = RegUtils.config(MoStructures.ABANDONED_CHURCH, AbandonedChurchGenerator.SAVANNA_STARTING_POOL);
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> DESERT_ABANDONED_CHURCH = RegUtils.config(MoStructures.ABANDONED_CHURCH, AbandonedChurchGenerator.DESERT_STARTING_POOL);
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> SNOWY_ABANDONED_CHURCH = RegUtils.config(MoStructures.ABANDONED_CHURCH, AbandonedChurchGenerator.SNOWY_STARTING_POOL);
     public static final ConfiguredStructureFeature<StructurePoolFeatureConfig, ?> TAIGA_ABANDONED_CHURCH = RegUtils.config(MoStructures.ABANDONED_CHURCH, AbandonedChurchGenerator.TAIGA_STARTING_POOL);
-
+    public static final ConfiguredStructureFeature<DefaultFeatureConfig, ?> VOLCANIC_VENT = MoStructures.VOLCANIC_VENT.configure(FeatureConfig.DEFAULT);
 
     public static void registerConfiguredFeatures() {
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, MoStructures.id("configured_villager_feature"), VILLAGER_SPAWN);
@@ -40,7 +38,7 @@ public class ConfiguredFeatures {
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_barnhouse"), BARN_HOUSE);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_pyramid"), BIG_PYRAMID);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_jungle_pyramid"), JUNGLE_PYRAMID);
-        Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_tcity"), THE_CASTLE_IN_THE_SKY);
+        Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_tcits"), THE_CASTLE_IN_THE_SKY);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_villager_tower"), VILLAGER_TOWER);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_savanna_village_tower"), SAVANNA_VILLAGER_TOWER);
         Registry.register(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, MoStructures.id("configured_villager_market"), VILLAGER_MARKET);
