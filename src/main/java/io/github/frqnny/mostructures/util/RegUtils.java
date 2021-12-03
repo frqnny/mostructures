@@ -55,8 +55,7 @@ public class RegUtils {
 
         FabricStructureBuilder<FC, S> builder = FabricStructureBuilder.create(id, f)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
-                .defaultConfig(entry.spacing, entry.seperation, entry.salt)
-                .superflatFeature(c);
+                .defaultConfig(entry.spacing, entry.seperation, entry.salt);
 
         if (adjustsSurface) {
             builder.adjustsSurface();

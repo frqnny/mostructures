@@ -8,6 +8,9 @@ import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolElement;
 import net.minecraft.structure.pool.StructurePools;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.gen.feature.PlacedFeature;
+
+import java.util.List;
 
 public class VillagerTowerGenerator {
     public static final StructurePool DEFAULT_STARTING_POOL;
@@ -80,7 +83,7 @@ public class VillagerTowerGenerator {
                         new Identifier("empty"),
                         ImmutableList.of(
                                 new Pair<>(StructurePoolElement.ofLegacySingle(MoStructures.MODID + ":villager/iron_golem"), 1),
-                                new Pair<>(StructurePoolElement.ofFeature(ConfiguredFeatures.VILLAGER_SPAWN), 3),
+                                new Pair<>(StructurePoolElement.ofFeature(new PlacedFeature(() -> ConfiguredFeatures.VILLAGER_SPAWN, List.of())), 3),
                                 new Pair<>(StructurePoolElement.ofEmpty(), 1)
                         ),
                         StructurePool.Projection.RIGID
