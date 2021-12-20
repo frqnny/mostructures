@@ -25,7 +25,7 @@ public class VolcanicVentStructure extends StructureFeature<DefaultFeatureConfig
     }
 
     private static boolean canGenerate(StructureGeneratorFactory.Context<DefaultFeatureConfig> context) {
-        return context.chunkGenerator().getHeight(context.chunkPos().x << 4, context.chunkPos().z << 4, Heightmap.Type.OCEAN_FLOOR_WG, context.world()) < 50;
+        return context.isBiomeValid(Heightmap.Type.OCEAN_FLOOR_WG) && context.chunkGenerator().getHeight(context.chunkPos().x << 4, context.chunkPos().z << 4, Heightmap.Type.OCEAN_FLOOR_WG, context.world()) < 50;
     }
 
     private static void addPieces(StructurePiecesCollector collector, StructurePiecesGenerator.Context<DefaultFeatureConfig> context) {
