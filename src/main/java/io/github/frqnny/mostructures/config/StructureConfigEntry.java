@@ -3,18 +3,18 @@ package io.github.frqnny.mostructures.config;
 public class StructureConfigEntry {
 
     public final boolean activated;
-    public final int seperation;
+    public final int separation;
     public final int spacing;
     public final int salt;
 
-    private StructureConfigEntry(int seperation, int spacing, int salt) {
-        this(true, seperation, spacing, salt);
+    private StructureConfigEntry(int separation, int spacing, int salt) {
+        this(true, separation, spacing, salt);
     }
 
-    private StructureConfigEntry(boolean activated, int seperation, int spacing, int salt) {
+    private StructureConfigEntry(boolean activated, int separation, int spacing, int salt) {
         this.activated = activated;
         this.spacing = spacing;
-        this.seperation = seperation;
+        this.separation = separation;
         this.salt = salt;
     }
 

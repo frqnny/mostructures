@@ -16,7 +16,7 @@ public class MoStructuresConfig implements Config {
               // To turn off a structure, simply go to the corresponding entry and set `activated` to false.
               //
               // Mo' Structures uses the vanilla structure spawning system. That is-
-              // - Seperation is the minimum chunks between structures
+              // - Separation is the minimum chunks between structures
               // - Spacing is the average chunks between structures
               //
               // Salt is a special field that gives structures unique spawning positions. DO NOT TOUCH IT, ONLY ADVANCED TROUBLESHOOTING!
@@ -26,7 +26,7 @@ public class MoStructuresConfig implements Config {
 
     @Override
     public String getName() {
-        return "mostructures-config-v2";
+        return "mostructures-config-v3";
     }
 
     @Override
@@ -62,7 +62,7 @@ public class MoStructuresConfig implements Config {
         structureConfigEntries.putIfAbsent("ice_tower", StructureConfigEntry.of(8, 28, 964058305));
         structureConfigEntries.putIfAbsent("tavern", StructureConfigEntry.of(12, 32, 19296726));
         structureConfigEntries.putIfAbsent("pirate_ship", StructureConfigEntry.of(16, 40, 583957395));
-        structureConfigEntries.putIfAbsent("lighthouse", StructureConfigEntry.of(16, 32, 29502322));
+        structureConfigEntries.putIfAbsent("lighthouse", StructureConfigEntry.of(16, 25, 29502322));
         structureConfigEntries.putIfAbsent("volcanic_vent", StructureConfigEntry.of(4, 8, 84981094));
         structureConfigEntries.putIfAbsent("moai", StructureConfigEntry.of(2, 4, 12994829));
         structureConfigEntries.putIfAbsent("air_balloon", StructureConfigEntry.of(1, 6, 29483148));
