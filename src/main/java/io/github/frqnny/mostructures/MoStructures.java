@@ -32,7 +32,7 @@ public class MoStructures implements ModInitializer {
     public static final StructureFeature<StructurePoolFeatureConfig> BARN_HOUSE = new ModStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> BIG_PYRAMID = new ModStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> JUNGLE_PYRAMID = new ModStructure();
-    public static final StructureFeature<StructurePoolFeatureConfig> THE_CASTLE_IN_THE_SKY = new ModStructure(60);
+    public static final StructureFeature<StructurePoolFeatureConfig> THE_CASTLE_IN_THE_SKY = new ModStructure(35);
     public static final StructureFeature<StructurePoolFeatureConfig> VILLAGER_TOWER = new ModStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> VILLAGER_MARKET = new ModStructure();
     public static final StructureFeature<StructurePoolFeatureConfig> VILLAGER_BAZAAR = new ModStructure();
