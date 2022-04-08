@@ -1,7 +1,7 @@
 # Mo' Structures
 
-![GitHub issues](https://img.shields.io/github/issues/franiscoder/mostructures.svg)
-![GitHub license](https://img.shields.io/github/license/franiscoder/mostructures.svg)
+![GitHub issues](https://img.shields.io/github/issues/frqnny/mostructures.svg)
+![GitHub license](https://img.shields.io/github/license/frqnny/mostructures.svg)
 [![](http://cf.way2muchnoise.eu/378266.svg)](https://www.curseforge.com/minecraft/mc-mods/mo-structures) 
 [![](http://cf.way2muchnoise.eu/versions/mo-structures.svg)](https://www.curseforge.com/minecraft/mc-mods/mo-structures) 
 
