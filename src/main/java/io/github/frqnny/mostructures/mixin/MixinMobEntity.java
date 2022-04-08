@@ -19,7 +19,7 @@ public class MixinMobEntity {
     @Inject(at = @At("TAIL"), method = "initialize", cancellable = true)
     public void rabbitPlsWork(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt, CallbackInfoReturnable<EntityData> info) {
 
-        if (((MobEntity) (Object) this) instanceof RabbitEntity && entityNbt != null && entityNbt.contains("RabbitType")) {
+        if (((MobEntity) (Object) this) instanceof RabbitEntity && entityNbt != null && entityNbt.contains("RabbitType") && spawnReason != SpawnReason.BREEDING) {
             ((RabbitEntity) (Object) this).setRabbitType(entityNbt.getInt("RabbitType"));
         }
     }
