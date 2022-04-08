@@ -52,8 +52,9 @@ public class TheCastleInTheSkyGenerator {
                         A,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/template/a"), 1)
-
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/a/a1"), 1),
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/a/a2"), 1),
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/a/a3"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -63,8 +64,9 @@ public class TheCastleInTheSkyGenerator {
                         B,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/template/b"), 1)
-
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/b/b1"), 1),
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/b/b2"), 1),
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/b/b3"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -74,8 +76,9 @@ public class TheCastleInTheSkyGenerator {
                         C,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/template/c"), 1)
-
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/c/c1"), 1),
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/c/c2"), 1),
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/c/c3"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -85,8 +88,9 @@ public class TheCastleInTheSkyGenerator {
                         D,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/template/d"), 1)
-
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/d/d1"), 1),
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/d/d2"), 1),
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/d/d3"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -96,8 +100,9 @@ public class TheCastleInTheSkyGenerator {
                         E,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/template/e"), 1)
-
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/e/e1"), 1),
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/e/e2"), 1),
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/e/e3"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -107,8 +112,9 @@ public class TheCastleInTheSkyGenerator {
                         F,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/template/f"), 1)
-
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/f/f1"), 1),
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/f/f2"), 1),
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/f/f3"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -118,8 +124,7 @@ public class TheCastleInTheSkyGenerator {
                         G,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/template/g"), 1)
-
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/g/g"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -129,8 +134,9 @@ public class TheCastleInTheSkyGenerator {
                         H,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/template/h"), 1)
-
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/h/h1"), 1),
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/h/h2"), 1),
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/h/h3"), 1)
                         ),
                         StructurePool.Projection.RIGID
                 )
@@ -140,7 +146,7 @@ public class TheCastleInTheSkyGenerator {
                         I,
                         new Identifier("empty"),
                         ImmutableList.of(
-                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/template/i"), 1)
+                                new Pair<>(StructurePoolElement.ofSingle(MoStructures.MODID + ":castle/dungeon/i/i"), 1)
 
                         ),
                         StructurePool.Projection.RIGID

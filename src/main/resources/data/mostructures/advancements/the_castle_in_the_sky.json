@@ -5,10 +5,10 @@
       "item": "minecraft:diamond"
     },
     "title": {
-      "translate": "A Distant Memory in the Sky..."
+      "translate": "A Distant Memory in the Sky"
     },
     "description": {
-      "translate": "Nostalgia brought this structure back from the dead."
+      "translate": "Perhaps the underground dungeon has loot?..."
     },
     "frame": "task",
     "show_toast": true,
