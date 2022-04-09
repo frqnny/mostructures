@@ -53,7 +53,7 @@ public class MoStructuresConfig implements Config {
         structureConfigEntries.putIfAbsent("abandoned_church", StructureConfigEntry.of(14, 38, 66996840));
         structureConfigEntries.putIfAbsent("barn_house", StructureConfigEntry.of(8, 38, 165757306));
         structureConfigEntries.putIfAbsent("big_pyramid", StructureConfigEntry.of(5, 25, 239284294));
-        structureConfigEntries.putIfAbsent("jungle_pyramid", StructureConfigEntry.of(5, 25, 312178642));
+        structureConfigEntries.putIfAbsent("jungle_pyramid", StructureConfigEntry.of(5, 20, 112178642));
         structureConfigEntries.putIfAbsent("the_castle_in_the_sky", StructureConfigEntry.of(8, 30, 423494938));
         structureConfigEntries.putIfAbsent("killer_bunny_castle", StructureConfigEntry.of(25, 45, 48123900));
         structureConfigEntries.putIfAbsent("villager_tower", StructureConfigEntry.of(16, 34, 550292492));

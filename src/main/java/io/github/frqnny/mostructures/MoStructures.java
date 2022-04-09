@@ -107,7 +107,7 @@ public class MoStructures implements ModInitializer {
         );
         RegUtils.addToBiome(
                 StrucUtils.JUNGLE_PYRAMID,
-                BiomeSelectors.categories(Biome.Category.JUNGLE).and(RegUtils.booleanToPredicate(config.activated(StrucUtils.JUNGLE_PYRAMID))).and(RegUtils.getNoHillsPredicate()).and(BiomeSelectors.foundInOverworld()),
+                BiomeSelectors.categories(Biome.Category.JUNGLE).and(RegUtils.booleanToPredicate(config.activated(StrucUtils.JUNGLE_PYRAMID))).and(RegUtils.getNoHillsPredicate()).and(BiomeSelectors.foundInOverworld()).and(RegUtils.getNoEdgeBiomesPredicate()),
                 (context) -> RegUtils.addStructure(context, ConfiguredFeatures.JUNGLE_PYRAMID)
         );
         RegUtils.addToBiome(

@@ -49,6 +49,9 @@ public class RegUtils {
     public static Predicate<BiomeSelectionContext> getNoHillsPredicate() {
         return (context) -> !context.getBiomeKey().getValue().getPath().contains("hill") && !context.getBiomeKey().getValue().getPath().contains("mountain");
     }
+    public static Predicate<BiomeSelectionContext> getNoEdgeBiomesPredicate() {
+        return (context) -> !context.getBiomeKey().getValue().getPath().contains("edge");
+    }
 
     public static <FC extends FeatureConfig, S extends StructureFeature<FC>> void registerStructure(Identifier id, S f, ConfiguredStructureFeature<FC, ? extends StructureFeature<FC>> c, boolean adjustsSurface) {
         StructureConfigEntry entry = MoStructures.config.get(id);
