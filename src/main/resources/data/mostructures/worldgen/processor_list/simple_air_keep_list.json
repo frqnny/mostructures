@@ -1,0 +1,10 @@
+{
+  "processors": [
+    {
+      "processor_type": "mostructures:air_structure_processor"
+    },
+    {
+      "processor_type": "mostructures:remove_waterlog_processor"
+    }
+  ]
+}

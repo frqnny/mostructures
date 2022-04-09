@@ -1,0 +1,10 @@
+{
+  "type": "mostructures:generic",
+  "config": {
+    "start_pool": "mostructures:pyramid/base",
+    "size": 7
+  },
+  "biomes": "#mostructures:has_structure/big_pyramid",
+  "adapt_noise": true,
+  "spawn_overrides": {}
+}

@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "mostructures:volcanic_vent",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 8,
+    "separation": 4,
+    "salt": 84981094
+  }
+}

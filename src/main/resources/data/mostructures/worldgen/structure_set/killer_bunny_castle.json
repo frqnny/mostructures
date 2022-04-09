@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "mostructures:killer_bunny_castle",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 40,
+    "separation": 25,
+    "salt": 48123900
+  }
+}

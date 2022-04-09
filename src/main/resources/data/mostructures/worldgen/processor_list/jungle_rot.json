@@ -1,0 +1,8 @@
+{
+  "processors": [
+    {
+      "mossiness": 0.15,
+      "processor_type": "mostructures:jungle_rot_processor"
+    }
+  ]
+}

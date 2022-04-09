@@ -1,0 +1,10 @@
+{
+  "type": "mostructures:generic",
+  "config": {
+    "start_pool": "mostructures:bunny/base",
+    "size": 7
+  },
+  "biomes": "#mostructures:has_structure/killer_bunny_castle",
+  "adapt_noise": true,
+  "spawn_overrides": {}
+}

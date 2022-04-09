@@ -1,0 +1,15 @@
+{
+  "name": "mostructures:abandoned/village/churches_taiga",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "mostructures:abandoned/village/taiga_temple1",
+        "projection": "rigid",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

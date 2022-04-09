@@ -1,0 +1,15 @@
+{
+  "name": "mostructures:pirateship/topupper",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "mostructures:ship/top_upper",
+        "projection": "rigid",
+        "processors": "mostructures:simple_air_keep_list"
+      }
+    }
+  ]
+}

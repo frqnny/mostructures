@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "mostructures:villager_market",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 34,
+    "separation": 16,
+    "salt": 784939542
+  }
+}

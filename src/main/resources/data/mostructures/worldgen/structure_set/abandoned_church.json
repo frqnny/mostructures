@@ -1,0 +1,30 @@
+{
+  "structures": [
+    {
+      "structure": "mostructures:plains_abandoned_church",
+      "weight": 1
+    },
+    {
+      "structure": "mostructures:savanna_abandoned_church",
+      "weight": 1
+    },
+    {
+      "structure": "mostructures:taiga_abandoned_church",
+      "weight": 1
+    },
+    {
+      "structure": "mostructures:snowy_abandoned_church",
+      "weight": 1
+    },
+    {
+      "structure": "mostructures:desert_abandoned_church",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 35,
+    "separation": 14,
+    "salt": 66996840
+  }
+}

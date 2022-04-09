@@ -1,0 +1,10 @@
+{
+  "type": "mostructures:moai",
+  "config": {
+    "start_pool": "mostructures:moai/moai",
+    "size": 7
+  },
+  "biomes": "#mostructures:has_structure/moai",
+  "adapt_noise": false,
+  "spawn_overrides": {}
+}

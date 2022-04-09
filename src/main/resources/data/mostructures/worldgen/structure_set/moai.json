@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "mostructures:moai",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 10,
+    "separation": 4,
+    "salt": 12994829
+  }
+}

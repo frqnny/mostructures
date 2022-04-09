@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "mostructures:barn_house",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 34,
+    "separation": 8,
+    "salt": 165757306
+  }
+}

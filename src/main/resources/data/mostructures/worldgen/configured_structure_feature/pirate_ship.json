@@ -1,0 +1,10 @@
+{
+  "type": "mostructures:pirate_ship",
+  "config": {
+    "start_pool": "mostructures:pirateship/bottomlower",
+    "size": 7
+  },
+  "biomes": "#mostructures:has_structure/pirate_ship",
+  "adapt_noise": true,
+  "spawn_overrides": {}
+}

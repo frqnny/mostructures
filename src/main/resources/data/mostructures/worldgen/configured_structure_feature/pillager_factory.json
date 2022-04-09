@@ -1,0 +1,22 @@
+{
+  "type": "mostructures:generic",
+  "config": {
+    "start_pool": "mostructures:factory/base",
+    "size": 7
+  },
+  "biomes": "#mostructures:has_structure/pillager_factory",
+  "adapt_noise": true,
+  "spawn_overrides": {
+    "monster": {
+      "bounding_box": "full",
+      "spawns": [
+        {
+          "type": "minecraft:pillager",
+          "weight": 1,
+          "minCount": 1,
+          "maxCount": 2
+        }
+      ]
+    }
+  }
+}

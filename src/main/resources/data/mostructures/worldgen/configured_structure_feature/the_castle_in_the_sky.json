@@ -1,0 +1,10 @@
+{
+  "type": "mostructures:the_castle_in_the_sky",
+  "biomes": "#mostructures:has_structure/the_castle_in_the_sky",
+  "adapt_noise": false,
+  "spawn_overrides": {},
+  "config": {
+    "start_pool": "mostructures:castle/bottom",
+    "size": 7
+  }
+}

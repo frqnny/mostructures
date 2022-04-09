@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "mostructures",
-  "version": "1.3.1+1.18.1",
+  "version": "1.4.0+1.18.2",
   "name": "Mo' Structures",
   "description": "Mo' Structures is Fabric's best structure mod, carefully designed to enrich your world with many fun adventures to be had! Mo' Structures is carefully designed to bring interesting lore to your Minecraft World.  We focus on the RPG aspect of your world rather than an aesthetic one. This means we add Dungeons, Towers, Lore, and much more! Using loot tables, advancements, jigsaws, unused bosses in vanilla, and more, we are able to bring many new experiences that will make this mod be a must-download for every mod gameplay.",
   "authors": [
@@ -20,7 +20,7 @@
     ]
   },
   "depends": {
-    "minecraft": "1.18.1"
+    "minecraft": "1.18.x"
   },
   "mixins": [
     "mostructures.mixins.json"

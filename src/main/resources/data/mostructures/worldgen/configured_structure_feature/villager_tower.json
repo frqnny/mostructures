@@ -1,0 +1,10 @@
+{
+  "type": "mostructures:generic",
+  "config": {
+    "start_pool": "mostructures:village/tower_plates",
+    "size": 7
+  },
+  "biomes": "#mostructures:has_structure/villager_tower",
+  "adapt_noise": true,
+  "spawn_overrides": {}
+}

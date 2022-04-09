@@ -1,0 +1,38 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:dark_forest",
+    {
+      "id": "terralith:mirage_isles",
+      "required": false
+    },
+    {
+      "id": "byg:ancient_forest",
+      "required": false
+    },
+    {
+      "id": "byg:ebony_woods",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:ominous_woods",
+      "required": false
+    },
+    {
+      "id": "vampirism:vampire_forest",
+      "required": false
+    },
+    {
+      "id": "forge:is_spooky",
+      "required": false
+    },
+    {
+      "id": "forge:is_dead",
+      "required": false
+    },
+    {
+      "id": "c:dead",
+      "required": false
+    }
+  ]
+}

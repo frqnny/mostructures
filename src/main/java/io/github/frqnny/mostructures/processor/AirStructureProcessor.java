@@ -1,7 +1,7 @@
 package io.github.frqnny.mostructures.processor;
 
 import com.mojang.serialization.Codec;
-import io.github.frqnny.mostructures.MoStructures;
+import io.github.frqnny.mostructures.init.ProcessorTypes;
 import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.structure.processor.StructureProcessor;
@@ -24,6 +24,6 @@ public class AirStructureProcessor extends StructureProcessor {
 
     @Override
     protected StructureProcessorType<?> getType() {
-        return MoStructures.AIR_STRUCTURE_PROCESSOR;
+        return ProcessorTypes.AIR_STRUCTURE_PROCESSOR;
     }
 }

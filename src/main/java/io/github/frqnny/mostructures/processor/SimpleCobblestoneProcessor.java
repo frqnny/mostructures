@@ -2,7 +2,7 @@ package io.github.frqnny.mostructures.processor;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import io.github.frqnny.mostructures.MoStructures;
+import io.github.frqnny.mostructures.init.ProcessorTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.structure.Structure;
@@ -42,7 +42,7 @@ public class SimpleCobblestoneProcessor extends StructureProcessor {
 
     @Override
     protected StructureProcessorType<?> getType() {
-        return MoStructures.SIMPLE_COBBLESTONE;
+        return ProcessorTypes.SIMPLE_COBBLESTONE;
     }
 
     @Nullable

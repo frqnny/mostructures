@@ -1,7 +1,7 @@
 package io.github.frqnny.mostructures.processor;
 
 import com.mojang.serialization.Codec;
-import io.github.frqnny.mostructures.MoStructures;
+import io.github.frqnny.mostructures.init.ProcessorTypes;
 import net.minecraft.block.Waterloggable;
 import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructurePlacementData;
@@ -38,6 +38,6 @@ public class RemoveWaterloggedProcessor extends StructureProcessor {
 
     @Override
     protected StructureProcessorType<?> getType() {
-        return MoStructures.REMOVE_WATERLOGGED;
+        return ProcessorTypes.REMOVE_WATERLOGGED;
     }
 }

@@ -1,0 +1,10 @@
+{
+  "type": "mostructures:generic",
+  "config": {
+    "start_pool": "mostructures:market/main",
+    "size": 7
+  },
+  "biomes": "#mostructures:has_structure/villager_market",
+  "adapt_noise": true,
+  "spawn_overrides": {}
+}

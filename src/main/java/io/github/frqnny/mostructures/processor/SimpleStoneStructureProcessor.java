@@ -2,7 +2,7 @@ package io.github.frqnny.mostructures.processor;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import io.github.frqnny.mostructures.MoStructures;
+import io.github.frqnny.mostructures.init.ProcessorTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -67,7 +67,7 @@ public class SimpleStoneStructureProcessor extends StructureProcessor {
     }
 
     protected StructureProcessorType<?> getType() {
-        return MoStructures.SIMPLE_STONE;
+        return ProcessorTypes.SIMPLE_STONE;
     }
 
 

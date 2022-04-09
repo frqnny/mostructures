@@ -1,0 +1,22 @@
+{
+  "type": "mostructures:generic",
+  "config": {
+    "start_pool": "mostructures:abandoned/village/plates_snowy",
+    "size": 7
+  },
+  "biomes": "#mostructures:has_structure/snowy_abandoned_church",
+  "adapt_noise": true,
+  "spawn_overrides": {
+    "monster": {
+      "bounding_box": "full",
+      "spawns": [
+        {
+          "type": "minecraft:zombie",
+          "weight": 1,
+          "minCount": 3,
+          "maxCount": 7
+        }
+      ]
+    }
+  }
+}

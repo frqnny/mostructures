@@ -1,0 +1,21 @@
+{
+  "name": "mostructures:villager/features",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "mostructures:villager/iron_golem",
+        "projection": "rigid",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 4,
+      "element": {
+        "element_type": "empty_pool_element"
+      }
+    }
+  ]
+}

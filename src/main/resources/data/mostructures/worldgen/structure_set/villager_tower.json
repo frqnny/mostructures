@@ -1,0 +1,18 @@
+{
+  "structures": [
+    {
+      "structure": "mostructures:villager_tower",
+      "weight": 1
+    },
+    {
+      "structure": "mostructures:savanna_villager_tower",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 32,
+    "separation": 16,
+    "salt": 550292492
+  }
+}

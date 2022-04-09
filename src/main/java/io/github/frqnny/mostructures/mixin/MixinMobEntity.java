@@ -17,10 +17,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MixinMobEntity {
 
     @Inject(at = @At("TAIL"), method = "initialize", cancellable = true)
-    public void rabbitPlsWork(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt, CallbackInfoReturnable<EntityData> info) {
+    public void rabbitPlsWork(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, @Nullable EntityData data, @Nullable NbtCompound nbt, CallbackInfoReturnable<EntityData> info) {
 
-        if (((MobEntity) (Object) this) instanceof RabbitEntity && entityNbt != null && entityNbt.contains("RabbitType") && spawnReason != SpawnReason.BREEDING) {
-            ((RabbitEntity) (Object) this).setRabbitType(entityNbt.getInt("RabbitType"));
+        if (((MobEntity) (Object) this) instanceof RabbitEntity && nbt != null && nbt.contains("RabbitType") && reason != SpawnReason.BREEDING) {
+            ((RabbitEntity) (Object) this).setRabbitType(nbt.getInt("RabbitType"));
         }
     }
 }

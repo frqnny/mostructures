@@ -1,0 +1,33 @@
+{
+  "name": "mostructures:ice_tower/base",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "mostructures:ice_tower/base_1",
+        "projection": "rigid",
+        "processors": "mostructures:ice_tower_rot"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "mostructures:ice_tower/base_2",
+        "projection": "rigid",
+        "processors": "mostructures:ice_tower_rot"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "mostructures:ice_tower/base_3",
+        "projection": "rigid",
+        "processors": "mostructures:ice_tower_rot"
+      }
+    }
+  ]
+}

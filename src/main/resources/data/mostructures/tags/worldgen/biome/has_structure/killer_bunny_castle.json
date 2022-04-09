@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#mostructures:collections/plains",
+    "#mostructures:collections/any_forests",
+    "#mostructures:collections/savanna"
+  ]
+}

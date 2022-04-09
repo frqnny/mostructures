@@ -1,6 +1,5 @@
 package io.github.frqnny.mostructures.structure;
 
-import io.github.frqnny.mostructures.util.StrucUtils;
 import net.minecraft.structure.PoolStructurePiece;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.util.math.BlockPos;
@@ -17,8 +16,6 @@ public class AirBalloonStructure extends StructureFeature<StructurePoolFeatureCo
             if (!ModStructure.canGenerate(context)) {
                 return Optional.empty();
             }
-
-            StrucUtils.initPools();
 
             ChunkRandom chunkRandom = new ChunkRandom(new AtomicSimpleRandom(0L));
             chunkRandom.setCarverSeed(context.seed(), context.chunkPos().x, context.chunkPos().z);

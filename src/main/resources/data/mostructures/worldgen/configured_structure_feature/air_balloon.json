@@ -1,0 +1,10 @@
+{
+  "type": "mostructures:air_balloon",
+  "config": {
+    "start_pool": "mostructures:air/balloon",
+    "size": 7
+  },
+  "biomes": "#mostructures:has_structure/moai",
+  "adapt_noise": false,
+  "spawn_overrides": {}
+}

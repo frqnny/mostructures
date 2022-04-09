@@ -1,6 +1,7 @@
 package io.github.frqnny.mostructures.structure;
 
 import io.github.frqnny.mostructures.MoStructures;
+import io.github.frqnny.mostructures.init.Structures;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.nbt.NbtCompound;
@@ -35,11 +36,11 @@ public class VolcanicVentStructure extends StructureFeature<DefaultFeatureConfig
 
     public static class Piece extends SimpleStructurePiece {
         public Piece(StructureManager structureManager, BlockPos blockPos, Identifier identifier) {
-            super(MoStructures.VOLCANIC_VENT_TYPE, 0, structureManager, identifier, identifier.toString(), new StructurePlacementData(), blockPos);
+            super(Structures.VOLCANIC_VENT_TYPE, 0, structureManager, identifier, identifier.toString(), new StructurePlacementData(), blockPos);
         }
 
         public Piece(StructureContext structureContext, NbtCompound nbtCompound) {
-            super(MoStructures.VOLCANIC_VENT_TYPE, nbtCompound, structureContext.structureManager(), (id) -> new StructurePlacementData());
+            super(Structures.VOLCANIC_VENT_TYPE, nbtCompound, structureContext.structureManager(), (id) -> new StructurePlacementData());
         }
 
         private static int getBaseHeight(StructureWorldAccess world, int x, int y) {

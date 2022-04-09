@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "mostructures:pillager_factory",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 36,
+    "separation": 16,
+    "salt": 839204924
+  }
+}
