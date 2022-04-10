@@ -5,7 +5,9 @@
   "mixins": [
     "LakeFeatureMixin",
     "MixinMobEntity",
-    "MixinLivingEntity"
+    "MixinLivingEntity",
+    "StructureFeatureAccessor",
+    "ChunkRegionAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "#minecraft:is_deep_ocean"
+    "#mostructures:is_deep_ocean"
   ]
 }

@@ -1,0 +1,21 @@
+{
+  "replace": "false",
+  "values": [
+    "mostructures:barn_house",
+    "mostructures:big_pyramid",
+    "mostructures:desert_abandoned_church",
+    "mostructures:ice_tower",
+    "mostructures:jungle_pyramid",
+    "mostructures:killer_bunny_castle",
+    "mostructures:lighthouse",
+    "mostructures:moai",
+    "mostructures:pillager_factory",
+    "mostructures:plains_abandoned_church",
+    "mostructures:savanna_abandoned_church",
+    "mostructures:snowy_abandoned_church",
+    "mostructures:taiga_abandoned_church",
+    "mostructures:tavern",
+    "mostructures:villager_market",
+    "mostructures:villager_tower"
+  ]
+}

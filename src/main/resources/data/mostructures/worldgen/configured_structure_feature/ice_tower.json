@@ -2,7 +2,21 @@
   "type": "mostructures:generic",
   "config": {
     "start_pool": "mostructures:ice_tower/base",
-    "size": 7
+    "structure_set_to_avoid": [
+      "mostructures:abandoned_church",
+      "mostructures:big_pyramid",
+      "mostructures:barn_house",
+      "mostructures:jungle_pyramid",
+      "mostructures:killer_bunny_castle",
+      "mostructures:lighthouse",
+      "mostructures:moai",
+      "mostructures:pillager_factory",
+      "mostructures:tavern",
+      "mostructures:villager_market",
+      "mostructures:villager_tower"
+    ],
+    "size": 7,
+    "heightRange": 40
   },
   "biomes": "#mostructures:has_structure/ice_tower",
   "adapt_noise": true,

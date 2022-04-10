@@ -1,7 +1,10 @@
 {
   "type": "mostructures:air_balloon",
   "config": {
-    "start_pool": "mostructures:air/balloon",
+    "start_pool": "mostructures:air/balloons",
+    "structure_set_to_avoid": [
+      "mostructures:the_castle_in_the_sky"
+    ],
     "size": 7
   },
   "biomes": "#mostructures:has_structure/moai",

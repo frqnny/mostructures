@@ -1,18 +1,16 @@
 package io.github.frqnny.mostructures.structure;
 
 import net.minecraft.structure.PoolStructurePiece;
-import net.minecraft.structure.pool.StructurePoolBasedGenerator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.feature.StructureFeature;
-import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
 import net.minecraft.world.gen.random.AtomicSimpleRandom;
 import net.minecraft.world.gen.random.ChunkRandom;
 
 import java.util.Optional;
 
-public class AirBalloonStructure extends StructureFeature<StructurePoolFeatureConfig> {
+public class AirBalloonStructure extends StructureFeature<ConfigMS> {
     public AirBalloonStructure() {
-        super(StructurePoolFeatureConfig.CODEC, context -> {
+        super(ConfigMS.CODEC, context -> {
             if (!ModStructure.canGenerate(context)) {
                 return Optional.empty();
             }

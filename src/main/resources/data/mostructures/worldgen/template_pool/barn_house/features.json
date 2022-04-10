@@ -1,5 +1,5 @@
 {
-  "name": "mostructures:barn_house/base_plates",
+  "name": "mostructures:barn_house/features",
   "fallback": "minecraft:empty",
   "elements": [
     {

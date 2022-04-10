@@ -5,9 +5,9 @@
     {
       "weight": 1,
       "element": {
-        "element_type": "minecraft:single_pool_element",
+        "element_type": "minecraft:legacy_single_pool_element",
         "location": "mostructures:market/feature_plate",
-        "projection": "rigid",
+        "projection": "terrain_matching",
         "processors": "minecraft:empty"
       }
     }

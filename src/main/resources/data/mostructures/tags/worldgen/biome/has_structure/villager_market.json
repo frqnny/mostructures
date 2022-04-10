@@ -2,7 +2,7 @@
   "replace": false,
   "values": [
     "#mostructures:collections/plains",
-    "#mostructures:collections/savanna",
+    "#mostructures:collections/savannas",
     "#mostructures:collections/any_forests"
   ]
 }

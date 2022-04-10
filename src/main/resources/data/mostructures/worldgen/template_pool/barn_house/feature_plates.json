@@ -7,7 +7,7 @@
       "element": {
         "element_type": "minecraft:legacy_single_pool_element",
         "location": "mostructures:barn_house/feature_plate",
-        "projection": "rigid",
+        "projection": "terrain_matching",
         "processors": "minecraft:empty"
       }
     }

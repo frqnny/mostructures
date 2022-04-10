@@ -7,7 +7,7 @@
       "element": {
         "element_type": "minecraft:legacy_single_pool_element",
         "location": "mostructures:abandoned/village/plate/snowy",
-        "projection": "rigid",
+        "projection": "terrain_matching",
         "processors": "minecraft:empty"
       }
     }
