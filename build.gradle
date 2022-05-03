@@ -22,9 +22,17 @@ dependencies {
 	modImplementation include("com.github.Draylar.omega-config:omega-config-base:${project.config_version}")
 }
 
-import groovy.json.JsonSlurper
+
 import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+
 processResources {
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": project.version
+	}
+
 	doLast {
 
 		def jsonMinifyStart = System.currentTimeMillis()

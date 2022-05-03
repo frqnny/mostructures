@@ -3,10 +3,6 @@
     {
       "structure": "mostructures:villager_tower",
       "weight": 1
-    },
-    {
-      "structure": "mostructures:savanna_villager_tower",
-      "weight": 1
     }
   ],
   "placement": {
