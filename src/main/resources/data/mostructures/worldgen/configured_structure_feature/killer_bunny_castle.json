@@ -7,12 +7,9 @@
       "mostructures:big_pyramid",
       "mostructures:ice_tower",
       "mostructures:jungle_pyramid",
-      "mostructures:barn_house",
       "mostructures:lighthouse",
       "mostructures:moai",
       "mostructures:pillager_factory",
-      "mostructures:tavern",
-      "mostructures:villager_market",
       "mostructures:villager_tower"
     ],
     "size": 7,

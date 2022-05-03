@@ -52,22 +52,21 @@ public class MoStructuresConfig implements Config {
 
     @Override
     public void save() {
-        structureConfigEntries.putIfAbsent("abandoned_church", StructureConfigEntry.of(16, 32));
-        structureConfigEntries.putIfAbsent("air_balloon", StructureConfigEntry.of(6, 12));
-        structureConfigEntries.putIfAbsent("barn_house", StructureConfigEntry.of(16, 32));
-        structureConfigEntries.putIfAbsent("big_pyramid", StructureConfigEntry.of(16, 24));
-        structureConfigEntries.putIfAbsent("ice_tower", StructureConfigEntry.of(16, 24));
-        structureConfigEntries.putIfAbsent("jungle_pyramid", StructureConfigEntry.of(16, 20));
-        structureConfigEntries.putIfAbsent("killer_bunny_castle", StructureConfigEntry.of(25, 35));
-        structureConfigEntries.putIfAbsent("lighthouse", StructureConfigEntry.of(16, 25));
-        structureConfigEntries.putIfAbsent("moai", StructureConfigEntry.of(8, 10));
-        structureConfigEntries.putIfAbsent("pillager_factory", StructureConfigEntry.of(16, 36));
-        structureConfigEntries.putIfAbsent("pirate_ship", StructureConfigEntry.of(16, 40));
-        structureConfigEntries.putIfAbsent("tavern", StructureConfigEntry.of(16, 32));
-        structureConfigEntries.putIfAbsent("the_castle_in_the_sky", StructureConfigEntry.of(16, 29));
-        structureConfigEntries.putIfAbsent("villager_tower", StructureConfigEntry.of(16, 32));
-        structureConfigEntries.putIfAbsent("villager_market", StructureConfigEntry.of(16, 34));
-        structureConfigEntries.putIfAbsent("volcanic_vent", StructureConfigEntry.of(16, 32));
+        structureConfigEntries.putIfAbsent("abandoned_church", StructureConfigEntry.of(14, 26));
+        structureConfigEntries.putIfAbsent("air_balloon", StructureConfigEntry.of(10, 20));
+        structureConfigEntries.putIfAbsent("barn_house", StructureConfigEntry.of(13, 24));
+        structureConfigEntries.putIfAbsent("big_pyramid", StructureConfigEntry.of(16, 20));
+        structureConfigEntries.putIfAbsent("ice_tower", StructureConfigEntry.of(14, 22));
+        structureConfigEntries.putIfAbsent("jungle_pyramid", StructureConfigEntry.of(14, 16));
+        structureConfigEntries.putIfAbsent("killer_bunny_castle", StructureConfigEntry.of(22, 30));
+        structureConfigEntries.putIfAbsent("lighthouse", StructureConfigEntry.of(14, 24));
+        structureConfigEntries.putIfAbsent("moai", StructureConfigEntry.of(15, 17));
+        structureConfigEntries.putIfAbsent("pillager_factory", StructureConfigEntry.of(14, 30));
+        structureConfigEntries.putIfAbsent("pirate_ship", StructureConfigEntry.of(14, 32));
+        structureConfigEntries.putIfAbsent("tavern", StructureConfigEntry.of(13, 30));
+        structureConfigEntries.putIfAbsent("the_castle_in_the_sky", StructureConfigEntry.of(15, 23));
+        structureConfigEntries.putIfAbsent("villager_market", StructureConfigEntry.of(16, 30));
+        structureConfigEntries.putIfAbsent("villager_tower", StructureConfigEntry.of(16, 29));
         Config.super.save();
     }
 }

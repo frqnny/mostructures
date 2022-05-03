@@ -45,7 +45,7 @@ public class ModStructure extends StructureFeature<ConfigMS> {
 
     public static boolean checks(ChunkGenerator chunkGenerator, long worldSeed, ChunkPos pos, ConfigMS config, HeightLimitView world) {
         for (RegistryKey<StructureSet> key : config.structureSetToAvoid) {
-            if (chunkGenerator.method_41053(key, worldSeed, pos.x, pos.z, 2)) {
+            if (chunkGenerator.method_41053(key, worldSeed, pos.x, pos.z, 3)) {
                 return false;
             }
         }
