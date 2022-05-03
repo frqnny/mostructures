@@ -40,7 +40,7 @@ public class ModStructure extends StructureFeature<ConfigMS> {
     }
 
     public static boolean canGenerate(StructureGeneratorFactory.Context<ConfigMS> context) {
-        return checks(context.chunkGenerator(), context.seed(), context.chunkPos(), context.config(), context.world());
+        return checks(context.chunkGenerator(), context.seed(), context.chunkPos(), context.config(), context.world()) ;
     }
 
     public static boolean checks(ChunkGenerator chunkGenerator, long worldSeed, ChunkPos pos, ConfigMS config, HeightLimitView world) {
@@ -49,6 +49,7 @@ public class ModStructure extends StructureFeature<ConfigMS> {
                 return false;
             }
         }
+
         int heightRange = config.heightRange;
         if (heightRange != -1) {
             int maxTerrainHeight = Integer.MIN_VALUE;

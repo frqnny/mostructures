@@ -7,7 +7,9 @@
     "MixinMobEntity",
     "MixinLivingEntity",
     "StructureFeatureAccessor",
-    "ChunkRegionAccessor"
+    "ChunkRegionAccessor",
+    "RandomSpreadStructurePlacementAccessor",
+    "StructureSetAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -2,49 +2,72 @@ package io.github.frqnny.mostructures.config;
 
 import draylar.omegaconfig.api.Comment;
 import draylar.omegaconfig.api.Config;
+import net.minecraft.util.Identifier;
+
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MoStructuresConfig implements Config {
     @Comment("""
-            Welcome to Mo'Structures Config!
-            
-            This config used to allow you to modify our mod's structures.
-            However, Mojang changed the way structures were done.
-            Now, most of our structures are fully in code.
-            
-            The purpose of this config file is to lead users to find
-            the necessary resources needed to modify our structures.
-            
-            And, this is a good change.
-            
-            Not only can you now modify the generation of a structure, but you will also get
-            to modify the biomes they spawn in and as much other stuff.
-            
-            All you need to know is that you will have to find
-            how to make structure datapacks and use that knowledge
-            to modify Mo' Structures.
-            
-            To modify the chance of a structure spawning, you will have to work with
-            datapack structure_sets.
-            
-            To modify biomes, you will only have to use tags, a convenient way to modify the mod.
-            
-            To modify the structures to avoid collision to, you will also have to work with structure_sets.
-            
-            To modify the height range the terrain around the structures may be, you will also have to work iwth structure_sets.
-            
-            Go to Frqnny's Discord for questions; link is in the curseforge page.
-            
-            Below is a lilboolean, do whatever you want with him.
+             Welcome to Mo'Structures Config!
+             
+               Take a break, rest a while, enjoy the scenery! No? Oh, well.
+              
+               Here, you can turn off structures and change their generation pattern.
+               Since 1.4.1+1.18.2, you can also edit these values in datapacks.
+               However, this Config was brought back so you can easily edit these values.
+               It is important to note you can edit what biomes these structures spawn in
+               using datapacks if you want to have that configuration option.
+              
+               To turn off a structure, simply go to the corresponding entry and set `activated` to false.
+              
+               Mo' Structures uses the vanilla structure spawning system. That is-
+               - Separation is the minimum chunks between structures
+               - Spacing is the average chunks between structures
+                                    
             """)
-    public boolean lilboolean = true;
+    public final Map<String, StructureConfigEntry> structureConfigEntries = new HashMap<>(17);
 
     @Override
     public String getName() {
-        return "mostructures-config-v4";
+        return "mostructures-config-v5";
     }
 
     @Override
     public String getExtension() {
         return "json5";
+    }
+
+    @Nullable
+    public StructureConfigEntry get(Identifier id) {
+        for (Map.Entry<String, StructureConfigEntry> entry : structureConfigEntries.entrySet()) {
+            if (entry.getKey().equals(id.getPath())) {
+                return entry.getValue();
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    public void save() {
+        structureConfigEntries.putIfAbsent("abandoned_church", StructureConfigEntry.of(16, 32));
+        structureConfigEntries.putIfAbsent("air_balloon", StructureConfigEntry.of(6, 12));
+        structureConfigEntries.putIfAbsent("barn_house", StructureConfigEntry.of(16, 32));
+        structureConfigEntries.putIfAbsent("big_pyramid", StructureConfigEntry.of(16, 24));
+        structureConfigEntries.putIfAbsent("ice_tower", StructureConfigEntry.of(16, 24));
+        structureConfigEntries.putIfAbsent("jungle_pyramid", StructureConfigEntry.of(16, 20));
+        structureConfigEntries.putIfAbsent("killer_bunny_castle", StructureConfigEntry.of(25, 35));
+        structureConfigEntries.putIfAbsent("lighthouse", StructureConfigEntry.of(16, 25));
+        structureConfigEntries.putIfAbsent("moai", StructureConfigEntry.of(8, 10));
+        structureConfigEntries.putIfAbsent("pillager_factory", StructureConfigEntry.of(16, 36));
+        structureConfigEntries.putIfAbsent("pirate_ship", StructureConfigEntry.of(16, 40));
+        structureConfigEntries.putIfAbsent("tavern", StructureConfigEntry.of(16, 32));
+        structureConfigEntries.putIfAbsent("the_castle_in_the_sky", StructureConfigEntry.of(16, 29));
+        structureConfigEntries.putIfAbsent("villager_tower", StructureConfigEntry.of(16, 32));
+        structureConfigEntries.putIfAbsent("villager_market", StructureConfigEntry.of(16, 34));
+        structureConfigEntries.putIfAbsent("volcanic_vent", StructureConfigEntry.of(16, 32));
+        Config.super.save();
     }
 }
