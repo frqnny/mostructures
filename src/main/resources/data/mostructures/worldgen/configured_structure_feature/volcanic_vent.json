@@ -1,7 +1,0 @@
-{
-  "type": "mostructures:volcanic_vent",
-  "config": {},
-  "biomes": "#mostructures:has_structure/volcanic_vent",
-  "spawn_overrides": {},
-  "adapt_noise": false
-}
