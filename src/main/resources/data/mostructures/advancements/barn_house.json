@@ -5,10 +5,10 @@
       "item": "minecraft:wheat"
     },
     "title": {
-      "translate": "A Lonely Farm"
+      "translate": "Barn House"
     },
     "description": {
-      "translate": "Looks like they left in a hurry..."
+      "translate": "A nice and cozy barn.. I wonder what its purpose is?"
     },
     "frame": "task",
     "show_toast": true,

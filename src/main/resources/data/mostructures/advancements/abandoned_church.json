@@ -5,10 +5,10 @@
       "item": "minecraft:arrow"
     },
     "title": {
-      "translate": "A Forgotten War"
+      "translate": "Abandoned Church"
     },
     "description": {
-      "translate": "Maybe there's a clue somewhere..."
+      "translate": "Pillagers must have destroyed this monastery."
     },
     "frame": "task",
     "show_toast": true,
