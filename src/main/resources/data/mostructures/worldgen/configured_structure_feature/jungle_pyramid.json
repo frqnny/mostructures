@@ -8,5 +8,17 @@
   },
   "biomes": "#mostructures:has_structure/jungle_pyramid",
   "adapt_noise": true,
-  "spawn_overrides": {}
+  "spawn_overrides": {
+    "creature": {
+      "bounding_box": "full",
+      "spawns": [
+        {
+          "type": "minecraft:parrot",
+          "weight": 1,
+          "minCount": 3,
+          "maxCount": 7
+        }
+      ]
+    }
+  }
 }
