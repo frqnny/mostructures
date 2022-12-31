@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.11-SNAPSHOT'
+	id 'fabric-loom' version '1.0-SNAPSHOT'
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -14,9 +14,10 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation fabricApi.module("fabric-api-base", project.fabric_version)
+	modImplementation fabricApi.module("fabric-registry-sync-v0", project.fabric_version)
 
-	modImplementation include("com.github.Draylar.omega-config:omega-config-base:${project.config_version}")
+	modApi include("com.github.Draylar.omega-config:omega-config-base:${project.config_version}")
 }
 
 
@@ -60,4 +61,7 @@ jar {
 }
 repositories {
 	maven { url 'https://jitpack.io' }
+}
+loom {
+	serverOnlyMinecraftJar()
 }
