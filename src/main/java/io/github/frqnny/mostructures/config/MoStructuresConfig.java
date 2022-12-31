@@ -4,7 +4,6 @@ import draylar.omegaconfig.api.Comment;
 import draylar.omegaconfig.api.Config;
 import net.minecraft.util.Identifier;
 
-import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,7 +38,6 @@ public class MoStructuresConfig implements Config {
         return "json5";
     }
 
-    @Nullable
     public StructureConfigEntry get(Identifier id) {
         for (Map.Entry<String, StructureConfigEntry> entry : structureConfigEntries.entrySet()) {
             if (entry.getKey().equals(id.getPath())) {

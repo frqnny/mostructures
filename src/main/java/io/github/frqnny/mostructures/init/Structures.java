@@ -3,7 +3,6 @@ package io.github.frqnny.mostructures.init;
 import io.github.frqnny.mostructures.MoStructures;
 import io.github.frqnny.mostructures.mixin.StructureFeatureAccessor;
 import io.github.frqnny.mostructures.structure.AirBalloonStructure;
-import io.github.frqnny.mostructures.structure.ConfigMS;
 import io.github.frqnny.mostructures.structure.MoaiStructure;
 import io.github.frqnny.mostructures.structure.ModStructure;
 import net.minecraft.structure.StructurePieceType;

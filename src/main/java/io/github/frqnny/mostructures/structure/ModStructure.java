@@ -10,12 +10,11 @@ import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.HeightLimitView;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.feature.StructureFeature;
 
 import java.util.Optional;
 import java.util.function.Predicate;
 
-public class ModStructure extends StructureFeature<ConfigMS> {
+public class ModStructure extends Structure<ConfigMS> {
     public ModStructure() {
         this(0);
     }
