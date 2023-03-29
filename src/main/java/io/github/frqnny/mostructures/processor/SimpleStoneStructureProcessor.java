@@ -8,16 +8,15 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.StairsBlock;
 import net.minecraft.block.enums.BlockHalf;
-import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructurePlacementData;
+import net.minecraft.structure.StructureTemplate;
 import net.minecraft.structure.processor.StructureProcessor;
 import net.minecraft.structure.processor.StructureProcessorType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Random;
 
 public class SimpleStoneStructureProcessor extends StructureProcessor {
     public static final Codec<SimpleStoneStructureProcessor> CODEC = RecordCodecBuilder.create((proc) -> proc.group(
@@ -38,7 +37,7 @@ public class SimpleStoneStructureProcessor extends StructureProcessor {
     }
 
     @Nullable
-    public Structure.StructureBlockInfo process(WorldView worldView, BlockPos pos, BlockPos blockPos, Structure.StructureBlockInfo structureBlockInfo, Structure.StructureBlockInfo structureBlockInfo2, StructurePlacementData structurePlacementData) {
+    public StructureTemplate.StructureBlockInfo process(WorldView worldView, BlockPos pos, BlockPos blockPos, StructureTemplate.StructureBlockInfo structureBlockInfo, StructureTemplate.StructureBlockInfo structureBlockInfo2, StructurePlacementData structurePlacementData) {
         Random random = structurePlacementData.getRandom(structureBlockInfo2.pos);
         BlockState blockState = structureBlockInfo2.state;
         BlockPos blockPos2 = structureBlockInfo2.pos;
@@ -48,7 +47,7 @@ public class SimpleStoneStructureProcessor extends StructureProcessor {
         }
 
 
-        return blockState2 != null ? new Structure.StructureBlockInfo(blockPos2, blockState2, structureBlockInfo2.nbt) : structureBlockInfo2;
+        return blockState2 != null ? new StructureTemplate.StructureBlockInfo(blockPos2, blockState2, structureBlockInfo2.nbt) : structureBlockInfo2;
     }
 
     @Nullable

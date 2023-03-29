@@ -6,9 +6,9 @@
     "LakeFeatureMixin",
     "MixinMobEntity",
     "MixinLivingEntity",
-    "StructureFeatureAccessor",
     "ChunkRegionAccessor",
     "RandomSpreadStructurePlacementAccessor",
+    "StructurePlacementAccessor",
     "StructureSetAccessor"
   ],
   "injectors": {

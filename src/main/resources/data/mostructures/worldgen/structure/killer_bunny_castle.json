@@ -1,0 +1,26 @@
+{
+  "type": "mostructures:generic",
+  "start_pool": "mostructures:bunny/base",
+  "structure_set_to_avoid": [
+    "mostructures:abandoned_church",
+    "mostructures:big_pyramid",
+    "mostructures:ice_tower",
+    "mostructures:jungle_pyramid",
+    "mostructures:lighthouse",
+    "mostructures:moai",
+    "mostructures:pillager_factory",
+    "mostructures:villager_tower"
+  ],
+  "size": 7,
+  "heightRange": 40,
+  "biomes": "#mostructures:has_structure/killer_bunny_castle",
+  "use_expansion_hack": true,
+  "terrain_adaptation": "beard_thin",
+  "project_start_to_heightmap": "WORLD_SURFACE_WG",
+  "start_height": {
+    "absolute": 0
+  },
+  "max_distance_from_center": 80,
+  "step": "surface_structures",
+  "spawn_overrides": {}
+}

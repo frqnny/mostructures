@@ -1,0 +1,15 @@
+{
+  "type": "mostructures:generic",
+  "start_pool": "mostructures:pirateship/bottomlower",
+  "structure_set_to_avoid": [],
+  "size": 7,
+  "biomes": "#mostructures:has_structure/pirate_ship",
+  "max_distance_from_center": 80,
+  "step": "surface_structures",
+  "start_height": {
+    "absolute": 58
+  },
+  "use_expansion_hack": false,
+
+  "spawn_overrides": {}
+}

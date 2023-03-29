@@ -15,7 +15,4 @@ public interface RandomSpreadStructurePlacementAccessor {
     @Accessor(value = "separation")
     void setSeparation(int separation);
 
-    @Mutable
-    @Accessor(value = "salt")
-    void setSalt(int salt);
 }

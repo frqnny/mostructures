@@ -1,0 +1,25 @@
+{
+  "type": "mostructures:generic",
+  "start_pool": "mostructures:villager/tower_plates",
+  "structure_set_to_avoid": [
+    "mostructures:abandoned_church",
+    "mostructures:killer_bunny_castle",
+    "mostructures:lighthouse",
+    "mostructures:moai",
+    "mostructures:pillager_factory",
+    "mostructures:villager_market",
+    "mostructures:barn_house"
+  ],
+  "size": 7,
+  "heightRange": 40,
+  "biomes": "#mostructures:has_structure/villager_tower",
+  "use_expansion_hack": true,
+  "terrain_adaptation": "beard_thin",
+  "project_start_to_heightmap": "WORLD_SURFACE_WG",
+  "start_height": {
+    "absolute": 0
+  },
+  "max_distance_from_center": 80,
+  "step": "surface_structures",
+  "spawn_overrides": {}
+}

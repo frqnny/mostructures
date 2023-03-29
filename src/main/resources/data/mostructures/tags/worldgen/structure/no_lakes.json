@@ -1,5 +1,5 @@
 {
-  "replace": "false",
+  "replace": false,
   "values": [
     "mostructures:barn_house",
     "mostructures:big_pyramid",

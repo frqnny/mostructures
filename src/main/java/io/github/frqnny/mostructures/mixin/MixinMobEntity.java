@@ -20,7 +20,7 @@ public class MixinMobEntity {
     public void rabbitPlsWork(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, @Nullable EntityData data, @Nullable NbtCompound nbt, CallbackInfoReturnable<EntityData> info) {
 
         if (((MobEntity) (Object) this) instanceof RabbitEntity && nbt != null && nbt.contains("RabbitType") && reason != SpawnReason.BREEDING) {
-            ((RabbitEntity) (Object) this).setRabbitType(nbt.getInt("RabbitType"));
+            ((RabbitEntity) (Object) this).setVariant(RabbitEntity.RabbitType.byId(nbt.getInt("RabbitType")));
         }
     }
 }
