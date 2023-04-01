@@ -20,7 +20,7 @@
       "trigger": "minecraft:location",
       "conditions": {
         "location": {
-          "feature": "mostructures:pirate_ship"
+          "structure": "mostructures:pirate_ship"
         }
       }
     }

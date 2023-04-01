@@ -16,18 +16,54 @@
     "hidden": false
   },
   "criteria": {
-    "church": {
+    "desert": {
       "trigger": "minecraft:location",
       "conditions": {
         "location": {
-          "feature": "mostructures:abandoned_church"
+          "structure": "mostructures:desert_abandoned_church"
+        }
+      }
+    },
+    "plains": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "structure": "mostructures:plains_abandoned_church"
+        }
+      }
+    },
+    "savanna": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "structure": "mostructures:savanna_abandoned_church"
+        }
+      }
+    },
+    "snowy": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "structure": "mostructures:snowy_abandoned_church"
+        }
+      }
+    },
+    "taiga": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "structure": "mostructures:taiga_abandoned_church"
         }
       }
     }
   },
   "requirements": [
     [
-      "church"
+      "desert",
+      "plains",
+      "savanna",
+      "snowy",
+      "taiga"
     ]
   ]
 }

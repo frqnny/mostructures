@@ -20,7 +20,7 @@
       "trigger": "minecraft:location",
       "conditions": {
         "location": {
-          "feature": "mostructures:barn_house"
+          "structure": "mostructures:barn_house"
         }
       }
     }

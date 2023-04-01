@@ -20,7 +20,7 @@
       "trigger": "minecraft:location",
       "conditions": {
         "location": {
-          "feature": "mostructures:ice_tower"
+          "structure": "mostructures:ice_tower"
         }
       }
     }

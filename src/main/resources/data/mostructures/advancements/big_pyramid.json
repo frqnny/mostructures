@@ -20,7 +20,7 @@
       "trigger": "minecraft:location",
       "conditions": {
         "location": {
-          "feature": "mostructures:big_pyramid"
+          "structure": "mostructures:big_pyramid"
         }
       }
     }

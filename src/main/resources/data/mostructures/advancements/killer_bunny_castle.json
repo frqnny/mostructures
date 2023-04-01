@@ -20,7 +20,7 @@
       "trigger": "minecraft:location",
       "conditions": {
         "location": {
-          "feature": "mostructures:killer_bunny_castle"
+          "structure": "mostructures:killer_bunny_castle"
         }
       }
     }

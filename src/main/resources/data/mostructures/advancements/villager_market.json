@@ -20,7 +20,7 @@
       "trigger": "minecraft:location",
       "conditions": {
         "location": {
-          "feature": "mostructures:villager_market"
+          "structure": "mostructures:villager_market"
         }
       }
     }

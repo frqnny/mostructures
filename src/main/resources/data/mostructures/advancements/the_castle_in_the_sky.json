@@ -20,7 +20,7 @@
       "trigger": "minecraft:location",
       "conditions": {
         "location": {
-          "feature": "mostructures:the_castle_in_the_sky"
+          "structure": "mostructures:the_castle_in_the_sky"
         }
       }
     }

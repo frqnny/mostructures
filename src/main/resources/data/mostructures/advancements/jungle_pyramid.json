@@ -20,7 +20,7 @@
       "trigger": "minecraft:location",
       "conditions": {
         "location": {
-          "feature": "mostructures:jungle_pyramid"
+          "structure": "mostructures:jungle_pyramid"
         }
       }
     }

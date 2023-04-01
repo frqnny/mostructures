@@ -20,7 +20,7 @@
       "trigger": "minecraft:location",
       "conditions": {
         "location": {
-          "feature": "mostructures:villager_tower"
+          "structure": "mostructures:villager_tower"
         }
       }
     }

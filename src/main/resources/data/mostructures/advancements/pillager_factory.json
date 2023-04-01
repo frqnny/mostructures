@@ -20,7 +20,7 @@
       "trigger": "minecraft:location",
       "conditions": {
         "location": {
-          "feature": "mostructures:pillager_factory"
+          "structure": "mostructures:pillager_factory"
         }
       }
     }
