@@ -3,7 +3,13 @@
   "biomes": "#mostructures:has_structure/the_castle_in_the_sky",
   "project_start_to_heightmap": "WORLD_SURFACE_WG",
   "start_height": {
-    "above_bottom": 35
+    "type": "uniform",
+    "min_inclusive": {
+      "above_bottom": 90
+    },
+    "max_inclusive": {
+      "above_bottom": 120
+    }
   },
   "use_expansion_hack": false,
   "max_distance_from_center": 80,

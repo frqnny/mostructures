@@ -3,7 +3,7 @@
   "fallback": "minecraft:empty",
   "elements": [
     {
-      "weight": 1,
+      "weight": 3,
       "element": {
         "element_type": "minecraft:legacy_single_pool_element",
         "location": "mostructures:market/main_1",
@@ -12,7 +12,7 @@
       }
     },
     {
-      "weight": 1,
+      "weight": 2,
       "element": {
         "element_type": "minecraft:legacy_single_pool_element",
         "location": "mostructures:market/main_2",

@@ -2,6 +2,7 @@ package io.github.frqnny.mostructures.structure;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import io.github.frqnny.mostructures.init.Structures;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolBasedGenerator;
@@ -43,6 +44,7 @@ public class ModStructure extends Structure {
     private final int maxDistanceFromCenter;
 
 
+
     public ModStructure(Structure.Config config, RegistryEntry<StructurePool> startPool, Optional<Identifier> startJigsawName, int size, HeightProvider startHeight, boolean useExpansionHack, Optional<Heightmap.Type> projectStartToHeightmap, int maxDistanceFromCenter, int heightRange) {
         super(config);
         this.startPool = startPool;
@@ -55,8 +57,9 @@ public class ModStructure extends Structure {
         this.heightRange = heightRange;
     }
 
+    @Override
     public Optional<Structure.StructurePosition> getStructurePosition(Structure.Context context) {
-        if (canGenerate(context.chunkGenerator(), context.seed(), context.chunkPos(), context.world(), context.noiseConfig())) {
+        if (canGenerate(context.chunkGenerator(), context.chunkPos(), context.world(), context.noiseConfig())) {
             ChunkPos chunkPos = context.chunkPos();
             int y = this.startHeight.get(context.random(), new HeightContext(context.chunkGenerator(), context.world()));
             BlockPos blockPos = new BlockPos(chunkPos.getStartX(), y, chunkPos.getStartZ());
@@ -66,8 +69,7 @@ public class ModStructure extends Structure {
         }
     }
 
-    public boolean canGenerate(ChunkGenerator chunkGenerator, long worldSeed, ChunkPos pos, HeightLimitView world, NoiseConfig noiseConfig) {
-
+    public boolean canGenerate(ChunkGenerator chunkGenerator, ChunkPos pos, HeightLimitView world, NoiseConfig noiseConfig) {
         int heightRange = this.heightRange;
         if (heightRange != -1) {
             int maxTerrainHeight = Integer.MIN_VALUE;
@@ -88,7 +90,7 @@ public class ModStructure extends Structure {
 
     @Override
     public StructureType<?> getType() {
-        return null;//todo
+        return Structures.GENERIC;
     }
 
 

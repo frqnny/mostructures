@@ -7,7 +7,6 @@
     "MixinMobEntity",
     "MixinLivingEntity",
     "ChunkRegionAccessor",
-    "RandomSpreadStructurePlacementAccessor",
     "StructurePlacementAccessor",
     "StructureSetAccessor"
   ],

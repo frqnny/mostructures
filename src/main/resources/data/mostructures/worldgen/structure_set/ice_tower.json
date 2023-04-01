@@ -6,7 +6,13 @@
     }
   ],
   "placement": {
-    "type": "minecraft:random_spread",
+    "type": "mostructures:type",
+    "structure_set_to_avoid": [
+      "mostructures:abandoned_church",
+      "mostructures:lighthouse",
+      "mostructures:moai",
+      "mostructures:villager_tower"
+    ],
     "spacing": 22,
     "separation": 14,
     "salt": 964058305

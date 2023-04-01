@@ -6,7 +6,14 @@
     }
   ],
   "placement": {
-    "type": "minecraft:random_spread",
+    "type": "mostructures:type",
+    "structure_set_to_avoid": [
+      "mostructures:ice_tower",
+      "mostructures:barn_house",
+      "mostructures:killer_bunny_castle",
+      "mostructures:lighthouse",
+      "mostructures:moai"
+    ],
     "spacing": 30,
     "separation": 14,
     "salt": 139204924
