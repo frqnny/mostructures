@@ -19,7 +19,7 @@ public class MixinLivingEntity {
     public void dropItems(DamageSource source, CallbackInfo info) {
 
         if (((LivingEntity) (Object) this) instanceof RabbitEntity rabbit) {
-            if (rabbit.getVariant() == RabbitEntity.RabbitType.EVIL) {
+            if (rabbit.getRabbitType() == 99) {
                 ItemStack diamonds = new ItemStack(Items.DIAMOND);
                 diamonds.setCount(Math.max(8, rabbit.getRandom().nextInt(10)));
                 ItemUtils.spawnStack(rabbit.world, rabbit.getX(), rabbit.getY() + 0.5, rabbit.getZ(), diamonds);

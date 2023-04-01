@@ -3,16 +3,21 @@ package io.github.frqnny.mostructures.structure;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.frqnny.mostructures.init.Structures;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryElementCodec;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.structure.StructureSet;
 import net.minecraft.util.dynamic.Codecs;
+import net.minecraft.util.dynamic.RegistryElementCodec;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.math.random.CheckedRandom;
 import net.minecraft.util.math.random.ChunkRandom;
-import net.minecraft.world.gen.chunk.placement.*;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryEntry;
+import net.minecraft.world.gen.chunk.ChunkGenerator;
+import net.minecraft.world.gen.chunk.placement.RandomSpreadStructurePlacement;
+import net.minecraft.world.gen.chunk.placement.SpreadType;
+import net.minecraft.world.gen.chunk.placement.StructurePlacement;
+import net.minecraft.world.gen.chunk.placement.StructurePlacementType;
+import net.minecraft.world.gen.noise.NoiseConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +29,7 @@ public class ModStructurePlacement extends RandomSpreadStructurePlacement {
                     FrequencyReductionMethod.CODEC.optionalFieldOf("frequency_reduction_method", FrequencyReductionMethod.DEFAULT).forGetter(ModStructurePlacement::getFrequencyReductionMethod),
                     Codec.floatRange(0.0f, 1.0f).optionalFieldOf("frequency", 1.0f).forGetter(ModStructurePlacement::getFrequency),
                     Codecs.NONNEGATIVE_INT.fieldOf("salt").forGetter(ModStructurePlacement::getSalt),
-                    RegistryElementCodec.of(RegistryKeys.STRUCTURE_SET, StructureSet.CODEC, false).listOf().fieldOf("structure_set_to_avoid").orElse(new ArrayList<>(20)).forGetter(config -> config.structureSetToAvoid),
+                    RegistryElementCodec.of(Registry.STRUCTURE_SET_KEY, StructureSet.CODEC, false).listOf().fieldOf("structure_set_to_avoid").orElse(new ArrayList<>(20)).forGetter(config -> config.structureSetToAvoid),
                     Codec.intRange(0, 4096).fieldOf("spacing").forGetter(ModStructurePlacement::getSpacing),
                     Codec.intRange(0, 4096).fieldOf("separation").forGetter(ModStructurePlacement::getSeparation),
                     SpreadType.CODEC.optionalFieldOf("spread_type", SpreadType.LINEAR).forGetter(ModStructurePlacement::getSpreadType))
@@ -82,27 +87,27 @@ public class ModStructurePlacement extends RandomSpreadStructurePlacement {
     }
 
     @Override
-    protected boolean isStartChunk(StructurePlacementCalculator calculator, int chunkX, int chunkZ) {
-        ChunkPos chunkPos = this.getStartChunk(calculator.getStructureSeed(), chunkX, chunkZ);
+    protected boolean isStartChunk(ChunkGenerator chunkGenerator, NoiseConfig noiseConfig, long seed, int chunkX, int chunkZ) {
+        ChunkPos chunkPos = this.getStartChunk(seed, chunkX, chunkZ);
         return chunkPos.x == chunkX && chunkPos.z == chunkZ;
     }
 
     @Override
-    public boolean shouldGenerate(StructurePlacementCalculator calculator, int chunkX, int chunkZ) {
+    public boolean shouldGenerate(ChunkGenerator chunkGenerator, NoiseConfig noiseConfig, long seed, int chunkX, int chunkZ) {
         if (!activated) {
             return false;
         }
 
-        if (!this.isStartChunk(calculator, chunkX, chunkZ)) {
+        if (!this.isStartChunk(chunkGenerator, noiseConfig, seed, chunkX, chunkZ)) {
             return false;
         }
-        if (this.getFrequency() < 1.0f && !this.getFrequencyReductionMethod().shouldGenerate(calculator.getStructureSeed(), this.getSalt(), chunkX, chunkZ, this.getFrequency())) {
+        if (this.getFrequency() < 1.0f && !this.getFrequencyReductionMethod().shouldGenerate(seed, this.getSalt(), chunkX, chunkZ, this.getFrequency())) {
             return false;
         }
 
         if (!structureSetToAvoid.isEmpty()) {
             for (RegistryEntry<StructureSet> entry : structureSetToAvoid) {
-                if (shouldExclude(calculator, entry, chunkX, chunkZ, 3)) {
+                if (shouldExclude(chunkGenerator, noiseConfig, seed, entry, chunkX, chunkZ, 3)) {
                     return false;
                 }
             }
@@ -111,21 +116,21 @@ public class ModStructurePlacement extends RandomSpreadStructurePlacement {
         return true;
     }
 
-    public boolean shouldGenerateNoExclusionCheck(StructurePlacementCalculator calculator, int chunkX, int chunkZ) {
+    public boolean shouldGenerateNoExclusionCheck(ChunkGenerator chunkGenerator, NoiseConfig noiseConfig, long seed, int chunkX, int chunkZ) {
         if (!activated) {
             return false;
         }
-        if (!this.isStartChunk(calculator, chunkX, chunkZ)) {
+        if (!this.isStartChunk(chunkGenerator, noiseConfig, seed, chunkX, chunkZ)) {
             return false;
         }
-        return !(this.getFrequency() < 1.0f) || this.getFrequencyReductionMethod().shouldGenerate(calculator.getStructureSeed(), this.getSalt(), chunkX, chunkZ, this.getFrequency());
+        return !(this.getFrequency() < 1.0f) || this.getFrequencyReductionMethod().shouldGenerate(seed, this.getSalt(), chunkX, chunkZ, this.getFrequency());
     }
 
-    public static boolean shouldExclude(StructurePlacementCalculator calculator, RegistryEntry<StructureSet> structureSetEntry, int centerChunkX, int centerChunkZ, int chunkCount) {
+    public static boolean shouldExclude(ChunkGenerator chunkGenerator, NoiseConfig noiseConfig, long seed, RegistryEntry<StructureSet> structureSetEntry, int centerChunkX, int centerChunkZ, int chunkCount) {
         if (structureSetEntry.value().placement() instanceof ModStructurePlacement structurePlacement) {
             for (int i = centerChunkX - chunkCount; i <= centerChunkX + chunkCount; ++i) {
                 for (int j = centerChunkZ - chunkCount; j <= centerChunkZ + chunkCount; ++j) {
-                    if (!structurePlacement.shouldGenerateNoExclusionCheck(calculator, i, j)) continue;
+                    if (!structurePlacement.shouldGenerateNoExclusionCheck(chunkGenerator, noiseConfig, seed, i, j)) continue;
                     return true;
                 }
             }

@@ -1,11 +1,10 @@
 package io.github.frqnny.mostructures.mixin;
 
 import io.github.frqnny.mostructures.init.Structures;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.structure.StructureStart;
 import net.minecraft.util.math.ChunkSectionPos;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -17,7 +16,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@SuppressWarnings("unused")
 @Mixin(LakeFeature.class)
 public class LakeFeatureMixin {
 
@@ -26,7 +24,7 @@ public class LakeFeatureMixin {
         ChunkSectionPos chunkSectionPos = ChunkSectionPos.from(context.getOrigin());
         Chunk chunk = context.getWorld().getChunk(context.getOrigin());
 
-        Registry<Structure> registry = context.getWorld().getRegistryManager().get(RegistryKeys.STRUCTURE);
+        Registry<Structure> registry = context.getWorld().getRegistryManager().get(Registry.STRUCTURE_KEY);
         StructureAccessor structureAccessor = ((ChunkRegionAccessor) context.getWorld()).getStructureAccessor();
 
         for (RegistryEntry<Structure> entry : registry.getOrCreateEntryList(Structures.NO_LAKES)) {
