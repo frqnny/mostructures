@@ -1,0 +1,33 @@
+{
+  "parent": "mostructures:root",
+  "display": {
+    "icon": {
+      "item": "minecraft:iron_ingot"
+    },
+    "title": {
+      "translate": "Villager Tower"
+    },
+    "description": {
+      "translate": "If you find an Iron Golem, salute him. He fought in the Forgotten War..."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "villager_tower": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "structure": "mostructures:villager_tower"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "villager_tower"
+    ]
+  ]
+}
