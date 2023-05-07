@@ -19,9 +19,14 @@
     "barn_house": {
       "trigger": "minecraft:location",
       "conditions": {
-        "location": {
-          "structure": "mostructures:barn_house"
-        }
+        "player": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "structure": "mostructures:barn_house"
+            }
+          }
+        ]
       }
     }
   },

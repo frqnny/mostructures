@@ -19,9 +19,14 @@
     "pillager_factory": {
       "trigger": "minecraft:location",
       "conditions": {
-        "location": {
-          "structure": "mostructures:pillager_factory"
-        }
+        "player": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "structure": "mostructures:pillager_factory"
+            }
+          }
+        ]
       }
     }
   },

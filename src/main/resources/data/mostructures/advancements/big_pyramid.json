@@ -19,9 +19,14 @@
     "pyramid": {
       "trigger": "minecraft:location",
       "conditions": {
-        "location": {
-          "structure": "mostructures:big_pyramid"
-        }
+        "player": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "structure": "mostructures:big_pyramid"
+            }
+          }
+        ]
       }
     }
   },

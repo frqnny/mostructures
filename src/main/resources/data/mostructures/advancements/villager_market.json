@@ -19,9 +19,14 @@
     "villager_market": {
       "trigger": "minecraft:location",
       "conditions": {
-        "location": {
-          "structure": "mostructures:villager_market"
-        }
+        "player": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "structure": "mostructures:villager_market"
+            }
+          }
+        ]
       }
     }
   },

@@ -19,9 +19,14 @@
     "lighthouse": {
       "trigger": "minecraft:location",
       "conditions": {
-        "location": {
-          "structure": "mostructures:lighthouse"
-        }
+        "player": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "structure": "mostructures:lighthouse"
+            }
+          }
+        ]
       }
     }
   },
