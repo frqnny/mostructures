@@ -1,0 +1,38 @@
+{
+  "parent": "mostructures:root",
+  "display": {
+    "icon": {
+      "item": "minecraft:wheat"
+    },
+    "title": {
+      "translate": "Barn House"
+    },
+    "description": {
+      "translate": "A nice and cozy barn.. I wonder what its purpose is?"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "barn_house": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "structure": "mostructures:barn_house"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "barn_house"
+    ]
+  ]
+}

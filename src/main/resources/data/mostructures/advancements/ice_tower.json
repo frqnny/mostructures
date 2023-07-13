@@ -1,0 +1,38 @@
+{
+  "parent": "mostructures:root",
+  "display": {
+    "icon": {
+      "item": "minecraft:ice"
+    },
+    "title": {
+      "translate": "Ice Tower"
+    },
+    "description": {
+      "translate": "This place seems to attract lots of strays..."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "ice_tower": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "structure": "mostructures:ice_tower"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "ice_tower"
+    ]
+  ]
+}

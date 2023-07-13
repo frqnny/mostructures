@@ -1,0 +1,67 @@
+{
+  "parent": "mostructures:root",
+  "display": {
+    "icon": {
+      "item": "minecraft:arrow"
+    },
+    "title": {
+      "translate": "Abandoned Church"
+    },
+    "description": {
+      "translate": "Pillagers must have destroyed this monastery."
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "church": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:alternative",
+            "terms": [
+              {
+                "condition": "minecraft:location_check",
+                "predicate": {
+                  "structure": "mostructures:desert_abandoned_church"
+                }
+              },
+              {
+                "condition": "minecraft:location_check",
+                "predicate": {
+                  "structure": "mostructures:plains_abandoned_church"
+                }
+              },
+              {
+                "condition": "minecraft:location_check",
+                "predicate": {
+                  "structure": "mostructures:savanna_abandoned_church"
+                }
+              },
+              {
+                "condition": "minecraft:location_check",
+                "predicate": {
+                  "structure": "mostructures:snowy_abandoned_church"
+                }
+              },
+              {
+                "condition": "minecraft:location_check",
+                "predicate": {
+                  "structure": "mostructures:taiga_abandoned_church"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "church"
+    ]
+  ]
+}
