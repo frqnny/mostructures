@@ -30,9 +30,9 @@ public class ModStructurePlacement extends RandomSpreadStructurePlacement {
                     SpreadType.CODEC.optionalFieldOf("spread_type", SpreadType.LINEAR).forGetter(ModStructurePlacement::getSpreadType))
             .apply(instance, ModStructurePlacement::new));
     public final List<RegistryEntry<StructureSet>> structureSetToAvoid;
+    private final SpreadType spreadType;
     private int spacing;
     private int separation;
-    private final SpreadType spreadType;
     private boolean activated;
 
     public ModStructurePlacement(Vec3i locateOffset, StructurePlacement.FrequencyReductionMethod frequencyReductionMethod, float frequency, int salt, List<RegistryEntry<StructureSet>> structureSetToAvoid, int spacing, int separation, SpreadType spreadType) {
@@ -41,6 +41,19 @@ public class ModStructurePlacement extends RandomSpreadStructurePlacement {
         this.separation = separation;
         this.spreadType = spreadType;
         this.structureSetToAvoid = structureSetToAvoid;
+    }
+
+    public static boolean shouldExclude(StructurePlacementCalculator calculator, RegistryEntry<StructureSet> structureSetEntry, int centerChunkX, int centerChunkZ, int chunkCount) {
+        if (structureSetEntry.value().placement() instanceof ModStructurePlacement structurePlacement) {
+            for (int i = centerChunkX - chunkCount; i <= centerChunkX + chunkCount; ++i) {
+                for (int j = centerChunkZ - chunkCount; j <= centerChunkZ + chunkCount; ++j) {
+                    if (!structurePlacement.shouldGenerateNoExclusionCheck(calculator, i, j)) continue;
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     public void setActivated(boolean activated) {
@@ -52,6 +65,10 @@ public class ModStructurePlacement extends RandomSpreadStructurePlacement {
         return this.spacing;
     }
 
+    public void setSpacing(int spacing) {
+        this.spacing = spacing;
+    }
+
     @Override
     public int getSeparation() {
         return this.separation;
@@ -59,10 +76,6 @@ public class ModStructurePlacement extends RandomSpreadStructurePlacement {
 
     public void setSeparation(int separation) {
         this.separation = separation;
-    }
-
-    public void setSpacing(int spacing) {
-        this.spacing = spacing;
     }
 
     @Override
@@ -119,19 +132,6 @@ public class ModStructurePlacement extends RandomSpreadStructurePlacement {
             return false;
         }
         return !(this.getFrequency() < 1.0f) || this.getFrequencyReductionMethod().shouldGenerate(calculator.getStructureSeed(), this.getSalt(), chunkX, chunkZ, this.getFrequency());
-    }
-
-    public static boolean shouldExclude(StructurePlacementCalculator calculator, RegistryEntry<StructureSet> structureSetEntry, int centerChunkX, int centerChunkZ, int chunkCount) {
-        if (structureSetEntry.value().placement() instanceof ModStructurePlacement structurePlacement) {
-            for (int i = centerChunkX - chunkCount; i <= centerChunkX + chunkCount; ++i) {
-                for (int j = centerChunkZ - chunkCount; j <= centerChunkZ + chunkCount; ++j) {
-                    if (!structurePlacement.shouldGenerateNoExclusionCheck(calculator, i, j)) continue;
-                    return true;
-                }
-            }
-        }
-
-        return false;
     }
 
     @Override

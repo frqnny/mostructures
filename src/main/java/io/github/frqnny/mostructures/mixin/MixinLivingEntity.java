@@ -22,19 +22,19 @@ public class MixinLivingEntity {
             if (rabbit.getVariant() == RabbitEntity.RabbitType.EVIL) {
                 ItemStack diamonds = new ItemStack(Items.DIAMOND);
                 diamonds.setCount(Math.max(8, rabbit.getRandom().nextInt(10)));
-                ItemUtils.spawnStack(rabbit.world, rabbit.getX(), rabbit.getY() + 0.5, rabbit.getZ(), diamonds);
+                ItemUtils.spawnStack(rabbit.getEntityWorld(), rabbit.getX(), rabbit.getY() + 0.5, rabbit.getZ(), diamonds);
 
                 ItemStack emeralds = new ItemStack(Items.EMERALD);
                 emeralds.setCount(Math.max(10, rabbit.getRandom().nextInt(12)));
-                ItemUtils.spawnStack(rabbit.world, rabbit.getX(), rabbit.getY() + 0.5, rabbit.getZ(), emeralds);
+                ItemUtils.spawnStack(rabbit.getEntityWorld(), rabbit.getX(), rabbit.getY() + 0.5, rabbit.getZ(), emeralds);
 
                 ItemStack ironIngots = new ItemStack(Items.IRON_INGOT);
                 ironIngots.setCount(Math.max(18, rabbit.getRandom().nextInt(20)));
-                ItemUtils.spawnStack(rabbit.world, rabbit.getX(), rabbit.getY() + 0.5, rabbit.getZ(), ironIngots);
+                ItemUtils.spawnStack(rabbit.getEntityWorld(), rabbit.getX(), rabbit.getY() + 0.5, rabbit.getZ(), ironIngots);
 
                 ItemStack goldIngots = new ItemStack(Items.IRON_INGOT);
                 goldIngots.setCount(Math.max(16, rabbit.getRandom().nextInt(18)));
-                ItemUtils.spawnStack(rabbit.world, rabbit.getX(), rabbit.getY() + 0.5, rabbit.getZ(), goldIngots);
+                ItemUtils.spawnStack(rabbit.getEntityWorld(), rabbit.getX(), rabbit.getY() + 0.5, rabbit.getZ(), goldIngots);
             }
         }
     }

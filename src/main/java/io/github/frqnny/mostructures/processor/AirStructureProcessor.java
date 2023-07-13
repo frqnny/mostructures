@@ -16,8 +16,8 @@ public class AirStructureProcessor extends StructureProcessor {
     @Nullable
     @Override
     public StructureTemplate.StructureBlockInfo process(WorldView worldView, BlockPos pos, BlockPos blockPos, StructureTemplate.StructureBlockInfo structureBlockInfo, StructureTemplate.StructureBlockInfo structureBlockInfo2, StructurePlacementData structurePlacementData) {
-        if (structureBlockInfo2.state.isAir()) {
-            worldView.getChunk(structureBlockInfo2.pos).setBlockState(structureBlockInfo2.pos, structureBlockInfo2.state, false);
+        if (structureBlockInfo2.state().isAir()) {
+            worldView.getChunk(structureBlockInfo2.pos()).setBlockState(structureBlockInfo2.pos(), structureBlockInfo2.state(), false);
         }
         return structureBlockInfo2;
     }

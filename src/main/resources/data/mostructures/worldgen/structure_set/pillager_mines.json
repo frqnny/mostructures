@@ -1,7 +1,7 @@
 {
   "structures": [
     {
-      "structure": "mostructures:pillager_factory",
+      "structure": "mostructures:pillager_mines",
       "weight": 1
     }
   ],
@@ -11,13 +11,11 @@
       "minecraft:villages",
       "mostructures:ice_tower",
       "mostructures:barn_house",
-      "mostructures:killer_bunny_castle",
       "mostructures:lighthouse",
-      "mostructures:moai",
-      "mostructures:pillager_mines"
+      "mostructures:moai"
     ],
-    "spacing": 30,
-    "separation": 14,
-    "salt": 139204924
+    "spacing": 40,
+    "separation": 27,
+    "salt": 845960285
   }
 }

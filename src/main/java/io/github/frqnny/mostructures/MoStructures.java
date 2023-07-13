@@ -10,7 +10,6 @@ import net.minecraft.util.Identifier;
 
 public class MoStructures implements ModInitializer {
     public static final MoStructuresConfig CONFIG = OmegaConfig.register(MoStructuresConfig.class);
-
     public static final String MODID = "mostructures";
 
     public static Identifier id(String name) {

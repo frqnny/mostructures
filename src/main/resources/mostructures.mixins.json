@@ -6,9 +6,7 @@
     "LakeFeatureMixin",
     "MixinMobEntity",
     "MixinLivingEntity",
-    "ChunkRegionAccessor",
-    "StructurePlacementAccessor",
-    "StructureSetAccessor"
+    "ChunkRegionAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

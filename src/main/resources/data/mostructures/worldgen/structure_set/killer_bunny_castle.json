@@ -8,11 +8,13 @@
   "placement": {
     "type": "mostructures:type",
     "structure_set_to_avoid": [
+      "minecraft:villages",
       "mostructures:abandoned_church",
       "mostructures:big_pyramid",
       "mostructures:ice_tower",
       "mostructures:jungle_pyramid",
       "mostructures:lighthouse",
+      "mostructures:pillager_mines",
       "mostructures:moai",
       "mostructures:pillager_factory",
       "mostructures:villager_tower"

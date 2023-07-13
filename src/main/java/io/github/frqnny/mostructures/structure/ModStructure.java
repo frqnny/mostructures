@@ -44,7 +44,6 @@ public class ModStructure extends Structure {
     private final int maxDistanceFromCenter;
 
 
-
     public ModStructure(Structure.Config config, RegistryEntry<StructurePool> startPool, Optional<Identifier> startJigsawName, int size, HeightProvider startHeight, boolean useExpansionHack, Optional<Heightmap.Type> projectStartToHeightmap, int maxDistanceFromCenter, int heightRange) {
         super(config);
         this.startPool = startPool;

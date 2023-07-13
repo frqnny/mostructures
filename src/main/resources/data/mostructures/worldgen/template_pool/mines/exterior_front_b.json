@@ -1,0 +1,15 @@
+{
+  "name": "mostructures:mines/exterior_front_b",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "mostructures:mines/exterior_front_b",
+        "projection": "rigid",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

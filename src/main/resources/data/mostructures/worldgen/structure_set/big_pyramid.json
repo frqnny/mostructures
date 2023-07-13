@@ -10,8 +10,8 @@
     "structure_set_to_avoid": [
       "mostructures:abandoned_church"
     ],
-    "spacing": 20,
-    "separation": 16,
+    "spacing": 32,
+    "separation": 25,
     "salt": 139284294
   }
 }

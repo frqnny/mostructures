@@ -23,9 +23,11 @@
   ],
   "placement": {
     "type": "mostructures:type",
-    "structure_set_to_avoid": [],
+    "structure_set_to_avoid": [
+      "minecraft:villages"
+    ],
     "spacing": 26,
     "separation": 14,
-    "salt": 16996840
+    "salt": 16996841
   }
 }

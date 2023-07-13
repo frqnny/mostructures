@@ -38,16 +38,16 @@ public class SimpleStoneStructureProcessor extends StructureProcessor {
 
     @Nullable
     public StructureTemplate.StructureBlockInfo process(WorldView worldView, BlockPos pos, BlockPos blockPos, StructureTemplate.StructureBlockInfo structureBlockInfo, StructureTemplate.StructureBlockInfo structureBlockInfo2, StructurePlacementData structurePlacementData) {
-        Random random = structurePlacementData.getRandom(structureBlockInfo2.pos);
-        BlockState blockState = structureBlockInfo2.state;
-        BlockPos blockPos2 = structureBlockInfo2.pos;
+        Random random = structurePlacementData.getRandom(structureBlockInfo2.pos());
+        BlockState blockState = structureBlockInfo2.state();
+        BlockPos blockPos2 = structureBlockInfo2.pos();
         BlockState blockState2 = null;
         if (blockState.isOf(Blocks.STONE_BRICKS) || blockState.isOf(Blocks.STONE) || blockState.isOf(Blocks.CHISELED_STONE_BRICKS)) {
             blockState2 = this.processBlocks(random);
         }
 
 
-        return blockState2 != null ? new StructureTemplate.StructureBlockInfo(blockPos2, blockState2, structureBlockInfo2.nbt) : structureBlockInfo2;
+        return blockState2 != null ? new StructureTemplate.StructureBlockInfo(blockPos2, blockState2, structureBlockInfo2.nbt()) : structureBlockInfo2;
     }
 
     @Nullable

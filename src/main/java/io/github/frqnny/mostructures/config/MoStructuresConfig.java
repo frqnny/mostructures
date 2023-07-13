@@ -52,8 +52,8 @@ public class MoStructuresConfig implements Config {
     public void save() {
         structureConfigEntries.putIfAbsent("abandoned_church", StructureConfigEntry.of(14, 26));
         structureConfigEntries.putIfAbsent("air_balloon", StructureConfigEntry.of(10, 20));
-        structureConfigEntries.putIfAbsent("barn_house", StructureConfigEntry.of(13, 24));
-        structureConfigEntries.putIfAbsent("big_pyramid", StructureConfigEntry.of(16, 20));
+        structureConfigEntries.putIfAbsent("barn_house", StructureConfigEntry.of(16, 28));
+        structureConfigEntries.putIfAbsent("big_pyramid", StructureConfigEntry.of(25, 32));
         structureConfigEntries.putIfAbsent("ice_tower", StructureConfigEntry.of(14, 22));
         structureConfigEntries.putIfAbsent("jungle_pyramid", StructureConfigEntry.of(14, 16));
         structureConfigEntries.putIfAbsent("killer_bunny_castle", StructureConfigEntry.of(22, 30));
@@ -65,6 +65,7 @@ public class MoStructuresConfig implements Config {
         structureConfigEntries.putIfAbsent("the_castle_in_the_sky", StructureConfigEntry.of(15, 23));
         structureConfigEntries.putIfAbsent("villager_market", StructureConfigEntry.of(16, 30));
         structureConfigEntries.putIfAbsent("villager_tower", StructureConfigEntry.of(16, 29));
+        structureConfigEntries.putIfAbsent("pillager_mines", StructureConfigEntry.of(27, 40));
         Config.super.save();
     }
 }
