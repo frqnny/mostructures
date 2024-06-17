@@ -7,10 +7,13 @@ import io.github.frqnny.mostructures.init.ProcessorTypes;
 import io.github.frqnny.mostructures.init.Structures;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MoStructures implements ModInitializer {
     public static final MoStructuresConfig CONFIG = OmegaConfig.register(MoStructuresConfig.class);
     public static final String MODID = "mostructures";
+    public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 
     public static Identifier id(String name) {
         return new Identifier(MODID, name);

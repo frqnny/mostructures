@@ -14,6 +14,11 @@ public class Events {
 
             if (entry != null) { // id matches some structure in the config
                 if (structureSet.placement() instanceof ModStructurePlacement p) {
+
+                    if (!entry.activated) {
+                        MoStructures.LOGGER.info("Disabled {} structure as requested by config!", id);
+                    }
+
                     p.setSpacing(entry.spacing);
                     p.setSeparation(entry.separation);
                     p.setActivated(entry.activated);
