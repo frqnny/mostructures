@@ -14,13 +14,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(RabbitEntity.class)
 public class MixinRabbitEntity {
 
-    @Inject(at = @At("TAIL"), method = "initialize", cancellable = true)
+    @Inject(at = @At("HEAD"), method = "initialize", cancellable = true)
     public void rabbitPlsWork(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, CallbackInfoReturnable<EntityData> info) {
-
-        if (entityData instanceof RabbitEntity.RabbitData data) {
-            if (data.type == RabbitEntity.RabbitType.EVIL) {
-                ((RabbitEntity) (Object) this).setVariant(data.type);
-            }
+        if (((RabbitEntity) (Object) this).getVariant() == RabbitEntity.RabbitType.EVIL) {
+            ((RabbitEntity) (Object) this).setVariant(RabbitEntity.RabbitType.EVIL);
         }
+        info.setReturnValue(new RabbitEntity.RabbitData(RabbitEntity.RabbitType.EVIL));
     }
 }
