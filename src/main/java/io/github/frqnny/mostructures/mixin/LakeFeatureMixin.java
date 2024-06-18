@@ -27,7 +27,7 @@ public class LakeFeatureMixin {
         Chunk chunk = context.getWorld().getChunk(context.getOrigin());
 
         Registry<Structure> registry = context.getWorld().getRegistryManager().get(RegistryKeys.STRUCTURE);
-        StructureAccessor structureAccessor = ((ChunkRegionAccessor) context.getWorld()).getStructureAccessor();
+        StructureAccessor structureAccessor = context.getWorld().toServerWorld().getStructureAccessor();
 
         for (RegistryEntry<Structure> entry : registry.getOrCreateEntryList(Structures.NO_LAKES)) {
             StructureStart startForFeature = structureAccessor.getStructureStart(chunkSectionPos, entry.value(), chunk);

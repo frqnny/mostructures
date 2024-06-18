@@ -1,6 +1,7 @@
 package io.github.frqnny.mostructures.processor;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.frqnny.mostructures.init.ProcessorTypes;
 import net.minecraft.block.Block;
@@ -19,7 +20,7 @@ import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
 public class SimpleStoneStructureProcessor extends StructureProcessor {
-    public static final Codec<SimpleStoneStructureProcessor> CODEC = RecordCodecBuilder.create((proc) -> proc.group(
+    public static final MapCodec<SimpleStoneStructureProcessor> CODEC = RecordCodecBuilder.mapCodec((proc) -> proc.group(
             Codec.FLOAT.fieldOf("mossiness").forGetter(processor -> processor.mossiness)
     ).apply(proc, SimpleStoneStructureProcessor::new));
     private final float mossiness;

@@ -6,10 +6,10 @@
   "biomes": "#mostructures:has_structure/pirate_ship",
   "max_distance_from_center": 80,
   "step": "surface_structures",
+  "liquid_settings": "ignore_waterlogging",
   "start_height": {
     "absolute": 58
   },
   "use_expansion_hack": false,
-
   "spawn_overrides": {}
 }

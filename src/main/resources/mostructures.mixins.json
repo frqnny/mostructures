@@ -1,12 +1,11 @@
 {
   "required": true,
   "package": "io.github.frqnny.mostructures.mixin",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
     "LakeFeatureMixin",
-    "MixinMobEntity",
-    "MixinLivingEntity",
-    "ChunkRegionAccessor"
+    "MixinRabbitEntity",
+    "MixinLivingEntity"
   ],
   "injectors": {
     "defaultRequire": 1

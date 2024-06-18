@@ -1,7 +1,6 @@
 {
   "type": "mostructures:generic",
   "start_pool": "mostructures:moai/moai",
-
   "size": 7,
   "heightRange": 40,
   "biomes": "#mostructures:has_structure/moai",

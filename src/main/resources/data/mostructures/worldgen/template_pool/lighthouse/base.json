@@ -8,7 +8,7 @@
         "element_type": "minecraft:single_pool_element",
         "location": "mostructures:lighthouse/base",
         "projection": "rigid",
-        "processors": "mostructures:simple_air_keep_list"
+        "processors": "minecraft:empty"
       }
     }
   ]

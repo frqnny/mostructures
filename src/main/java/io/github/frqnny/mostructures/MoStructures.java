@@ -16,7 +16,7 @@ public class MoStructures implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 
     public static Identifier id(String name) {
-        return new Identifier(MODID, name);
+        return Identifier.of(MODID, name);
     }
 
     @Override

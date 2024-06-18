@@ -1,7 +1,6 @@
 {
   "type": "mostructures:generic",
   "start_pool": "mostructures:barn_house/base_plates",
-
   "size": 7,
   "heightRange": 40,
   "biomes": "#mostructures:has_structure/barn_house",

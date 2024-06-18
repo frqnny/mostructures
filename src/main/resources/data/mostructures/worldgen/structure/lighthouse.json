@@ -1,12 +1,12 @@
 {
   "type": "mostructures:generic",
   "start_pool": "mostructures:lighthouse/towers",
-
   "size": 7,
   "heightRange": 40,
   "max_distance_from_center": 80,
   "step": "surface_structures",
   "biomes": "#mostructures:has_structure/lighthouse",
+  "liquid_settings": "ignore_waterlogging",
   "start_height": {
     "absolute": 65
   },
