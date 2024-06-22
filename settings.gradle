@@ -1,11 +1,14 @@
 pluginManagement {
     repositories {
-        mavenCentral()
-        maven {
-            name = 'Fabric'
-            url = 'https://maven.fabricmc.net/'
-        }
-        mavenLocal()
+        maven { url "https://maven.fabricmc.net/" }
+        maven { url "https://maven.architectury.dev/" }
+        maven { url "https://files.minecraftforge.net/maven/" }
         gradlePluginPortal()
     }
 }
+
+rootProject.name = 'mostructures'
+
+include 'common'
+include 'fabric'
+include 'neoforge'

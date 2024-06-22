@@ -1,29 +1,19 @@
-# gradle
-
-.gradle/
 build/
-out/
-classes/
-
-# eclipse
-
-*.launch
-
-# idea
-
-.idea/
-*.iml
 *.ipr
+*.lock
+run/
 *.iws
-
-# vscode
-
-.settings/
-.vscode/
+out/
+*.iml
+.gradle/
+output/
 bin/
+libs/
 .classpath
 .project
+.settings/org.eclipse.core.resources.prefs
+.idea/
+classes/
 
-# fabric
-
-run/
+.vscode/
+logs/
