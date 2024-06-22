@@ -8,7 +8,7 @@ modId = "mostructures"
 version = "${version}"
 displayName = "Mo' Structures"
 authors = "Frqnny"
-description = "Mo Structures is Fabric's best structure mod, carefully designed to enrich your world with many fun adventures to be had! Mo' Structures is carefully designed to bring interesting lore to your Minecraft World.  We focus on the RPG aspect of your world rather than an aesthetic one. This means we add Dungeons, Towers, Lore, and much more! Using loot tables, advancements, jigsaws, unused bosses in vanilla, and more, we are able to bring many new experiences that will make this mod be a must-download for every mod gameplay."
+description = "Discover exciting structures with fun mini-dungeons and integrated lore!"
 logoFile = "assets/mostructures/icon.png"
 
 [[dependencies.mostructures]]
@@ -28,7 +28,7 @@ side = "BOTH"
 [[dependencies.mostructures]]
 modId = "architectury"
 type = "required"
-versionRange = "[13,)"
+versionRange = "[13.0.1,)"
 ordering = "AFTER"
 side = "BOTH"
 
