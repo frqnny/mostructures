@@ -4,8 +4,6 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.frqnny.mostructures.MoStructures;
 import io.github.frqnny.mostructures.structure.ModStructure;
 import io.github.frqnny.mostructures.structure.ModStructurePlacement;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.world.gen.chunk.placement.StructurePlacementType;

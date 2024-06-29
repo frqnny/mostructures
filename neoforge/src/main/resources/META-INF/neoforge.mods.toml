@@ -9,7 +9,7 @@ version = "${version}"
 displayName = "Mo' Structures"
 authors = "Frqnny"
 description = "Discover exciting structures with fun mini-dungeons and integrated lore!"
-logoFile = "assets/mostructures/icon.png"
+logoFile = "assets/mostructures/mostructures.png"
 
 [[dependencies.mostructures]]
 modId = "neoforge"

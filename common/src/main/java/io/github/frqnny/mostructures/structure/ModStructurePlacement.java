@@ -1,8 +1,11 @@
 package io.github.frqnny.mostructures.structure;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import io.github.frqnny.mostructures.MoStructures;
+import io.github.frqnny.mostructures.config.StructureConfigEntry;
 import io.github.frqnny.mostructures.init.Structures;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryElementCodec;
@@ -17,7 +20,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class ModStructurePlacement extends RandomSpreadStructurePlacement {
-    public static final MapCodec<ModStructurePlacement> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+    public static final MapCodec<ModStructurePlacement> CODEC = RecordCodecBuilder.<ModStructurePlacement>mapCodec(instance -> instance.group(
+                    Codec.STRING.fieldOf("config_key").forGetter(ModStructurePlacement::getConfigKey),
                     Vec3i.createOffsetCodec(16).optionalFieldOf("locate_offset", Vec3i.ZERO).forGetter(ModStructurePlacement::getLocateOffset),
                     FrequencyReductionMethod.CODEC.optionalFieldOf("frequency_reduction_method", FrequencyReductionMethod.DEFAULT).forGetter(ModStructurePlacement::getFrequencyReductionMethod),
                     Codec.floatRange(0.0f, 1.0f).optionalFieldOf("frequency", 1.0f).forGetter(ModStructurePlacement::getFrequency),
@@ -26,15 +30,39 @@ public class ModStructurePlacement extends RandomSpreadStructurePlacement {
                     Codec.intRange(0, 4096).fieldOf("spacing").forGetter(ModStructurePlacement::getSpacing),
                     Codec.intRange(0, 4096).fieldOf("separation").forGetter(ModStructurePlacement::getSeparation),
                     SpreadType.CODEC.optionalFieldOf("spread_type", SpreadType.LINEAR).forGetter(ModStructurePlacement::getSpreadType))
-            .apply(instance, ModStructurePlacement::new));
+            .apply(instance, ModStructurePlacement::new)).validate(ModStructurePlacement::validate);
     public final List<RegistryEntry<StructureSet>> structureSetToAvoid;
     private final SpreadType spreadType;
     private int spacing;
     private int separation;
+    private final String configKey;
     private boolean activated = true;
 
-    public ModStructurePlacement(Vec3i locateOffset, StructurePlacement.FrequencyReductionMethod frequencyReductionMethod, float frequency, int salt, List<RegistryEntry<StructureSet>> structureSetToAvoid, int spacing, int separation, SpreadType spreadType) {
+    private static DataResult<ModStructurePlacement> validate(ModStructurePlacement p) {
+        String configKey = p.getConfigKey();
+        StructureConfigEntry entry = MoStructures.CONFIG.get(configKey);
+        if (entry == null) {
+            return DataResult.error(() -> "ModStructurePlacement with config key: " + configKey + " does not have specified key in the config!");
+        }
+
+        if (p.isModifiedByConfig(entry.activated, entry.spacing, entry.separation)) {
+            MoStructures.LOGGER.info("Structure {} has been modified by the config!", configKey);
+        }
+
+        if (!entry.activated) {
+            MoStructures.LOGGER.info("Disabled {} structure as requested by config!", configKey);
+        }
+
+        p.setSpacing(entry.spacing);
+        p.setSeparation(entry.separation);
+        p.setActivated(entry.activated);
+
+        return DataResult.success(p);
+    }
+
+    public ModStructurePlacement(String configKey, Vec3i locateOffset, StructurePlacement.FrequencyReductionMethod frequencyReductionMethod, float frequency, int salt, List<RegistryEntry<StructureSet>> structureSetToAvoid, int spacing, int separation, SpreadType spreadType) {
         super(locateOffset, frequencyReductionMethod, frequency, salt, Optional.empty(), spacing, separation, spreadType);
+        this.configKey = configKey;
         this.spacing = spacing;
         this.separation = separation;
         this.spreadType = spreadType;
@@ -64,6 +92,10 @@ public class ModStructurePlacement extends RandomSpreadStructurePlacement {
         return false;
     }
 
+    public boolean isModifiedByConfig(boolean activated, int spacing, int separation) {
+        return !activated || spacing != this.spacing || separation != this.separation;
+    }
+
     public void setActivated(boolean activated) {
         this.activated = activated;
     }
@@ -84,6 +116,10 @@ public class ModStructurePlacement extends RandomSpreadStructurePlacement {
 
     public void setSeparation(int separation) {
         this.separation = separation;
+    }
+
+    public String getConfigKey() {
+        return configKey;
     }
 
     @Override

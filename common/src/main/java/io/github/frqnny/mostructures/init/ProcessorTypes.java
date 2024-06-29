@@ -1,17 +1,11 @@
 package io.github.frqnny.mostructures.init;
 
-import com.mojang.serialization.MapCodec;
-import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
 import io.github.frqnny.mostructures.MoStructures;
 import io.github.frqnny.mostructures.processor.SimpleCobblestoneProcessor;
 import io.github.frqnny.mostructures.processor.SimpleStoneStructureProcessor;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.structure.processor.StructureProcessor;
 import net.minecraft.structure.processor.StructureProcessorType;
-import net.minecraft.util.Identifier;
 
 public class ProcessorTypes {
     public static RegistrySupplier<StructureProcessorType<SimpleStoneStructureProcessor>> SIMPLE_STONE;

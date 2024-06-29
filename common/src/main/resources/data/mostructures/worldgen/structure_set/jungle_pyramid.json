@@ -7,6 +7,7 @@
   ],
   "placement": {
     "type": "mostructures:type",
+    "config_key": "jungle_pyramid",
     "structure_set_to_avoid": [],
     "spacing": 16,
     "separation": 14,
