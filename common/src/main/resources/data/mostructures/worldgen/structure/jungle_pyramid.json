@@ -2,7 +2,7 @@
   "type": "mostructures:generic",
   "start_pool": "mostructures:jungle_pyramid/base",
   "size": 7,
-  "heightRange": 40,
+  "heightRange": 25,
   "biomes": "#mostructures:has_structure/jungle_pyramid",
   "use_expansion_hack": true,
   "terrain_adaptation": "beard_thin",

@@ -20,7 +20,7 @@
     ]
   },
   "depends": {
-    "minecraft": ">=1.21"
+    "minecraft": ">=1.21.4"
   },
   "mixins": [
     "mostructures.mixins.json"

@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinLivingEntity {
 
 
+    @SuppressWarnings("UnreachableCode")
     @Inject(method = "onDeath", at = @At("TAIL"))
     public void dropItems(DamageSource source, CallbackInfo info) {
 

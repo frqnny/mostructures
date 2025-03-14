@@ -2,7 +2,7 @@
   "type": "mostructures:generic",
   "start_pool": "mostructures:market/main",
   "size": 7,
-  "heightRange": 40,
+  "heightRange": 25,
   "biomes": "#mostructures:has_structure/villager_market",
   "use_expansion_hack": true,
   "terrain_adaptation": "beard_thin",

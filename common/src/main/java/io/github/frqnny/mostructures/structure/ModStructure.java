@@ -31,22 +31,22 @@ public class ModStructure extends Structure {
 
     public static final MapCodec<ModStructure> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             Config.CODEC.forGetter(feature -> feature.config),
-            StructurePool.REGISTRY_CODEC.fieldOf("start_pool").forGetter((structure) -> structure.startPool),
-            Identifier.CODEC.optionalFieldOf("start_jigsaw_name").forGetter((structure) -> structure.startJigsawName),
-            Codec.intRange(0, 7).fieldOf("size").forGetter((structure) -> structure.size),
-            HeightProvider.CODEC.fieldOf("start_height").forGetter((structure) -> structure.startHeight),
-            Codec.BOOL.fieldOf("use_expansion_hack").forGetter((structure) -> structure.useExpansionHack),
-            Heightmap.Type.CODEC.optionalFieldOf("project_start_to_heightmap").forGetter((structure) -> structure.projectStartToHeightmap),
-            Codec.intRange(1, 128).fieldOf("max_distance_from_center").forGetter((structure) -> structure.maxDistanceFromCenter),
+            StructurePool.REGISTRY_CODEC.fieldOf("start_pool").forGetter(structure -> structure.startPool),
+            Identifier.CODEC.optionalFieldOf("start_jigsaw_name").forGetter(structure -> structure.startJigsawName),
+            Codec.intRange(0, 7).fieldOf("size").forGetter(structure -> structure.size),
+            HeightProvider.CODEC.fieldOf("start_height").forGetter(structure -> structure.startHeight),
+            Codec.BOOL.fieldOf("use_expansion_hack").forGetter(structure -> structure.useExpansionHack),
+            Heightmap.Type.CODEC.optionalFieldOf("project_start_to_heightmap").forGetter(structure -> structure.projectStartToHeightmap),
+            Codec.intRange(1, 128).fieldOf("max_distance_from_center").forGetter(structure -> structure.maxDistanceFromCenter),
             Codec.intRange(-1, 100).fieldOf("heightRange").orElse(-1).forGetter(structure -> structure.heightRange),
-            Codec.list(StructurePoolAliasBinding.CODEC).optionalFieldOf("pool_aliases", List.of()).forGetter((structure) -> structure.poolAliasBindings),
-            DimensionPadding.CODEC.optionalFieldOf("dimension_padding", JigsawStructure.DEFAULT_DIMENSION_PADDING).forGetter((structure) -> structure.dimensionPadding),
-            StructureLiquidSettings.codec.optionalFieldOf("liquid_settings", JigsawStructure.DEFAULT_LIQUID_SETTINGS).forGetter((jigsawStructure) -> jigsawStructure.liquidSettings)
+            Codec.list(StructurePoolAliasBinding.CODEC).optionalFieldOf("pool_aliases", List.of()).forGetter(structure -> structure.poolAliasBindings),
+            DimensionPadding.CODEC.optionalFieldOf("dimension_padding", JigsawStructure.DEFAULT_DIMENSION_PADDING).forGetter(structure -> structure.dimensionPadding),
+            StructureLiquidSettings.codec.optionalFieldOf("liquid_settings", JigsawStructure.DEFAULT_LIQUID_SETTINGS).forGetter(structure -> structure.liquidSettings)
     ).apply(instance, ModStructure::new));
 
 
-    public final RegistryEntry<StructurePool> startPool;
-    public final int heightRange;
+    private final RegistryEntry<StructurePool> startPool;
+    private final int heightRange;
     private final Optional<Identifier> startJigsawName;
     private final int size;
     private final HeightProvider startHeight;
