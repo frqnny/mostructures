@@ -17,7 +17,8 @@
       "mostructures:pillager_factory",
       "mostructures:barn_house",
       "mostructures:villager_market",
-      "mostructures:villager_tower"
+      "mostructures:villager_tower",
+      "minecraft:woodland_mansions"
     ],
     "spacing": 30,
     "separation": 13,

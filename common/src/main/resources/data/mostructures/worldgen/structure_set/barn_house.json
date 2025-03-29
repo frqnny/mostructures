@@ -12,7 +12,8 @@
       "minecraft:villages",
       "mostructures:abandoned_church",
       "mostructures:killer_bunny_castle",
-      "mostructures:villager_market"
+      "mostructures:villager_market",
+      "minecraft:woodland_mansions"
     ],
     "spacing": 28,
     "separation": 16,
