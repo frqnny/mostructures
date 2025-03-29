@@ -45,26 +45,26 @@ public class MoStructuresConfig implements Config {
     @Override
     public void save() {
         //places all our structures's entries in case they do not exist, then saves the config
-        ensureInConfig("abandoned_church", 14, 26);
-        ensureInConfig("air_balloon", 10, 20);
-        ensureInConfig("barn_house", 16, 28);
-        ensureInConfig("big_pyramid", 25, 32);
-        ensureInConfig("ice_tower", 14, 22);
-        ensureInConfig("jungle_pyramid", 14, 16);
-        ensureInConfig("killer_bunny_castle", 22, 30);
-        ensureInConfig("lighthouse", 14, 24);
-        ensureInConfig("moai", 15, 17);
-        ensureInConfig("pillager_factory", 14, 30);
-        ensureInConfig("pillager_mines", 27, 40);
-        ensureInConfig("pirate_ship", 14, 32);
-        ensureInConfig("tavern", 13, 30);
-        ensureInConfig("the_castle_in_the_sky", 15, 23);
-        ensureInConfig("villager_market", 16, 30);
-        ensureInConfig("villager_tower", 16, 29);
+        checkDefault("abandoned_church", 20, 33);
+        checkDefault("air_balloon", 12, 22);
+        checkDefault("barn_house", 16, 32);
+        checkDefault("big_pyramid", 25, 32);
+        checkDefault("ice_tower", 20, 28);
+        checkDefault("jungle_pyramid", 16, 22);
+        checkDefault("killer_bunny_castle", 22, 32);
+        checkDefault("lighthouse", 14, 24);
+        checkDefault("moai", 15, 17);
+        checkDefault("pillager_factory", 16, 34);
+        checkDefault("pillager_mines", 27, 40);
+        checkDefault("pirate_ship", 16, 32);
+        checkDefault("tavern", 16, 26);
+        checkDefault("the_castle_in_the_sky", 22, 32);
+        checkDefault("villager_market", 16, 32);
+        checkDefault("villager_tower", 16, 26);
         Config.super.save();
     }
 
-    private void ensureInConfig(String configKey, int separation, int spacing) {
-        structureConfigEntries.putIfAbsent(configKey, StructureConfigEntry.of(separation, spacing));
+    private void checkDefault(String configKey, int defaultSeparation, int defaultSpacing) {
+        structureConfigEntries.putIfAbsent(configKey, StructureConfigEntry.of(defaultSeparation, defaultSpacing));
     }
 }

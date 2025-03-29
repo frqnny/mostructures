@@ -126,7 +126,7 @@ public class ModStructurePlacement extends RandomSpreadStructurePlacement {
     public boolean exclusionZoneCheck(StructurePlacementCalculator calculator, int chunkX, int chunkZ) {
         if (!structureSetToAvoid.isEmpty()) {
             for (RegistryEntry<StructureSet> entry : structureSetToAvoid) {
-                if (isStructureSetNearby(calculator, entry, chunkX, chunkZ, 4)) {
+                if (isStructureSetNearby(calculator, entry, chunkX, chunkZ, 3)) {
                     return false;
                 }
             }
