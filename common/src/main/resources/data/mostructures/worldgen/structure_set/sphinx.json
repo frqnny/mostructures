@@ -1,0 +1,18 @@
+{
+  "structures": [
+    {
+      "structure": "mostructures:sphinx",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "mostructures:type",
+    "config_key": "sphinx",
+    "structure_set_to_avoid": [
+      "mostructures:abandoned_church"
+    ],
+    "spacing": 24,
+    "separation": 16,
+    "salt": 857941579
+  }
+}

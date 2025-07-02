@@ -9,7 +9,8 @@
     "type": "mostructures:type",
     "config_key": "big_pyramid",
     "structure_set_to_avoid": [
-      "mostructures:abandoned_church"
+      "mostructures:abandoned_church",
+      "mostructures:sphinx"
     ],
     "spacing": 32,
     "separation": 25,

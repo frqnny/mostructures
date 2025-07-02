@@ -45,26 +45,27 @@ public class MoStructuresConfig implements Config {
     @Override
     public void save() {
         //places all our structures's entries in case they do not exist, then saves the config
-        checkDefault("abandoned_church", 20, 33);
-        checkDefault("air_balloon", 12, 22);
-        checkDefault("barn_house", 16, 32);
-        checkDefault("big_pyramid", 25, 32);
-        checkDefault("ice_tower", 20, 28);
-        checkDefault("jungle_pyramid", 16, 22);
-        checkDefault("killer_bunny_castle", 22, 32);
-        checkDefault("lighthouse", 14, 24);
-        checkDefault("moai", 15, 17);
-        checkDefault("pillager_factory", 16, 34);
-        checkDefault("pillager_mines", 27, 40);
-        checkDefault("pirate_ship", 16, 32);
-        checkDefault("tavern", 16, 26);
-        checkDefault("the_castle_in_the_sky", 22, 32);
-        checkDefault("villager_market", 16, 32);
-        checkDefault("villager_tower", 16, 26);
+        putIfAbsent("abandoned_church", 20, 33);
+        putIfAbsent("air_balloon", 12, 22);
+        putIfAbsent("barn_house", 16, 32);
+        putIfAbsent("big_pyramid", 25, 32);
+        putIfAbsent("ice_tower", 20, 28);
+        putIfAbsent("jungle_pyramid", 17, 22);
+        putIfAbsent("killer_bunny_castle", 22, 32);
+        putIfAbsent("lighthouse", 14, 24);
+        putIfAbsent("moai", 15, 17);
+        putIfAbsent("pillager_factory", 16, 34);
+        putIfAbsent("pillager_mines", 27, 40);
+        putIfAbsent("pirate_ship", 16, 32);
+        putIfAbsent("tavern", 16, 26);
+        putIfAbsent("the_castle_in_the_sky", 22, 32);
+        putIfAbsent("villager_market", 16, 32);
+        putIfAbsent("villager_tower", 16, 26);
+        putIfAbsent("sphinx", 16, 24);
         Config.super.save();
     }
 
-    private void checkDefault(String configKey, int defaultSeparation, int defaultSpacing) {
+    private void putIfAbsent(String configKey, int defaultSeparation, int defaultSpacing) {
         structureConfigEntries.putIfAbsent(configKey, StructureConfigEntry.of(defaultSeparation, defaultSpacing));
     }
 }

@@ -20,7 +20,9 @@
     ]
   },
   "depends": {
-    "minecraft": ">=1.21.5"
+    "minecraft": ">=1.21.5",
+    "architectury": ">=16.1.4",
+    "omegaconfig": ">=1.5.2"
   },
   "mixins": [
     "mostructures.mixins.json"
