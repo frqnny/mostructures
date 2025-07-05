@@ -50,7 +50,7 @@ public class MoStructuresConfig implements Config {
         putIfAbsent("barn_house", 16, 32);
         putIfAbsent("big_pyramid", 25, 32);
         putIfAbsent("ice_tower", 20, 28);
-        putIfAbsent("jungle_pyramid", 17, 22);
+        putIfAbsent("jungle_pyramid", 22, 25);
         putIfAbsent("killer_bunny_castle", 22, 32);
         putIfAbsent("lighthouse", 14, 24);
         putIfAbsent("moai", 15, 17);

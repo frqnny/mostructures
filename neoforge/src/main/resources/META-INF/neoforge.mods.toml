@@ -14,7 +14,7 @@ logoFile = "assets/mostructures/mostructures.png"
 [[dependencies.mostructures]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.7,)"
+versionRange = "[21.7.4,)"
 ordering = "NONE"
 side = "BOTH"
 
