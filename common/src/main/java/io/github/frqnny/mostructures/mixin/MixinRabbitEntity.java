@@ -17,7 +17,7 @@ public class MixinRabbitEntity {
     @Inject(at = @At("HEAD"), method = "initialize", cancellable = true)
     public void rabbitPlsWork(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, CallbackInfoReturnable<EntityData> info) {
         if (spawnReason == SpawnReason.STRUCTURE) {
-            info.setReturnValue(new RabbitEntity.RabbitData(RabbitEntity.Variant.EVIL));
+            info.setReturnValue(new RabbitEntity.RabbitData(RabbitEntity.RabbitType.EVIL));
         }
     }
 }
