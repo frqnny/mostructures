@@ -14,21 +14,21 @@ logoFile = "assets/mostructures/mostructures.png"
 [[dependencies.mostructures]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.7.4,)"
+versionRange = "[21.8.29,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.mostructures]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.7,)"
+versionRange = "[1.21.8,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.mostructures]]
 modId = "architectury"
 type = "required"
-versionRange = "[17.0.6,)"
+versionRange = "[17.0.8,)"
 ordering = "AFTER"
 side = "BOTH"
 
